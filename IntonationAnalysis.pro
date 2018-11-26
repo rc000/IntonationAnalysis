@@ -10,11 +10,13 @@ QT += printsupport
 
 QT       += multimedia
 
- LIBS += -L"C:\Users\Rafau\Downloads\31.07\31.07\SpeakerRecognizer\fftw"
+LIBS += -L"$$PWD/fftw"
 LIBS+=libfftw3-3.lib
 LIBS+=libfftw3f-3.lib
 LIBS+=libfftw3l-3.lib
-LIBS+= -L"C:\\Users\\Rafau\\Downloads\\31.07\\31.07\\SpeakerRecognizer\\lib"
+LIBS+= -L"$$PWD/lib"
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
