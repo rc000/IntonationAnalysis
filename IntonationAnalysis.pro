@@ -61,7 +61,7 @@ SOURCES += \
     yin/ext/kiss_fft.c \
     yin/ext/kiss_fftr.c \
     borderlayout.cpp \
-    singlesamplefeatures.cpp
+    singlesframefeatures.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -95,7 +95,7 @@ HEADERS += \
     yin/Yin.h \
     yin/YinUtil.h \
     borderlayout.h \
-    singlesamplefeatures.h
+    singleframefeatures.h
 
 FORMS += \
     mainwindow.ui

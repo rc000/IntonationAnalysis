@@ -1,18 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "choiceofnumberofspeakers.h"
 
-#define REAL 0
-#define IMAG 1
+
 
 #include<fstream>
-#include <QScatterSeries>
+#include<QScatterSeries>
 #include<QFileInfo>
 #include<QTime>
 #include<QValueAxis>
-#include <math.h>
-#include <limits>
+#include<math.h>
+#include<limits>
 #include<QSound>
 #include<QFileDialog>
 
@@ -107,7 +105,7 @@ void MainWindow::calculation()
             index++;
             whole_signal[index]=data[j];
             qreal peak = SHRT_MAX;
-            samples[samples.size()-1].buffer_emplace_back(whole_signal[index]/peak);
+            framesFeatures[framesFeatures.size()-1].buffer_emplace_back(whole_signal[index]/peak);
 
             if (j<samples_per_frame)
             {
@@ -134,10 +132,10 @@ void MainWindow::calculation()
 void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_number)
 {
     FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
-    samples[samples.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
-    samples[samples.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());
-    samples[samples.size()-1].f0_emplace_back(featuresExtractor.calcF0(frame_number));
-    samples[samples.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
+    framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
+    framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());
+    framesFeatures[framesFeatures.size()-1].f0_emplace_back(featuresExtractor.calcF0(frame_number));
+    framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
 }
 void MainWindow::on_bRecordBaseSamples_clicked()
 {
@@ -148,7 +146,7 @@ void MainWindow::on_bRecordBaseSamples_clicked()
         {
             ui->bRecordBaseSamples->setText("Stop");
             audioRecorder->setAudioInput(audioRecorder->defaultAudioInput());
-            samples.emplace_back();
+            framesFeatures.emplace_back();
             startRecording();
         }
         else if (audioRecorder->state() == QMediaRecorder::RecordingState)
@@ -161,7 +159,7 @@ void MainWindow::on_bRecordBaseSamples_clicked()
 }
 void MainWindow::decodingFinished()
 {
-    samples.emplace_back(SingleSampleFeatures());
+    framesFeatures.emplace_back(SingleFrameFeatures());
     calculation();
     setEnabledFeatureButtons(true);
     qDebug()<<"decoding finished";
@@ -170,9 +168,9 @@ void MainWindow::on_bShowWaveform_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   for(size_t i=0;i<samples[samples.size()-1].buffer_size();i++)
+   for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].buffer_size();i++)
    {
-       series->append(i/44,samples[samples.size()-1].buffer_value(i));
+       series->append(i/44,framesFeatures[framesFeatures.size()-1].buffer_value(i));
    }
   chart->legend()->hide();
   chart->addSeries(series);
@@ -185,9 +183,9 @@ void MainWindow::on_bShowSpectrum_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   for(size_t i=0;i<samples[samples.size()-1].fftBuffer_size();i++)
+   for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].fftBuffer_size();i++)
    {
-       series->append(i,samples[samples.size()-1].fftBuffer_value(i));
+       series->append(i,framesFeatures[framesFeatures.size()-1].fftBuffer_value(i));
    }
   chart->legend()->hide();
   chart->addSeries(series);
@@ -199,9 +197,9 @@ void MainWindow::on_bShowEnergy_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   for(size_t i=0;i<samples[samples.size()-1].energy_size();i++)
+   for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].energy_size();i++)
    {
-       series->append(i,samples[samples.size()-1].energy_value(i));
+       series->append(i,framesFeatures[framesFeatures.size()-1].energy_value(i));
    }
   chart->legend()->hide();
   chart->addSeries(series);
@@ -247,11 +245,12 @@ void MainWindow::on_bF0_clicked()
 
    double down=0.0;
    double up=0.0;
-   double prev_value=-samples[samples.size()-1].f0_value(0);
-   for(size_t i=1;i<samples[samples.size()-1].f0_size();i++)
+   double prev_value=-framesFeatures[framesFeatures.size()-1].f0_value(0);
+   for(size_t i=1;i<framesFeatures[framesFeatures.size()-1].f0_size();i++)
    {
-       double value =samples[samples.size()-1].f0_value(i);
+       double value =framesFeatures[framesFeatures.size()-1].f0_value(i);
        series0->append(i,value);
+      /*
        if(value>prev_value)
        {
            up+=value-prev_value;
@@ -260,7 +259,7 @@ void MainWindow::on_bF0_clicked()
        {
             down-=prev_value-value;
        }
-       prev_value=value;
+       prev_value=value;*/
     }
   chart->addSeries(series0);
   chart->legend()->hide();

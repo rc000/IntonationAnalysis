@@ -48,7 +48,7 @@ std::vector<double> FeaturesExtractor::calcF0(int frame_number)
    int frame_start=frame_number*sample_per_frame;
    for(int i=0;i<numberOfShifts;i++)
    {
-       int shift=i*(sample_per_frame/10);
+       int shift=i*(sample_per_frame/numberOfShifts);
        double *shift_frame =new double [sample_per_frame];
        int index=0;
        for(int j=frame_start+shift;j<frame_start+shift+sample_per_frame;j++)

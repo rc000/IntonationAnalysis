@@ -13,7 +13,7 @@
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QChart>
 #include "FeaturesExtractor.h"
-#include<singlesamplefeatures.h>
+#include<singleframefeatures.h>
 #include<borderlayout.h>
 
 QT_CHARTS_USE_NAMESPACE
@@ -76,7 +76,7 @@ private:
     QLineSeries *series;
     QChart *chart;
     QChartView *chartView;
-    std::vector<SingleSampleFeatures>samples;
+    std::vector<SingleFrameFeatures>framesFeatures;
     QSharedPointer<FeaturesExtractor> featuresExtractor;
     std::vector<QAudioBuffer>audioBuffers;
     QAudioDecoder *audioDecoder;

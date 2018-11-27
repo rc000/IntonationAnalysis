@@ -1,9 +1,9 @@
-#ifndef SINGLESAMPLEFEATURES_H
-#define SINGLESAMPLEFEATURES_H
+#ifndef SINGLEFRAMEFEATURES_H
+#define SINGLEFRAMEFEATURES_H
 
 #endif // SINGLESAMPLE_H
 #include<vector>
-class SingleSampleFeatures{
+class SingleFrameFeatures{
 private:
     std::vector<double>buffer;
     std::vector<double>fftBuffer;
@@ -12,7 +12,7 @@ private:
     std::vector<double>zcr;
     std::vector<double>f0;
 public:
-    SingleSampleFeatures();
+    SingleFrameFeatures();
     void buffer_emplace_back(double);
     size_t buffer_size();
     double buffer_value(int index);
