@@ -3,6 +3,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "contoursextractor.h"
 
 #include<fstream>
 #include<QFileInfo>
@@ -239,12 +240,13 @@ void MainWindow::on_bF0_clicked()
 {
 
    chart = new QChart();
-
+   seriesContours->clear();
    seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
    seriesContours->setMarkerSize(5.0);
 
-   ContoursExtractor contoursExtractor(framesFeatures);
-
+   ContoursExtractor contoursExtractor(framesFeatures,seriesContours);
+   contoursExtractor.findContours();
+   seriesRegresionLines = contoursExtractor.getSeriesRegresionLines();
   chart->addSeries(seriesContours);
 
   chart->legend()->hide();
@@ -253,19 +255,19 @@ void MainWindow::on_bF0_clicked()
   axisX->setTickCount(30);
   QValueAxis *axisY = new QValueAxis;
   axisY->setTickCount(20);
-  axisY->setRange((int)minValue-10,(int)maxValue+10);
-  axisX->setRange((int)firstValueIndex-10,(int)lastValueIndex+10);
+  axisY->setRange((int)contoursExtractor.getMinValue()-10,(int)contoursExtractor.getMaxValue()+10);
+  axisX->setRange((int)contoursExtractor.getIndexOfFirstValue()-10,(int)contoursExtractor.getIndexOfLastValue()+10);
 
   chart->addAxis(axisX, Qt::AlignBottom);
   chart->addAxis(axisY, Qt::AlignLeft);
   seriesContours->attachAxis(axisX);
   seriesContours->attachAxis(axisY);
   seriesRegresionLines.push_back(new QLineSeries());
-  seriesRegresionLines.back()->append(firstPart, maxValue);
-  seriesRegresionLines.back()->append(firstPart, 20);
+  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), contoursExtractor.getMaxValue());
+  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), 20);
   seriesRegresionLines.push_back(new QLineSeries());
-  seriesRegresionLines.back()->append(centerPart, maxValue);
-  seriesRegresionLines.back()->append(centerPart, 20);
+  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), contoursExtractor.getMaxValue());
+  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), 20);
   for(int i=0;i<seriesRegresionLines.size();i++)
   {
       chart->addSeries(seriesRegresionLines.at(i));
@@ -273,6 +275,8 @@ void MainWindow::on_bF0_clicked()
       seriesRegresionLines.at(i)->attachAxis(axisY);
 
   }
+  qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
+
    setLayout();
 }
 void MainWindow::on_bLoad_pressed()

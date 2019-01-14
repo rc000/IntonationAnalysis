@@ -1,8 +1,8 @@
 #ifndef SINGLEFRAMEFEATURES_H
 #define SINGLEFRAMEFEATURES_H
 
-#endif // SINGLESAMPLE_H
 #include<vector>
+
 class SingleFrameFeatures{
 private:
     std::vector<double>buffer;
@@ -38,3 +38,4 @@ public:
     double f0_value(int index);
 
 };
+#endif // SINGLESAMPLE_H
