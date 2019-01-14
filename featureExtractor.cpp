@@ -7,7 +7,7 @@
 #define REAL 0
 #define IMAG 1
 #define F0_MIN 40
-#define F0_MAX 1600
+#define F0_MAX 450
 
 qint16 *FeaturesExtractor::whole_signal = nullptr;
 int FeaturesExtractor::whole_signal_size = 0;
@@ -63,6 +63,8 @@ std::vector<double> FeaturesExtractor::calcF0(int frame_number)
        Yin::YinOutput f0_struct=m_yin.process(shift_frame);
        if (f0_struct.f0 <F0_MAX && f0_struct.f0 >F0_MIN)
            f0.emplace_back(f0_struct.f0);
+       else
+           f0.emplace_back(0);
    }
     return f0;
 }

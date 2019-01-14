@@ -1,11 +1,10 @@
+
+
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
-
-
 #include<fstream>
-#include<QScatterSeries>
 #include<QFileInfo>
 #include<QTime>
 #include<QValueAxis>
@@ -132,10 +131,10 @@ void MainWindow::calculation()
 void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_number)
 {
     FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
-    framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
-    framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());
+    /*framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
+    framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
     framesFeatures[framesFeatures.size()-1].f0_emplace_back(featuresExtractor.calcF0(frame_number));
-    framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
+    //framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
 }
 void MainWindow::on_bRecordBaseSamples_clicked()
 {
@@ -235,43 +234,46 @@ void MainWindow::readBuffer()
 {
     audioBuffers.emplace_back(audioDecoder->read());
 }
+
 void MainWindow::on_bF0_clicked()
 {
+
    chart = new QChart();
 
-   QScatterSeries *series0 = new QScatterSeries();
-   series0->setMarkerShape(QScatterSeries::MarkerShapeCircle);
-   series0->setMarkerSize(8.0);
+   seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+   seriesContours->setMarkerSize(5.0);
 
-   double down=0.0;
-   double up=0.0;
-   double prev_value=-framesFeatures[framesFeatures.size()-1].f0_value(0);
-   for(size_t i=1;i<framesFeatures[framesFeatures.size()-1].f0_size();i++)
-   {
-       double value =framesFeatures[framesFeatures.size()-1].f0_value(i);
-       series0->append(i,value);
-      /*
-       if(value>prev_value)
-       {
-           up+=value-prev_value;
-       }
-       if(value<prev_value)
-       {
-            down-=prev_value-value;
-       }
-       prev_value=value;*/
-    }
-  chart->addSeries(series0);
+   ContoursExtractor contoursExtractor(framesFeatures);
+
+  chart->addSeries(seriesContours);
+
   chart->legend()->hide();
+
   QValueAxis *axisX = new QValueAxis;
-  axisX->setTickCount(20);
+  axisX->setTickCount(30);
   QValueAxis *axisY = new QValueAxis;
   axisY->setTickCount(20);
+  axisY->setRange((int)minValue-10,(int)maxValue+10);
+  axisX->setRange((int)firstValueIndex-10,(int)lastValueIndex+10);
+
   chart->addAxis(axisX, Qt::AlignBottom);
   chart->addAxis(axisY, Qt::AlignLeft);
-  series0->attachAxis(axisX);
-  series0->attachAxis(axisY);
-  setLayout();
+  seriesContours->attachAxis(axisX);
+  seriesContours->attachAxis(axisY);
+  seriesRegresionLines.push_back(new QLineSeries());
+  seriesRegresionLines.back()->append(firstPart, maxValue);
+  seriesRegresionLines.back()->append(firstPart, 20);
+  seriesRegresionLines.push_back(new QLineSeries());
+  seriesRegresionLines.back()->append(centerPart, maxValue);
+  seriesRegresionLines.back()->append(centerPart, 20);
+  for(int i=0;i<seriesRegresionLines.size();i++)
+  {
+      chart->addSeries(seriesRegresionLines.at(i));
+      seriesRegresionLines.at(i)->attachAxis(axisX);
+      seriesRegresionLines.at(i)->attachAxis(axisY);
+
+  }
+   setLayout();
 }
 void MainWindow::on_bLoad_pressed()
 {

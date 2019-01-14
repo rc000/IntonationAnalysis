@@ -61,7 +61,10 @@ SOURCES += \
     yin/ext/kiss_fft.c \
     yin/ext/kiss_fftr.c \
     borderlayout.cpp \
-    singlesframefeatures.cpp
+    singlesframefeatures.cpp \
+    contour.cpp \
+    classificator.cpp \
+    contoursextractor.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -95,7 +98,10 @@ HEADERS += \
     yin/Yin.h \
     yin/YinUtil.h \
     borderlayout.h \
-    singleframefeatures.h
+    singleframefeatures.h \
+    contour.h \
+    classificator.h \
+    contoursextractor.h
 
 FORMS += \
     mainwindow.ui
