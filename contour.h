@@ -34,7 +34,6 @@ public:
      int getEndIndex() {return end;}
 
 
-
 private:
     int index;
     double wspA,wspB;

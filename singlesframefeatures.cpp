@@ -15,21 +15,7 @@ double SingleFrameFeatures::buffer_value(int index)
 {
     return this->buffer[index];
 }
-void SingleFrameFeatures::fftBuffer_emplace_back(std::vector<double> fft)
-{
-    for(std::vector<double>::iterator it=fft.begin();it!=fft.end();++it)
-    {
-            this->fftBuffer.emplace_back(*it);
-    }
-}
-size_t SingleFrameFeatures::fftBuffer_size()
-{
-    return this->fftBuffer.size();
-}
-double SingleFrameFeatures::fftBuffer_value(int index)
-{
-    return this->fftBuffer[index];
-}
+
 
 void SingleFrameFeatures::energy_emplace_back(double energy)
 {

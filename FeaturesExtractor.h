@@ -21,6 +21,5 @@ public:
     std::vector<double> calcF0(int frame_number);
     double calcEnergy();
     double calcZCR();
-    std::vector<double> calcFFT();
     std::vector<double> getData();
 };

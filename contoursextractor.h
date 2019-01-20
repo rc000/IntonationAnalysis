@@ -27,7 +27,7 @@ class ContoursExtractor
     int getLastIndexOfBeginningPart() { return firstPart;}
     int getLastIndexOfCenterPart() { return centerPart;}
     std::vector<QLineSeries*> getSeriesRegresionLines() { return seriesRegresionLines;}
-
+    QString getResult(){return result;}
 
 
 private:
@@ -42,6 +42,8 @@ private:
     Classificator *classificator;
     std::vector<SingleSegment> SegmentsVector;
     SingleSegment currentSegment;
+
+    QString result;
 
 };
 

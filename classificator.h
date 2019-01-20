@@ -1,7 +1,7 @@
 #ifndef CLASSIFICATOR_H
 #define CLASSIFICATOR_H
 #include<vector>
-#include<contour.h>
+#include"singlesegment.h"
 
 using namespace std;
 
@@ -9,12 +9,12 @@ class Classificator
 {
 public:
     Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart,bool sex);
-    void addContour(Contour contour) {contours.emplace_back(contour);}
-    Contour getContour(int index) {return contours.at(index);}
+    void addContour(SingleSegment contour) {contours.emplace_back(contour);}
+    SingleSegment getContour(int index) {return contours.at(index);}
     std::string classification();
 
 private:
-    std::vector<Contour>contours;
+    std::vector<SingleSegment>contours;
     int lastIndexOfBeginningPart;
     int lastIndexOfCenterPart;
     bool sex;

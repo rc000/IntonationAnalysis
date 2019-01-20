@@ -5,18 +5,21 @@
 #define startPartHasContourWithBiggestF0Value (1<<1)
 #define centerPartHasContourWithBiggestF0Value (1<<2)
 #define endPartHasContourWithBiggestF0Value (1<<3)
+#define centerHasContourWithBiggerF0ValueThanStart (1<<4)
 
-#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<4)
 #define sentenceHasFallingTendention (1<<5)
 
+#define startAndEndPartsHaveBiggerF0ValueThanCenter (1<<6)
 
-#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<6)
 #define endHasContourWithSlightlyBiggerF0ValueThanCenter (1<<7)
 
-#define centerHasContourWithBiggerF0ValueThanStart (1<<8)
+
+#define centerHighestContourNotFalling (1<<8)
+
 #define centerHasContourWithBiggerF0ValueThanEnd (1<<9)
 
-#define centerHighestContourNotSteeplyFalling (1<<10)
+#define highestContourLocatedBetweenStartEndCenter (1<<10)
+
 #define centerHighestContourSteeplyFalling (1<<11)
 
 #define allStartContoursAreHigherThanCenterContours (1<<12)
@@ -31,11 +34,18 @@
 #define allContoursAreFalling (1<<18)
 #define endHasContourWithBiggerF0ValueThanStart (1<<19)
 
-#define startAndEndPartsHaveBiggerF0ValueThanCenter (1<<20)
+#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<20)
+
 #define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<21)
 #define sentenceHasRisingTendention (1<<22)
 #define sentenceHasConstantTendention (1<<23)
-#define highestContourLocatedBetweenStartEndCenter (1<<24)
+#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<24)
+
+#define beginningIntonationIsSteeplyFalling (1<<25)
+#define beginningIntonationIsNotSteeplyFalling (1<<26)
+#define centerHighestContourNotSteeplyFalling (1<<27)
+
+
 
 int declarative = 0;
 int declarativeIntonationOnCenter = 0;
@@ -55,9 +65,13 @@ void initialization()
 
    conclusiveQuestion |=  (endHasContourWithMuchBiggerF0ValueThanCenter
                           | startAndEndPartsHaveBiggerF0ValueThanCenter
-                          | sentenceHasRisingTendention);
+                          | sentenceHasRisingTendention
+                          | endHasContourWithSlightlyBiggerF0ValueThanCenter);
 
-   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter);
+   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter
+                           |centerHighestContourNotFalling
+                           |centerHasContourWithBiggerF0ValueThanStart
+                           |highestContourLocatedBetweenStartEndCenter );
 
    imperative |= highestContourLocatedBetweenStartEndCenter;
 
@@ -95,10 +109,10 @@ bool Classificator::compareTwoParts(int firstPartToCompare, int secondPartToComp
             for (int j=0;j<contours.size();j++)
             {
                 if (contours.at(j).getLocationOnTheChart()==secondPartToCompare
-                        && (contours.at(j).getCenterOfRegresionLine() - contours.at(i).getCenterOfRegresionLine()) >5.0)
+                        && (contours.at(j).getCenterOfRegressionLine() - contours.at(i).getCenterOfRegressionLine()) >5.0)
                 {
-                    qDebug()<<"second "<<contours.at(j).getCenterOfRegresionLine();
-                    qDebug()<<"first "<<contours.at(i).getCenterOfRegresionLine();
+                    qDebug()<<"second "<<contours.at(j).getCenterOfRegressionLine();
+                    qDebug()<<"first "<<contours.at(i).getCenterOfRegressionLine();
                     return false;
                 }
             }
@@ -127,19 +141,19 @@ bool Classificator::isQuestion()
     bool endPartIsTheLowest = false;
     for (int i = 0;i<contours.size();i++)
     {
-        if (contours.at(i).getLocationOnTheChart() == BEGINNING && contours.at(i).getCenterOfRegresionLine() > highestValueOfRegresionLinesAtTheBeginning )
+        if (contours.at(i).getLocationOnTheChart() == BEGINNING && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning )
         {
-            highestValueOfRegresionLinesAtTheBeginning = contours.at(i).getCenterOfRegresionLine();
+            highestValueOfRegresionLinesAtTheBeginning = contours.at(i).getCenterOfRegressionLine();
             indexHighestValueOfRegresionLinesAtTheBeginning = i;
         }
-        if (contours.at(i).getLocationOnTheChart() == CENTER && contours.at(i).getCenterOfRegresionLine() > highestValueOfRegresionLinesAtTheCenter )
+        if (contours.at(i).getLocationOnTheChart() == CENTER && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheCenter )
         {
-            highestValueOfRegresionLinesAtTheCenter = contours.at(i).getCenterOfRegresionLine();
+            highestValueOfRegresionLinesAtTheCenter = contours.at(i).getCenterOfRegressionLine();
             indexHighestValueOfRegresionLinesAtTheCenter = i;
         }
-        if (contours.at(i).getLocationOnTheChart() == END && contours.at(i).getCenterOfRegresionLine() > highestValueOfRegresionLinesAtTheEnd )
+        if (contours.at(i).getLocationOnTheChart() == END && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheEnd )
         {
-            highestValueOfRegresionLinesAtTheEnd = contours.at(i).getCenterOfRegresionLine();
+            highestValueOfRegresionLinesAtTheEnd = contours.at(i).getCenterOfRegressionLine();
             indexHighestValueOfRegresionLinesAtTheEnd = i;
         }
     }
@@ -151,15 +165,31 @@ bool Classificator::isQuestion()
         qDebug()<<"Pytanie koniec";
         //return true;
     }
-    else if (highestValueOfRegresionLinesAtTheEnd > 1.2 *highestValueOfRegresionLinesAtTheCenter)
+    else if (highestValueOfRegresionLinesAtTheEnd > 1.1
+             *highestValueOfRegresionLinesAtTheCenter)
     {
+        qDebug()<<"at the end "<<highestValueOfRegresionLinesAtTheEnd;
+        qDebug()<<"center "<<highestValueOfRegresionLinesAtTheCenter;
         features |= endHasContourWithSlightlyBiggerF0ValueThanCenter;
     }
 
     if (highestValueOfRegresionLinesAtTheBeginning > 1.5 *highestValueOfRegresionLinesAtTheCenter)
     {
-        features |= startHasContourWithMuchBiggerF0ValueThanCenter;
-        qDebug()<<"Pytanie poczatek";
+        //features |= startHasContourWithMuchBiggerF0ValueThanCenter;
+        if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCenterOfRegressionLine()
+                - contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getCenterOfRegressionLine())
+                > 10.0)
+        {
+            features |= startHasContourWithMuchBiggerF0ValueThanCenter;
+            qDebug()<<"MUCH BIGGER "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCenter()
+                   <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getCenter();
+        }
+        else
+        {
+            features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
+        qDebug()<<"NOT MUCH BIGGER";
+        }
+
         //return true;
     }
     else if (highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
@@ -170,16 +200,29 @@ bool Classificator::isQuestion()
     }
     if (highestValueOfRegresionLinesAtTheCenter >  highestValueOfRegresionLinesAtTheBeginning)
     {
+        qDebug()<<"CENTER BLABLA "<<indexHighestValueOfRegresionLinesAtTheCenter<<" "<< contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getCenterOfRegressionLine();
          features |= centerHasContourWithBiggerF0ValueThanStart;
     }
     if (highestValueOfRegresionLinesAtTheCenter >  highestValueOfRegresionLinesAtTheEnd)
     {
          features |= centerHasContourWithBiggerF0ValueThanEnd;
     }
-    if (contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getWspA() > -1.0)
+    if (highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheBeginning
+            && highestValueOfRegresionLinesAtTheCenter >highestValueOfRegresionLinesAtTheEnd)
     {
-        features |= centerHighestContourNotSteeplyFalling;
+        double wspA = contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getWspA();
+        if (wspA < 0.0)
+        {
+            if (wspA < -0.5)
+                features |= centerHighestContourSteeplyFalling;
+            else
+                features |= centerHighestContourNotSteeplyFalling;
+        }
+        else
+            features |= centerHighestContourNotFalling;
+
     }
+
     if (highestValueOfRegresionLinesAtTheEnd > highestValueOfRegresionLinesAtTheCenter
             && highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
     {
@@ -252,10 +295,7 @@ bool Classificator::isQuestion()
         features |= sentenceHasConstantTendention;
 
     }
-    if (contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getWspA() < -1.0)
-    {
-        features |= centerHighestContourSteeplyFalling;
-    }
+
     if ( highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheEnd
          && highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheEnd)
         endPartIsTheLowest = true;
@@ -328,15 +368,18 @@ std::string Classificator::classification()
     qDebug()<<bin(completenessQuestion);
     qDebug()<<bin(imperative);
     QString result;
-    if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter )
+    if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
+            && (! (features & imperative)))
         result += "twierdzenie zwykle";
     if ((features & declarativeIntonationOnCenter) == declarativeIntonationOnCenter)
         result += " twierdzenie z intonacja na srodek";
-    if (features & conclusiveQuestion)
+    if ((features & conclusiveQuestion) >= endHasContourWithSlightlyBiggerF0ValueThanCenter)
         result += "pytanie rozstrzygniecia";
-    if (features & completenessQuestion)
+    if (((features & completenessQuestion) )
+            &&(!(features & (conclusiveQuestion | sentenceHasConstantTendention))))
+                            //| endHasContourWithBiggerF0ValueThanStart) == 0)))
         result += "pytanie uzupelnienia";
-    if (features & imperative)
+    if ((features & imperative) && (features & centerHighestContourNotSteeplyFalling))
         result += "zdanie rozkazujace";
 
 

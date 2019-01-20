@@ -37,6 +37,10 @@ double  FeaturesExtractor::calcEnergy()
     {
         energy+=data[i]*data[i];
     }
+    if (energy > 200)
+    {
+       return 0.0;
+    }
     return energy;
 }
 
@@ -78,29 +82,6 @@ double  FeaturesExtractor::calcZCR()
             zcr++;
     }
     return zcr;
-}
-std::vector<double> FeaturesExtractor::calcFFT()
-{
-    std::vector<double> magnitude;
-    fftw_complex *x=new fftw_complex [sample_per_frame]; // input
-    fftw_complex *y=new fftw_complex [sample_per_frame]; // input
-
-    for(size_t i=0; i<sample_per_frame; i++)
-    {
-        x[i][REAL] = data[i]/peak;
-        x[i][IMAG] = 0;
-    }
-
-    fftw_plan myPlan= fftw_plan_dft_1d(sample_per_frame, x, y, FFTW_FORWARD, FFTW_ESTIMATE);
-    fftw_execute(myPlan);
-    fftw_destroy_plan(myPlan);
-    fftw_cleanup();
-
-    for(int i=0; i<sample_per_frame; i++)
-    {
-      magnitude.emplace_back(sqrt(y[i][REAL]*y[i][REAL] + y[i][IMAG]*y[i][IMAG]));
-    }
-    return magnitude;
 }
 
 

@@ -13,6 +13,7 @@
 #include<limits>
 #include<QSound>
 #include<QFileDialog>
+#include<Windows.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,10 +28,25 @@ MainWindow::MainWindow(QWidget *parent) :
         layout = new BorderLayout;
         layout->addWidget(ui->leftButtons, BorderLayout::West);
         layout->addWidget(ui->wBottom, BorderLayout::South);
+
+        layout->addWidget(ui->tableWidget, BorderLayout::Center);
+
         centralWidget = new QWidget;
         centralWidget ->setLayout(layout);
+
         setCentralWidget(centralWidget);
+        ui->tableWidget->setColumnCount(2);
+        ui->tableWidget->setColumnWidth(0,200);
+        ui->tableWidget->setColumnWidth(1,200);
+
+
         setEnabledFeatureButtons(false);
+        desiredFormat.setChannelCount(1);
+        desiredFormat.setCodec("audio/wav");
+        desiredFormat.setSampleType(QAudioFormat::UnSignedInt);
+        desiredFormat.setSampleRate(44100);
+        desiredFormat.setSampleSize(16);
+
 }
 MainWindow::~MainWindow()
 {
@@ -44,6 +60,7 @@ void MainWindow::setEnabledFeatureButtons(bool state)
         ui->bShowWaveform->setEnabled(state);
         ui->bPlay->setEnabled(state);
 }
+bool obliczone = false;
 void MainWindow::startRecording()
 {
     audioBuffers.clear();
@@ -78,15 +95,17 @@ void MainWindow::calculation()
     }
     if(frames!=nullptr)
         delete frames;
-
-    sampleRate = audioBuffers[0].format().sampleRate();
+     sampleRate = audioBuffers[0].format().sampleRate();
     samples_per_frame = audioBuffers[0].format().sampleRate()/20;
+
     frames_number = audioBuffers.size()*2;
     frames = new qint16 *[frames_number];
+
     for (int i = 0; i < frames_number; i++)
             frames[i] = new qint16[samples_per_frame];
     for (int i =0; i<samples_per_frame; i++)
             frames[frames_number-1][i] = 0;
+
 
     for(int i=0;i<audioBuffers.size();i++)
     {
@@ -120,49 +139,50 @@ void MainWindow::calculation()
         //delete data;
     }
 
-    delete FeaturesExtractor::whole_signal;
+    if (FeaturesExtractor::whole_signal != nullptr)
+    {
+        qDebug()<<"usuwam";
+        //delete FeaturesExtractor::whole_signal;
+    }
+
     FeaturesExtractor::whole_signal = whole_signal;
     FeaturesExtractor::whole_signal_size = whole_signal_size;
+
     for(int i=0;i<audioBuffers.size()*2;i++)
     {
-        extractFeatures(peak,samples_per_frame,i);
+         extractFeatures(peak,samples_per_frame,i);
     }
+   ContoursExtractor contoursExtractor(framesFeatures,seriesContours);
+   contoursExtractor.findContours();
+   ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
+   obliczone = true;
+   qDebug()<<"SKONCZONE ";
+
+
+
  }
 
 void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_number)
 {
     FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
-    /*framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
-    framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
+    framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
+     /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
     framesFeatures[framesFeatures.size()-1].f0_emplace_back(featuresExtractor.calcF0(frame_number));
     //framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
 }
-void MainWindow::on_bRecordBaseSamples_clicked()
-{
-    qDebug()<<"record";
-    if(!recorded)
-    {
-        if (audioRecorder->state() == QMediaRecorder::StoppedState)
-        {
-            ui->bRecordBaseSamples->setText("Stop");
-            audioRecorder->setAudioInput(audioRecorder->defaultAudioInput());
-            framesFeatures.emplace_back();
-            startRecording();
-        }
-        else if (audioRecorder->state() == QMediaRecorder::RecordingState)
-        {
-            audioRecorder->stop();
-            calculation();
-            ui->bRecordBaseSamples->setText("start");
-        }
-   }
-}
+
 void MainWindow::decodingFinished()
 {
     framesFeatures.emplace_back(SingleFrameFeatures());
     calculation();
     setEnabledFeatureButtons(true);
     qDebug()<<"decoding finished";
+    if (wavFiles.size()>1)
+    {
+        wavFiles.erase(wavFiles.begin());
+        loadWavFile(wavFiles.front());
+    }
+
 }
 void MainWindow::on_bShowWaveform_clicked()
 {
@@ -181,7 +201,7 @@ void MainWindow::on_bShowWaveform_clicked()
 
 void MainWindow::on_bShowSpectrum_clicked()
 {
-   series = new QLineSeries();
+  /* series = new QLineSeries();
    chart = new QChart();
    for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].fftBuffer_size();i++)
    {
@@ -190,7 +210,7 @@ void MainWindow::on_bShowSpectrum_clicked()
   chart->legend()->hide();
   chart->addSeries(series);
   addAxis();
-  setLayout();
+  setLayout();*/
 }
 
 void MainWindow::on_bShowEnergy_clicked()
@@ -234,6 +254,7 @@ void MainWindow::on_bPlay_clicked()
 void MainWindow::readBuffer()
 {
     audioBuffers.emplace_back(audioDecoder->read());
+    qDebug()<<"odczytane "<<audioBuffers.size();
 }
 
 void MainWindow::on_bF0_clicked()
@@ -281,20 +302,47 @@ void MainWindow::on_bF0_clicked()
 }
 void MainWindow::on_bLoad_pressed()
 {
+
+
     setEnabledFeatureButtons(false);
     audioBuffers.clear();
-    QAudioFormat desiredFormat;
-    desiredFormat.setChannelCount(1);
-    desiredFormat.setCodec("audio/wav");
-    desiredFormat.setSampleType(QAudioFormat::UnSignedInt);
-    desiredFormat.setSampleRate(44100);
-    desiredFormat.setSampleSize(16);
-    audioDecoder = new QAudioDecoder();
-    audioDecoder->setAudioFormat(desiredFormat);
-    wavFilePath = QFileDialog::getOpenFileName(this, tr("choose_import"), ".", tr("wav(*.wav)"));
-    audioDecoder->setSourceFilename(wavFilePath);
 
+    wavFilePath = (QFileDialog::getOpenFileName(this, tr("choose_import"), ".", tr("wav(*.wav)")));
+    loadWavFile(wavFilePath);
+}
+
+void MainWindow::loadWavFile(QString wavFilePath)
+{
+    audioDecoder = new QAudioDecoder();
+    rowCounter++;
+    ui->tableWidget->setRowCount(rowCounter);
+    audioDecoder->setAudioFormat(desiredFormat);
+    audioDecoder->setSourceFilename(wavFilePath);
+    std::size_t found = wavFilePath.toStdString().find_last_of("/");
+    qDebug() << " path: " << wavFilePath.toStdString().substr(0,found).c_str() << '\n';
+    qDebug() << " file: " << wavFilePath.toStdString().substr(found+1).c_str() << '\n';
+    ui->tableWidget->setItem(rowCounter-1,0,new QTableWidgetItem(wavFilePath.toStdString().substr(found+1).c_str()));
+
+    this->audioDecoder = audioDecoder;
     connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(readBuffer()));
     connect(audioDecoder,SIGNAL(finished()),this,SLOT(decodingFinished()));
+    audioBuffers.clear();
+    qDebug()<<"no wyczyszczone nie? "<<audioBuffers.size();
     audioDecoder->start();
+}
+void MainWindow::on_bTestBase_clicked()
+{
+    QDir directory = QFileDialog::getExistingDirectory(this);
+
+    QStringList wavFiles = directory.entryList(QStringList() << "*.wav" << "*.wav",QDir::Files);
+    obliczone = false;
+
+
+    foreach(QString filename, wavFiles) {
+       this->wavFiles.emplace_back(directory.absoluteFilePath(filename));
+     //do whatever you need to do
+    }
+    qDebug()<<"tu?";
+    loadWavFile(this->wavFiles.front());
+
 }

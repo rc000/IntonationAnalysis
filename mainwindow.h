@@ -46,16 +46,17 @@ public:
     void calculation();
     void setEnabledFeatureButtons(bool state);
     void setLayout();
+    void loadWavFile(QString wavFilePath);
+
 
 
 
 
 
  public slots:
-    void readBuffer();
+    void readBuffer( );
     void decodingFinished();
     void getBuffer(QAudioBuffer buffer);
-    void on_bRecordBaseSamples_clicked();
     void on_bShowWaveform_clicked();
     void on_bShowSpectrum_clicked();
     void on_bShowEnergy_clicked();
@@ -63,6 +64,9 @@ public:
 private slots:
     void on_bF0_clicked();
     void on_bLoad_pressed();
+
+
+    void on_bTestBase_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -88,12 +92,15 @@ private:
     std::vector<SingleFrameFeatures>framesFeatures;
     QSharedPointer<FeaturesExtractor> featuresExtractor;
     std::vector<QAudioBuffer>audioBuffers;
-    QAudioDecoder *audioDecoder;
+     QAudioDecoder *audioDecoder;
     qreal peak = SHRT_MAX;
-    QString wavFilePath;
 
     QScatterSeries *seriesContours = new QScatterSeries();
     std::vector<QLineSeries*>seriesRegresionLines;
+    int rowCounter = 0;
+    QAudioFormat desiredFormat;
+    QString wavFilePath;
+    std::vector<QString>wavFiles;
 
 
 };

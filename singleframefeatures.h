@@ -6,8 +6,7 @@
 class SingleFrameFeatures{
 private:
     std::vector<double>buffer;
-    std::vector<double>fftBuffer;
-    std::vector<double>energy;
+     std::vector<double>energy;
     std::vector<double>centroid;
     std::vector<double>zcr;
     std::vector<double>f0;
@@ -17,9 +16,7 @@ public:
     size_t buffer_size();
     double buffer_value(int index);
 
-    void fftBuffer_emplace_back(std::vector<double>);
-    size_t fftBuffer_size();
-    double fftBuffer_value(int index);
+
 
     void energy_emplace_back(double);
     size_t energy_size();

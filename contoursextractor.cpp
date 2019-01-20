@@ -59,8 +59,8 @@ void ContoursExtractor::findContours()
     classificator = new Classificator(firstPart,centerPart,averageValue>190? WOMAN:MAN);
     calcRegressionLines();
 
-    std::string result = classificator->classification();
-    qDebug()<<result.c_str();
+    result = QString::fromStdString(classificator->classification());
+    qDebug()<<"result "<<result;
 
 
 }
@@ -68,9 +68,9 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
 {
     currentSegment.setEnd(i-1);
     currentSegment.setCenter();
-    qDebug()<<"foundNewfunction "<<currentSegment.getStart()<<" "<<currentSegment.getEnd() ;
+    qDebug()<<"foundNewfunction "<<currentSegment.getStartIndex()<<" "<<currentSegment.getEndIndex() ;
 
-    for (int j = currentSegment.getStart(); j<currentSegment.getEnd();j++)
+    for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
     {
         currentSegment.addValue(framesFeatures[framesFeatures.size()-1].f0_value(j));
     }
@@ -78,7 +78,7 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
     {
         qDebug()<<"Validate";
 
-         for (int j = currentSegment.getStart(); j<currentSegment.getEnd();j++)
+         for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
          {
             averageValue += framesFeatures[framesFeatures.size()-1].f0_value(j);
             numberOfPositiveValues++;
@@ -89,8 +89,8 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
 
     if (firstPart == 0 && currentSegment.isContourValidate() && currentSegment.getSegmentLength()>2)
     {
-        firstValueIndex = currentSegment.getStart();
-        firstPart = currentSegment.getStart()+ (lastValueIndex-currentSegment.getStart())/4;
+        firstValueIndex = currentSegment.getStartIndex();
+        firstPart = currentSegment.getStartIndex()+ (lastValueIndex-currentSegment.getStartIndex())/4;
         centerPart = lastValueIndex - (lastValueIndex-firstValueIndex)/4;
 
     }
@@ -113,9 +113,9 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
 void ContoursExtractor::lookForLastContour(double &averageValue, int &numberOfPositiveValues)
 {
     SingleSegment lastSegment;
-    lastSegment.setStart(SegmentsVector.back().getEnd()+1);
+    lastSegment.setStart(SegmentsVector.back().getEndIndex()+1);
     lastSegment.setEnd(framesFeatures[framesFeatures.size()-1].f0_size());
-    for (int j = lastSegment.getStart(); j<lastSegment.getEnd();j++)
+    for (int j = lastSegment.getStartIndex(); j<lastSegment.getEndIndex();j++)
     {
          lastSegment.addValue(framesFeatures[framesFeatures.size()-1].f0_value(j));
     }
@@ -124,22 +124,14 @@ void ContoursExtractor::lookForLastContour(double &averageValue, int &numberOfPo
    {
        lastSegment.setCenter();
        SegmentsVector.push_back(lastSegment);
-       for (int j = lastSegment.getStart(); j<lastSegment.getEnd();j++)
+       for (int j = lastSegment.getStartIndex(); j<lastSegment.getEndIndex();j++)
        {
            averageValue += framesFeatures[framesFeatures.size()-1].f0_value(j);
            numberOfPositiveValues++;
        }
    }
 }
-/*double ContoursExtractor::setLastPositiveValue()
-{
-    for(int i=SegmentsVector.size()-1;i>=0;i--)
-    {
-        if (!(SegmentsVector.at(i).isContourValidate()))
-            continue;
-        return SegmentsVector.at(i).getEnd();
-    }
-}*/
+
 void ContoursExtractor::calcRegressionLines()
 {
     double prevA = 0.0;
@@ -181,23 +173,29 @@ void ContoursExtractor::calcRegressionLines()
         (A>0)? state+="kontur rosnacy" : state+="kontur opadajacy";
 
         double r = sigXY / std::sqrt(sigSqrX * sigSqrY);
-        double r2 = r * r;
-        //if (j >1)
-        //qDebug()<<i<<" kontur "<<" A "<<A<<" B "<<B<<" dlugosc konturu "<<j<< state<<" wsp.zbieznosci "<<r<<" wsp. determinacji "<<r2<<" location "<<SegmentsVector.at(i).getLocation();
-        if(j>1)
+           if(j>1)
         {
-            double centerRegresionLine = A * (SegmentsVector.at(i).getCenter()-SegmentsVector.at(i).getStart()) + B;
-            Contour contour(i,A,B,j,(diffB>0)?RISE:FALL,(A>0.2)?RISING:FALLING,
-                            SegmentsVector.at(i).getLocation(),centerRegresionLine,
-                            SegmentsVector.at(i).getStart(),SegmentsVector.at(i).getEnd());
-            classificator->addContour(contour);
+            double centerRegresionLine;
+            if (A > 0.1)
+            {
+                centerRegresionLine = A * (SegmentsVector.at(i).getEndIndex()-SegmentsVector.at(i).getStartIndex()) + B;
+            }
+            else
+                centerRegresionLine = A * (SegmentsVector.at(i).getCenter()-SegmentsVector.at(i).getStartIndex()) + B;
+            SegmentsVector.at(i).setWspA(A);
+            SegmentsVector.at(i).setWspB(B);
+            SegmentsVector.at(i).setStartState((diffB>0)?RISE:FALL);
+            SegmentsVector.at(i).setContourState((A>0.2)?RISING:FALLING);
+            SegmentsVector.at(i).setCenterRegressionLine(centerRegresionLine);
+
+            classificator->addContour(SegmentsVector.at(i));
         }
           prevA=A;
           prevB=B;
 
             seriesRegresionLines.push_back(new QLineSeries());
-            seriesRegresionLines.back()->append(SegmentsVector.at(i).getStart(),A * (SegmentsVector.at(i).getStart()-SegmentsVector.at(i).getStart()) + B);
-            seriesRegresionLines.back()->append(SegmentsVector.at(i).getEnd(),A * (SegmentsVector.at(i).getEnd()-SegmentsVector.at(i).getStart()) + B);
+            seriesRegresionLines.back()->append(SegmentsVector.at(i).getStartIndex(),A * (SegmentsVector.at(i).getStartIndex()-SegmentsVector.at(i).getStartIndex()) + B);
+            seriesRegresionLines.back()->append(SegmentsVector.at(i).getEndIndex(),A * (SegmentsVector.at(i).getEndIndex()-SegmentsVector.at(i).getStartIndex()) + B);
             qDebug()<<"seriesRegresion ext "<<seriesRegresionLines.size();
      }
 }
