@@ -40,6 +40,8 @@ public:
 
     bool isContourValidate()
     {
+        if (values.size()<3)
+            return false;
         for (int i =0;i<values.size();i++)
         {
             if (values.at(i)==0)
@@ -49,7 +51,7 @@ public:
     }
     double getWspA(){ return wspA;}
     double getWspB(){ return wspB;}
-    int getContourLength(){return contourLength;}
+    int getContourLength(){return values.size();}
     bool getStartState(){return startState;}
     bool getContourState(){return contourState;}
     double getCenterOfRegressionLine(){return centerRegressionLine;}

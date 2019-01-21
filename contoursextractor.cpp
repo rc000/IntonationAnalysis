@@ -56,7 +56,7 @@ void ContoursExtractor::findContours()
     averageValue/=numberOfPositiveValues;
 
     qDebug()<<"SREDNIA WARTOSC "<<averageValue;
-    classificator = new Classificator(firstPart,centerPart,averageValue>190? WOMAN:MAN);
+    classificator = new Classificator(firstPart,centerPart);
     calcRegressionLines();
 
     result = QString::fromStdString(classificator->classification());
@@ -76,7 +76,7 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
     }
     if (currentSegment.isContourValidate())
     {
-        qDebug()<<"Validate";
+        qDebug()<<" Validate "<<currentSegment.getContourLength();
 
          for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
          {
@@ -138,7 +138,7 @@ void ContoursExtractor::calcRegressionLines()
     double prevB = 0.0;
     for (int i=0;i<SegmentsVector.size();i++)
     {
-        if (!(SegmentsVector.at(i).isContourValidate()))
+        if (!(SegmentsVector.at(i).isContourValidate()) )
             continue;
         if (SegmentsVector.at(i).getCenter() < firstPart)
             SegmentsVector.at(i).setLocation(BEGINNING);

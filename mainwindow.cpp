@@ -322,7 +322,6 @@ void MainWindow::loadWavFile(QString wavFilePath)
     qDebug() << " path: " << wavFilePath.toStdString().substr(0,found).c_str() << '\n';
     qDebug() << " file: " << wavFilePath.toStdString().substr(found+1).c_str() << '\n';
     ui->tableWidget->setItem(rowCounter-1,0,new QTableWidgetItem(wavFilePath.toStdString().substr(found+1).c_str()));
-
     this->audioDecoder = audioDecoder;
     connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(readBuffer()));
     connect(audioDecoder,SIGNAL(finished()),this,SLOT(decodingFinished()));
