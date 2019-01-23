@@ -50,13 +50,10 @@ void ContoursExtractor::findContours()
 
     }
     lookForLastContour(averageValue,numberOfPositiveValues);
-    qDebug()<<"SREDNIA WARTOSC "<<averageValue;
-    qDebug()<<"numberOfPositiveValues "<<numberOfPositiveValues;
 
     averageValue/=numberOfPositiveValues;
 
-    qDebug()<<"SREDNIA WARTOSC "<<averageValue;
-    classificator = new Classificator(firstPart,centerPart);
+     classificator = new Classificator(firstPart,centerPart);
     calcRegressionLines();
 
     result = QString::fromStdString(classificator->classification());
@@ -68,7 +65,6 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
 {
     currentSegment.setEnd(i-1);
     currentSegment.setCenter();
-    qDebug()<<"foundNewfunction "<<currentSegment.getStartIndex()<<" "<<currentSegment.getEndIndex() ;
 
     for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
     {
@@ -76,15 +72,12 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
     }
     if (currentSegment.isContourValidate())
     {
-        qDebug()<<" Validate "<<currentSegment.getContourLength();
 
          for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
          {
             averageValue += framesFeatures[framesFeatures.size()-1].f0_value(j);
             numberOfPositiveValues++;
-            qDebug()<<"SREDNIA WARTOSC "<<averageValue;
-            qDebug()<<"numberOfPositiveValues "<<numberOfPositiveValues;
-         }
+          }
     }
 
     if (firstPart == 0 && currentSegment.isContourValidate() && currentSegment.getSegmentLength()>2)
@@ -196,6 +189,5 @@ void ContoursExtractor::calcRegressionLines()
             seriesRegresionLines.push_back(new QLineSeries());
             seriesRegresionLines.back()->append(SegmentsVector.at(i).getStartIndex(),A * (SegmentsVector.at(i).getStartIndex()-SegmentsVector.at(i).getStartIndex()) + B);
             seriesRegresionLines.back()->append(SegmentsVector.at(i).getEndIndex(),A * (SegmentsVector.at(i).getEndIndex()-SegmentsVector.at(i).getStartIndex()) + B);
-            qDebug()<<"seriesRegresion ext "<<seriesRegresionLines.size();
-     }
+      }
 }

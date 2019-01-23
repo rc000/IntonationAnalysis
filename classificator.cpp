@@ -10,17 +10,17 @@
 #define endHasContourWithSlightlyBiggerF0ValueThanCenter (1<<7)
 
 */
-#define centerHasContourWithBiggerF0ValueThanStart (1<<4)
+#define centerHasContourWithBiggerF0ValueThanStart (1<<1)
 
-#define sentenceHasFallingTendention (1<<5)
+#define sentenceHasFallingTendention (1<<2)
 
-#define centerHighestContourNotFalling (1<<8)
+#define centerHighestContourNotFalling (1<<3)
 
-#define centerHasContourWithBiggerF0ValueThanEnd (1<<9)
+#define centerHasContourWithBiggerF0ValueThanEnd (1<<4)
 
-#define highestContourLocatedBetweenStartEndCenter (1<<10)
+#define highestContourLocatedBetweenStartEndCenter (1<<5)
 
-#define centerHighestContourSteeplyFalling (1<<11)
+#define centerHighestContourSteeplyFalling (1<<6)
 
 /* NOT USED FOR NOW
 #define allStartContoursAreHigherThanCenterContours (1<<12)
@@ -36,20 +36,20 @@
 #define centerIsTheHighest (1<<28)
 
 */
-#define allContoursAreFalling (1<<18)
-#define endHasContourWithBiggerF0ValueThanStart (1<<19)
+#define allContoursAreFalling (1<<7)
+#define endHasContourWithBiggerF0ValueThanStart (1<<8)
 
-#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<20)
+#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<9)
 
-#define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<21)
-#define sentenceHasRisingTendention (1<<22)
-#define sentenceHasConstantTendention (1<<23)
-#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<24)
+#define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<10)
+#define sentenceHasRisingTendention (1<<11)
+#define sentenceHasConstantTendention (1<<12)
+#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<13)
 
 
-#define centerHighestContourNotSteeplyFalling (1<<27)
-#define startIsTheLowest (1<<29)
-#define highestContourStronglyRising (1<<30)
+#define centerHighestContourNotSteeplyFalling (1<<14)
+#define startIsTheLowest (1<<15)
+#define highestContourStronglyRising (1<<16)
 
 
 int declarative = 0;
@@ -185,8 +185,6 @@ bool Classificator::analysis()
     if (highestValueOfRegresionLinesAtTheEnd > 1.2 *highestValueOfRegresionLinesAtTheCenter)
     {
         features |= endHasContourWithMuchBiggerF0ValueThanCenter;
-        qDebug()<<"Pytanie koniec";
-        //return true;
     }
     /* NOT USED FOR NOW
     else if (highestValueOfRegresionLinesAtTheEnd > 1.1
@@ -199,19 +197,15 @@ bool Classificator::analysis()
 
     if (highestValueOfRegresionLinesAtTheBeginning > 1.5 *highestValueOfRegresionLinesAtTheCenter)
     {
-        //features |= startHasContourWithMuchBiggerF0ValueThanCenter;
         if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCenterOfRegressionLine()
                 - contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getCenterOfRegressionLine())
                 > 10.0)
         {
             features |= startHasContourWithMuchBiggerF0ValueThanCenter;
-            qDebug()<<"MUCH BIGGER "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCenter()
-                   <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getCenter();
-        }
+         }
         else
         {
             features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
-        qDebug()<<"NOT MUCH BIGGER";
         }
 
         //return true;
@@ -219,7 +213,6 @@ bool Classificator::analysis()
     else if (highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
     {
         features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
-        qDebug()<<"Zdanie Twierdzace start";
         if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 1.5)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength() > 10)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getStartIndex() > lastIndexOfBeginningPart))
@@ -238,7 +231,6 @@ bool Classificator::analysis()
     if (highestValueOfRegresionLinesAtTheEnd > 1.1*highestValueOfRegresionLinesAtTheBeginning)
     {
         features |= endHasContourWithBiggerF0ValueThanStart;
-        qDebug()<<"end > start";
     }
     /* NOT USED FOR NOW
      *
@@ -277,7 +269,6 @@ bool Classificator::analysis()
     if (areAllContoursFalling())
     {
         features |= allContoursAreFalling;
-        qDebug()<<"Zdanie Twierdzace allAreFalling";
 
      }
     int differenceBetweenBeginningCenter = std::abs(highestValueOfRegresionLinesAtTheBeginning
@@ -296,18 +287,14 @@ bool Classificator::analysis()
     }
     else if (highestValueOfRegresionLinesAtTheBeginning < highestValueOfRegresionLinesAtTheCenter
             && highestValueOfRegresionLinesAtTheBeginning < highestValueOfRegresionLinesAtTheEnd
-            && differenceBetweenCenterEnd <tenPercentOfAverageValueCenterEnd)
+            && differenceBetweenCenterEnd < tenPercentOfAverageValueCenterEnd)
     {
         features |= sentenceHasRisingTendention;
     }
     else if (differenceBetweenBeginningCenter < tenPercentOfAverageValueBegginingCenter
              && differenceBetweenCenterEnd < tenPercentOfAverageValueCenterEnd)
     {
-        qDebug()<<"stala tendencja xD";
-        qDebug()<<differenceBetweenBeginningCenter;
-
         features |= sentenceHasConstantTendention;
-
     }
 
     if ( highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheEnd
@@ -349,7 +336,6 @@ bool Classificator::analysis()
     if ((features & centerHasContourWithBiggerF0ValueThanStart )
            && (features & endHasContourWithBiggerF0ValueThanStart) )
     {
-        qDebug()<<"end "<<highestValueOfRegresionLinesAtTheEnd<<" start "<<highestValueOfRegresionLinesAtTheBeginning;
         features |= startIsTheLowest;
     }
 
@@ -380,16 +366,12 @@ std::string Classificator::classification()
     if ((indexHighestValueOfRegresionLinesAtTheCenter == indexOfHighestValue) ||
             (features & highestContourLocatedBetweenStartEndCenter))
     {
-        qDebug()<<" centerIsThe Highest "<<highestContourValue<<" index "<<indexOfHighestValue;
         if ((features & completenessQuestionCenterIntonation)  & centerHighestContourNotFalling)
-            result += "pytanie uzupelnienia na srodek";
+            result += "pytanie uzupelnienia  z int na srodek";
 
         if (((features & imperative) &  centerHighestContourNotSteeplyFalling)
                 && (!(features & endHasContourWithBiggerF0ValueThanStart)))
             result += "zdanie rozkazujace";
-            qDebug()<<"rozkaz "<<(features & imperative)<<" "<<
-                      ((features & imperative) &  centerHighestContourNotSteeplyFalling)<<" "<<
-                      (features & endHasContourWithBiggerF0ValueThanStart);
 
         if (((features & declarativeIntonationOnCenter) & centerHighestContourSteeplyFalling)
             && (!(features & notDeclarative1)))

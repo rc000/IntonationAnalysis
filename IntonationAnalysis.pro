@@ -60,7 +60,6 @@ SOURCES += \
     yin/YinUtil.cpp \
     yin/ext/kiss_fft.c \
     yin/ext/kiss_fftr.c \
-    borderlayout.cpp \
     singlesframefeatures.cpp \
     classificator.cpp \
     contoursextractor.cpp \
@@ -97,7 +96,6 @@ HEADERS += \
     yin/plugguard.h \
     yin/Yin.h \
     yin/YinUtil.h \
-    borderlayout.h \
     singleframefeatures.h \
     classificator.h \
     contoursextractor.h \
