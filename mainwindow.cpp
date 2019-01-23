@@ -63,8 +63,7 @@ void MainWindow::setEnabledFeatureButtons(bool state)
 bool obliczone = false;
 void MainWindow::startRecording()
 {
-    audioBuffers.clear();
-    qDebug()<<"Start Recording";
+   /* audioBuffers.clear();
     QAudioEncoderSettings audioSettings;
     audioSettings.setCodec("audio/wav");
     audioSettings.setSampleRate(44100);
@@ -81,7 +80,7 @@ void MainWindow::startRecording()
             connected=true;
         }
     }
-    audioRecorder->record();
+    audioRecorder->record();*/
 }
 void MainWindow::getBuffer(QAudioBuffer buffer)
 {
@@ -141,7 +140,6 @@ void MainWindow::calculation()
 
     if (FeaturesExtractor::whole_signal != nullptr)
     {
-        qDebug()<<"usuwam";
         //delete FeaturesExtractor::whole_signal;
     }
 
@@ -156,7 +154,6 @@ void MainWindow::calculation()
    contoursExtractor.findContours();
    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
    obliczone = true;
-   qDebug()<<"SKONCZONE ";
 
 
 
@@ -319,14 +316,11 @@ void MainWindow::loadWavFile(QString wavFilePath)
     audioDecoder->setAudioFormat(desiredFormat);
     audioDecoder->setSourceFilename(wavFilePath);
     std::size_t found = wavFilePath.toStdString().find_last_of("/");
-    qDebug() << " path: " << wavFilePath.toStdString().substr(0,found).c_str() << '\n';
-    qDebug() << " file: " << wavFilePath.toStdString().substr(found+1).c_str() << '\n';
     ui->tableWidget->setItem(rowCounter-1,0,new QTableWidgetItem(wavFilePath.toStdString().substr(found+1).c_str()));
     this->audioDecoder = audioDecoder;
     connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(readBuffer()));
     connect(audioDecoder,SIGNAL(finished()),this,SLOT(decodingFinished()));
     audioBuffers.clear();
-    qDebug()<<"no wyczyszczone nie? "<<audioBuffers.size();
     audioDecoder->start();
 }
 void MainWindow::on_bTestBase_clicked()
@@ -339,9 +333,7 @@ void MainWindow::on_bTestBase_clicked()
 
     foreach(QString filename, wavFiles) {
        this->wavFiles.emplace_back(directory.absoluteFilePath(filename));
-     //do whatever you need to do
     }
-    qDebug()<<"tu?";
     loadWavFile(this->wavFiles.front());
 
 }
