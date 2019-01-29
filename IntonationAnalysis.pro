@@ -63,7 +63,8 @@ SOURCES += \
     singlesframefeatures.cpp \
     classificator.cpp \
     contoursextractor.cpp \
-    singlesegment.cpp
+    singlesegment.cpp \
+    borderlayout.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -99,7 +100,8 @@ HEADERS += \
     singleframefeatures.h \
     classificator.h \
     contoursextractor.h \
-    singlesegment.h
+    singlesegment.h \
+    borderlayout.h
 
 FORMS += \
     mainwindow.ui

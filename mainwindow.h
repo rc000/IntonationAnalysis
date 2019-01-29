@@ -78,8 +78,6 @@ private:
     QWidget *emptyWidget;
     QWidget *centralWidget;
 
-    bool recorded;
-    bool connected;
     qint16 **frames;
     int samples_per_frame;
     int frames_number;
@@ -87,7 +85,6 @@ private:
     int sampleRate;
     qint16 *whole_signal;
 
-    QAudioRecorder *audioRecorder;
     QAudioProbe *audioProbe;
     QLineSeries *series;
     QChart *chart;
