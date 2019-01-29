@@ -18,11 +18,10 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),chartView(NULL),
-    recorded(false),connected(false),frames_number(0),samples_per_frame(0),
+    frames_number(0),samples_per_frame(0),
     frames(nullptr),ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
-        audioRecorder = new QAudioRecorder(this);
         audioProbe = new QAudioProbe(this);
         emptyWidget = new QWidget;
         layout = new BorderLayout;
@@ -70,7 +69,8 @@ void MainWindow::startRecording()
     audioSettings.setQuality(QMultimedia::HighQuality);
     audioSettings.setBitRate(32000);
     audioRecorder->setAudioSettings(audioSettings);
-    audioRecorder->setOutputLocation(QUrl::fromLocalFile(QFileInfo("records/recorded_sentence").absoluteFilePath()));
+    audioRecorder->setOu
+tputLocation(QUrl::fromLocalFile(QFileInfo("records/recorded_sentence").absoluteFilePath()));
     if(!connected)
     {
         if (audioProbe->setSource(audioRecorder))
