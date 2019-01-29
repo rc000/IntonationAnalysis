@@ -3,7 +3,6 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "contoursextractor.h"
 
 #include<fstream>
 #include<QFileInfo>
@@ -29,17 +28,23 @@ MainWindow::MainWindow(QWidget *parent) :
         layout->addWidget(ui->leftButtons, BorderLayout::West);
         layout->addWidget(ui->wBottom, BorderLayout::South);
 
-        layout->addWidget(ui->tableWidget, BorderLayout::Center);
+        QWidget *widget = new QWidget;
+        widget->setLayout(ui->horizontalLayout_2);
+        layout->addWidget(widget, BorderLayout::Center);
+
 
         centralWidget = new QWidget;
         centralWidget ->setLayout(layout);
 
         setCentralWidget(centralWidget);
         ui->tableWidget->setColumnCount(2);
-        ui->tableWidget->setColumnWidth(0,200);
-        ui->tableWidget->setColumnWidth(1,200);
+        ui->tableWidget->setColumnWidth(0,150);
+        ui->tableWidget->setColumnWidth(1,150);
+        ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
-
+        connect(ui->tableWidget, SIGNAL( cellDoubleClicked (int, int) ),
+         this, SLOT( cellSelected( int, int ) ) );
         setEnabledFeatureButtons(false);
         desiredFormat.setChannelCount(1);
         desiredFormat.setCodec("audio/wav");
@@ -51,6 +56,55 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::cellSelected(int nRow, int nCol)
+{
+ qDebug()<<nRow<<" "<<nCol;
+ chart = new QChart();
+  ContoursExtractor contoursExtractor = extractors.at(nRow);
+
+ seriesContours = contoursExtractor.getSeriesContours();
+ seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+ seriesContours->setMarkerSize(5.0);
+
+seriesRegresionLines = contoursExtractor.getSeriesRegresionLines();
+qDebug()<<"before adding seriesContours";
+chart->addSeries(seriesContours);
+
+chart->legend()->hide();
+
+QValueAxis *axisX = new QValueAxis;
+axisX->setTickCount(30);
+QValueAxis *axisY = new QValueAxis;
+axisY->setTickCount(20);
+axisY->setRange((int)contoursExtractor.getMinValue()-10,(int)contoursExtractor.getMaxValue()+10);
+axisX->setRange((int)contoursExtractor.getIndexOfFirstValue()-10,(int)contoursExtractor.getIndexOfLastValue()+10);
+
+chart->addAxis(axisX, Qt::AlignBottom);
+chart->addAxis(axisY, Qt::AlignLeft);
+seriesContours->attachAxis(axisX);
+seriesContours->attachAxis(axisY);
+qDebug()<<"before regression lines";
+seriesRegresionLines.push_back(new QLineSeries());
+seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), contoursExtractor.getMaxValue());
+seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), 20);
+seriesRegresionLines.push_back(new QLineSeries());
+seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), contoursExtractor.getMaxValue());
+seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), 20);
+qDebug()<<"after regression lines";
+
+for(int i=0;i<seriesRegresionLines.size();i++)
+{
+    chart->addSeries(seriesRegresionLines.at(i));
+    seriesRegresionLines.at(i)->attachAxis(axisX);
+    seriesRegresionLines.at(i)->attachAxis(axisY);
+
+}
+qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
+
+ setLayout();
+ qDebug()<<"after setting layout";
+
 }
 void MainWindow::setEnabledFeatureButtons(bool state)
 {
@@ -155,6 +209,7 @@ void MainWindow::calculation()
    ContoursExtractor contoursExtractor(framesFeatures,seriesContours);
    contoursExtractor.findContours();
    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
+   extractors.push_back(contoursExtractor);
    obliczone = true;
    qDebug()<<"SKONCZONE ";
 
@@ -228,11 +283,21 @@ void MainWindow::on_bShowEnergy_clicked()
 }
 void MainWindow::setLayout()
 {
+    qDebug()<<"set layout";
     chartView = new QChartView(chart);
-    layout->addWidget(chartView, BorderLayout::Center);
+    ui->horizontalLayout_2->addWidget(chartView);
+    QWidget *widget = new QWidget;
+    qDebug()<<"set layout2";
+
+    widget->setLayout(ui->horizontalLayout_2);
+    layout->addWidget(widget, BorderLayout::Center);
+    qDebug()<<"set layout3";
+
     centralWidget = new QWidget;
     centralWidget->setLayout(layout);
+
     setCentralWidget(centralWidget);
+
 }
 void MainWindow::addAxis()
 {
@@ -261,13 +326,13 @@ void MainWindow::on_bF0_clicked()
 {
 
    chart = new QChart();
-   seriesContours->clear();
+    ContoursExtractor contoursExtractor = extractors.back();
+
+   seriesContours = contoursExtractor.getSeriesContours();
    seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
    seriesContours->setMarkerSize(5.0);
 
-   ContoursExtractor contoursExtractor(framesFeatures,seriesContours);
-   contoursExtractor.findContours();
-   seriesRegresionLines = contoursExtractor.getSeriesRegresionLines();
+  seriesRegresionLines = contoursExtractor.getSeriesRegresionLines();
   chart->addSeries(seriesContours);
 
   chart->legend()->hide();
@@ -326,7 +391,6 @@ void MainWindow::loadWavFile(QString wavFilePath)
     connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(readBuffer()));
     connect(audioDecoder,SIGNAL(finished()),this,SLOT(decodingFinished()));
     audioBuffers.clear();
-    qDebug()<<"no wyczyszczone nie? "<<audioBuffers.size();
     audioDecoder->start();
 }
 void MainWindow::on_bTestBase_clicked()

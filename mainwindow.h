@@ -18,9 +18,11 @@
 #include "singleframefeatures.h"
 
 #include "FeaturesExtractor.h"
-#include<borderlayout.h>
-#include<classificator.h>
-#include<contour.h>
+#include <borderlayout.h>
+#include <classificator.h>
+#include <contour.h>
+#include "contoursextractor.h"
+
 QT_CHARTS_USE_NAMESPACE
 
 QT_BEGIN_NAMESPACE
@@ -61,6 +63,7 @@ public:
     void on_bShowSpectrum_clicked();
     void on_bShowEnergy_clicked();
     void on_bPlay_clicked();
+    void cellSelected(int nRow, int nCol);
 private slots:
     void on_bF0_clicked();
     void on_bLoad_pressed();
@@ -101,6 +104,7 @@ private:
     QAudioFormat desiredFormat;
     QString wavFilePath;
     std::vector<QString>wavFiles;
+    std::vector<ContoursExtractor> extractors;
 
 
 };

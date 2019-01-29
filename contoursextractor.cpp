@@ -4,7 +4,8 @@
 ContoursExtractor::ContoursExtractor(std::vector<SingleFrameFeatures>framesFeatures)
 {
     this->framesFeatures = framesFeatures;
-    this->seriesContours =  nullptr;
+    this->seriesContours =  new QScatterSeries();
+
 }
 
 ContoursExtractor::ContoursExtractor(std::vector<SingleFrameFeatures>framesFeatures,
@@ -174,6 +175,7 @@ void ContoursExtractor::calcRegressionLines()
                 centerRegresionLine = A * (SegmentsVector.at(i).getEndIndex()-SegmentsVector.at(i).getStartIndex()) + B;
             }
             else
+
                 centerRegresionLine = A * (SegmentsVector.at(i).getCenter()-SegmentsVector.at(i).getStartIndex()) + B;
             SegmentsVector.at(i).setWspA(A);
             SegmentsVector.at(i).setWspB(B);
