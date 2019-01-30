@@ -51,7 +51,27 @@
 #define startIsTheLowest (1<<15)
 #define highestContourStronglyRising (1<<16)
 
+static const char *analysisResults[] =
+{
+    "centerHasContourWithBiggerF0ValueThanStart",
+    "sentenceHasFallingTendention",
+    "centerHighestContourNotFalling",
+    "centerHasContourWithBiggerF0ValueThanEnd",
+    "highestContourLocatedBetweenStartEndCenter",
+    "centerHighestContourSteeplyFalling",
+    "allContoursAreFalling",
+    "endHasContourWithBiggerF0ValueThanStart",
+    "endHasContourWithMuchBiggerF0ValueThanCenter",
+    "startHasContourWithSlightlyBiggerF0ValueThanCenter",
+    "sentenceHasRisingTendention",
+    "sentenceHasConstantTendention",
+    "startHasContourWithMuchBiggerF0ValueThanCenter",
+    "centerHighestContourNotSteeplyFalling",
+    "startIsTheLowest",
+    "highestContourStronglyRising"
+};
 
+int numberOfMaxResults = 16;
 int declarative = 0;
 int declarativeIntonationOnCenter = 0;
 int conclusiveQuestion = 0;
@@ -95,6 +115,8 @@ void initialization()
                   |centerHighestContourNotSteeplyFalling);
 
 }
+
+
 
 QString bin(unsigned n)
 {
@@ -148,6 +170,20 @@ bool Classificator::areAllContoursFalling()
          }
      }
     return true;
+}
+void Classificator::printAnalysisResult()
+{
+    unsigned i;
+    int j =numberOfMaxResults-1;
+    for (i = 1 << numberOfMaxResults; i > 0; i = i / 2)
+    {
+        if(features & i)
+        {
+            qDebug()<<analysisResults[j];
+            qDebug()<<" ";
+        };
+        j--;
+    }
 }
 bool Classificator::analysis()
 {
@@ -355,6 +391,7 @@ std::string Classificator::classification()
     qDebug()<<bin(conclusiveQuestion);
     qDebug()<<bin(completenessQuestion);
     qDebug()<<bin(imperative);
+    printAnalysisResult();
     QString result;
     if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
             && (! (features & imperative))
