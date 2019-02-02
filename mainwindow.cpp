@@ -9,7 +9,7 @@
 #include<QFileInfo>
 #include<QTime>
 #include<QValueAxis>
-#include<math.h>
+#include<cmath>
 #include<limits>
 #include<QSound>
 #include<QFileDialog>

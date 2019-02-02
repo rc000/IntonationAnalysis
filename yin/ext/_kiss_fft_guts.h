@@ -1,5 +1,7 @@
 #ifndef KISS_FFT__GUTS_H
 #define KISS_FFT__GUTS_H
+#include "kiss_fft.h"
+
 /*
 Copyright (c) 2003-2010, Mark Borgerding
 
@@ -20,7 +22,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
    typedef struct { kiss_fft_scalar r; kiss_fft_scalar i; }kiss_fft_cpx; */
    #include <limits.h>
 
-#include "kiss_fft.h"
 
 #define MAXFACTORS 32
 /* e.g. an fft of length 128 has 4 factors 

@@ -1,4 +1,5 @@
 #include "contoursextractor.h"
+
 #include <QDebug>
 
 ContoursExtractor::ContoursExtractor(std::vector<SingleFrameFeatures>framesFeatures)
@@ -124,7 +125,18 @@ void ContoursExtractor::lookForLastContour(double &averageValue, int &numberOfPo
        }
    }
 }
+float sqrt3(const float x)
+{
+  union
+  {
+    int i;
+    float x;
+  } u;
 
+  u.x = x;
+  u.i = (1<<29) + (u.i >> 1) - (1<<22);
+  return u.x;
+}
 void ContoursExtractor::calcRegressionLines()
 {
     double prevA = 0.0;
@@ -165,7 +177,8 @@ void ContoursExtractor::calcRegressionLines()
         (diffB>0)? state = "wzrost, " : state = "spadek, ";
         (A>0)? state+="kontur rosnacy" : state+="kontur opadajacy";
 
-        double r = sigXY / std::sqrt(sigSqrX * sigSqrY);
+
+        double r = sigXY / sqrt3(sigSqrX * sigSqrY);
            if(j>1)
         {
             double centerRegresionLine;

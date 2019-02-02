@@ -3,7 +3,8 @@
 // included all of the other (system etc) headers KissFFT depends on,
 // this should work out OK
 #define KISSFFT_USE_CPP_LINKAGE 1
-
+#include "ext/kiss_fft.c"
+#include "ext/kiss_fftr.c"
 namespace Kiss {
 
 #undef KISS_FFT_H
@@ -23,8 +24,7 @@ typedef double kiss_fft_scalar;
 #endif
 
 //inline void free(void *ptr) { ::free(ptr); }
-#include "ext/kiss_fft.c"
-#include "ext/kiss_fftr.c"
+
 
 #undef kiss_fft_scalar // leaving only the namespaced typedef
 

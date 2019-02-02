@@ -2,7 +2,7 @@
 #define CLASSIFICATOR_H
 #include<vector>
 #include"singlesegment.h"
-
+#include <string>
 using namespace std;
 
 class Classificator
@@ -11,6 +11,7 @@ public:
     Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart);
     void addContour(SingleSegment contour) {contours.emplace_back(contour);}
     SingleSegment getContour(int index) {return contours.at(index);}
+
     std::string classification();
     void printAnalysisResult();
 
