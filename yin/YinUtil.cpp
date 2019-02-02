@@ -10,10 +10,9 @@
     License, or (at your option) any later version.  See the file
     COPYING included with this distribution for more information.
 */
-
+#include <cmath>
 
 #include <vector>
-#include <cmath>
 
 #include <cstdio>
 #include <algorithm>

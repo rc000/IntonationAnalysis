@@ -10,16 +10,16 @@ QT += printsupport
 
 QT       += multimedia
 
-LIBS += -L"$$PWD/fftw"
-LIBS+=libfftw3-3.lib
-LIBS+=libfftw3f-3.lib
-LIBS+=libfftw3l-3.lib
+#LIBS += -L"$$PWD/fftw"
+#LIBS+=libfftw3-3.lib
+#LIBS+=libfftw3f-3.lib
+#LIBS+=libfftw3l-3.lib
 LIBS+= -L"$$PWD/lib"
 
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+QT_DEBUG_PLUGINS=1
 TARGET = SpeakerRecognizer
 TEMPLATE = app
 
@@ -41,30 +41,17 @@ SOURCES += \
     featureExtractor.cpp \
     yin/yin.cpp \
     yin/yinutil.cpp \
-    featureExtractor.cpp \
-    yin/fft.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    yin/yin.cpp \
-    yin/yinutil.cpp \
     yin/fft.cpp \
     yin/fftimpl.cpp \
-    yin/Yin.cpp \
-    yin/YinUtil.cpp \
-    featureExtractor.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    yin/fft.cpp \
-    yin/fftimpl.cpp \
-    yin/Yin.cpp \
-    yin/YinUtil.cpp \
-    yin/ext/kiss_fft.c \
-    yin/ext/kiss_fftr.c \
     singlesframefeatures.cpp \
     classificator.cpp \
     contoursextractor.cpp \
     singlesegment.cpp \
-    borderlayout.cpp
+    borderlayout.cpp \
+    contour.cpp \
+    fftt.cpp \
+    yin/ext/kiss_fft.c \
+    yin/ext/kiss_fftr.c
 
 HEADERS += \
         mainwindow.h \
@@ -73,35 +60,22 @@ HEADERS += \
     yin/yin.h \
     yin/meanfilter.h \
     yin/yinutil.h \
-    fftw/fftw3.h \
-    FeaturesExtractor.h \
-    yin/fft.h \
-    mainwindow.h \
     yin/meanfilter.h \
-    yin/yin.h \
-    yin/yinutil.h \
-    fftw/fftw3.h \
     yin/FFT.h \
     yin/MeanFilter.h \
     yin/plugguard.h \
-    yin/Yin.h \
-    yin/YinUtil.h \
-    FeaturesExtractor.h \
-    mainwindow.h \
-    yin/ext/_kiss_fft_guts.h \
-    yin/ext/_kiss_fft_guts.h \
-    yin/ext/kiss_fft.h \
-    yin/ext/kiss_fftr.h \
-    yin/FFT.h \
-    yin/MeanFilter.h \
-    yin/plugguard.h \
-    yin/Yin.h \
-    yin/YinUtil.h \
     singleframefeatures.h \
     classificator.h \
     contoursextractor.h \
     singlesegment.h \
-    borderlayout.h
+    borderlayout.h \
+    fftw/fftw3.h \
+    yin/ext/_kiss_fft_guts.h \
+    yin/ext/kiss_fft.h \
+    yin/ext/kiss_fftr.h \
+    borderlayout.h \
+    contour.h \
+    fftt.h \
 
 FORMS += \
     mainwindow.ui
