@@ -196,6 +196,8 @@ bool Classificator::analysis()
     bool endPartIsTheLowest = false;
     highestContourValue = 0.0;
     indexOfHighestValue = 0;
+    bool isDropAtEnd = false;
+    bool isGrowthAtEnd = false;
     for (int i = 0;i<contours.size();i++)
     {
         qDebug()<<i<<" kontur "<<contours.at(i).getContourLength();
@@ -219,11 +221,17 @@ bool Classificator::analysis()
             highestContourValue = contours.at(i).getCenterOfRegressionLine();
             indexOfHighestValue =i;
         }
-        if ((contours.at(i).getLocationOnTheChart() == END) && (contours.at(i).getStartState() == RISE))
+        if (contours.at(i).getLocationOnTheChart() == END)
         {
-            qDebug()<<"POCZATEK "<<contours.at(i).getStartIndex();
-            features |= bigGrowthAtTheEnd;
+            if (contours.at(i).getStartState() == RISE)
+                isGrowthAtEnd = true;
+            if (contours.at(i).getStartState() == FALL)
+                isDropAtEnd = true;
         }
+
+        if ((isGrowthAtEnd) && (!isDropAtEnd))
+            features |= bigGrowthAtTheEnd;
+
 
     }
     qDebug()<<"higheest Value "<<highestContourValue<<" index "<<indexOfHighestValue;
