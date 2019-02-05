@@ -1,13 +1,13 @@
 #ifndef SINGLESEGMENT_H
 #define SINGLESEGMENT_H
 #include <vector>
-
+#include <QtDebug>
 #define BEGINNING 1
 #define CENTER 2
 #define END 3
 #define ENTIRE 4
 
-#define FALL 0
+#define FALL -1
 #define RISE 1
 #define FALLING 0
 #define RISING 1
@@ -17,7 +17,7 @@
 #define MAN 1
 class SingleSegment {
 public:
-    SingleSegment(){}
+    SingleSegment(int state=0){startState = state;}
     size_t getStartIndex(){return start;}
     size_t getEndIndex(){return end;}
     size_t getCenter(){return center;}
@@ -29,9 +29,9 @@ public:
     void setLocation(int location){locationOnTheChart = location;}
 
     int getLocationOnTheChart(){ return locationOnTheChart;}
-    double getValue(int i){return values.at(i);}
+    double getValue(size_t i){return values.at(i);}
     void addValue(double value){values.emplace_back(value);}
-    void clear(){values.clear();}
+    void clear(){values.clear();startState = 0;}
     void setIsSpaceBeforeContour(bool isSpace){this->spaceBeforeContour = isSpace;}
     bool IsSpaceBeforeContour(){return spaceBeforeContour;}
     void setPreviousContourOrSpaceLength(size_t length){this->previousContourOrSpaceLength = length;}
@@ -40,7 +40,7 @@ public:
 
     bool isContourValidate()
     {
-        if (values.size()<3)
+        if (values.size()<2)
             return false;
         for (int i =0;i<values.size();i++)
         {
@@ -52,14 +52,14 @@ public:
     double getWspA(){ return wspA;}
     double getWspB(){ return wspB;}
     int getContourLength(){return values.size();}
-    bool getStartState(){return startState;}
+    int getStartState(){return startState;}
     bool getContourState(){return contourState;}
     double getCenterOfRegressionLine(){return centerRegressionLine;}
 
     void setWspA(double wspA){ this->wspA = wspA;}
     void setWspB(double wspB){ this->wspB = wspB;}
     void setContourLength(int length){this->contourLength = length;}
-    void setStartState(bool state){this->startState = state;}
+    void setStartState(int state){startState = state;}
     void setContourState(bool state){this->contourState = contourState;}
     void setCenterRegressionLine(double center){this->centerRegressionLine = center;}
 
@@ -76,7 +76,7 @@ private:
     int index;
     double wspA,wspB;
     int contourLength;
-    bool startState;
+    int startState;
     bool contourState;
     double centerRegressionLine;
 };

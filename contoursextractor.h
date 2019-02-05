@@ -30,6 +30,7 @@ class ContoursExtractor
     QScatterSeries *seriesContours;
     QScatterSeries * getSeriesContours(){return seriesContours;}
     QString getResult(){return result;}
+    std::vector<QString> getAnalysisResults(){return analysisResults;}
 
 
 private:
@@ -42,8 +43,10 @@ private:
     std::vector<QLineSeries*>seriesRegresionLines;
     Classificator *classificator;
     std::vector<SingleSegment> SegmentsVector;
-    SingleSegment currentSegment;
+    std::vector<SingleSegment> ValidateSegmentsVector;
 
+    SingleSegment currentSegment;
+    std::vector<QString> analysisResults;
     QString result;
 
 };

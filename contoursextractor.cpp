@@ -25,6 +25,7 @@ int ContoursExtractor::findIndexOfLastF0Value()
          }
      }
 }
+
 void ContoursExtractor::findContours()
 {
     SegmentsVector.clear();
@@ -60,11 +61,15 @@ void ContoursExtractor::findContours()
 
     result = QString::fromStdString(classificator->classification());
     qDebug()<<"result "<<result;
+    analysisResults = classificator->getAnalysisResult();
+    delete classificator;
+    framesFeatures.clear();
 
 
 }
 void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOfPositiveValues)
 {
+
     currentSegment.setEnd(i-1);
     currentSegment.setCenter();
 
@@ -98,7 +103,29 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
         else
             currentSegment.setLocation(END);
     }
+
+    if (ValidateSegmentsVector.size()>0 && currentSegment.isContourValidate())
+    {
+
+
+    if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))>50)
+    {
+        qDebug()<<"wzrost "<<currentSegment.getStartIndex();
+
+        currentSegment.setStartState(RISE);
+    }
+    if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))<-50)
+    {
+        qDebug()<<"spadek "<<currentSegment.getStartIndex();
+
+        currentSegment.setStartState(FALL);
+
+    }
+    }
+    if (currentSegment.isContourValidate())
+        ValidateSegmentsVector.push_back(currentSegment);
     SegmentsVector.push_back(currentSegment);
+
     currentSegment.setStart(i);
     currentSegment.setIsSpaceBeforeContour(!SegmentsVector.back().isContourValidate());
     currentSegment.setPreviousContourOrSpaceLength(SegmentsVector.back().getSize());
@@ -192,7 +219,6 @@ void ContoursExtractor::calcRegressionLines()
                 centerRegresionLine = A * (SegmentsVector.at(i).getCenter()-SegmentsVector.at(i).getStartIndex()) + B;
             SegmentsVector.at(i).setWspA(A);
             SegmentsVector.at(i).setWspB(B);
-            SegmentsVector.at(i).setStartState((diffB>0)?RISE:FALL);
             SegmentsVector.at(i).setContourState((A>0.2)?RISING:FALLING);
             SegmentsVector.at(i).setCenterRegressionLine(centerRegresionLine);
 

@@ -3,6 +3,7 @@
 #include<vector>
 #include"singlesegment.h"
 #include <string>
+#include<QString>
 using namespace std;
 
 class Classificator
@@ -13,7 +14,7 @@ public:
     SingleSegment getContour(int index) {return contours.at(index);}
 
     std::string classification();
-    void printAnalysisResult();
+    std::vector<QString>getAnalysisResult();
 
 private:
     std::vector<SingleSegment>contours;

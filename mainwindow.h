@@ -84,6 +84,7 @@ private:
     int whole_signal_size;
     int sampleRate;
     qint16 *whole_signal;
+   // qint16 *whole_signal;
 
     QAudioProbe *audioProbe;
     QLineSeries *series;
@@ -91,6 +92,7 @@ private:
     QChartView *chartView;
     std::vector<SingleFrameFeatures>framesFeatures;
     QSharedPointer<FeaturesExtractor> featuresExtractor;
+    int activeColumn = -1;
     std::vector<QAudioBuffer>audioBuffers;
      QAudioDecoder *audioDecoder;
     qreal peak = SHRT_MAX;
@@ -102,7 +104,7 @@ private:
     QString wavFilePath;
     std::vector<QString>wavFiles;
     std::vector<ContoursExtractor> extractors;
-
+    QStringList wavFilesList;
 
 };
 

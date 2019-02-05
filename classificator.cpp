@@ -50,6 +50,7 @@
 #define centerHighestContourNotSteeplyFalling (1<<14)
 #define startIsTheLowest (1<<15)
 #define highestContourStronglyRising (1<<16)
+#define bigGrowthAtTheEnd (1<<17)
 
 static const char *analysisResults[] =
 {
@@ -68,10 +69,11 @@ static const char *analysisResults[] =
     "startHasContourWithMuchBiggerF0ValueThanCenter",
     "centerHighestContourNotSteeplyFalling",
     "startIsTheLowest",
-    "highestContourStronglyRising"
+    "highestContourStronglyRising",
+    "bigGrowthAtTheEnd"
 };
 
-int numberOfMaxResults = 16;
+int numberOfMaxResults = 17;
 int declarative = 0;
 int declarativeIntonationOnCenter = 0;
 int conclusiveQuestion = 0;
@@ -101,7 +103,8 @@ void initialization()
    conclusiveQuestion |=  (endHasContourWithMuchBiggerF0ValueThanCenter
                           | startIsTheLowest
                           | sentenceHasRisingTendention
-                          | highestContourStronglyRising);
+                          | highestContourStronglyRising
+                          | bigGrowthAtTheEnd);
 
    completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter);
    notCompletenessQuestion1 |= (conclusiveQuestion | sentenceHasConstantTendention);
@@ -171,19 +174,22 @@ bool Classificator::areAllContoursFalling()
      }
     return true;
 }
-void Classificator::printAnalysisResult()
+std::vector<QString> Classificator::getAnalysisResult()
 {
+    std::vector<QString> results;
     unsigned i;
     int j =numberOfMaxResults-1;
     for (i = 1 << numberOfMaxResults; i > 0; i = i / 2)
     {
         if(features & i)
         {
+            results.push_back(analysisResults[j]);
             qDebug()<<analysisResults[j];
             qDebug()<<" ";
         };
         j--;
     }
+    return results;
 }
 bool Classificator::analysis()
 {
@@ -212,6 +218,11 @@ bool Classificator::analysis()
         {
             highestContourValue = contours.at(i).getCenterOfRegressionLine();
             indexOfHighestValue =i;
+        }
+        if ((contours.at(i).getLocationOnTheChart() == END) && (contours.at(i).getStartState() == RISE))
+        {
+            qDebug()<<"POCZATEK "<<contours.at(i).getStartIndex();
+            features |= bigGrowthAtTheEnd;
         }
 
     }
@@ -391,7 +402,6 @@ std::string Classificator::classification()
     qDebug()<<bin(conclusiveQuestion);
     qDebug()<<bin(completenessQuestion);
     qDebug()<<bin(imperative);
-    printAnalysisResult();
     QString result;
     if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
             && (! (features & imperative))
@@ -431,5 +441,6 @@ std::string Classificator::classification()
             result += "pytanie rozstrzygniecia";
 
     }
+    contours.clear();
     return result.toStdString();
 }

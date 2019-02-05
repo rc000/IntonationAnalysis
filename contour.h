@@ -6,7 +6,7 @@
 #define END 3
 #define ENTIRE 4
 
-#define FALL 0
+#define FALL -1
 #define RISE 1
 #define FALLING 0
 #define RISING 1

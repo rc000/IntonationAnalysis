@@ -37,11 +37,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
         setCentralWidget(centralWidget);
         ui->tableWidget->setColumnCount(2);
-        ui->tableWidget->setColumnWidth(0,150);
-        ui->tableWidget->setColumnWidth(1,150);
+        ui->tableWidget->setColumnWidth(0,200);
+        ui->tableWidget->setColumnWidth(1,200);
+
         ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
 
+        ui->textBrowser->setVisible(false);
         connect(ui->tableWidget, SIGNAL( cellDoubleClicked (int, int) ),
          this, SLOT( cellSelected( int, int ) ) );
         setEnabledFeatureButtons(false);
@@ -51,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
         desiredFormat.setSampleRate(44100);
         desiredFormat.setSampleSize(16);
 
+
 }
 MainWindow::~MainWindow()
 {
@@ -58,10 +61,20 @@ MainWindow::~MainWindow()
 }
 void MainWindow::cellSelected(int nRow, int nCol)
 {
+   activeColumn = nRow;
+  ui->textBrowser->clear();
  qDebug()<<nRow<<" "<<nCol;
- chart = new QChart();
+ qDebug()<<"file "<<wavFilesList.at(nRow);
+  chart = new QChart();
   ContoursExtractor contoursExtractor = extractors.at(nRow);
 
+  for (int i = 0;i<contoursExtractor.getAnalysisResults().size();i++)
+  {
+      qDebug()<<contoursExtractor.getAnalysisResults().at(i);
+      ui->textBrowser->append(contoursExtractor.getAnalysisResults().at(i));
+
+     // ui->textBrowser->setText(contoursExtractor.getAnalysisResults().at(i));
+  }
  seriesContours = contoursExtractor.getSeriesContours();
  seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
  seriesContours->setMarkerSize(5.0);
@@ -71,6 +84,7 @@ qDebug()<<"before adding seriesContours";
 chart->addSeries(seriesContours);
 
 chart->legend()->hide();
+
 
 QValueAxis *axisX = new QValueAxis;
 axisX->setTickCount(30);
@@ -142,12 +156,18 @@ void MainWindow::getBuffer(QAudioBuffer buffer)
 }
 void MainWindow::calculation()
 {
-    for (int i = 0;i<frames_number;i++)
+    qDebug()<<"usuwanko";
+     for (int i = 0;i<frames_number;i++)
     {
+        qDebug()<<"usuwanie frama "<<i;
         delete frames[i];
     }
     if(frames!=nullptr)
+    {
+        qDebug()<<"usuwanie frames";
         delete frames;
+    }
+    qDebug()<<"po usuwaniu";
      sampleRate = audioBuffers[0].format().sampleRate();
     samples_per_frame = audioBuffers[0].format().sampleRate()/20;
 
@@ -159,22 +179,28 @@ void MainWindow::calculation()
     for (int i =0; i<samples_per_frame; i++)
             frames[frames_number-1][i] = 0;
 
+    qDebug()<<"po petlach "<<audioBuffers.size();
+whole_signal_size = 0;
 
     for(int i=0;i<audioBuffers.size();i++)
     {
          whole_signal_size+=audioBuffers[i].sampleCount();
+         qDebug()<<"size "<<whole_signal_size;
     }
 
+
+
     whole_signal=new qint16[whole_signal_size];
+    //qDebug()<<"whole signal "<<whole_signal_size * sizeof (qint16);
 
     int index_frame = 0;
     int index = 0;
-    for(int i=0;i<audioBuffers.size();i++)
+    for(size_t i=0;i<audioBuffers.size();i++)
     {
         const qint16 *data = audioBuffers[i].constData<qint16>();
-        for(int j=0;j<audioBuffers[i].sampleCount();j++)
+         for(int j=0;j<audioBuffers[i].sampleCount();j++)
         {
-            index++;
+             index++;
             whole_signal[index]=data[j];
             qreal peak = SHRT_MAX;
             framesFeatures[framesFeatures.size()-1].buffer_emplace_back(whole_signal[index]/peak);
@@ -187,15 +213,15 @@ void MainWindow::calculation()
             {
                 frames[index_frame+1][j-samples_per_frame] = data[j];
             }
+
         }
         index_frame+=2;
         //delete data;
     }
 
-    if (FeaturesExtractor::whole_signal != nullptr)
-    {
-        //delete FeaturesExtractor::whole_signal;
-    }
+    qDebug()<<"po kolejnych petlach";
+
+
 
     FeaturesExtractor::whole_signal = whole_signal;
     FeaturesExtractor::whole_signal_size = whole_signal_size;
@@ -204,11 +230,16 @@ void MainWindow::calculation()
     {
          extractFeatures(peak,samples_per_frame,i);
     }
-   ContoursExtractor contoursExtractor(framesFeatures,seriesContours);
+   ContoursExtractor contoursExtractor(framesFeatures);
    contoursExtractor.findContours();
    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
    extractors.push_back(contoursExtractor);
+   size_t bytes = sizeof(extractors[0]) * extractors.size();
+   qDebug()<<"rozmiar "<<bytes;
+
    obliczone = true;
+
+       //framesFeatures.clear();
 
 
 
@@ -216,6 +247,7 @@ void MainWindow::calculation()
 
 void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_number)
 {
+
     FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
     framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
      /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
@@ -225,6 +257,7 @@ void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_numbe
 
 void MainWindow::decodingFinished()
 {
+    framesFeatures.clear();
     framesFeatures.emplace_back(SingleFrameFeatures());
     calculation();
     setEnabledFeatureButtons(true);
@@ -281,9 +314,25 @@ void MainWindow::on_bShowEnergy_clicked()
 void MainWindow::setLayout()
 {
     qDebug()<<"set layout";
-    chartView = new QChartView(chart);
-    ui->horizontalLayout_2->addWidget(chartView);
-    QWidget *widget = new QWidget;
+
+    if(chartView==nullptr)
+    {
+        chartView = new QChartView(chart);
+       // ui->horizontalLayout_3->replaceWidget(ui->horizontalLayout_3->widget());
+        ui->verticalLayout_2->addWidget(chartView);
+        qDebug()<<"if";
+        ui->textBrowser->setVisible(true);
+
+
+    }
+    else
+    {
+        qDebug()<<"else"<<endl;
+        chartView->setChart(chart);
+        ui->textBrowser->reload();
+        chartView->repaint();
+    }
+   /* QWidget *widget = new QWidget;
     qDebug()<<"set layout2";
 
     widget->setLayout(ui->horizontalLayout_2);
@@ -293,7 +342,7 @@ void MainWindow::setLayout()
     centralWidget = new QWidget;
     centralWidget->setLayout(layout);
 
-    setCentralWidget(centralWidget);
+    setCentralWidget(centralWidget);*/
 
 }
 void MainWindow::addAxis()
@@ -309,8 +358,11 @@ void MainWindow::addAxis()
 }
 void MainWindow::on_bPlay_clicked()
 {
-    qDebug()<<wavFilePath;
-    QSound::play(wavFilePath);
+    qDebug()<<activeColumn<<" ac";
+    qDebug()<<wavFilesList.size();
+    qDebug()<<wavFilesList.at(activeColumn);
+
+    QSound::play(wavFilesList.at(activeColumn));
 
 }
 void MainWindow::readBuffer()
@@ -323,7 +375,9 @@ void MainWindow::on_bF0_clicked()
 {
 
    chart = new QChart();
-    ContoursExtractor contoursExtractor = extractors.back();
+   qDebug()<<extractors.size();
+   qDebug()<<activeColumn;
+    ContoursExtractor contoursExtractor = extractors.at(activeColumn);
 
    seriesContours = contoursExtractor.getSeriesContours();
    seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
@@ -370,11 +424,13 @@ void MainWindow::on_bLoad_pressed()
     audioBuffers.clear();
 
     wavFilePath = (QFileDialog::getOpenFileName(this, tr("choose_import"), ".", tr("wav(*.wav)")));
+    wavFilesList.push_back(wavFilePath);
     loadWavFile(wavFilePath);
 }
 
 void MainWindow::loadWavFile(QString wavFilePath)
 {
+    qDebug()<<wavFilePath;
     audioDecoder = new QAudioDecoder();
     rowCounter++;
     ui->tableWidget->setRowCount(rowCounter);
@@ -392,11 +448,14 @@ void MainWindow::on_bTestBase_clicked()
 {
     QDir directory = QFileDialog::getExistingDirectory(this);
 
-    QStringList wavFiles = directory.entryList(QStringList() << "*.wav" << "*.wav",QDir::Files);
+    QStringList list = directory.entryList(QStringList() << "*.wav" << "*.wav",QDir::Files);
+
     obliczone = false;
+    qDebug()<<"Ram pam";
 
-
-    foreach(QString filename, wavFiles) {
+    foreach(QString filename, list) {
+        wavFilesList.append(directory.absoluteFilePath(filename));
+        qDebug()<<"file "<<directory.absoluteFilePath(filename);
        this->wavFiles.emplace_back(directory.absoluteFilePath(filename));
     }
     loadWavFile(this->wavFiles.front());
