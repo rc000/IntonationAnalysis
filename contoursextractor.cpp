@@ -43,7 +43,7 @@ void ContoursExtractor::findContours()
          seriesContours->append(i,value);
         if (value > maxValue)
             maxValue = value;
-        if (value < minValue && value > 40)
+        if (value < minValue && value > 60)
             minValue = value;
         if(std::abs(value - framesFeatures[framesFeatures.size()-1].f0_value(i-1)) > 15)
         {
@@ -62,6 +62,7 @@ void ContoursExtractor::findContours()
     result = QString::fromStdString(classificator->classification());
     qDebug()<<"result "<<result;
     analysisResults = classificator->getAnalysisResult();
+    stateChanges = classificator->getStateChanges();
     delete classificator;
     framesFeatures.clear();
 

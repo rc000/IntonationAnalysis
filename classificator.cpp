@@ -51,6 +51,8 @@
 #define startIsTheLowest (1<<15)
 #define highestContourStronglyRising (1<<16)
 #define bigGrowthAtTheEnd (1<<17)
+#define majorChangesAtTheBeginning (1<<18)
+
 
 static const char *analysisResults[] =
 {
@@ -70,10 +72,11 @@ static const char *analysisResults[] =
     "centerHighestContourNotSteeplyFalling",
     "startIsTheLowest",
     "highestContourStronglyRising",
-    "bigGrowthAtTheEnd"
+    "bigGrowthAtTheEnd",
+    "majorChangesAtTheBeginning"
 };
 
-int numberOfMaxResults = 17;
+int numberOfMaxResults = 18;
 int declarative = 0;
 int declarativeIntonationOnCenter = 0;
 int conclusiveQuestion = 0;
@@ -93,7 +96,8 @@ void initialization()
    declarative|= (startHasContourWithSlightlyBiggerF0ValueThanCenter | allContoursAreFalling
                   | sentenceHasFallingTendention
                   | sentenceHasConstantTendention);
-   notDeclarative1 |= (endHasContourWithBiggerF0ValueThanStart | highestContourStronglyRising);
+   notDeclarative1 |= (endHasContourWithBiggerF0ValueThanStart | highestContourStronglyRising
+                   | majorChangesAtTheBeginning);
 
 
    declarativeIntonationOnCenter |= (centerHasContourWithBiggerF0ValueThanStart
@@ -106,7 +110,7 @@ void initialization()
                           | highestContourStronglyRising
                           | bigGrowthAtTheEnd);
 
-   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter);
+   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter | majorChangesAtTheBeginning);
    notCompletenessQuestion1 |= (conclusiveQuestion | sentenceHasConstantTendention);
 
    completenessQuestionCenterIntonation |= (centerHighestContourNotFalling
@@ -231,6 +235,29 @@ bool Classificator::analysis()
 
         if ((isGrowthAtEnd) && (!isDropAtEnd))
             features |= bigGrowthAtTheEnd;
+
+        if (contours.at(i).getStartState()!=0)
+        {
+            QString state;
+            if (contours.at(i).getLocationOnTheChart() == BEGINNING)
+            {
+                state = "Beginning";
+                if (contours.at(i).getStartState() == FALL)
+                {
+                    if(contours.at(i).getWspA()<0.0)
+                        features |= majorChangesAtTheBeginning;
+                }
+                else
+                    features |= majorChangesAtTheBeginning;
+
+            }
+            else if (contours.at(i).getLocationOnTheChart() == CENTER) state = "CENTER";
+            else state = "END";
+
+            if (contours.at(i).getStartState() == RISE) state +=" GROWTH";
+            else state += " DROP";
+            stateChanges.push_back(state);
+        }
 
 
     }

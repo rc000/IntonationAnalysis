@@ -31,6 +31,8 @@ class ContoursExtractor
     QScatterSeries * getSeriesContours(){return seriesContours;}
     QString getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
+    std::vector<QString> getStateChanges(){return stateChanges;}
+
 
 
 private:
@@ -47,6 +49,8 @@ private:
 
     SingleSegment currentSegment;
     std::vector<QString> analysisResults;
+    std::vector<QString> stateChanges;
+
     QString result;
 
 };

@@ -75,6 +75,11 @@ void MainWindow::cellSelected(int nRow, int nCol)
 
      // ui->textBrowser->setText(contoursExtractor.getAnalysisResults().at(i));
   }
+  for (int i = 0;i<contoursExtractor.getStateChanges().size();i++)
+  {
+      qDebug()<<contoursExtractor.getStateChanges().at(i);
+      ui->textBrowser->append(contoursExtractor.getStateChanges().at(i));
+  }
  seriesContours = contoursExtractor.getSeriesContours();
  seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
  seriesContours->setMarkerSize(5.0);

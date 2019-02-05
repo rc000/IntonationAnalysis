@@ -15,9 +15,11 @@ public:
 
     std::string classification();
     std::vector<QString>getAnalysisResult();
+    std::vector<QString>getStateChanges(){return stateChanges;}
 
 private:
     std::vector<SingleSegment>contours;
+    std::vector<QString>stateChanges;
     int lastIndexOfBeginningPart;
     int lastIndexOfCenterPart;
     double highestValueOfRegresionLinesAtTheBeginning;

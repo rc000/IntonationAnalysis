@@ -6,7 +6,7 @@
 #include <QDebug>
 #define REAL 0
 #define IMAG 1
-#define F0_MIN 40
+#define F0_MIN 60
 #define F0_MAX 450
 
 qint16 *FeaturesExtractor::whole_signal = nullptr;
