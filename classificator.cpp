@@ -102,10 +102,11 @@ void initialization()
 {
    declarative|= (startHasContourWithSlightlyBiggerF0ValueThanCenter | allContoursAreFalling
                   | sentenceHasFallingTendention
-                  | sentenceHasConstantTendention
-                  | bigDropAtTheBeginning);
+                  | sentenceHasConstantTendention);
+                  //| bigDropAtTheBeginning);
    notDeclarative1 |= (endHasContourWithBiggerF0ValueThanStart | highestContourStronglyRising
-                   | bigGrowthAtTheBeginning);
+                   | bigGrowthAtTheBeginning
+                       |bigDropAtTheBeginning);
 
 
    declarativeIntonationOnCenter |= (centerHasContourWithBiggerF0ValueThanStart
