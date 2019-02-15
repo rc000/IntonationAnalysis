@@ -20,7 +20,7 @@
 #include "FeaturesExtractor.h"
 #include <borderlayout.h>
 #include <classificator.h>
-#include <contour.h>
+//#include <contour.h>
 #include "contoursextractor.h"
 
 QT_CHARTS_USE_NAMESPACE
@@ -63,7 +63,9 @@ public:
     void on_bShowSpectrum_clicked();
     void on_bShowEnergy_clicked();
     void on_bPlay_clicked();
+    void cellClicked(int nRow, int nCol);
     void cellSelected(int nRow, int nCol);
+
 private slots:
     void on_bF0_clicked();
     void on_bLoad_pressed();

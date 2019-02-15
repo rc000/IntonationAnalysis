@@ -45,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
         ui->textBrowser->setVisible(false);
         connect(ui->tableWidget, SIGNAL( cellDoubleClicked (int, int) ),
+         this, SLOT( cellClicked( int, int ) ) );
+        connect(ui->tableWidget, SIGNAL( cellClicked (int, int) ),
          this, SLOT( cellSelected( int, int ) ) );
         setEnabledFeatureButtons(false);
         desiredFormat.setChannelCount(1);
@@ -59,7 +61,11 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::cellSelected(int nRow, int nCol)
+void MainWindow::cellSelected(int nRow,int nCol)
+{
+    activeColumn = nRow;
+}
+void MainWindow::cellClicked(int nRow, int nCol)
 {
    activeColumn = nRow;
   ui->textBrowser->clear();
@@ -307,9 +313,11 @@ void MainWindow::on_bShowEnergy_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].energy_size();i++)
+   ContoursExtractor contoursExtractor = extractors.at(activeColumn);
+
+   for(size_t i=0;i<contoursExtractor.getFrameFeatures()[contoursExtractor.getFrameFeatures().size()-1].energy_size();i++)
    {
-       series->append(i,framesFeatures[framesFeatures.size()-1].energy_value(i));
+       series->append(i,contoursExtractor.getFrameFeatures()[contoursExtractor.getFrameFeatures().size()-1].energy_value(i));
    }
   chart->legend()->hide();
   chart->addSeries(series);

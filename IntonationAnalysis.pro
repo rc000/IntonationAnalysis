@@ -48,7 +48,6 @@ SOURCES += \
     contoursextractor.cpp \
     singlesegment.cpp \
     borderlayout.cpp \
-    contour.cpp \
     fftt.cpp \
     yin/ext/kiss_fft.c \
     yin/ext/kiss_fftr.c
@@ -74,7 +73,6 @@ HEADERS += \
     yin/ext/kiss_fft.h \
     yin/ext/kiss_fftr.h \
     borderlayout.h \
-    contour.h \
     fftt.h \
 
 FORMS += \

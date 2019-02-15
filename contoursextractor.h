@@ -26,13 +26,14 @@ class ContoursExtractor
     int getIndexOfLastValue() { return lastValueIndex;}
     int getLastIndexOfBeginningPart() { return firstPart;}
     int getLastIndexOfCenterPart() { return centerPart;}
-    std::vector<QLineSeries*> getSeriesRegresionLines() { return seriesRegresionLines;}
+    std::vector<QLineSeries*> getSeriesRegresionLines();
     QScatterSeries *seriesContours;
     QScatterSeries * getSeriesContours(){return seriesContours;}
     QString getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
     std::vector<QString> getStateChanges(){return stateChanges;}
-
+    std::vector<SingleFrameFeatures>getFrameFeatures(){ return framesFeatures;}
+    int getNextValidateContour(int index);
 
 
 private:
@@ -50,6 +51,9 @@ private:
     SingleSegment currentSegment;
     std::vector<QString> analysisResults;
     std::vector<QString> stateChanges;
+    double sumAllValues = 0.0;
+    int numberAllValues = 0;
+
 
     QString result;
 

@@ -1,6 +1,7 @@
 #include "classificator.h"
 #include <string>
 #include<QDebug>
+#include <sstream>
 
 /*NOT USED FOR NOW
 #define startPartHasContourWithBiggestF0Value (1<<1)
@@ -51,7 +52,10 @@
 #define startIsTheLowest (1<<15)
 #define highestContourStronglyRising (1<<16)
 #define bigGrowthAtTheEnd (1<<17)
-#define majorChangesAtTheBeginning (1<<18)
+#define bigGrowthAtTheBeginning (1<<18)
+#define bigDropAtTheBeginning (1<<19)
+#define highestContourAtBeginningStronglyRising (1<<20)
+
 
 
 static const char *analysisResults[] =
@@ -73,10 +77,12 @@ static const char *analysisResults[] =
     "startIsTheLowest",
     "highestContourStronglyRising",
     "bigGrowthAtTheEnd",
-    "majorChangesAtTheBeginning"
+    "bigGrowthAtTheBeginning",
+    "bigDropAtTheBeginning",
+    "highestContourAtBeginningStronglyRising"
 };
 
-int numberOfMaxResults = 18;
+int numberOfMaxResults = 20;
 int declarative = 0;
 int declarativeIntonationOnCenter = 0;
 int conclusiveQuestion = 0;
@@ -84,6 +90,7 @@ int completenessQuestion = 0;
 int notCompletenessQuestion1 = 0;
 int completenessQuestionCenterIntonation = 0;
 int imperative = 0;
+int notImperative = 0;
 
 int notDeclarative1 = 0;
 
@@ -95,9 +102,10 @@ void initialization()
 {
    declarative|= (startHasContourWithSlightlyBiggerF0ValueThanCenter | allContoursAreFalling
                   | sentenceHasFallingTendention
-                  | sentenceHasConstantTendention);
+                  | sentenceHasConstantTendention
+                  | bigDropAtTheBeginning);
    notDeclarative1 |= (endHasContourWithBiggerF0ValueThanStart | highestContourStronglyRising
-                   | majorChangesAtTheBeginning);
+                   | bigGrowthAtTheBeginning);
 
 
    declarativeIntonationOnCenter |= (centerHasContourWithBiggerF0ValueThanStart
@@ -107,10 +115,10 @@ void initialization()
    conclusiveQuestion |=  (endHasContourWithMuchBiggerF0ValueThanCenter
                           | startIsTheLowest
                           | sentenceHasRisingTendention
-                          | highestContourStronglyRising
+                          //| highestContourStronglyRising
                           | bigGrowthAtTheEnd);
 
-   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter | majorChangesAtTheBeginning);
+   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter | bigGrowthAtTheBeginning | bigDropAtTheBeginning);
    notCompletenessQuestion1 |= (conclusiveQuestion | sentenceHasConstantTendention);
 
    completenessQuestionCenterIntonation |= (centerHighestContourNotFalling
@@ -119,7 +127,10 @@ void initialization()
 
 
    imperative |= (highestContourLocatedBetweenStartEndCenter
-                  |centerHighestContourNotSteeplyFalling);
+                  |centerHighestContourNotSteeplyFalling
+                  |highestContourAtBeginningStronglyRising);
+   notImperative |= (endHasContourWithMuchBiggerF0ValueThanCenter
+                     | endHasContourWithBiggerF0ValueThanStart);
 
 }
 
@@ -204,6 +215,9 @@ bool Classificator::analysis()
     bool isGrowthAtEnd = false;
     for (int i = 0;i<contours.size();i++)
     {
+        std::ostringstream ss;
+        ss<<i<<" "<<contours.at(i).getWspA();
+        stateChanges.push_back(QString::fromStdString(ss.str()));
         qDebug()<<i<<" kontur "<<contours.at(i).getContourLength();
         if (contours.at(i).getLocationOnTheChart() == BEGINNING && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning )
         {
@@ -244,25 +258,40 @@ bool Classificator::analysis()
                 state = "Beginning";
                 if (contours.at(i).getStartState() == FALL)
                 {
-                    if(contours.at(i).getWspA()<0.0)
-                        features |= majorChangesAtTheBeginning;
+                    if(contours.at(i+1).getWspA()<0.0)
+                    {
+                        qDebug()<<"DROP "<<i<<" "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getContourLength();
+                        features |= bigDropAtTheBeginning;
+                    }
+
                 }
                 else
-                    features |= majorChangesAtTheBeginning;
+                    features |= bigGrowthAtTheBeginning;
 
             }
             else if (contours.at(i).getLocationOnTheChart() == CENTER) state = "CENTER";
             else state = "END";
 
             if (contours.at(i).getStartState() == RISE) state +=" GROWTH";
-            else state += " DROP";
+            else if (contours.at(i).getStartState() == FALL)
+            {
+                qDebug()<<"DROP "<<i<<" "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getContourLength();
+
+                state += " DROP";
+            }
             stateChanges.push_back(state);
         }
 
 
     }
     qDebug()<<"higheest Value "<<highestContourValue<<" index "<<indexOfHighestValue;
+    qDebug()<<"highestValueBeginning "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA()
+           <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()
+          <<" "<<indexHighestValueOfRegresionLinesAtTheBeginning;
 
+    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 0.8)
+            && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()>5))
+        features |= highestContourAtBeginningStronglyRising;
 
     if (highestValueOfRegresionLinesAtTheEnd > 1.2 *highestValueOfRegresionLinesAtTheCenter)
     {
@@ -443,17 +472,17 @@ std::string Classificator::classification()
             && (!(features & notDeclarative1)))
         result += "twierdzenie zwykle";
 
-
+    if (((features & imperative))
+            && (!(features & notImperative)))
+        result += "zdanie rozkazujace";
 
     if ((indexHighestValueOfRegresionLinesAtTheCenter == indexOfHighestValue) ||
             (features & highestContourLocatedBetweenStartEndCenter))
     {
-        if ((features & completenessQuestionCenterIntonation)  & centerHighestContourNotFalling)
-            result += "pytanie uzupelnienia  z int na srodek";
+       // if ((features & completenessQuestionCenterIntonation)  & centerHighestContourNotFalling)
+         //   result += "pytanie uzupelnienia  z int na srodek";
 
-        if (((features & imperative) &  centerHighestContourNotSteeplyFalling)
-                && (!(features & endHasContourWithBiggerF0ValueThanStart)))
-            result += "zdanie rozkazujace";
+
 
         if (((features & declarativeIntonationOnCenter) & centerHighestContourSteeplyFalling)
             && (!(features & notDeclarative1)))

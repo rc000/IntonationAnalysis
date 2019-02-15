@@ -54,17 +54,75 @@ void ContoursExtractor::findContours()
     }
     lookForLastContour(averageValue,numberOfPositiveValues);
 
+    int index =0;
+    for(int i = 0;i<SegmentsVector.size();i++)
+    {
+        for(int j =0; j<SegmentsVector.at(i).getContourLength();j++)
+        {
+           //seriesContours->append(index,SegmentsVector.at(i).getValue(j));
+            index++;
+
+        }
+    }
+
     averageValue/=numberOfPositiveValues;
 
      classificator = new Classificator(firstPart,centerPart);
-    calcRegressionLines();
+
+     calcRegressionLines();
+
+     for(int i = 0;i<SegmentsVector.size();i++)
+     {
+        if(!SegmentsVector.at(i).isContourValidate())
+            continue;
+         qDebug()<<SegmentsVector.at(i).getCenterOfRegressionLine();
+         sumAllValues += SegmentsVector.at(i).getCenterOfRegressionLine();
+         numberAllValues++;
+
+     }
+     qDebug()<<"allValues "<<sumAllValues;
+     qDebug()<<"number of values "<<numberAllValues;
+     qDebug()<<"average "<<sumAllValues/numberAllValues;
+     for(int i = 0;i<SegmentsVector.size();i++)
+     {
+         double averageWithoutCurrentContour = sumAllValues - SegmentsVector.at(i).getCenterOfRegressionLine();
+         averageWithoutCurrentContour /= (numberAllValues-1);
+         qDebug()<<" "<<i;
+         if((SegmentsVector.at(i).getCenterOfRegressionLine() > (averageWithoutCurrentContour*1.8))
+                 && (SegmentsVector.at(i).getContourLength()<5))
+         {
+             qDebug()<<"fill ";
+             for(auto & value:SegmentsVector.at(i).getValuesVector())
+                 value = 0.0;
+
+            // std::fill(SegmentsVector.at(i).getValuesVector().begin(),SegmentsVector.at(i).getValuesVector().end(),0.0);
+
+
+             SegmentsVector.at(i).setRegresionLine(nullptr);
+
+             int nextValidate = getNextValidateContour(i);
+             if(nextValidate!=-1)
+                SegmentsVector.at(nextValidate).setStartState(0);
+
+
+             //std::fill(SegmentsVector.at(i).getValuesVector().begin(),SegmentsVector.at(i).getValuesVector().end(),0);
+         }
+         else if((SegmentsVector.at(i).getStartState()== RISE )
+                 && (SegmentsVector.at(i).getWspA()<-1.0))
+                SegmentsVector.at(i).setStartState(0);
+
+         if(SegmentsVector.at(i).getRegressionLine()!=nullptr)
+             classificator->addContour(SegmentsVector.at(i));
+
+     }
+
 
     result = QString::fromStdString(classificator->classification());
     qDebug()<<"result "<<result;
     analysisResults = classificator->getAnalysisResult();
     stateChanges = classificator->getStateChanges();
     delete classificator;
-    framesFeatures.clear();
+    //framesFeatures.clear();
 
 
 }
@@ -109,13 +167,19 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
     {
 
 
-    if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))>50)
+   /* if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))
+            >(ValidateSegmentsVector.back().getStartIndex()/5))*/
+     if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))
+             >(currentSegment.getValue(0)/7))
+
     {
-        qDebug()<<"wzrost "<<currentSegment.getStartIndex();
+        qDebug()<<"WZROST "<<currentSegment.getStartIndex()<<" "<<currentSegment.getWspA();
 
         currentSegment.setStartState(RISE);
     }
-    if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))<-50)
+    //if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))<-50)
+     else if ((ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1) - currentSegment.getValue(0))
+             >(ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1)/7))
     {
         qDebug()<<"spadek "<<currentSegment.getStartIndex();
 
@@ -168,6 +232,7 @@ float sqrt3(const float x)
 }
 void ContoursExtractor::calcRegressionLines()
 {
+    seriesRegresionLines.clear();
     double prevA = 0.0;
     double prevB = 0.0;
     for (int i=0;i<SegmentsVector.size();i++)
@@ -223,13 +288,37 @@ void ContoursExtractor::calcRegressionLines()
             SegmentsVector.at(i).setContourState((A>0.2)?RISING:FALLING);
             SegmentsVector.at(i).setCenterRegressionLine(centerRegresionLine);
 
-            classificator->addContour(SegmentsVector.at(i));
         }
           prevA=A;
           prevB=B;
 
-            seriesRegresionLines.push_back(new QLineSeries());
-            seriesRegresionLines.back()->append(SegmentsVector.at(i).getStartIndex(),A * (SegmentsVector.at(i).getStartIndex()-SegmentsVector.at(i).getStartIndex()) + B);
-            seriesRegresionLines.back()->append(SegmentsVector.at(i).getEndIndex(),A * (SegmentsVector.at(i).getEndIndex()-SegmentsVector.at(i).getStartIndex()) + B);
-      }
+          QLineSeries *lineSeries = new QLineSeries();
+            lineSeries->append(SegmentsVector.at(i).getStartIndex(),A * (SegmentsVector.at(i).getStartIndex()-SegmentsVector.at(i).getStartIndex()) + B);
+            lineSeries->append(SegmentsVector.at(i).getEndIndex(),A * (SegmentsVector.at(i).getEndIndex()-SegmentsVector.at(i).getStartIndex()) + B);
+           SegmentsVector.at(i).setRegresionLine(lineSeries);
+    }
+}
+std::vector<QLineSeries*> ContoursExtractor::getSeriesRegresionLines()
+{
+    std::vector<QLineSeries*>vector;
+    for(int i =0;i<SegmentsVector.size();i++)
+    {
+        if(SegmentsVector.at(i).getRegressionLine()==nullptr)
+            continue;
+        else {
+            vector.emplace_back(SegmentsVector.at(i).getRegressionLine());
+        }
+    }
+    return vector;
+}
+
+int ContoursExtractor::getNextValidateContour(int index)
+{
+    for(int i = index+1;i<SegmentsVector.size();i++)
+    {
+        if(!SegmentsVector.at(i).isContourValidate())
+            continue;
+        return i;
+    }
+    return -1;
 }

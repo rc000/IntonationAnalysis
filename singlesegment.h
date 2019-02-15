@@ -2,6 +2,9 @@
 #define SINGLESEGMENT_H
 #include <vector>
 #include <QtDebug>
+#include <QtCharts/QLineSeries>
+//#include <contour.h>
+
 #define BEGINNING 1
 #define CENTER 2
 #define END 3
@@ -15,9 +18,11 @@
 
 #define WOMAN 0
 #define MAN 1
+QT_CHARTS_USE_NAMESPACE
+
 class SingleSegment {
 public:
-    SingleSegment(int state=0){startState = state;}
+    SingleSegment(int state=0){startState = state; seriesRegresionLine = nullptr;}
     size_t getStartIndex(){return start;}
     size_t getEndIndex(){return end;}
     size_t getCenter(){return center;}
@@ -27,7 +32,9 @@ public:
     void setEnd(size_t end){this->end = end;}
     void setCenter(){this->center = start + (end-start)/2;}
     void setLocation(int location){locationOnTheChart = location;}
+    void setRegresionLine(QLineSeries *series){this->seriesRegresionLine = series;}
 
+    QLineSeries* getRegressionLine(){return this->seriesRegresionLine;}
     int getLocationOnTheChart(){ return locationOnTheChart;}
     double getValue(size_t i){return values.at(i);}
     void addValue(double value){values.emplace_back(value);}
@@ -55,6 +62,7 @@ public:
     int getStartState(){return startState;}
     bool getContourState(){return contourState;}
     double getCenterOfRegressionLine(){return centerRegressionLine;}
+    std::vector<double>getValuesVector(){return values;}
 
     void setWspA(double wspA){ this->wspA = wspA;}
     void setWspB(double wspB){ this->wspB = wspB;}
@@ -62,6 +70,7 @@ public:
     void setStartState(int state){startState = state;}
     void setContourState(bool state){this->contourState = contourState;}
     void setCenterRegressionLine(double center){this->centerRegressionLine = center;}
+    void setValue(int index, double value){this->values.at(index) = value;}
 
 
 private:
@@ -77,8 +86,11 @@ private:
     double wspA,wspB;
     int contourLength;
     int startState;
+
     bool contourState;
     double centerRegressionLine;
+    QLineSeries *seriesRegresionLine;
+
 };
 
 #endif // SINGLESEGMENT_H
