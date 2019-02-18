@@ -1,0 +1,22 @@
+\babel@toc {polish}{}
+\babel@toc {polish}{}
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{4}% 
+\contentsline {section}{\numberline {2}Cel pracy}{5}% 
+\contentsline {section}{\numberline {3}Wprowadzenie teoretyczne}{6}% 
+\contentsline {subsection}{\numberline {3.1}Sygna\IeC {\l } mowy}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.1}Powstawanie mowy}{6}% 
+\contentsline {subsubsection}{\numberline {3.1.2}Rejestrowanie sygna\IeC {\l }u mowy}{7}% 
+\contentsline {subsubsection}{\numberline {3.1.3}Parametryzacja}{8}% 
+\contentsline {subsection}{\numberline {3.2}Ton podstawowy}{10}% 
+\contentsline {subsubsection}{\numberline {3.2.1}Definicja tonu podstawowego}{10}% 
+\contentsline {subsubsection}{\numberline {3.2.2}Przegl\IeC {\k a}d metod estymacji}{10}% 
+\contentsline {subsubsection}{\numberline {3.2.3}Definicja algorytmu YIN}{11}% 
+\contentsline {subsubsection}{\numberline {3.2.4}Por\IeC {\'o}wnanie algorytmu z konkurencyjnymi metodami}{11}% 
+\contentsline {subsubsection}{\numberline {3.2.5}Opis dzia\IeC {\l }ania algorytmu}{12}% 
+\contentsline {subsection}{\numberline {3.3}Intonacja}{14}% 
+\contentsline {subsubsection}{\numberline {3.3.1}Typy intonacji}{14}% 
+\contentsline {subsubsection}{\numberline {3.3.2}Przebiegi intonacji dla poszczeg\IeC {\'o}lnych rodzaj\IeC {\'o}w zda\IeC {\'n}i}{14}% 
+\contentsline {section}{\numberline {4}Oprogramowanie}{17}% 
+\contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{17}% 
+\contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{18}% 
+\contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{18}% 
