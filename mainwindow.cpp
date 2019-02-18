@@ -68,6 +68,9 @@ void MainWindow::cellSelected(int nRow,int nCol)
 void MainWindow::cellClicked(int nRow, int nCol)
 {
    activeColumn = nRow;
+   ui->tableWidget->item(nRow,0)->setBackgroundColor(Qt::red);
+   ui->tableWidget->item(nRow,1)->setBackgroundColor(Qt::red);
+
   ui->textBrowser->clear();
  qDebug()<<nRow<<" "<<nCol;
  qDebug()<<"file "<<wavFilesList.at(nRow);
@@ -345,17 +348,6 @@ void MainWindow::setLayout()
         ui->textBrowser->reload();
         chartView->repaint();
     }
-   /* QWidget *widget = new QWidget;
-    qDebug()<<"set layout2";
-
-    widget->setLayout(ui->horizontalLayout_2);
-    layout->addWidget(widget, BorderLayout::Center);
-    qDebug()<<"set layout3";
-
-    centralWidget = new QWidget;
-    centralWidget->setLayout(layout);
-
-    setCentralWidget(centralWidget);*/
 
 }
 void MainWindow::addAxis()
@@ -381,7 +373,6 @@ void MainWindow::on_bPlay_clicked()
 void MainWindow::readBuffer()
 {
     audioBuffers.emplace_back(audioDecoder->read());
-    qDebug()<<"odczytane "<<audioBuffers.size();
 }
 
 void MainWindow::on_bF0_clicked()
@@ -451,6 +442,7 @@ void MainWindow::loadWavFile(QString wavFilePath)
     audioDecoder->setSourceFilename(wavFilePath);
     std::size_t found = wavFilePath.toStdString().find_last_of("/");
     ui->tableWidget->setItem(rowCounter-1,0,new QTableWidgetItem(wavFilePath.toStdString().substr(found+1).c_str()));
+
     this->audioDecoder = audioDecoder;
     connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(readBuffer()));
     connect(audioDecoder,SIGNAL(finished()),this,SLOT(decodingFinished()));

@@ -4,7 +4,6 @@
 #endif // FEATURESEXTRACTOR_H
 #include <fstream>
 #include <QDialog>
-#include <fftw/fftw3.h>
 #include <yin/Yin.h>
 
 class FeaturesExtractor
