@@ -81,6 +81,7 @@ private:
     QWidget *centralWidget;
 
     qint16 **frames;
+    std::vector<std::vector<qint16>> framesVector;
     int samples_per_frame;
     int frames_number;
     int whole_signal_size;

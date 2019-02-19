@@ -5,6 +5,7 @@
 #include <fstream>
 #include <QDialog>
 #include <yin/Yin.h>
+#include <vector>
 
 class FeaturesExtractor
 {
@@ -15,7 +16,8 @@ class FeaturesExtractor
 public:
     static qint16 *whole_signal;
     static int whole_signal_size;
-    FeaturesExtractor( const qint16 *, qreal,int,int);
+    //FeaturesExtractor( const qint16 *, qreal,int,int);
+    FeaturesExtractor( std::vector<qint16>, qreal,int,int);
    ~ FeaturesExtractor();
     std::vector<double> calcF0(int frame_number);
     double calcEnergy();

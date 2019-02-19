@@ -12,7 +12,17 @@
 qint16 *FeaturesExtractor::whole_signal = nullptr;
 int FeaturesExtractor::whole_signal_size = 0;
 
-FeaturesExtractor:: FeaturesExtractor( const qint16 *data, qreal peak ,int sample_per_frame,int sampleRate)
+/*FeaturesExtractor:: FeaturesExtractor( const qint16 *data, qreal peak ,int sample_per_frame,int sampleRate)
+{
+    this->peak = peak;
+    this->sample_per_frame = sample_per_frame;
+    this->sampleRate = sampleRate;
+    for(size_t i=0;i<sample_per_frame;i++)
+    {
+        this->data.emplace_back(data[i]/peak);
+    }
+}*/
+FeaturesExtractor:: FeaturesExtractor( std::vector<qint16>data, qreal peak ,int sample_per_frame,int sampleRate)
 {
     this->peak = peak;
     this->sample_per_frame = sample_per_frame;

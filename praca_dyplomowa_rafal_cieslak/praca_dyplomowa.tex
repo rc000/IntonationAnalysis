@@ -313,6 +313,8 @@ W pierwotnym założeniu aplikacja miała umożliwiać nagrywanie wypowiedzi, kt
 Aplikacja umożliwa wczytanie pojedynczego nagrania lub całego katalogu z nagraniami. Program wyświetla nazwę wczytanego pliku, oraz rodzaj zdania do jakiego dana wypowiedź została sklasyfikowana. Po kliknięciu w tabeli na wybrany wiersz, a następnie po kliknięciu na jeden z dowolnych przycisków w dolnym pasku, program wyświetli na wykresie odpowiednio energię nagrania, przebieg widma, przebieg wartości próbki w dziedzinie czasu (waveform) lub przebieg wyestymowanej częstotliwości podstawowej.
 
 \subsection{Wczytanie próbki}
+Pierwszym krokiem na drodze do rozpoznania rodzaju zdania, jest wczytanie calego nagrania przez program. Wykonuje sie to z wykorzystaniem mozliwosci oferowanych przez Qt. Framework oferuje do tego klase QAudioDecoder. 
+Nagranie jest dzielone na ramki, skladajace sie z 1920 wartosci kazda. Kazda ramka jest odczytana jako obiekt klasy QAudioBuffer. Wektor typu QAudioBuffer zawiera cale wczytane nagranie.
 \begin{lstlisting}
 std::vector<QAudioBuffer>audioBuffers;
 QAudioDecoder *audioDecoder;
@@ -323,11 +325,13 @@ connect(audioDecoder, SIGNAL(bufferReady()), this, SLOT(readBuffer()));
 connect(audioDecoder,SIGNAL(finished()),this,SLOT(decodingFinished()));
 audioDecoder->start();
 \end{lstlisting}
-
+Po wczytaniu kazdej z ramek emitowany jest sygnal. Laczac sygnal ze slotem, mozliwe jest przechwycenie aktualnie wczytanych wartosci, zanim zostana zastapione wartosciami kolejnej ramki.
+Zostaja one dodane do wektora ramek.
 \begin{lstlisting}
 void MainWindow::readBuffer()
 {
     audioBuffers.emplace_back(audioDecoder->read());
 }
 \end{lstlisting}
+Gdy cale nagranie zostanie odczytane, QAudioDecoder emituje sygnal finished(). Po jego przechwyceniu, a wiec otrzymaniu informacji o zakonczeniu dekodowania, program przystepuje do dalszych obliczen.
 \end{document}

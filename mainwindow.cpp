@@ -170,7 +170,6 @@ void MainWindow::getBuffer(QAudioBuffer buffer)
 }
 void MainWindow::calculation()
 {
-    qDebug()<<"usuwanko";
      for (int i = 0;i<frames_number;i++)
     {
         qDebug()<<"usuwanie frama "<<i;
@@ -178,11 +177,14 @@ void MainWindow::calculation()
     }
     if(frames!=nullptr)
     {
-        qDebug()<<"usuwanie frames";
         delete frames;
     }
-    qDebug()<<"po usuwaniu";
-     sampleRate = audioBuffers[0].format().sampleRate();
+    for(std::vector<qint16>currentFrame : framesVector)
+    {
+        currentFrame.clear();
+    }
+    framesVector.clear();
+    sampleRate = audioBuffers[0].format().sampleRate();
     samples_per_frame = audioBuffers[0].format().sampleRate()/20;
 
     frames_number = audioBuffers.size()*2;
@@ -193,19 +195,21 @@ void MainWindow::calculation()
     for (int i =0; i<samples_per_frame; i++)
             frames[frames_number-1][i] = 0;
 
-    qDebug()<<"po petlach "<<audioBuffers.size();
-whole_signal_size = 0;
+    for (int i = 0; i < frames_number; i++)
+            framesVector.emplace_back(std::vector<qint16>());
+    for (int i =0; i<samples_per_frame; i++)
+            framesVector.at(frames_number-1).emplace_back(0);
+    //r (int i =0; i<samples_per_frame; i++)
+         // frames[frames_number-1][i] = 0;
+
+    qDebug()<<"wektor size "<<framesVector.size();
+    whole_signal_size = 0;
 
     for(int i=0;i<audioBuffers.size();i++)
     {
          whole_signal_size+=audioBuffers[i].sampleCount();
-         qDebug()<<"size "<<whole_signal_size;
     }
-
-
-
     whole_signal=new qint16[whole_signal_size];
-    //qDebug()<<"whole signal "<<whole_signal_size * sizeof (qint16);
 
     int index_frame = 0;
     int index = 0;
@@ -222,26 +226,30 @@ whole_signal_size = 0;
             if (j<samples_per_frame)
             {
                 frames[index_frame][j] = data[j];
+                framesVector.at(index_frame).at(j)=(data[j]);
             }
             else
             {
                 frames[index_frame+1][j-samples_per_frame] = data[j];
+                framesVector.at(index_frame+1).at(j-samples_per_frame) = data[j];
             }
 
         }
+
         index_frame+=2;
+
         //delete data;
     }
 
-    qDebug()<<"po kolejnych petlach";
-
-
-
     FeaturesExtractor::whole_signal = whole_signal;
     FeaturesExtractor::whole_signal_size = whole_signal_size;
-
+    for(std::vector<qint16>currentFrame : framesVector)
+    {
+        qDebug()<<"size "<<currentFrame.size();
+    }
     for(int i=0;i<audioBuffers.size()*2;i++)
     {
+
          extractFeatures(peak,samples_per_frame,i);
     }
    ContoursExtractor contoursExtractor(framesFeatures);
@@ -249,7 +257,6 @@ whole_signal_size = 0;
    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
    extractors.push_back(contoursExtractor);
    size_t bytes = sizeof(extractors[0]) * extractors.size();
-   qDebug()<<"rozmiar "<<bytes;
 
    obliczone = true;
 
@@ -262,7 +269,10 @@ whole_signal_size = 0;
 void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_number)
 {
 
-    FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
+    //FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
+    qDebug()<<"frame number "<<frame_number<<" "<<framesVector.size();
+    qDebug()<<framesVector.at(frame_number).size()<<" "<<sample_per_frame;
+    FeaturesExtractor  featuresExtractor(framesVector.at(frame_number), peak, sample_per_frame,sampleRate);
     framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
      /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
     framesFeatures[framesFeatures.size()-1].f0_emplace_back(featuresExtractor.calcF0(frame_number));
