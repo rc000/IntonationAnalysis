@@ -471,11 +471,11 @@ std::string Classificator::classification()
     if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
             && (! (features & imperative))
             && (!(features & notDeclarative1)))
-        result += "twierdzenie zwykle";
+        result += "zdanie twierdzace zwykle";
 
     if (((features & imperative))
             && (!(features & notImperative)))
-        result += "zdanie rozkazujace";
+        result += "rozkazujace";
 
     if ((indexHighestValueOfRegresionLinesAtTheCenter == indexOfHighestValue) ||
             (features & highestContourLocatedBetweenStartEndCenter))

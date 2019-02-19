@@ -196,9 +196,9 @@ void MainWindow::calculation()
             frames[frames_number-1][i] = 0;
 
     for (int i = 0; i < frames_number; i++)
-            framesVector.emplace_back(std::vector<qint16>());
-    for (int i =0; i<samples_per_frame; i++)
-            framesVector.at(frames_number-1).emplace_back(0);
+    {
+            framesVector.emplace_back(std::vector<qint16>(samples_per_frame,0));
+    }
     //r (int i =0; i<samples_per_frame; i++)
          // frames[frames_number-1][i] = 0;
 
@@ -213,12 +213,13 @@ void MainWindow::calculation()
 
     int index_frame = 0;
     int index = 0;
+    qDebug()<<"before loop?";
     for(size_t i=0;i<audioBuffers.size();i++)
     {
         const qint16 *data = audioBuffers[i].constData<qint16>();
-         for(int j=0;j<audioBuffers[i].sampleCount();j++)
+          for(int j=0;j<audioBuffers[i].sampleCount();j++)
         {
-             index++;
+              index++;
             whole_signal[index]=data[j];
             qreal peak = SHRT_MAX;
             framesFeatures[framesFeatures.size()-1].buffer_emplace_back(whole_signal[index]/peak);
@@ -255,10 +256,19 @@ void MainWindow::calculation()
    ContoursExtractor contoursExtractor(framesFeatures);
    contoursExtractor.findContours();
    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
+   QString realtype = ui->tableWidget->item(rowCounter-1,0)->text();
+   QString recognizedType = ui->tableWidget->item(rowCounter-1,1)->text();
    extractors.push_back(contoursExtractor);
-   size_t bytes = sizeof(extractors[0]) * extractors.size();
 
    obliczone = true;
+   if(recognizedType.length()==0) return;
+   if(realtype.at(0)!=recognizedType.at(0))
+   {
+       ui->tableWidget->item(rowCounter-1,0)->setBackgroundColor(Qt::red);
+       ui->tableWidget->item(rowCounter-1,1)->setBackgroundColor(Qt::red);
+   }
+
+
 
        //framesFeatures.clear();
 
@@ -270,9 +280,7 @@ void MainWindow::extractFeatures(qreal peak,int sample_per_frame,int frame_numbe
 {
 
     //FeaturesExtractor  featuresExtractor(frames[frame_number], peak, sample_per_frame,sampleRate);
-    qDebug()<<"frame number "<<frame_number<<" "<<framesVector.size();
-    qDebug()<<framesVector.at(frame_number).size()<<" "<<sample_per_frame;
-    FeaturesExtractor  featuresExtractor(framesVector.at(frame_number), peak, sample_per_frame,sampleRate);
+     FeaturesExtractor  featuresExtractor(framesVector.at(frame_number), peak, sample_per_frame,sampleRate);
     framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
      /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
     framesFeatures[framesFeatures.size()-1].f0_emplace_back(featuresExtractor.calcF0(frame_number));
