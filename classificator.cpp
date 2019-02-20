@@ -507,5 +507,7 @@ std::string Classificator::classification()
 
     }
     contours.clear();
+    if(result.length()==0)
+        result+="unrecognized";
     return result.toStdString();
 }

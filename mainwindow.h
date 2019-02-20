@@ -43,9 +43,9 @@ public:
     ~MainWindow();
     void addAxis();
     void startRecording();
-    void extractFeatures(qreal peak,int sample_per_frame, int frame_number);
+    void extractFeatures();
     void removeChartView();
-    void calculation();
+    void framing();
     void setEnabledFeatureButtons(bool state);
     void setLayout();
     void loadWavFile(QString wavFilePath);
@@ -80,7 +80,6 @@ private:
     QWidget *emptyWidget;
     QWidget *centralWidget;
 
-    qint16 **frames;
     std::vector<std::vector<qint16>> framesVector;
     int samples_per_frame;
     int frames_number;
