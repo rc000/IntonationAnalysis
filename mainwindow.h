@@ -80,6 +80,7 @@ private:
     QWidget *emptyWidget;
     QWidget *centralWidget;
 
+    std::vector<qint16>wholeBuffer;
     std::vector<std::vector<qint16>> framesVector;
     int samples_per_frame;
     int frames_number;

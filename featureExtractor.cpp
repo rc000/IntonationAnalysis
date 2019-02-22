@@ -9,7 +9,7 @@
 #define F0_MIN 60
 #define F0_MAX 450
 
-qint16 *FeaturesExtractor::whole_signal = nullptr;
+//qint16 *FeaturesExtractor::whole_signal = nullptr;
 int FeaturesExtractor::whole_signal_size = 0;
 
 /*FeaturesExtractor:: FeaturesExtractor( const qint16 *data, qreal peak ,int sample_per_frame,int sampleRate)
@@ -22,11 +22,12 @@ int FeaturesExtractor::whole_signal_size = 0;
         this->data.emplace_back(data[i]/peak);
     }
 }*/
-FeaturesExtractor:: FeaturesExtractor( std::vector<qint16>data, qreal peak ,int sample_per_frame,int sampleRate)
+FeaturesExtractor:: FeaturesExtractor( std::vector<qint16> whole_signal, std::vector<qint16>data, qreal peak ,int sample_per_frame,int sampleRate)
 {
     this->peak = peak;
     this->sample_per_frame = sample_per_frame;
     this->sampleRate = sampleRate;
+    this->whole_signal = whole_signal;
     for(size_t i=0;i<sample_per_frame;i++)
     {
         this->data.emplace_back(data[i]/peak);
@@ -71,14 +72,14 @@ std::vector<double> FeaturesExtractor::calcF0(int frame_number)
            {
                break;
            }
-           shift_frame[index] = whole_signal[j]/peak;
+           shift_frame[index] = whole_signal.at(j)/peak;
            index++;
        }
        Yin::YinOutput f0_struct=m_yin.process(shift_frame);
        if (f0_struct.f0 <F0_MAX && f0_struct.f0 >F0_MIN)
            f0.emplace_back(f0_struct.f0);
        else
-           f0.emplace_back(0);
+          f0.emplace_back(0);
    }
     return f0;
 }

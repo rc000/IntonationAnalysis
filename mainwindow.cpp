@@ -170,6 +170,7 @@ void MainWindow::getBuffer(QAudioBuffer buffer)
 }
 void MainWindow::framing()
 {
+    wholeBuffer.clear();
     for(std::vector<qint16>currentFrame : framesVector)
     {
         currentFrame.clear();
@@ -197,7 +198,6 @@ void MainWindow::framing()
     int index_frame = 0;
     int index = 0;
     qDebug()<<"before loop?";
-    std::vector<qint16>wholeBuffer;
     for(size_t i=0;i<audioBuffers.size();i++)
     {
         qDebug()<<audioBuffers[i].sampleCount();
@@ -205,6 +205,8 @@ void MainWindow::framing()
           for(int j=0;j<audioBuffers[i].sampleCount();j++)
         {
               wholeBuffer.emplace_back(data[j]);
+              whole_signal[i]=data[j];
+
           }
     }
     qDebug()<<"here?";
@@ -215,7 +217,6 @@ void MainWindow::framing()
         {
             index_frame++;
             i-=(samples_per_frame/2);
-            qDebug()<<"przeszlo "<<index_frame<<" "<<wholeBuffer.size()<<" "<<i;
             j=1;
 
         }
@@ -251,7 +252,6 @@ void MainWindow::framing()
         //delete data;
     }*/
 
-    FeaturesExtractor::whole_signal = whole_signal;
     FeaturesExtractor::whole_signal_size = whole_signal_size;
 
 
@@ -265,7 +265,7 @@ void MainWindow::extractFeatures()
 
     for(int i=0;i<frames_number;i++)
     {
-        FeaturesExtractor  featuresExtractor(framesVector.at(i), peak, samples_per_frame,sampleRate);
+        FeaturesExtractor  featuresExtractor(wholeBuffer, framesVector.at(i), peak, samples_per_frame,sampleRate);
         for(qint16 value : framesVector.at(i))
             framesFeatures[framesFeatures.size()-1].buffer_emplace_back(value);
         framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
@@ -284,7 +284,7 @@ void MainWindow::decodingFinished()
 
     extractFeatures();
 
-    /*ContoursExtractor contoursExtractor(framesFeatures);
+    ContoursExtractor contoursExtractor(framesFeatures);
     contoursExtractor.findContours();
     ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
 
@@ -297,7 +297,7 @@ void MainWindow::decodingFinished()
         ui->tableWidget->item(rowCounter-1,0)->setBackgroundColor(Qt::red);
         ui->tableWidget->item(rowCounter-1,1)->setBackgroundColor(Qt::red);
     }
-*/
+
     setEnabledFeatureButtons(true);
     qDebug()<<"decoding finished";
     if (wavFiles.size()>1)
@@ -417,6 +417,9 @@ void MainWindow::readBuffer()
 
 void MainWindow::on_bF0_clicked()
 {
+
+
+
 
    chart = new QChart();
    qDebug()<<extractors.size();
