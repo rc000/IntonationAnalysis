@@ -12,6 +12,7 @@ private:
     std::vector<double>f0;
 public:
     SingleFrameFeatures();
+    void clear();
     void buffer_emplace_back(double);
     size_t buffer_size();
     double buffer_value(int index);

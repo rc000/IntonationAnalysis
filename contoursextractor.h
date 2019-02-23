@@ -11,8 +11,8 @@ QT_CHARTS_USE_NAMESPACE
 class ContoursExtractor
 {
  public:
-    ContoursExtractor(std::vector<SingleFrameFeatures>framesFeatures);
-    ContoursExtractor(std::vector<SingleFrameFeatures>framesFeatures,
+    ContoursExtractor(SingleFrameFeatures framesFeatures);
+    ContoursExtractor(SingleFrameFeatures framesFeatures,
                       QScatterSeries *seriesContours);
 
     void findContours();
@@ -32,7 +32,7 @@ class ContoursExtractor
     QString getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
     std::vector<QString> getStateChanges(){return stateChanges;}
-    std::vector<SingleFrameFeatures>getFrameFeatures(){ return framesFeatures;}
+    SingleFrameFeatures getFrameFeatures(){ return framesFeatures;}
     int getNextValidateContour(int index);
 
 
@@ -42,7 +42,7 @@ private:
     int firstValueIndex,lastValueIndex;
     int firstPart = 0;
     int centerPart = 0;
-    std::vector<SingleFrameFeatures>framesFeatures;
+    SingleFrameFeatures framesFeatures;
     std::vector<QLineSeries*>seriesRegresionLines;
     Classificator *classificator;
     std::vector<SingleSegment> SegmentsVector;

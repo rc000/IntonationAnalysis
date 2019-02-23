@@ -93,7 +93,7 @@ private:
     QLineSeries *series;
     QChart *chart;
     QChartView *chartView;
-    std::vector<SingleFrameFeatures>framesFeatures;
+    SingleFrameFeatures framesFeatures;
     QSharedPointer<FeaturesExtractor> featuresExtractor;
     int activeColumn = -1;
     std::vector<QAudioBuffer>audioBuffers;

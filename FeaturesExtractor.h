@@ -15,8 +15,6 @@ class FeaturesExtractor
     int sampleRate;
 public:
     std::vector<qint16>whole_signal;
-    static int whole_signal_size;
-    //FeaturesExtractor( const qint16 *, qreal,int,int);
     FeaturesExtractor(std::vector<qint16>whole_signal, std::vector<qint16>frame, qreal,int,int);
    ~ FeaturesExtractor();
     std::vector<double> calcF0(int frame_number);

@@ -16,6 +16,14 @@ double SingleFrameFeatures::buffer_value(int index)
     return this->buffer[index];
 }
 
+void SingleFrameFeatures::clear()
+{
+    buffer.clear();
+    energy.clear();
+    f0.clear();
+    centroid.clear();
+    zcr.clear();
+}
 
 void SingleFrameFeatures::energy_emplace_back(double energy)
 {

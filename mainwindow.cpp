@@ -252,7 +252,6 @@ void MainWindow::framing()
         //delete data;
     }*/
 
-    FeaturesExtractor::whole_signal_size = whole_signal_size;
 
 
 
@@ -263,14 +262,16 @@ void MainWindow::framing()
 void MainWindow::extractFeatures()
 {
 
+    for(qint16 value : wholeBuffer)
+        framesFeatures.buffer_emplace_back(value/peak);
+
     for(int i=0;i<frames_number;i++)
     {
         FeaturesExtractor  featuresExtractor(wholeBuffer, framesVector.at(i), peak, samples_per_frame,sampleRate);
-        for(qint16 value : framesVector.at(i))
-            framesFeatures[framesFeatures.size()-1].buffer_emplace_back(value);
-        framesFeatures[framesFeatures.size()-1].energy_emplace_back(featuresExtractor.calcEnergy());
+
+        framesFeatures.energy_emplace_back(featuresExtractor.calcEnergy());
         /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
-        framesFeatures[framesFeatures.size()-1].f0_emplace_back(featuresExtractor.calcF0(i));
+        framesFeatures.f0_emplace_back(featuresExtractor.calcF0(i));
         //framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
     }
     qDebug()<<"extract?";
@@ -279,7 +280,6 @@ void MainWindow::extractFeatures()
 void MainWindow::decodingFinished()
 {
     framesFeatures.clear();
-    framesFeatures.emplace_back(SingleFrameFeatures());
     framing();
 
     extractFeatures();
@@ -311,21 +311,51 @@ void MainWindow::on_bShowWaveform_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   /*ContoursExtractor contoursExtractor = extractors.at(activeColumn);
+   ContoursExtractor contoursExtractor = extractors.at(activeColumn);
 
-  for(size_t i=0;i<contoursExtractor.getFrameFeatures()[contoursExtractor.getFrameFeatures().size()-1].buffer_size();i++)
+
+  for(size_t i=0;i<contoursExtractor.getFrameFeatures().buffer_size();i++)
    {
 
-       series->append(i,contoursExtractor.getFrameFeatures()[contoursExtractor.getFrameFeatures().size()-1].buffer_value(i));
-   }*/
+       series->append(i,contoursExtractor.getFrameFeatures().buffer_value(i));
+   }
+ std::vector<QLineSeries*>framesLines;
+ int counter =0;
+ for(size_t i=0;i<contoursExtractor.getFrameFeatures().buffer_size();i+=1200)
+  {
+     double start =0.0;
+     double end = counter%2 ? -0.4 : 0.4;
+     qDebug()<<i;
+     framesLines.push_back(new QLineSeries());
+     framesLines.back()->append(i, start);
+     framesLines.back()->append(i, end);
+     framesLines.back()->append(i+2205, end);
+     framesLines.back()->append(i+2205, start);
+     counter++;
+ }
 
-   for(size_t i=0;i< framesFeatures[framesFeatures.size()-1].buffer_size();i++)
-    {
-        series->append(i,framesFeatures[framesFeatures.size()-1].buffer_value(i)/peak);
-    }
+
+ qDebug()<<"after regression lines";
+ QValueAxis *axisX = new QValueAxis;
+ axisX->setTickCount(20);
+ QValueAxis *axisY = new QValueAxis;
+ axisY->setTickCount(20);
+ axisY->setRange(-0.5,0.5);
+ chart->addAxis(axisX, Qt::AlignBottom);
+ chart->addAxis(axisY, Qt::AlignLeft);
+ chart->addSeries(series);
+
+ series->attachAxis(axisX);
+ series->attachAxis(axisY);
+ for(int i=0;i<framesLines.size();i++)
+ {
+     chart->addSeries(framesLines.at(i));
+     framesLines.at(i)->attachAxis(axisX);
+     framesLines.at(i)->attachAxis(axisY);
+
+ }
   chart->legend()->hide();
-  chart->addSeries(series);
-  addAxis();
+ // addAxis();
   setLayout();
 
 }
@@ -348,18 +378,15 @@ void MainWindow::on_bShowEnergy_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   /*ContoursExtractor contoursExtractor = extractors.at(activeColumn);
+   ContoursExtractor contoursExtractor = extractors.at(activeColumn);
 
-   for(size_t i=0;i<contoursExtractor.getFrameFeatures()[contoursExtractor.getFrameFeatures().size()-1].energy_size();i++)
+   for(size_t i=0;i<contoursExtractor.getFrameFeatures().energy_size();i++)
    {
-       series->append(i,contoursExtractor.getFrameFeatures()[contoursExtractor.getFrameFeatures().size()-1].energy_value(i));
-   }*/
-
-
-  for(size_t i=0;i< framesFeatures[framesFeatures.size()-1].energy_size();i++)
-   {
-       series->append(i,framesFeatures[framesFeatures.size()-1].energy_value(i));
+       series->append(i,contoursExtractor.getFrameFeatures().energy_value(i));
    }
+
+
+
 
 
   chart->legend()->hide();

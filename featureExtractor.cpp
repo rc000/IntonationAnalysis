@@ -9,8 +9,6 @@
 #define F0_MIN 60
 #define F0_MAX 450
 
-//qint16 *FeaturesExtractor::whole_signal = nullptr;
-int FeaturesExtractor::whole_signal_size = 0;
 
 /*FeaturesExtractor:: FeaturesExtractor( const qint16 *data, qreal peak ,int sample_per_frame,int sampleRate)
 {
@@ -68,7 +66,7 @@ std::vector<double> FeaturesExtractor::calcF0(int frame_number)
        int index=0;
        for(int j=frame_start+shift;j<frame_start+shift+sample_per_frame;j++)
        {
-           if(j>=whole_signal_size)
+           if(j>=whole_signal.size())
            {
                break;
            }

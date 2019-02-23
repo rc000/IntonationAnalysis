@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  19 FEB 2019 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  23 FEB 2019 02:53
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -563,33 +563,45 @@ Overfull \hbox (47.57907pt too wide) in paragraph at lines 325--326
 [][][][][][][][][][][][][][][][] 
  []
 
-[18] [19] (praca_dyplomowa.aux) ) 
+[18]
+<overlapping.png, id=78, 693.792pt x 292.6935pt>
+File: overlapping.png Graphic file (type png)
+<use overlapping.png>
+Package pdftex.def Info: overlapping.png  used on input line 340.
+(pdftex.def)             Requested size: 485.65108pt x 204.88405pt.
+
+Overfull \hbox (32.68318pt too wide) in paragraph at lines 340--341
+ [][] 
+ []
+
+[19 <./overlapping.png>] (praca_dyplomowa.aux) ) 
 Here is how much of TeX's memory you used:
- 6455 strings out of 492946
- 95725 string characters out of 3126266
- 175633 words of memory out of 3000000
- 10219 multiletter control sequences out of 15000+200000
+ 6460 strings out of 492946
+ 95819 string characters out of 3126266
+ 174633 words of memory out of 3000000
+ 10223 multiletter control sequences out of 15000+200000
  57124 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,16n,39p,995b,1544s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 
-2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 
-2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/Rafal/AppData/Local/Programs/MiK
-TeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Rafal/AppData/Local/Programs/MiK
-TeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/Rafal/AppData/Local/Programs
-/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Users/Rafal/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Rafal/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Users/Rafal/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Users/Rafal/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Rafal/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pfb><C:/Users/Raf
-al/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/R
-afal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Use
-rs/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (19 pages, 274502 bytes).
+ 41i,16n,39p,995b,1542s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Rafal/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Rafal/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/Rafal/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Rafal/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/Rafal/AppData
+/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Users/Rafal/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Rafal
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Users/R
+afal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Use
+rs/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/
+Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><
+C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pf
+b><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.
+pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lms
+y10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm
+/lmsy8.pfb>
+Output written on praca_dyplomowa.pdf (19 pages, 297212 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
