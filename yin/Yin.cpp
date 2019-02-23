@@ -43,7 +43,7 @@ Yin::~Yin()
 Yin::YinOutput
 Yin::process(const double *in) const {
     
-    double* yinBuffer = new double[m_yinBufferSize];
+     double *yinBuffer = new double[m_yinBufferSize];
     //for(int i=0;i<count;i++)
       //qDebug()<<"i "<<i<<" yin "<<in[i]<<" count "<<count;
     // calculate aperiodicity function for all periods
@@ -51,7 +51,8 @@ Yin::process(const double *in) const {
     else YinUtil::slowDifference(in, yinBuffer, m_yinBufferSize);
 
     YinUtil::cumulativeDifference(yinBuffer, m_yinBufferSize);
-
+   // for(int i = 0;i<m_yinBufferSize;i++)
+     //   qDebug()<<"process "<<in[i]<<" "<<yinBuffer[i]<< " "<<m_yinBufferSize;
     int tau = 0;
     tau = YinUtil::absoluteThreshold(yinBuffer, m_yinBufferSize, m_thresh);
 

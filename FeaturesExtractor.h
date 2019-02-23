@@ -6,6 +6,7 @@
 #include <QDialog>
 #include <yin/Yin.h>
 #include <vector>
+#include <fftw/fftw3.h>
 
 class FeaturesExtractor
 {
@@ -13,11 +14,14 @@ class FeaturesExtractor
     qreal peak;
     int sample_per_frame;
     int sampleRate;
+    std::vector<double>whole_signal;
+    double *fft;
 public:
-    std::vector<qint16>whole_signal;
-    FeaturesExtractor(std::vector<qint16>whole_signal, std::vector<qint16>frame, qreal,int,int);
+    FeaturesExtractor(std::vector<double>whole_signal, std::vector<double>frame, qreal,int,int);
    ~ FeaturesExtractor();
     std::vector<double> calcF0(int frame_number);
+    std::vector<double> FeaturesExtractor::calcFFT();
+
     double calcEnergy();
     double calcZCR();
     std::vector<double> getData();

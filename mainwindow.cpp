@@ -171,29 +171,22 @@ void MainWindow::getBuffer(QAudioBuffer buffer)
 void MainWindow::framing()
 {
     wholeBuffer.clear();
-    for(std::vector<qint16>currentFrame : framesVector)
+    for(std::vector<double>currentFrame : framesVector)
     {
         currentFrame.clear();
     }
     framesVector.clear();
 
     sampleRate = audioBuffers[0].format().sampleRate();
-    samples_per_frame = audioBuffers[0].format().sampleRate()/20;
+    samples_per_frame = audioBuffers[0].format().sampleRate()/40;
 
-    frames_number = audioBuffers.size()*4;
+   // frames_number = audioBuffers.size()*4;
 
-    for (int i = 0; i < frames_number; i++)
+   /*for (int i = 0; i < frames_number; i++)
     {
-            framesVector.emplace_back(std::vector<qint16>(samples_per_frame,0));
-    }
+            framesVector.emplace_back(std::vector<double>(samples_per_frame,0));
+    }*/
 
-    whole_signal_size = 0;
-
-    for(int i=0;i<audioBuffers.size();i++)
-    {
-         whole_signal_size+=audioBuffers[i].sampleCount();
-    }
-    whole_signal=new qint16[whole_signal_size];
 
     int index_frame = 0;
     int index = 0;
@@ -205,52 +198,28 @@ void MainWindow::framing()
           for(int j=0;j<audioBuffers[i].sampleCount();j++)
         {
               wholeBuffer.emplace_back(data[j]);
-              whole_signal[i]=data[j];
 
           }
     }
     qDebug()<<"here?";
+    framesVector.emplace_back(std::vector<double>(samples_per_frame,0));
+
     int j=1;
-    for(int i = 1;i<wholeBuffer.size();i++)
+
+    for(size_t i = 1;i<wholeBuffer.size();i++)
     {
         if(j%samples_per_frame == 0)
         {
             index_frame++;
-            i-=(samples_per_frame/2);
+            i-=(samples_per_frame/3);
             j=1;
-
+            framesVector.emplace_back(std::vector<double>());
         }
-        framesVector.at(index_frame).at(j)=wholeBuffer.at(i);
+        framesVector.at(index_frame).emplace_back(wholeBuffer.at(i));
         j++;
     }
-    qDebug()<<"here?";
-    /*
-    for(size_t i=0;i<audioBuffers.size();i++)
-    {
-        qDebug()<<audioBuffers[i].sampleCount();
-        const qint16 *data = audioBuffers[i].constData<qint16>();
-          for(int j=0;j<audioBuffers[i].sampleCount();j++)
-        {
-              index++;
-            whole_signal[index]=data[j];
-            qreal peak = SHRT_MAX;
-            framesFeatures[framesFeatures.size()-1].buffer_emplace_back(whole_signal[index]/peak);
+    frames_number = index_frame;
 
-            if (j<samples_per_frame)
-            {
-                framesVector.at(index_frame).at(j)=(data[j]);
-            }
-            else
-            {
-                framesVector.at(index_frame+1).at(j-samples_per_frame) = data[j];
-            }
-
-        }
-
-        index_frame+=2;
-
-        //delete data;
-    }*/
 
 
 
@@ -270,10 +239,15 @@ void MainWindow::extractFeatures()
         FeaturesExtractor  featuresExtractor(wholeBuffer, framesVector.at(i), peak, samples_per_frame,sampleRate);
 
         framesFeatures.energy_emplace_back(featuresExtractor.calcEnergy());
+
         /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
         framesFeatures.f0_emplace_back(featuresExtractor.calcF0(i));
+
         //framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
+       // if(i==0)
+         //   framesFeatures.setFFT(featuresExtractor.calcFFT());
     }
+
     qDebug()<<"extract?";
 }
 
@@ -321,7 +295,7 @@ void MainWindow::on_bShowWaveform_clicked()
    }
  std::vector<QLineSeries*>framesLines;
  int counter =0;
- for(size_t i=0;i<contoursExtractor.getFrameFeatures().buffer_size();i+=1200)
+ for(size_t i=0;i<contoursExtractor.getFrameFeatures().buffer_size();i+=(samples_per_frame - (samples_per_frame/3)))
   {
      double start =0.0;
      double end = counter%2 ? -0.4 : 0.4;
@@ -329,8 +303,8 @@ void MainWindow::on_bShowWaveform_clicked()
      framesLines.push_back(new QLineSeries());
      framesLines.back()->append(i, start);
      framesLines.back()->append(i, end);
-     framesLines.back()->append(i+2205, end);
-     framesLines.back()->append(i+2205, start);
+     framesLines.back()->append(i+samples_per_frame, end);
+     framesLines.back()->append(i+samples_per_frame, start);
      counter++;
  }
 
@@ -362,6 +336,18 @@ void MainWindow::on_bShowWaveform_clicked()
 
 void MainWindow::on_bShowSpectrum_clicked()
 {
+    series = new QLineSeries();
+    chart = new QChart();
+    ContoursExtractor contoursExtractor = extractors.at(activeColumn);
+
+    for(size_t i=0;i<contoursExtractor.getFrameFeatures().getFFT().size();i++)
+    {
+        series->append(i,contoursExtractor.getFrameFeatures().getFFT().at(i));
+    }
+    chart->legend()->hide();
+    chart->addSeries(series);
+    addAxis();
+    setLayout();
   /* series = new QLineSeries();
    chart = new QChart();
    for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].fftBuffer_size();i++)

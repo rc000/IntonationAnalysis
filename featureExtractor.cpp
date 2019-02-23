@@ -4,6 +4,7 @@
 #include "featuresExtractor.h"
 #include <QDialog>
 #include <QDebug>
+#include "yin/YinUtil.h"
 #define REAL 0
 #define IMAG 1
 #define F0_MIN 60
@@ -20,15 +21,15 @@
         this->data.emplace_back(data[i]/peak);
     }
 }*/
-FeaturesExtractor:: FeaturesExtractor( std::vector<qint16> whole_signal, std::vector<qint16>data, qreal peak ,int sample_per_frame,int sampleRate)
+FeaturesExtractor:: FeaturesExtractor( std::vector<double> whole_signal, std::vector<double>data, qreal peak ,int sample_per_frame,int sampleRate)
 {
     this->peak = peak;
     this->sample_per_frame = sample_per_frame;
     this->sampleRate = sampleRate;
     this->whole_signal = whole_signal;
-    for(size_t i=0;i<sample_per_frame;i++)
+    for(size_t i=0;i<data.size();i++)
     {
-        this->data.emplace_back(data[i]/peak);
+        this->data.emplace_back(data[i]/peak );
     }
 }
  FeaturesExtractor::~ FeaturesExtractor()
@@ -42,7 +43,7 @@ FeaturesExtractor:: FeaturesExtractor( std::vector<qint16> whole_signal, std::ve
 double  FeaturesExtractor::calcEnergy()
 {
     double energy=0.0;
-    for(int i=0;i<sample_per_frame;i++)
+    for(int i=0;i<data.size();i++)
     {
         energy+=data[i]*data[i];
     }
@@ -91,6 +92,12 @@ double  FeaturesExtractor::calcZCR()
             zcr++;
     }
     return zcr;
+}
+std::vector<double> FeaturesExtractor::calcFFT()
+{
+    std::vector<double> magnitude;
+
+    return magnitude;
 }
 
 

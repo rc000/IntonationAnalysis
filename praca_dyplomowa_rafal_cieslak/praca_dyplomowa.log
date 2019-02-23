@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  23 FEB 2019 02:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  23 FEB 2019 19:18
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -459,7 +459,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write4
 \openout4 = `praca_dyplomowa.toc'.
 
- (praca_dyplomowa.lof [2])
+ (praca_dyplomowa.lof [2]
+Overfull \hbox (10.95953pt too wide) in paragraph at lines 12--12
+ [][] []\T1/lmr/m/n/12 Zobrazowany po-dziaª sy-gnaªu na ramki wraz za-sto-so-wa
+-niem 30-procentowego 
+ []
+
+)
 \tf@lof=\write5
 \openout5 = `praca_dyplomowa.lof'.
 
@@ -467,8 +473,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@lot=\write6
 \openout6 = `praca_dyplomowa.lot'.
 
-
-(praca_dyplomowa.lomycapequ)
+ (praca_dyplomowa.lomycapequ)
 \tf@lomycapequ=\write7
 \openout7 = `praca_dyplomowa.lomycapequ'.
 
@@ -513,7 +518,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <zdanie_twierdzace.png, id=59, 542.025pt x 217.5628pt>
 File: zdanie_twierdzace.png Graphic file (type png)
 <use zdanie_twierdzace.png>
-Package pdftex.def Info: zdanie_twierdzace.png  used on input line 258.
+Package pdftex.def Info: zdanie_twierdzace.png  used on input line 250.
 (pdftex.def)             Requested size: 379.4149pt x 152.29292pt.
 
 
@@ -523,7 +528,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <pytanie_uzupelnienie.png, id=63, 475.02469pt x 140.77594pt>
 File: pytanie_uzupelnienie.png Graphic file (type png)
 <use pytanie_uzupelnienie.png>
-Package pdftex.def Info: pytanie_uzupelnienie.png  used on input line 273.
+Package pdftex.def Info: pytanie_uzupelnienie.png  used on input line 263.
 (pdftex.def)             Requested size: 427.51825pt x 126.69714pt.
 
 
@@ -533,56 +538,78 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <pytanie_odwrocone.png, id=67, 427.5975pt x 147.55125pt>
 File: pytanie_odwrocone.png Graphic file (type png)
 <use pytanie_odwrocone.png>
-Package pdftex.def Info: pytanie_odwrocone.png  used on input line 285.
+Package pdftex.def Info: pytanie_odwrocone.png  used on input line 275.
 (pdftex.def)             Requested size: 384.83418pt x 132.79488pt.
 <kiedy.png, id=68, 337.26pt x 170.13562pt>
 File: kiedy.png Graphic file (type png)
 <use kiedy.png>
-Package pdftex.def Info: kiedy.png  used on input line 293.
+Package pdftex.def Info: kiedy.png  used on input line 283.
 (pdftex.def)             Requested size: 303.53119pt x 153.12062pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [16 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>] [17 <./kiedy.png>]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 320.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 308.
 
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 320.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 308.
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 324--325
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 312--313
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 325--326
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 313--314
 [][][][][][][][][][][][][][][][] 
  []
 
 [18]
-<overlapping.png, id=78, 693.792pt x 292.6935pt>
-File: overlapping.png Graphic file (type png)
-<use overlapping.png>
-Package pdftex.def Info: overlapping.png  used on input line 340.
-(pdftex.def)             Requested size: 485.65108pt x 204.88405pt.
-
-Overfull \hbox (32.68318pt too wide) in paragraph at lines 340--341
- [][] 
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
+sty"
+File: lstlang1.sty 2018/09/02 1.7 listings language file
+)
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
+sty"
+File: lstlang1.sty 2018/09/02 1.7 listings language file
+)
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstmisc.s
+ty"
+File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
+) [19]
+Overfull \hbox (33.47916pt too wide) in paragraph at lines 344--345
+[][][][][][][][][][][][][][][][][] 
  []
 
-[19 <./overlapping.png>] (praca_dyplomowa.aux) ) 
+<overlapping.png, id=82, 727.518pt x 334.24875pt>
+File: overlapping.png Graphic file (type png)
+<use overlapping.png>
+Package pdftex.def Info: overlapping.png  used on input line 351.
+(pdftex.def)             Requested size: 509.25914pt x 233.97252pt.
+
+Overfull \hbox (56.29124pt too wide) in paragraph at lines 351--352
+[][] 
+ []
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 352--352
+[]\T1/lmr/m/n/12 Rysunek 10: |Zo-bra-zo-wany po-dziaª sy-gnaªu na ramki wraz za
+-sto-so-wa-niem 30-
+ []
+
+[20 <./overlapping.png>] (praca_dyplomowa.aux) ) 
 Here is how much of TeX's memory you used:
- 6460 strings out of 492946
- 95819 string characters out of 3126266
- 174633 words of memory out of 3000000
- 10223 multiletter control sequences out of 15000+200000
+ 6633 strings out of 492946
+ 98275 string characters out of 3126266
+ 356243 words of memory out of 3000000
+ 10388 multiletter control sequences out of 15000+200000
  57124 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,16n,39p,995b,1542s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,16n,60p,995b,1720s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Rafal/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Rafal/AppData/Local/P
 rograms/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/Rafal/AppData/Loc
@@ -599,9 +626,9 @@ b><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.
 pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lms
 y10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm
 /lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (19 pages, 297212 bytes).
+Output written on praca_dyplomowa.pdf (20 pages, 302932 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
+ 122 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

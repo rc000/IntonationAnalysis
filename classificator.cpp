@@ -487,7 +487,7 @@ std::string Classificator::classification()
 
         if (((features & declarativeIntonationOnCenter) & centerHighestContourSteeplyFalling)
             && (!(features & notDeclarative1)))
-            result += " twierdzenie z intonacja na srodek";
+            result += "zdanie twierdzace z intonacja na srodek";
 
         else if (features & endHasContourWithBiggerF0ValueThanStart)
         {

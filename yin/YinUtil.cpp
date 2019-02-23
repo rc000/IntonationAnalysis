@@ -60,6 +60,7 @@ YinUtil::fastDifference(const double *in, double *yinBuffer, const size_t yinBuf
     
     for (size_t j = 0; j < yinBufferSize; ++j)
     {
+
         yinBuffer[j] = 0.; // set to zero
         powerTerms[j] = 0.; // set to zero
     }

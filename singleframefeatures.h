@@ -10,6 +10,8 @@ private:
     std::vector<double>centroid;
     std::vector<double>zcr;
     std::vector<double>f0;
+    std::vector<double>fft;
+
 public:
     SingleFrameFeatures();
     void clear();
@@ -34,6 +36,10 @@ public:
     void f0_emplace_back(std::vector<double>);
     size_t f0_size();
     double f0_value(int index);
+
+    void  setFFT(std::vector<double>fft) {  this->fft = fft;}
+
+    std::vector<double>getFFT() { return fft;}
 
 };
 #endif // SINGLESAMPLE_H

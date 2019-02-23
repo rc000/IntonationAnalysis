@@ -215,9 +215,6 @@ Literą W w tych wzorach oznaczona jest połowa ilosci próbek w ramce. Kolejny 
 \caption{Drugi element równania funkcji różnicowe}
 \end{mycapequ} 
 \FloatBarrier
-
-
-
 Ostatnią składową potrzebną do obliczenia wartości funkcji różnicowej jest podwojone  r$_{\text{t}}$
 Dla lepszych rezultatów wartość ta może zostać obliczone z wykorzystaniem szybkiej transformaty Fouriera.
 Krok ten jest ma największy wpływ na obniżanie stopy błędów estymacji. Wyniki uzyskane po pierwszym etapie algorytmu już są znacząco dokładniejsze w porównaniu do wartości uzyskanych za pomocą czystej funkcji autokorelacji. Wpływ ma na to fakt, że autokorelacja ma tendencję do zawyżania wartości maksimów lokalnych wraz ze wzrostem wartości czasu. W funkcji różnicowej tendencja ta również występuje, choć w znacznie mniejszym stopniu i dotyczy sytuacji odwrotnej, zaniżania wartości maksimów.
@@ -236,12 +233,7 @@ d_{t}'(\tau) =
 \item Estymacja lokalna
 \end{enumerate}
 Na podstawie tak wyestymowanego tonu podstawowego, można dokonać analizy intonacji.
-
-
-
 \subsection{Intonacja}
-
-
 Intonacja jest zmianą tonu podstawowego, nie wpływającą na rozpoznawanie słów. Jest jedną z trzech głównych brzmieniowych właściwości mowy, obok akcentu i iloczasu. Najczęściej jest dodawana podczas wypowiedzi w celu oddania emocji. W wielu językach, w tym także w polskim, nadawanie wypowiedzi określonej intonacji może determinować jej typ. W pewnych sytuacjach modulacja intonacyjna może być jedyną informacją pozwalającą rozmówcy zrozumiec czy wypowiedź była twierdzeniem czy pytaniem. 
 Przykład takiego zdania:
 \newline Musisz jutro wcześnie wstać.
@@ -259,8 +251,6 @@ Ogólna tendencja tonu podstawowego dla zdań twierdzących jest rzeczywiście s
 \caption{Przebieg konturów intonacyjnych dla zdania „Intonacja w zdaniach twierdzących jest opadająca”. Próbkowanie 44kHz, estymacja z wykorzystaniem algorytmu YIN}
 \end{figure}
 \FloatBarrier
-
-
 W pytaniach sytuacja ma się jednak inaczej, wbrew opinii powtarzanej w wielu źródłach, nie można wprost zakładać, że dla pytania intonacja będzie miała przebieg rosnący. Istnieje duża grupa pytań, dla których w tym przypadku intonacja również może mieć przebieg opadający lub będący połączeniem opadającego oraz rosnącego, w różnej kolejności. Powodowane jest to faktem, że w języku polskim rozróżniamy dwa rodzaje pytań. Wyróżnił je Kazimierz Ajdukiewicz w podręczniku „Logika Pragmatyczna” wydanym w 1965 roku.
 Na podział ten składają się:
 \begin{enumerate}
@@ -292,7 +282,6 @@ Istnieją również pytania o uzupełnienie, dla których wzrost intonacji ma sw
 \centering
 \includegraphics[scale=0.9]{kiedy.png}
 \caption{Przykład pytania nawiązującego upewnienie : „Kiedy?”}
-
 \end{figure}
 \FloatBarrier
 Przebieg intonacji dla takiego pytania jest opadająco-rosnący.
@@ -311,7 +300,6 @@ Java Sound API. API te zawiera podstawowe funkcjonalności, jest pomocne przy wc
 W pierwotnym założeniu aplikacja miała umożliwiać nagrywanie wypowiedzi, która następnie miała zostać poddana rozpoznaniu. Jednak w trakcie implentacji nie sposób było nie zauważyć, że znacznie lepsze wyniki rozpoznania są uzyskiwane, gdy do programu zostanie wczytana wypowiedź nagrana zewnętrznym programem, oraz poddana w nim obróbce wstępnej. Spowodowało to porzucenie tej funkcjonalności, jako że nie jest ona konieczna do osiągnięcia zakładanego celu, jakim jest poprawne rozpoznawanie rodzaju wypowiedzi.
 
 Aplikacja umożliwa wczytanie pojedynczego nagrania lub całego katalogu z nagraniami. Program wyświetla nazwę wczytanego pliku, oraz rodzaj zdania do jakiego dana wypowiedź została sklasyfikowana. Po kliknięciu w tabeli na wybrany wiersz, a następnie po kliknięciu na jeden z dowolnych przycisków w dolnym pasku, program wyświetli na wykresie odpowiednio energię nagrania, przebieg widma, przebieg wartości próbki w dziedzinie czasu (waveform) lub przebieg wyestymowanej częstotliwości podstawowej.
-
 \subsection{Wczytanie próbki}
 Pierwszym krokiem na drodze do rozpoznania rodzaju zdania, jest wczytanie calego nagrania przez program. Wykonuje sie to z wykorzystaniem mozliwosci oferowanych przez Qt. Framework oferuje do tego klase QAudioDecoder. 
 Nagranie jest wczytywane w 100 milisekundowych fragmentach. Jako że częstotliwość próbkowania wynosi 44100Hz, na jeden fragment przypada 4410 wartości. Każda częśc jest odczytana jako obiekt klasy QAudioBuffer. Wektor typu QAudioBuffer zawiera cale wczytane nagranie.
@@ -333,12 +321,37 @@ void MainWindow::readBuffer()
     audioBuffers.emplace_back(audioDecoder->read());
 }
 \end{lstlisting}
-Gdy cale nagranie zostanie odczytane, QAudioDecoder emituje sygnal finished(). Po jego przechwyceniu, a wiec otrzymaniu informacji o zakonczeniu dekodowania, program przystepuje do dalszych obliczen.
+Gdy cale nagranie zostanie odczytane, QAudioDecoder emituje sygnal finished(). Po jego przechwyceniu, a wiec otrzymaniu informacji o zakonczeniu dekodowania, program przystepuje do podziału sygnału na ramki.
+\subsection{Ramkowanie}
+Sygnały mowy nie są sygnalami stacjonarnymi, co oznacza, że ich częstotliwość istotnie zmienia się w czasie, znacznie obniżając dokładność obliczeń, opierających się na rezultatach transformaty Fouriera.
+W przetwarzaniu mowy korzystne jest dzielenie sygnału na ramki, celem uzyskania fragmentów sygnału bliskich byciu stacjonarnymi.Głośnia, odpowiedzialna za zmiany częstotliwości głosu, nie zamyka i nie otwiera się natychmiastowo, co oznacza, że w małych odstępach czasu wartości częstotliwości są do siebie zbliżone. Dzieląc sygnal na odpowiednio małe ramki, możliwe jest uzyskanie fragmentów quasi-stacjonarnych. Sygnał najczęśniej dzielony jest na 20-50ms ramki. W tym przypadku nagranie zostału podzielone na 25ms sekundowe ramki.
+Pojawia się jednak problem związany z wartościami brzegowymi. Dzieląc sygnał na przystające do siebie, lecz nie zachodzące na siebie ramki istnieje duże ryzyko nie wykrycia pewnych cech, które mogą byc znajdować się pomiędzy dwoma kolejnymi ramkami. 
+Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia konturów częstotliwości podstawowej. Jeżeli relatywnie krótki kontur zaczynałby się w jednej ramce i kończył w drugiej, mógłby nie zostać wykryty.
+Rozwiązaniem jest nakładanie ramek na siebie (overlapping).Określona część każdej ramki, zawarta jest również w ramce kolejnej. Najczęściej jest to 20-50\% segmentu. W tym projekcie wartość zakładki została ustalona na 30\%.
+
+\begin{lstlisting}[caption={Przedstawienie sposobu dokonywania podziału na ramki, wraz z zastosowaniem overlappingu},label={lst:label},language=C++]
+    std::vector<std::vector<double>> framesVector;
+    int j=1;
+    for(size_t i = 1;i<wholeBuffer.size();i++)
+    {
+        if(j%samples_per_frame == 0)
+        {
+            index_frame++;
+            i-=(samples_per_frame/3);
+            j=1;
+            framesVector.emplace_back(std::vector<double>());
+        }
+        framesVector.at(index_frame).emplace_back(wholeBuffer.at(i));
+        j++;
+    }
+\end{lstlisting}
+\FloatBarrier
 \begin{figure}[h]
 
-\centering
 \includegraphics[scale=0.7]{overlapping.png}
-\caption{Przykład pytania nawiązującego upewnienie : „Kiedy?”}
+\caption{Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie własne}
 
 \end{figure}
+\FloatBarrier
+kkkkk
 \end{document}

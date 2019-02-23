@@ -10,10 +10,10 @@ QT += printsupport
 
 QT       += multimedia
 
-#LIBS += -L"$$PWD/fftw"
-#LIBS+=libfftw3-3.lib
-#LIBS+=libfftw3f-3.lib
-#LIBS+=libfftw3l-3.lib
+LIBS += -L"$$PWD/fftw"
+LIBS+=libfftw3-3.lib
+LIBS+=libfftw3f-3.lib
+LIBS+=libfftw3l-3.lib
 LIBS+= -L"$$PWD/lib"
 
 
@@ -68,12 +68,12 @@ HEADERS += \
     contoursextractor.h \
     singlesegment.h \
     borderlayout.h \
-    fftw/fftw3.h \
     yin/ext/_kiss_fft_guts.h \
     yin/ext/kiss_fft.h \
     yin/ext/kiss_fftr.h \
     borderlayout.h \
     fftt.h \
+    fftw/fftw3.h \
 
 FORMS += \
     mainwindow.ui
