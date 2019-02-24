@@ -2,24 +2,21 @@
 
 #include <QDebug>
 
-ContoursExtractor::ContoursExtractor(SingleFrameFeatures framesFeatures)
+ContoursExtractor::ContoursExtractor(ExtractionHelper extractionHelper)
 {
-    this->framesFeatures = framesFeatures;
+    this->extractionHelper = extractionHelper;
     this->seriesContours =  new QScatterSeries();
 
 }
-
-ContoursExtractor::ContoursExtractor(SingleFrameFeatures framesFeatures,
-                  QScatterSeries *seriesContours)
+ContoursExtractor::~ContoursExtractor()
 {
-    this->framesFeatures = framesFeatures;
-    this->seriesContours =  seriesContours;
 }
+
 int ContoursExtractor::findIndexOfLastF0Value()
 {
-    for(size_t i=framesFeatures.f0_size()-1;i>1;i--)
+    for(size_t i=extractionHelper.f0_size()-1;i>1;i--)
     {
-         if (framesFeatures.f0_value(i) > 50)
+         if (extractionHelper.f0_value(i) > 50)
          {
              return i;
          }
@@ -37,22 +34,20 @@ void ContoursExtractor::findContours()
 
     currentSegment.setStart(1);
     lastValueIndex = findIndexOfLastF0Value();
-    for(size_t i=1;i<framesFeatures.f0_size();i++)
+    for(size_t i=1;i<extractionHelper.f0_size();i++)
     {
-        double value =framesFeatures.f0_value(i);
+        double value =extractionHelper.f0_value(i);
          seriesContours->append(i,value);
         if (value > maxValue)
             maxValue = value;
         if (value < minValue && value > 60)
             minValue = value;
-        if(std::abs(value - framesFeatures.f0_value(i-1)) > 15)
+        if(std::abs(value - extractionHelper.f0_value(i-1)) > 15)
         {
-            qDebug()<<"hello mam kontur";
             foundNewContour(i,averageValue,numberOfPositiveValues);
         }
-
-    }
-    lookForLastContour(averageValue,numberOfPositiveValues);
+     }
+     lookForLastContour(averageValue,numberOfPositiveValues);
 
     int index =0;
     for(int i = 0;i<SegmentsVector.size();i++)
@@ -75,7 +70,6 @@ void ContoursExtractor::findContours()
      {
         if(!SegmentsVector.at(i).isContourValidate())
             continue;
-         qDebug()<<SegmentsVector.at(i).getCenterOfRegressionLine();
          sumAllValues += SegmentsVector.at(i).getCenterOfRegressionLine();
          numberAllValues++;
 
@@ -87,11 +81,9 @@ void ContoursExtractor::findContours()
      {
          double averageWithoutCurrentContour = sumAllValues - SegmentsVector.at(i).getCenterOfRegressionLine();
          averageWithoutCurrentContour /= (numberAllValues-1);
-         qDebug()<<" "<<i;
          if((SegmentsVector.at(i).getCenterOfRegressionLine() > (averageWithoutCurrentContour*1.8))
                  && (SegmentsVector.at(i).getContourLength()<5))
          {
-             qDebug()<<"fill ";
              for(auto & value:SegmentsVector.at(i).getValuesVector())
                  value = 0.0;
 
@@ -117,12 +109,12 @@ void ContoursExtractor::findContours()
      }
 
 
-    result = QString::fromStdString(classificator->classification());
+    result = classificator->classification();
     qDebug()<<"result "<<result;
     analysisResults = classificator->getAnalysisResult();
     stateChanges = classificator->getStateChanges();
     delete classificator;
-    //framesFeatures.clear();
+    //extractionHelper.clear();
 
 
 }
@@ -134,14 +126,14 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
 
     for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
     {
-        currentSegment.addValue(framesFeatures.f0_value(j));
+        currentSegment.addValue(extractionHelper.f0_value(j));
     }
     if (currentSegment.isContourValidate())
     {
 
          for (int j = currentSegment.getStartIndex(); j<currentSegment.getEndIndex();j++)
          {
-            averageValue += framesFeatures.f0_value(j);
+            averageValue += extractionHelper.f0_value(j);
             numberOfPositiveValues++;
           }
     }
@@ -169,8 +161,8 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
 
    /* if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))
             >(ValidateSegmentsVector.back().getStartIndex()/5))*/
-     if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))
-             >(currentSegment.getValue(0)/7))
+      if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))
+             >(currentSegment.getValue(0)/5))
 
     {
         qDebug()<<"WZROST "<<currentSegment.getStartIndex()<<" "<<currentSegment.getWspA();
@@ -179,21 +171,20 @@ void ContoursExtractor::foundNewContour(int i,double &averageValue,int &numberOf
     }
     //if ((currentSegment.getValue(0)-ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1))<-50)
      else if ((ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1) - currentSegment.getValue(0))
-             >(ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1)/7))
+             >(ValidateSegmentsVector.back().getValue(ValidateSegmentsVector.back().getSize()-1)/4))
     {
         qDebug()<<"spadek "<<currentSegment.getStartIndex();
 
         currentSegment.setStartState(FALL);
 
     }
-    }
+     }
     if (currentSegment.isContourValidate())
         ValidateSegmentsVector.push_back(currentSegment);
     SegmentsVector.push_back(currentSegment);
 
     currentSegment.setStart(i);
-    currentSegment.setIsSpaceBeforeContour(!SegmentsVector.back().isContourValidate());
-    currentSegment.setPreviousContourOrSpaceLength(SegmentsVector.back().getSize());
+     currentSegment.setPreviousContourOrSpaceLength(SegmentsVector.back().getSize());
 
     currentSegment.clear();
 }
@@ -201,10 +192,10 @@ void ContoursExtractor::lookForLastContour(double &averageValue, int &numberOfPo
 {
     SingleSegment lastSegment;
     lastSegment.setStart(SegmentsVector.back().getEndIndex()+1);
-    lastSegment.setEnd(framesFeatures.f0_size());
+    lastSegment.setEnd(extractionHelper.f0_size());
     for (int j = lastSegment.getStartIndex(); j<lastSegment.getEndIndex();j++)
     {
-         lastSegment.addValue(framesFeatures.f0_value(j));
+         lastSegment.addValue(extractionHelper.f0_value(j));
     }
 
    if (lastSegment.isContourValidate())
@@ -213,7 +204,7 @@ void ContoursExtractor::lookForLastContour(double &averageValue, int &numberOfPo
        SegmentsVector.push_back(lastSegment);
        for (int j = lastSegment.getStartIndex(); j<lastSegment.getEndIndex();j++)
        {
-           averageValue += framesFeatures.f0_value(j);
+           averageValue += extractionHelper.f0_value(j);
            numberOfPositiveValues++;
        }
    }
@@ -311,7 +302,10 @@ std::vector<QLineSeries*> ContoursExtractor::getSeriesRegresionLines()
     }
     return vector;
 }
+void ContoursExtractor::extractFeatures()
+{
 
+}
 int ContoursExtractor::getNextValidateContour(int index)
 {
     for(int i = index+1;i<SegmentsVector.size();i++)

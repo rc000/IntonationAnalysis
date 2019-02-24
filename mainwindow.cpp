@@ -17,7 +17,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),chartView(NULL),
-    frames_number(0),samples_per_frame(0),
+    frames_number(0),frameSize(0),
     ui(new Ui::MainWindow)
 {
         ui->setupUi(this);
@@ -36,9 +36,10 @@ MainWindow::MainWindow(QWidget *parent) :
         centralWidget ->setLayout(layout);
 
         setCentralWidget(centralWidget);
-        ui->tableWidget->setColumnCount(2);
+        ui->tableWidget->setColumnCount(3);
         ui->tableWidget->setColumnWidth(0,200);
         ui->tableWidget->setColumnWidth(1,200);
+        ui->tableWidget->setColumnWidth(2,200);
 
         ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -136,8 +137,6 @@ qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
 void MainWindow::setEnabledFeatureButtons(bool state)
 {
         ui->bF0->setEnabled(state);
-        ui->bShowEnergy->setEnabled(state);
-        ui->bShowSpectrum->setEnabled(state);
         ui->bShowWaveform->setEnabled(state);
         ui->bPlay->setEnabled(state);
 }
@@ -178,19 +177,13 @@ void MainWindow::framing()
     framesVector.clear();
 
     sampleRate = audioBuffers[0].format().sampleRate();
-    samples_per_frame = audioBuffers[0].format().sampleRate()/40;
+    frameSize = audioBuffers[0].format().sampleRate()/40;
 
-   // frames_number = audioBuffers.size()*4;
-
-   /*for (int i = 0; i < frames_number; i++)
-    {
-            framesVector.emplace_back(std::vector<double>(samples_per_frame,0));
-    }*/
 
 
     int index_frame = 0;
     int index = 0;
-    qDebug()<<"before loop?";
+
     for(size_t i=0;i<audioBuffers.size();i++)
     {
         qDebug()<<audioBuffers[i].sampleCount();
@@ -201,66 +194,32 @@ void MainWindow::framing()
 
           }
     }
-    qDebug()<<"here?";
-    framesVector.emplace_back(std::vector<double>(samples_per_frame,0));
-
-    int j=1;
-
-    for(size_t i = 1;i<wholeBuffer.size();i++)
-    {
-        if(j%samples_per_frame == 0)
-        {
-            index_frame++;
-            i-=(samples_per_frame/3);
-            j=1;
-            framesVector.emplace_back(std::vector<double>());
-        }
-        framesVector.at(index_frame).emplace_back(wholeBuffer.at(i));
-        j++;
-    }
-    frames_number = index_frame;
-
-
-
-
-
-
 
  }
 
-void MainWindow::extractFeatures()
+ExtractionHelper MainWindow::extractFeatures()
 {
 
-    for(qint16 value : wholeBuffer)
-        framesFeatures.buffer_emplace_back(value/peak);
+    ExtractionHelper extractionHelper(wholeBuffer, peak, frameSize,sampleRate);
+    double framesNumber = wholeBuffer.size()/1102;
+    extractionHelper.calcF0(framesNumber);
 
-    for(int i=0;i<frames_number;i++)
-    {
-        FeaturesExtractor  featuresExtractor(wholeBuffer, framesVector.at(i), peak, samples_per_frame,sampleRate);
-
-        framesFeatures.energy_emplace_back(featuresExtractor.calcEnergy());
-
-        /*framesFeatures[framesFeatures.size()-1].zcr_emplace_back(featuresExtractor.calcZCR());*/
-        framesFeatures.f0_emplace_back(featuresExtractor.calcF0(i));
-
-        //framesFeatures[framesFeatures.size()-1].fftBuffer_emplace_back(featuresExtractor.calcFFT());
-       // if(i==0)
-         //   framesFeatures.setFFT(featuresExtractor.calcFFT());
-    }
-
-    qDebug()<<"extract?";
-}
+    return extractionHelper;
+  }
 
 void MainWindow::decodingFinished()
 {
-    framesFeatures.clear();
     framing();
 
-    extractFeatures();
 
-    ContoursExtractor contoursExtractor(framesFeatures);
+    ContoursExtractor contoursExtractor(extractFeatures());
+    qDebug()<<"przed find";
     contoursExtractor.findContours();
-    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
+    for(int i = 0;i<contoursExtractor.getResult().size();i++)
+    {
+        ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursExtractor.getResult().at(i)));
+    }
+   //ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
 
     extractors.push_back(contoursExtractor);
 
@@ -268,8 +227,12 @@ void MainWindow::decodingFinished()
     if(ui->tableWidget->item(rowCounter-1,0)->text().length()==0) return;
     if(ui->tableWidget->item(rowCounter-1,0)->text().at(0)!=ui->tableWidget->item(rowCounter-1,1)->text().at(0))
     {
+        /*if(ui->tableWidget->item(rowCounter-1,2)->text().at(0)!=""
+                || (ui->tableWidget->item(rowCounter-1,0)->text().at(0)!=ui->tableWidget->item(rowCounter-1,2)->text().at(0)))
+        {*/
         ui->tableWidget->item(rowCounter-1,0)->setBackgroundColor(Qt::red);
         ui->tableWidget->item(rowCounter-1,1)->setBackgroundColor(Qt::red);
+       // }
     }
 
     setEnabledFeatureButtons(true);
@@ -288,23 +251,21 @@ void MainWindow::on_bShowWaveform_clicked()
    ContoursExtractor contoursExtractor = extractors.at(activeColumn);
 
 
-  for(size_t i=0;i<contoursExtractor.getFrameFeatures().buffer_size();i++)
+  for(size_t i=0;i<contoursExtractor.getFeatures().getWholeSignal().size();i++)
    {
-
-       series->append(i,contoursExtractor.getFrameFeatures().buffer_value(i));
+       series->append(i,contoursExtractor.getFeatures().getWholeSignal().at(i));
    }
  std::vector<QLineSeries*>framesLines;
  int counter =0;
- for(size_t i=0;i<contoursExtractor.getFrameFeatures().buffer_size();i+=(samples_per_frame - (samples_per_frame/3)))
+ for(size_t i=0;i<contoursExtractor.getFeatures().getWholeSignal().size();i+=(frameSize - (frameSize/3)))
   {
      double start =0.0;
      double end = counter%2 ? -0.4 : 0.4;
-     qDebug()<<i;
      framesLines.push_back(new QLineSeries());
      framesLines.back()->append(i, start);
      framesLines.back()->append(i, end);
-     framesLines.back()->append(i+samples_per_frame, end);
-     framesLines.back()->append(i+samples_per_frame, start);
+     framesLines.back()->append(i+frameSize, end);
+     framesLines.back()->append(i+frameSize, start);
      counter++;
  }
 
@@ -334,52 +295,8 @@ void MainWindow::on_bShowWaveform_clicked()
 
 }
 
-void MainWindow::on_bShowSpectrum_clicked()
-{
-    series = new QLineSeries();
-    chart = new QChart();
-    ContoursExtractor contoursExtractor = extractors.at(activeColumn);
-
-    for(size_t i=0;i<contoursExtractor.getFrameFeatures().getFFT().size();i++)
-    {
-        series->append(i,contoursExtractor.getFrameFeatures().getFFT().at(i));
-    }
-    chart->legend()->hide();
-    chart->addSeries(series);
-    addAxis();
-    setLayout();
-  /* series = new QLineSeries();
-   chart = new QChart();
-   for(size_t i=0;i<framesFeatures[framesFeatures.size()-1].fftBuffer_size();i++)
-   {
-       series->append(i,framesFeatures[framesFeatures.size()-1].fftBuffer_value(i));
-   }
-  chart->legend()->hide();
-  chart->addSeries(series);
-  addAxis();
-  setLayout();*/
-}
-
-void MainWindow::on_bShowEnergy_clicked()
-{
-   series = new QLineSeries();
-   chart = new QChart();
-   ContoursExtractor contoursExtractor = extractors.at(activeColumn);
-
-   for(size_t i=0;i<contoursExtractor.getFrameFeatures().energy_size();i++)
-   {
-       series->append(i,contoursExtractor.getFrameFeatures().energy_value(i));
-   }
 
 
-
-
-
-  chart->legend()->hide();
-  chart->addSeries(series);
-  addAxis();
-  setLayout();
-}
 void MainWindow::setLayout()
 {
     qDebug()<<"set layout";

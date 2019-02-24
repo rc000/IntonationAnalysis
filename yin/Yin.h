@@ -31,7 +31,7 @@ using std::pair;
 class Yin
 {
 public:
-    Yin(size_t frameSize, size_t inputSampleRate, double thresh = 0.2, bool fast = true);
+    Yin(size_t frameSize, size_t inputSampleRate, double thresh = 0.15, bool fast = true);
     virtual ~Yin();
 
     struct YinOutput {

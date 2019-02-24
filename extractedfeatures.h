@@ -1,10 +1,11 @@
-#ifndef SINGLEFRAMEFEATURES_H
-#define SINGLEFRAMEFEATURES_H
+#ifndef EXTRACTEDFEATURES_H
+#define EXTRACTEDFEATURES_H
 
 #include<vector>
 
-class SingleFrameFeatures{
+class ExtractedFeatures{
 private:
+
     std::vector<double>buffer;
      std::vector<double>energy;
     std::vector<double>centroid;
@@ -13,7 +14,7 @@ private:
     std::vector<double>fft;
 
 public:
-    SingleFrameFeatures();
+    ExtractedFeatures();
     void clear();
     void buffer_emplace_back(double);
     size_t buffer_size();
@@ -25,6 +26,10 @@ public:
     size_t energy_size();
     double energy_value(int index);
 
+    void f0_emplace_back(std::vector<double>);
+    size_t f0_size();
+    double f0_value(int index);
+
     void centroid_emplace_back(double);
     size_t centroid_size();
     double centroid_value(int index);
@@ -33,9 +38,6 @@ public:
     size_t zcr_size();
     double zcr_value(int index);
 
-    void f0_emplace_back(std::vector<double>);
-    size_t f0_size();
-    double f0_value(int index);
 
     void  setFFT(std::vector<double>fft) {  this->fft = fft;}
 

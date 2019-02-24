@@ -54,8 +54,10 @@
 #define bigGrowthAtTheEnd (1<<17)
 #define bigGrowthAtTheBeginning (1<<18)
 #define bigDropAtTheBeginning (1<<19)
+
 #define highestContourAtBeginningStronglyRising (1<<20)
 
+#define centerContourIsHighestAndSteeplyFalling (1<<21)
 
 
 static const char *analysisResults[] =
@@ -79,10 +81,11 @@ static const char *analysisResults[] =
     "bigGrowthAtTheEnd",
     "bigGrowthAtTheBeginning",
     "bigDropAtTheBeginning",
-    "highestContourAtBeginningStronglyRising"
+    "highestContourAtBeginningStronglyRising",
+    "centerContourIsHighestAndSteeplyFalling"
 };
 
-int numberOfMaxResults = 20;
+int numberOfMaxResults = 21;
 int declarative = 0;
 int declarativeIntonationOnCenter = 0;
 int conclusiveQuestion = 0;
@@ -102,11 +105,15 @@ void initialization()
 {
    declarative|= (startHasContourWithSlightlyBiggerF0ValueThanCenter | allContoursAreFalling
                   | sentenceHasFallingTendention
-                  | sentenceHasConstantTendention);
+                  | sentenceHasConstantTendention
+                  |centerContourIsHighestAndSteeplyFalling);
                   //| bigDropAtTheBeginning);
-   notDeclarative1 |= (endHasContourWithBiggerF0ValueThanStart | highestContourStronglyRising
-                   | bigGrowthAtTheBeginning
-                       |bigDropAtTheBeginning);
+   notDeclarative1 |= (endHasContourWithBiggerF0ValueThanStart //| highestContourStronglyRising
+                   //| bigGrowthAtTheBeginning
+                       |endHasContourWithMuchBiggerF0ValueThanCenter
+                       |bigGrowthAtTheEnd
+                       |highestContourLocatedBetweenStartEndCenter);
+                   //    |bigDropAtTheBeginning);
 
 
    declarativeIntonationOnCenter |= (centerHasContourWithBiggerF0ValueThanStart
@@ -290,7 +297,7 @@ bool Classificator::analysis()
            <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()
           <<" "<<indexHighestValueOfRegresionLinesAtTheBeginning;
 
-    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 0.8)
+    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 0.5)
             && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()>5))
         features |= highestContourAtBeginningStronglyRising;
 
@@ -307,16 +314,19 @@ bool Classificator::analysis()
         features |= endHasContourWithSlightlyBiggerF0ValueThanCenter;
     }*/
 
-    if (highestValueOfRegresionLinesAtTheBeginning > 1.5 *highestValueOfRegresionLinesAtTheCenter)
+    if (highestValueOfRegresionLinesAtTheBeginning > 1.4 *highestValueOfRegresionLinesAtTheCenter)
     {
+        qDebug()<<"(highestValueOfRegresionLinesAtTheBeginning > 1.5 *highestValueOfRegresionLinesAtTheCenter)";
         if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCenterOfRegressionLine()
                 - contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getCenterOfRegressionLine())
                 > 10.0)
         {
+            qDebug()<<"startHasContourWithMuchBiggerF0ValueThanCenter";
             features |= startHasContourWithMuchBiggerF0ValueThanCenter;
          }
         else
         {
+            qDebug()<<" startHasContourWithSlightlyBiggerF0ValueThanCenter";
             features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
         }
 
@@ -324,12 +334,16 @@ bool Classificator::analysis()
     }
     else if (highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
     {
+        qDebug()<<"(highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)";
         features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
         if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 1.5)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength() > 10)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getStartIndex() > lastIndexOfBeginningPart))
             features |= highestContourStronglyRising;
          //return true;
+    }
+    else {
+        qDebug()<<"beginning mniejszy";
     }
     if (highestValueOfRegresionLinesAtTheCenter >  highestValueOfRegresionLinesAtTheBeginning)
     {
@@ -451,13 +465,16 @@ bool Classificator::analysis()
         features |= startIsTheLowest;
     }
 
+    if((indexOfHighestValue == indexHighestValueOfRegresionLinesAtTheCenter)
+            && (features & centerHighestContourSteeplyFalling))
+        features |= centerContourIsHighestAndSteeplyFalling;
     return false;
 
 }
 
 
 
-std::string Classificator::classification()
+std::vector<QString> Classificator::classification()
 {
 
     analysis();
@@ -467,10 +484,25 @@ std::string Classificator::classification()
     qDebug()<<bin(conclusiveQuestion);
     qDebug()<<bin(completenessQuestion);
     qDebug()<<bin(imperative);
-    QString result;
-    if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
-            && (! (features & imperative))
+    std::vector<QString> result;
+
+    if ((features & declarative) >= startHasContourWithSlightlyBiggerF0ValueThanCenter
+           // && (! (features & imperative)))
             && (!(features & notDeclarative1)))
+        result.emplace_back("zdanie twierdzace zwykle");
+
+    if (((features & completenessQuestion)))
+             //&&(!(features & notCompletenessQuestion1)))
+         result.emplace_back("pytanie uzupelnienia");
+    if (features & conclusiveQuestion)
+        result.emplace_back("pytanie rozstrzygniecia");
+    if (((features & imperative))
+            && (!(features & notImperative)))
+        result.emplace_back("rozkazujace");
+    /*
+    if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
+            && (! (features & imperative)))
+           // && (!(features & notDeclarative1)))
         result += "zdanie twierdzace zwykle";
 
     if (((features & imperative))
@@ -480,13 +512,8 @@ std::string Classificator::classification()
     if ((indexHighestValueOfRegresionLinesAtTheCenter == indexOfHighestValue) ||
             (features & highestContourLocatedBetweenStartEndCenter))
     {
-       // if ((features & completenessQuestionCenterIntonation)  & centerHighestContourNotFalling)
-         //   result += "pytanie uzupelnienia  z int na srodek";
-
-
-
-        if (((features & declarativeIntonationOnCenter) & centerHighestContourSteeplyFalling)
-            && (!(features & notDeclarative1)))
+        if (((features & declarativeIntonationOnCenter) & centerHighestContourSteeplyFalling))
+           // && (!(features & notDeclarative1)))
             result += "zdanie twierdzace z intonacja na srodek";
 
         else if (features & endHasContourWithBiggerF0ValueThanStart)
@@ -497,17 +524,15 @@ std::string Classificator::classification()
         }
 
     }
-
     else {
-        if (((features & completenessQuestion) )
+        if (((features & completenessQuestion))
                  &&(!(features & notCompletenessQuestion1)))
              result += "pytanie uzupelnienia";
         if (features & conclusiveQuestion)
             result += "pytanie rozstrzygniecia";
-
     }
-    contours.clear();
-    if(result.length()==0)
-        result+="unrecognized";
-    return result.toStdString();
+    contours.clear();*/
+    if(result.size()==0)
+        result.emplace_back("unrecognized");
+    return result;
 }

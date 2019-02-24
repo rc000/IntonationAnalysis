@@ -16,6 +16,11 @@
 \DeclareCaptionType{mycapequ}[][List of equations]
 \captionsetup[mycapequ]{labelformat=empty}
 
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
 \makeindex
 \selectlanguage{polish}
 
@@ -322,36 +327,73 @@ void MainWindow::readBuffer()
 }
 \end{lstlisting}
 Gdy cale nagranie zostanie odczytane, QAudioDecoder emituje sygnal finished(). Po jego przechwyceniu, a wiec otrzymaniu informacji o zakonczeniu dekodowania, program przystepuje do podziału sygnału na ramki.
-\subsection{Ramkowanie}
-Sygnały mowy nie są sygnalami stacjonarnymi, co oznacza, że ich częstotliwość istotnie zmienia się w czasie, znacznie obniżając dokładność obliczeń, opierających się na rezultatach transformaty Fouriera.
-W przetwarzaniu mowy korzystne jest dzielenie sygnału na ramki, celem uzyskania fragmentów sygnału bliskich byciu stacjonarnymi.Głośnia, odpowiedzialna za zmiany częstotliwości głosu, nie zamyka i nie otwiera się natychmiastowo, co oznacza, że w małych odstępach czasu wartości częstotliwości są do siebie zbliżone. Dzieląc sygnal na odpowiednio małe ramki, możliwe jest uzyskanie fragmentów quasi-stacjonarnych. Sygnał najczęśniej dzielony jest na 20-50ms ramki. W tym przypadku nagranie zostału podzielone na 25ms sekundowe ramki.
-Pojawia się jednak problem związany z wartościami brzegowymi. Dzieląc sygnał na przystające do siebie, lecz nie zachodzące na siebie ramki istnieje duże ryzyko nie wykrycia pewnych cech, które mogą byc znajdować się pomiędzy dwoma kolejnymi ramkami. 
-Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia konturów częstotliwości podstawowej. Jeżeli relatywnie krótki kontur zaczynałby się w jednej ramce i kończył w drugiej, mógłby nie zostać wykryty.
-Rozwiązaniem jest nakładanie ramek na siebie (overlapping).Określona część każdej ramki, zawarta jest również w ramce kolejnej. Najczęściej jest to 20-50\% segmentu. W tym projekcie wartość zakładki została ustalona na 30\%.
 
-\begin{lstlisting}[caption={Przedstawienie sposobu dokonywania podziału na ramki, wraz z zastosowaniem overlappingu},label={lst:label},language=C++]
-    std::vector<std::vector<double>> framesVector;
-    int j=1;
-    for(size_t i = 1;i<wholeBuffer.size();i++)
-    {
-        if(j%samples_per_frame == 0)
-        {
-            index_frame++;
-            i-=(samples_per_frame/3);
-            j=1;
-            framesVector.emplace_back(std::vector<double>());
-        }
-        framesVector.at(index_frame).emplace_back(wholeBuffer.at(i));
-        j++;
-    }
-\end{lstlisting}
-\FloatBarrier
+
+
+
+\subsection{Ekstrakcja tonu podstawowego}
+W pierwotnym założeniu program, poza estymacją częstotliwości podstawowej miał również dokonywać ekstrakcji niskopoziomowych cech.
+W toku implementacji zostały one jednak pominięte, z powodu posiadania małego wpływu na cel pracy. 
+Pierwszym zagadnieniem, które powinno być rozważone, jest długość fragmentów sygnału, na które powinien być podzielony.
+Sygnały mowy nie są sygnalami stacjonarnymi, co oznacza, że ich częstotliwość istotnie zmienia się w czasie, znacznie obniżając dokładność obliczeń, opierających się na rezultatach transformaty Fouriera.
+W przetwarzaniu mowy korzystne jest dzielenie sygnału na części, celem uzyskania fragmentów sygnału bliskich byciu stacjonarnymi.
+Głośnia, odpowiedzialna za zmiany częstotliwości głosu, nie zamyka i nie otwiera się natychmiastowo, co oznacza, że w małych odstępach czasu wartości częstotliwości są do siebie zbliżone.
+Odpowiednio dzieląc sygnał możliwe jest uzyskanie krótszych  quasi-stacjonarnych fragmentów. Proces ten nazywa się ramkowaniem.
+\subsubsection{Ramkowanie}
+Sygnał najczęśniej dzielony jest na 20-50ms ramki. W tym projekcie ustalona długość ramki wynosi 25ms. Oznacza to, że każda ramka składa się z 1102 wartości.
+Pojawia się jednak problem związany z wartościami brzegowymi. Dzieląc sygnał na przystające do siebie, lecz nie zachodzące na siebie ramki istnieje duże ryzyko nie wykrycia pewnych cech, które mogą znajdować się pomiędzy dwoma kolejnymi ramkami. 
+Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia konturów częstotliwości podstawowej. Jeżeli relatywnie krótki kontur zaczynałby się w jednej ramce i kończył w drugiej, mógłby nie zostać wykryty.
+Rozwiązaniem jest nakładanie ramek na siebie (overlapping).Określona część każdej ramki, zawarta jest również w ramce kolejnej. Najczęściej jest to 20-50\% segmentu.
 \begin{figure}[h]
 
 \includegraphics[scale=0.7]{overlapping.png}
 \caption{Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie własne}
-
 \end{figure}
 \FloatBarrier
-kkkkk
+Do ekstrakcji cech niskopoziomowych 30 procentowe nakładanie się ramek jest wystarczające. Jednak algorytm YIN, wykorzystany w projekcie do estymacji F0, wymaga znacznie większego zachodzenia fragmentów na siebie. W tym przypadku 90\% danej ramki znajduje się również w ramce kolejnej.
+Oznacza to, że ramki przesuwane są jedynie o 2,5ms. Spowodowane jest to faktem, że algorytm YIN opiera swoje działanie na funkcji autokorelacji.
+Do ekstrakcji cech stworzona została klasa ExtractionHelper.
+\FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.9]{featuresExtractor.png}
+\caption{Klasa stworzona w celu ekstracji F0, obliczenia energii sygnału oraz przechowywania tych wartości}
+\end{figure}
+\FloatBarrier
+
+\begin{lstlisting}[caption={Przedstawienie sposobu dokonywania podziału na ramki, wraz z zastosowaniem overlappingu},label={lst:label},language=C++]
+void ExtractionHelper::calcF0(int numberOfFrames)
+{
+
+   int numberOfShifts=10;
+
+   Yin m_yin(frameSize, sampleRate);
+   for(int i = 0;i<numberOfFrames;i++)
+   {
+        int frameStartIndex=i*frameSize;
+        for(int j=0;j<numberOfShifts;j++)
+        {
+            int shift=j*(frameSize/numberOfShifts);
+            double *shift_frame =new double [frameSize];
+            int index=0;
+            int frameStartIndexAfterShifting = frameStartIndex+shift;
+            for(int k=frameStartIndexAfterShifting;
+            	k<frameStartIndexAfterShifting+frameSize;k++)
+            {
+                if(k>=whole_signal.size())
+                    break;
+                shift_frame[index] = whole_signal.at(k) ;
+                index++;
+            }
+            Yin::YinOutput f0_struct=m_yin.process(shift_frame);
+            if (f0_struct.f0 <F0_MAX && f0_struct.f0 >F0_MIN)
+                f0.emplace_back(f0_struct.f0);
+            else
+                f0.emplace_back(0);
+            delete shift_frame;
+        }
+   }
+}
+\end{lstlisting}
+
 \end{document}

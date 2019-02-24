@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  23 FEB 2019 19:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  25 FEB 2019 00:21
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -289,23 +289,22 @@ Package newfloat Info: float type `mycapequ'=8 on input line 16.
 
 
 Writing index file praca_dyplomowa.idx
-(praca_dyplomowa.aux)
+No file praca_dyplomowa.aux.
 \openout1 = `praca_dyplomowa.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 26.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 31.
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -416,159 +415,178 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count123
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 28.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 33.
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 28.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 33.
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 28.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 33.
 
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 28.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 33.
 
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 28.
+(Font)              <14.4> on input line 33.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 28.
+(Font)              <10> on input line 33.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 28.
+(Font)              <7> on input line 33.
 
 [1
 
 {C:/Users/Rafal/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(praca_dyplomowa.toc
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 6.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 6.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 6.
-)
+No file praca_dyplomowa.toc.
 \tf@toc=\write4
 \openout4 = `praca_dyplomowa.toc'.
 
- (praca_dyplomowa.lof [2]
-Overfull \hbox (10.95953pt too wide) in paragraph at lines 12--12
- [][] []\T1/lmr/m/n/12 Zobrazowany po-dziaª sy-gnaªu na ramki wraz za-sto-so-wa
--niem 30-procentowego 
- []
-
-)
+No file praca_dyplomowa.lof.
 \tf@lof=\write5
 \openout5 = `praca_dyplomowa.lof'.
 
- (praca_dyplomowa.lot)
+No file praca_dyplomowa.lot.
 \tf@lot=\write6
 \openout6 = `praca_dyplomowa.lot'.
 
- (praca_dyplomowa.lomycapequ)
+(praca_dyplomowa.lomycapequ)
 \tf@lomycapequ=\write7
 \openout7 = `praca_dyplomowa.lomycapequ'.
 
- [3] [4] [5]
-<faldy_glosowe.png, id=20, 376.40625pt x 180.675pt>
+ [2] [3] [4]
+<faldy_glosowe.png, id=17, 376.40625pt x 180.675pt>
 File: faldy_glosowe.png Graphic file (type png)
 <use faldy_glosowe.png>
-Package pdftex.def Info: faldy_glosowe.png  used on input line 61.
+Package pdftex.def Info: faldy_glosowe.png  used on input line 66.
 (pdftex.def)             Requested size: 376.40532pt x 180.67455pt.
- [6] [7 <./faldy_glosowe.png>]
-<stol_waveform.png, id=28, 273.27094pt x 150.5625pt>
+ [5] [6 <./faldy_glosowe.png>]
+<stol_waveform.png, id=24, 273.27094pt x 150.5625pt>
 File: stol_waveform.png Graphic file (type png)
 <use stol_waveform.png>
-Package pdftex.def Info: stol_waveform.png  used on input line 90.
+Package pdftex.def Info: stol_waveform.png  used on input line 95.
 (pdftex.def)             Requested size: 273.27025pt x 150.56212pt.
- [8 <./stol_waveform.png>]
-<energia.png, id=38, 274.02374pt x 182.93344pt>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 104.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 104.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 104.
+ [7 <./stol_waveform.png>]
+<energia.png, id=35, 274.02374pt x 182.93344pt>
 File: energia.png Graphic file (type png)
 <use energia.png>
-Package pdftex.def Info: energia.png  used on input line 123.
+Package pdftex.def Info: energia.png  used on input line 128.
 (pdftex.def)             Requested size: 274.02307pt x 182.93298pt.
-<fft.png, id=39, 249.93375pt x 183.68625pt>
+<fft.png, id=36, 249.93375pt x 183.68625pt>
 File: fft.png Graphic file (type png)
 <use fft.png>
-Package pdftex.def Info: fft.png  used on input line 137.
+Package pdftex.def Info: fft.png  used on input line 142.
 (pdftex.def)             Requested size: 249.93314pt x 183.68578pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./energia.png>] [10 <./fft.png>]
-<porownanie_metod.png, id=47, 349.305pt x 165.61874pt>
+[8 <./energia.png>] [9 <./fft.png>]
+<porownanie_metod.png, id=44, 349.305pt x 165.61874pt>
 File: porownanie_metod.png Graphic file (type png)
 <use porownanie_metod.png>
-Package pdftex.def Info: porownanie_metod.png  used on input line 173.
+Package pdftex.def Info: porownanie_metod.png  used on input line 178.
 (pdftex.def)             Requested size: 349.30414pt x 165.61833pt.
- [11 <./porownanie_metod.png>]
+ [10 <./porownanie_metod.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12] [13]
-<zdanie_twierdzace.png, id=59, 542.025pt x 217.5628pt>
+[11] [12]
+<zdanie_twierdzace.png, id=55, 542.025pt x 217.5628pt>
 File: zdanie_twierdzace.png Graphic file (type png)
 <use zdanie_twierdzace.png>
-Package pdftex.def Info: zdanie_twierdzace.png  used on input line 250.
+Package pdftex.def Info: zdanie_twierdzace.png  used on input line 255.
 (pdftex.def)             Requested size: 379.4149pt x 152.29292pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14]
-<pytanie_uzupelnienie.png, id=63, 475.02469pt x 140.77594pt>
+[13]
+<pytanie_uzupelnienie.png, id=60, 475.02469pt x 140.77594pt>
 File: pytanie_uzupelnienie.png Graphic file (type png)
 <use pytanie_uzupelnienie.png>
-Package pdftex.def Info: pytanie_uzupelnienie.png  used on input line 263.
+Package pdftex.def Info: pytanie_uzupelnienie.png  used on input line 268.
 (pdftex.def)             Requested size: 427.51825pt x 126.69714pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15 <./zdanie_twierdzace.png>]
-<pytanie_odwrocone.png, id=67, 427.5975pt x 147.55125pt>
+[14 <./zdanie_twierdzace.png>]
+<pytanie_odwrocone.png, id=64, 427.5975pt x 147.55125pt>
 File: pytanie_odwrocone.png Graphic file (type png)
 <use pytanie_odwrocone.png>
-Package pdftex.def Info: pytanie_odwrocone.png  used on input line 275.
+Package pdftex.def Info: pytanie_odwrocone.png  used on input line 280.
 (pdftex.def)             Requested size: 384.83418pt x 132.79488pt.
-<kiedy.png, id=68, 337.26pt x 170.13562pt>
+<kiedy.png, id=65, 337.26pt x 170.13562pt>
 File: kiedy.png Graphic file (type png)
 <use kiedy.png>
-Package pdftex.def Info: kiedy.png  used on input line 283.
+Package pdftex.def Info: kiedy.png  used on input line 288.
 (pdftex.def)             Requested size: 303.53119pt x 153.12062pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>] [17 <./kiedy.png>]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 308.
+[15 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>] [16 <./kiedy.png>]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 313.
 
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 308.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 313.
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 312--313
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 317--318
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 313--314
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 318--319
 [][][][][][][][][][][][][][][][] 
  []
 
+[17]
+<overlapping.png, id=75, 727.518pt x 334.24875pt>
+File: overlapping.png Graphic file (type png)
+<use overlapping.png>
+Package pdftex.def Info: overlapping.png  used on input line 349.
+(pdftex.def)             Requested size: 509.25914pt x 233.97252pt.
+
+Overfull \hbox (56.29124pt too wide) in paragraph at lines 349--350
+[][] 
+ []
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 350--350
+[]\T1/lmr/m/n/12 Rysunek 10: |Zo-bra-zo-wany po-dziaª sy-gnaªu na ramki wraz za
+-sto-so-wa-niem 30-
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [18]
+<featuresExtractor.png, id=79, 238.491pt x 146.949pt>
+File: featuresExtractor.png Graphic file (type png)
+<use featuresExtractor.png>
+Package pdftex.def Info: featuresExtractor.png  used on input line 359.
+(pdftex.def)             Requested size: 214.6399pt x 132.25287pt.
+
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
 sty"
 File: lstlang1.sty 2018/09/02 1.7 listings language file
@@ -580,55 +598,42 @@ File: lstlang1.sty 2018/09/02 1.7 listings language file
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstmisc.s
 ty"
 File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
-) [19]
-Overfull \hbox (33.47916pt too wide) in paragraph at lines 344--345
-[][][][][][][][][][][][][][][][][] 
+) [19 <./overlapping.png> <./featuresExtractor.png>]
+Overfull \hbox (33.47916pt too wide) in paragraph at lines 379--380
+[][][][][][][][][][][][][] 
  []
 
-<overlapping.png, id=82, 727.518pt x 334.24875pt>
-File: overlapping.png Graphic file (type png)
-<use overlapping.png>
-Package pdftex.def Info: overlapping.png  used on input line 351.
-(pdftex.def)             Requested size: 509.25914pt x 233.97252pt.
+[20] (praca_dyplomowa.aux)
 
-Overfull \hbox (56.29124pt too wide) in paragraph at lines 351--352
-[][] 
- []
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Underfull \hbox (badness 2326) in paragraph at lines 352--352
-[]\T1/lmr/m/n/12 Rysunek 10: |Zo-bra-zo-wany po-dziaª sy-gnaªu na ramki wraz za
--sto-so-wa-niem 30-
- []
-
-[20 <./overlapping.png>] (praca_dyplomowa.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 6633 strings out of 492946
- 98275 string characters out of 3126266
- 356243 words of memory out of 3000000
- 10388 multiletter control sequences out of 15000+200000
+ 6661 strings out of 492946
+ 98336 string characters out of 3126266
+ 362606 words of memory out of 3000000
+ 10423 multiletter control sequences out of 15000+200000
  57124 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,16n,60p,995b,1720s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Rafal/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Rafal/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Users/Rafal/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/Rafal/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/Rafal/AppData
-/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Users/Rafal/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Rafal
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Users/R
-afal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Use
-rs/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/
-Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><
-C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr17.pf
-b><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr8.
-pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lms
-y10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm
-/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (20 pages, 302932 bytes).
+ 41i,16n,60p,995b,1718s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
+c}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathe
+x.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-r
+m.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
+athsy.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/
+lm-mathit.enc}<C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmbx12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/lm/lmex10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmmi12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/lm/lmmi8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/lm/lmr17.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
+Output written on praca_dyplomowa.pdf (20 pages, 315977 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
+ 123 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

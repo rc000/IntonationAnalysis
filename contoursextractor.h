@@ -3,7 +3,7 @@
 #include <vector>
 #include <QScatterSeries>
 #include <QtCharts/QLineSeries>
-#include "singleframefeatures.h"
+#include "extractionHelper.h"
 #include "singlesegment.h"
 #include "classificator.h"
 QT_CHARTS_USE_NAMESPACE
@@ -11,14 +11,15 @@ QT_CHARTS_USE_NAMESPACE
 class ContoursExtractor
 {
  public:
-    ContoursExtractor(SingleFrameFeatures framesFeatures);
-    ContoursExtractor(SingleFrameFeatures framesFeatures,
-                      QScatterSeries *seriesContours);
+    ContoursExtractor(ExtractionHelper extractionHelper);
+
+    ~ContoursExtractor();
 
     void findContours();
     void foundNewContour(int i,double &averageValue,int &numberOfPositiveValues);
     void lookForLastContour(double &averageValue, int &numberOfPositiveValues);
     void calcRegressionLines();
+    void extractFeatures();
     int findIndexOfLastF0Value();
     double getMaxValue() { return maxValue;}
     double getMinValue() { return minValue;}
@@ -29,10 +30,11 @@ class ContoursExtractor
     std::vector<QLineSeries*> getSeriesRegresionLines();
     QScatterSeries *seriesContours;
     QScatterSeries * getSeriesContours(){return seriesContours;}
-    QString getResult(){return result;}
+    std::vector<QString> getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
     std::vector<QString> getStateChanges(){return stateChanges;}
-    SingleFrameFeatures getFrameFeatures(){ return framesFeatures;}
+   // ExtractedFeatures getFrameFeatures(){ return extractedFeatures;}
+    ExtractionHelper getFeatures(){ return extractionHelper;}
     int getNextValidateContour(int index);
 
 
@@ -42,9 +44,10 @@ private:
     int firstValueIndex,lastValueIndex;
     int firstPart = 0;
     int centerPart = 0;
-    SingleFrameFeatures framesFeatures;
+    //ExtractedFeatures extractedFeatures;
     std::vector<QLineSeries*>seriesRegresionLines;
     Classificator *classificator;
+    ExtractionHelper extractionHelper;
     std::vector<SingleSegment> SegmentsVector;
     std::vector<SingleSegment> ValidateSegmentsVector;
 
@@ -55,7 +58,7 @@ private:
     int numberAllValues = 0;
 
 
-    QString result;
+    std::vector<QString> result;
 
 };
 

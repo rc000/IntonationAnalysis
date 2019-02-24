@@ -13,7 +13,7 @@ public:
     void addContour(SingleSegment contour) {contours.emplace_back(contour);}
     SingleSegment getContour(int index) {return contours.at(index);}
 
-    std::string classification();
+    std::vector<QString> classification();
     std::vector<QString>getAnalysisResult();
     std::vector<QString>getStateChanges(){return stateChanges;}
 

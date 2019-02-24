@@ -15,9 +15,7 @@
 #include <QAudioProbe>
 #include <QtCharts/QChartView>
 #include <QtCharts/QChart>
-#include "singleframefeatures.h"
-
-#include "FeaturesExtractor.h"
+#include "extractionHelper.h"
 #include <borderlayout.h>
 #include <classificator.h>
 //#include <contour.h>
@@ -43,7 +41,7 @@ public:
     ~MainWindow();
     void addAxis();
     void startRecording();
-    void extractFeatures();
+    ExtractionHelper extractFeatures();
     void removeChartView();
     void framing();
     void setEnabledFeatureButtons(bool state);
@@ -60,8 +58,7 @@ public:
     void decodingFinished();
     void getBuffer(QAudioBuffer buffer);
     void on_bShowWaveform_clicked();
-    void on_bShowSpectrum_clicked();
-    void on_bShowEnergy_clicked();
+
     void on_bPlay_clicked();
     void cellClicked(int nRow, int nCol);
     void cellSelected(int nRow, int nCol);
@@ -82,7 +79,7 @@ private:
 
     std::vector<double>wholeBuffer;
     std::vector<std::vector<double>> framesVector;
-    int samples_per_frame;
+    int frameSize;
     int frames_number;
     int whole_signal_size;
     int sampleRate;
@@ -93,8 +90,7 @@ private:
     QLineSeries *series;
     QChart *chart;
     QChartView *chartView;
-    SingleFrameFeatures framesFeatures;
-    QSharedPointer<FeaturesExtractor> featuresExtractor;
+    ExtractionHelper  *extractionHelper;
     int activeColumn = -1;
     std::vector<QAudioBuffer>audioBuffers;
      QAudioDecoder *audioDecoder;

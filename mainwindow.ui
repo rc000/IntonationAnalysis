@@ -105,19 +105,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="bShowEnergy">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Energy</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="bF0">
        <property name="minimumSize">
         <size>
@@ -127,19 +114,6 @@
        </property>
        <property name="text">
         <string>F0</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="bShowSpectrum">
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Spectrum</string>
        </property>
       </widget>
      </item>
@@ -163,7 +137,7 @@
      <rect>
       <x>140</x>
       <y>40</y>
-      <width>598</width>
+      <width>798</width>
       <height>261</height>
      </rect>
     </property>
@@ -178,7 +152,7 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>500</width>
+         <width>600</width>
          <height>0</height>
         </size>
        </property>

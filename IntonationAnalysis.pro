@@ -38,23 +38,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    featureExtractor.cpp \
     yin/yin.cpp \
     yin/yinutil.cpp \
     yin/fft.cpp \
     yin/fftimpl.cpp \
-    singlesframefeatures.cpp \
     classificator.cpp \
     contoursextractor.cpp \
     singlesegment.cpp \
     borderlayout.cpp \
     fftt.cpp \
     yin/ext/kiss_fft.c \
-    yin/ext/kiss_fftr.c
+    yin/ext/kiss_fftr.c \
+    extractionHelper.cpp
 
 HEADERS += \
         mainwindow.h \
-    featuresExtractor.h \
     yin/fft.h \
     yin/yin.h \
     yin/meanfilter.h \
@@ -63,7 +61,6 @@ HEADERS += \
     yin/FFT.h \
     yin/MeanFilter.h \
     yin/plugguard.h \
-    singleframefeatures.h \
     classificator.h \
     contoursextractor.h \
     singlesegment.h \
@@ -74,6 +71,7 @@ HEADERS += \
     borderlayout.h \
     fftt.h \
     fftw/fftw3.h \
+    extractionHelper.h
 
 FORMS += \
     mainwindow.ui
