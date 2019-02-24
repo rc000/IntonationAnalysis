@@ -167,35 +167,22 @@ void MainWindow::getBuffer(QAudioBuffer buffer)
 {
     audioBuffers.emplace_back(buffer);
 }
-void MainWindow::framing()
+void MainWindow::putValuesIntoVector()
 {
-    wholeBuffer.clear();
-    for(std::vector<double>currentFrame : framesVector)
-    {
-        currentFrame.clear();
-    }
-    framesVector.clear();
+   // wholeBuffer.clear();
 
     sampleRate = audioBuffers[0].format().sampleRate();
     frameSize = audioBuffers[0].format().sampleRate()/40;
 
-
-
-    int index_frame = 0;
-    int index = 0;
-
-    for(size_t i=0;i<audioBuffers.size();i++)
+    for (QAudioBuffer audioBuffer : audioBuffers)
     {
-        qDebug()<<audioBuffers[i].sampleCount();
-        const qint16 *data = audioBuffers[i].constData<qint16>();
-          for(int j=0;j<audioBuffers[i].sampleCount();j++)
+        const qint16 *data = audioBuffer.constData<qint16>();
+        for(int j=0;j<audioBuffer.sampleCount();j++)
         {
               wholeBuffer.emplace_back(data[j]);
-
-          }
+        }
     }
-
- }
+}
 
 ExtractionHelper MainWindow::extractFeatures()
 {
@@ -209,7 +196,7 @@ ExtractionHelper MainWindow::extractFeatures()
 
 void MainWindow::decodingFinished()
 {
-    framing();
+    putValuesIntoVector();
 
 
     ContoursExtractor contoursExtractor(extractFeatures());
@@ -242,6 +229,7 @@ void MainWindow::decodingFinished()
         wavFiles.erase(wavFiles.begin());
         loadWavFile(wavFiles.front());
     }
+    wholeBuffer.clear();
 
 }
 void MainWindow::on_bShowWaveform_clicked()

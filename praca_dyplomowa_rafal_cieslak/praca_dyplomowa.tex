@@ -326,10 +326,28 @@ void MainWindow::readBuffer()
     audioBuffers.emplace_back(audioDecoder->read());
 }
 \end{lstlisting}
-Gdy cale nagranie zostanie odczytane, QAudioDecoder emituje sygnal finished(). Po jego przechwyceniu, a wiec otrzymaniu informacji o zakonczeniu dekodowania, program przystepuje do podziału sygnału na ramki.
+Gdy cale nagranie zostanie odczytane, QAudioDecoder emituje sygnal finished(). Po jego przechwyceniu, a wiec otrzymaniu informacji o zakonczeniu dekodowania, program umieszcza w jednym wektorze próbki ze wszystkich 100 milisekundowych buforów.
 
+\begin{lstlisting}[caption={Funkcja dodająca do wektora wszystkie odczytane próbki},label={lst:label},language=C++]
 
-
+void MainWindow::putValuesIntoVector()
+{
+    sampleRate = audioBuffers[0].format().sampleRate();
+    frameSize = audioBuffers[0].format().sampleRate()/40;
+    
+    for (QAudioBuffer audioBuffer : audioBuffers)
+    {
+        const qint16 *data = audioBuffer.constData<qint16>();
+        for(int j=0;j<audioBuffer.sampleCount();j++)
+        {
+              wholeBuffer.emplace_back(data[j]);
+        }
+        delete data;
+    }
+}
+\end{lstlisting}
+W powyższej funkcji, najpierw pobierana jest ilość próbek przypadających na jedną sekundę, oraz na 25 milisekundową ramkę. Następnie wartości kolejno z każdego obiektu typu QAudioBuffer, znajdującego się w wektorze audioBuffers, są dodawane do wektora wholeBuffer. Jest to wektor przechowujący zmienne
+zmiennoprzecinkowe, o podwójnej precyzji, tj.double.
 
 \subsection{Ekstrakcja tonu podstawowego}
 W pierwotnym założeniu program, poza estymacją częstotliwości podstawowej miał również dokonywać ekstrakcji niskopoziomowych cech.

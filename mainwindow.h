@@ -43,7 +43,7 @@ public:
     void startRecording();
     ExtractionHelper extractFeatures();
     void removeChartView();
-    void framing();
+    void putValuesIntoVector();
     void setEnabledFeatureButtons(bool state);
     void setLayout();
     void loadWavFile(QString wavFilePath);
