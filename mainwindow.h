@@ -19,7 +19,7 @@
 #include <borderlayout.h>
 #include <classificator.h>
 //#include <contour.h>
-#include "contoursextractor.h"
+#include "contoursdetector.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -102,7 +102,7 @@ private:
     QAudioFormat desiredFormat;
     QString wavFilePath;
     std::vector<QString>wavFiles;
-    std::vector<ContoursExtractor> extractors;
+    std::vector<ContoursDetector> detectors;
     QStringList wavFilesList;
 
 };

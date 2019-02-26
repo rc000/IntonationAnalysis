@@ -76,25 +76,25 @@ void MainWindow::cellClicked(int nRow, int nCol)
  qDebug()<<nRow<<" "<<nCol;
  qDebug()<<"file "<<wavFilesList.at(nRow);
   chart = new QChart();
-  ContoursExtractor contoursExtractor = extractors.at(nRow);
+  ContoursDetector contoursDetector = detectors.at(nRow);
 
-  for (int i = 0;i<contoursExtractor.getAnalysisResults().size();i++)
+  for (int i = 0;i<contoursDetector.getAnalysisResults().size();i++)
   {
-      qDebug()<<contoursExtractor.getAnalysisResults().at(i);
-      ui->textBrowser->append(contoursExtractor.getAnalysisResults().at(i));
+      qDebug()<<contoursDetector.getAnalysisResults().at(i);
+      ui->textBrowser->append(contoursDetector.getAnalysisResults().at(i));
 
-     // ui->textBrowser->setText(contoursExtractor.getAnalysisResults().at(i));
+     // ui->textBrowser->setText(contoursDetector.getAnalysisResults().at(i));
   }
-  for (int i = 0;i<contoursExtractor.getStateChanges().size();i++)
+  for (int i = 0;i<contoursDetector.getStateChanges().size();i++)
   {
-      qDebug()<<contoursExtractor.getStateChanges().at(i);
-      ui->textBrowser->append(contoursExtractor.getStateChanges().at(i));
+      qDebug()<<contoursDetector.getStateChanges().at(i);
+      ui->textBrowser->append(contoursDetector.getStateChanges().at(i));
   }
- seriesContours = contoursExtractor.getSeriesContours();
+ seriesContours = contoursDetector.getSeriesContours();
  seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
  seriesContours->setMarkerSize(5.0);
 
-seriesRegresionLines = contoursExtractor.getSeriesRegresionLines();
+seriesRegresionLines = contoursDetector.getSeriesRegresionLines();
 qDebug()<<"before adding seriesContours";
 chart->addSeries(seriesContours);
 
@@ -105,8 +105,8 @@ QValueAxis *axisX = new QValueAxis;
 axisX->setTickCount(30);
 QValueAxis *axisY = new QValueAxis;
 axisY->setTickCount(20);
-axisY->setRange((int)contoursExtractor.getMinValue()-10,(int)contoursExtractor.getMaxValue()+10);
-axisX->setRange((int)contoursExtractor.getIndexOfFirstValue()-10,(int)contoursExtractor.getIndexOfLastValue()+10);
+axisY->setRange((int)contoursDetector.getMinValue()-10,(int)contoursDetector.getMaxValue()+10);
+axisX->setRange((int)contoursDetector.getIndexOfFirstValue()-10,(int)contoursDetector.getIndexOfLastValue()+10);
 
 chart->addAxis(axisX, Qt::AlignBottom);
 chart->addAxis(axisY, Qt::AlignLeft);
@@ -114,11 +114,11 @@ seriesContours->attachAxis(axisX);
 seriesContours->attachAxis(axisY);
 qDebug()<<"before regression lines";
 seriesRegresionLines.push_back(new QLineSeries());
-seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), contoursExtractor.getMaxValue());
-seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), 20);
+seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfBeginningPart(), contoursDetector.getMaxValue());
+seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfBeginningPart(), 20);
 seriesRegresionLines.push_back(new QLineSeries());
-seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), contoursExtractor.getMaxValue());
-seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), 20);
+seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfCenterPart(), contoursDetector.getMaxValue());
+seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfCenterPart(), 20);
 qDebug()<<"after regression lines";
 
 for(int i=0;i<seriesRegresionLines.size();i++)
@@ -198,16 +198,16 @@ void MainWindow::decodingFinished()
     putValuesIntoVector();
 
 
-    ContoursExtractor contoursExtractor(extractFeatures());
+    ContoursDetector contoursDetector(extractFeatures());
     qDebug()<<"przed find";
-    contoursExtractor.findContours();
-    for(int i = 0;i<contoursExtractor.getResult().size();i++)
+    contoursDetector.findContours();
+    for(int i = 0;i<contoursDetector.getResult().size();i++)
     {
-        ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursExtractor.getResult().at(i)));
+        ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursDetector.getResult().at(i)));
     }
-   //ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursExtractor.getResult()));
+   //ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursDetector.getResult()));
 
-    extractors.push_back(contoursExtractor);
+    detectors.push_back(contoursDetector);
 
     obliczone = true;
     if(ui->tableWidget->item(rowCounter-1,0)->text().length()==0) return;
@@ -235,16 +235,16 @@ void MainWindow::on_bShowWaveform_clicked()
 {
    series = new QLineSeries();
    chart = new QChart();
-   ContoursExtractor contoursExtractor = extractors.at(activeColumn);
+   ContoursDetector contoursDetector = detectors.at(activeColumn);
 
 
-  for(size_t i=0;i<contoursExtractor.getFeatures().getWholeSignal().size();i++)
+  for(size_t i=0;i<contoursDetector.getFeatures().getWholeSignal().size();i++)
    {
-       series->append(i,contoursExtractor.getFeatures().getWholeSignal().at(i));
+       series->append(i,contoursDetector.getFeatures().getWholeSignal().at(i));
    }
  std::vector<QLineSeries*>framesLines;
  int counter =0;
- for(size_t i=0;i<contoursExtractor.getFeatures().getWholeSignal().size();i+=(frameSize - (frameSize/3)))
+ for(size_t i=0;i<contoursDetector.getFeatures().getWholeSignal().size();i+=(frameSize - (frameSize/3)))
   {
      double start =0.0;
      double end = counter%2 ? -0.4 : 0.4;
@@ -339,15 +339,15 @@ void MainWindow::on_bF0_clicked()
 
 
    chart = new QChart();
-   qDebug()<<extractors.size();
+   qDebug()<<detectors.size();
    qDebug()<<activeColumn;
-    ContoursExtractor contoursExtractor = extractors.at(activeColumn);
+    ContoursDetector contoursDetector = detectors.at(activeColumn);
 
-   seriesContours = contoursExtractor.getSeriesContours();
+   seriesContours = contoursDetector.getSeriesContours();
    seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
    seriesContours->setMarkerSize(5.0);
 
-  seriesRegresionLines = contoursExtractor.getSeriesRegresionLines();
+  seriesRegresionLines = contoursDetector.getSeriesRegresionLines();
   chart->addSeries(seriesContours);
 
   chart->legend()->hide();
@@ -356,19 +356,19 @@ void MainWindow::on_bF0_clicked()
   axisX->setTickCount(30);
   QValueAxis *axisY = new QValueAxis;
   axisY->setTickCount(20);
-  axisY->setRange((int)contoursExtractor.getMinValue()-10,(int)contoursExtractor.getMaxValue()+10);
-  axisX->setRange((int)contoursExtractor.getIndexOfFirstValue()-10,(int)contoursExtractor.getIndexOfLastValue()+10);
+  axisY->setRange((int)contoursDetector.getMinValue()-10,(int)contoursDetector.getMaxValue()+10);
+  axisX->setRange((int)contoursDetector.getIndexOfFirstValue()-10,(int)contoursDetector.getIndexOfLastValue()+10);
 
   chart->addAxis(axisX, Qt::AlignBottom);
   chart->addAxis(axisY, Qt::AlignLeft);
   seriesContours->attachAxis(axisX);
   seriesContours->attachAxis(axisY);
   seriesRegresionLines.push_back(new QLineSeries());
-  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), contoursExtractor.getMaxValue());
-  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfBeginningPart(), 20);
+  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfBeginningPart(), contoursDetector.getMaxValue());
+  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfBeginningPart(), 20);
   seriesRegresionLines.push_back(new QLineSeries());
-  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), contoursExtractor.getMaxValue());
-  seriesRegresionLines.back()->append(contoursExtractor.getLastIndexOfCenterPart(), 20);
+  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfCenterPart(), contoursDetector.getMaxValue());
+  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfCenterPart(), 20);
   for(int i=0;i<seriesRegresionLines.size();i++)
   {
       chart->addSeries(seriesRegresionLines.at(i));

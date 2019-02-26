@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  26 FEB 2019 00:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  27 FEB 2019 00:23
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -293,6 +293,12 @@ Writing index file praca_dyplomowa.idx
 
 LaTeX Warning: Label `lst:label' multiply defined.
 
+
+LaTeX Warning: Label `lst:label' multiply defined.
+
+
+LaTeX Warning: Label `lst:label' multiply defined.
+
 )
 \openout1 = `praca_dyplomowa.aux'.
 
@@ -552,7 +558,13 @@ Package pdftex.def Info: kiedy.png  used on input line 288.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>] [17 <./kiedy.png>]
+[16 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>]
+Overfull \hbox (16.64017pt too wide) in paragraph at lines 295--295
+[]\T1/lmr/bx/n/17.28 Implementacja de-tek-cji kon-tu-rów cz¦-sto-tli-wo-±ci pod
+-
+ []
+
+[17 <./kiedy.png>]
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 313.
 
 
@@ -600,30 +612,52 @@ Underfull \hbox (badness 2326) in paragraph at lines 368--368
 -sto-so-wa-niem 30-
  []
 
-[20 <./overlapping.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20]
 <featuresExtractor.png, id=86, 238.491pt x 146.949pt>
 File: featuresExtractor.png Graphic file (type png)
 <use featuresExtractor.png>
 Package pdftex.def Info: featuresExtractor.png  used on input line 377.
 (pdftex.def)             Requested size: 214.6399pt x 132.25287pt.
-
+ [21 <./overlapping.png> <./featuresExtractor.png>]
 Overfull \hbox (188.57822pt too wide) in paragraph at lines 399--400
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-[21 <./featuresExtractor.png>] [22] (praca_dyplomowa.aux)
+[22]
+<contourDetector.png, id=93, 533.5935pt x 414.348pt>
+File: contourDetector.png Graphic file (type png)
+<use contourDetector.png>
+Package pdftex.def Info: contourDetector.png  used on input line 430.
+(pdftex.def)             Requested size: 480.2297pt x 372.90974pt.
+
+Overfull \hbox (27.26181pt too wide) in paragraph at lines 430--431
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23] [24 <./contourDetector.png>]
+Overfull \hbox (5.27933pt too wide) in paragraph at lines 450--451
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[25] [26] (praca_dyplomowa.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6689 strings out of 492946
- 99121 string characters out of 3126266
- 357633 words of memory out of 3000000
- 10443 multiletter control sequences out of 15000+200000
+ 6753 strings out of 492946
+ 100150 string characters out of 3126266
+ 363706 words of memory out of 3000000
+ 10506 multiletter control sequences out of 15000+200000
  57124 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,16n,60p,995b,1605s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,16n,60p,995b,1609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
 c}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathe
 x.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-r
@@ -639,9 +673,9 @@ fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2
 X 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (22 pages, 322266 bytes).
+Output written on praca_dyplomowa.pdf (26 pages, 393253 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
+ 143 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

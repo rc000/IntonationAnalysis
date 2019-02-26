@@ -7,8 +7,7 @@
 #include "yin/YinUtil.h"
 #define REAL 0
 #define IMAG 1
-#define F0_MIN 60
-#define F0_MAX 450
+
 
 
 

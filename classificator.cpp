@@ -190,7 +190,7 @@ bool Classificator::areAllContoursFalling()
 {
     for (int i=0;i<contours.size();i++)
     {
-        if(contours.at(i).getWspA()>0.2 && contours.at(i).getContourLength()>1 )
+        if(contours.at(i).getCoefA()>0.2 && contours.at(i).getContourLength()>1 )
         {
             return false;
          }
@@ -224,7 +224,7 @@ bool Classificator::analysis()
     for (int i = 0;i<contours.size();i++)
     {
         std::ostringstream ss;
-        ss<<i<<" "<<contours.at(i).getWspA();
+        ss<<i<<" "<<contours.at(i).getCoefA();
         stateChanges.push_back(QString::fromStdString(ss.str()));
         qDebug()<<i<<" kontur "<<contours.at(i).getContourLength();
         if (contours.at(i).getLocationOnTheChart() == BEGINNING && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning )
@@ -266,7 +266,7 @@ bool Classificator::analysis()
                 state = "Beginning";
                 if (contours.at(i).getStartState() == FALL)
                 {
-                    if(contours.at(i+1).getWspA()<0.0)
+                    if(contours.at(i+1).getCoefA()<0.0)
                     {
                         qDebug()<<"DROP "<<i<<" "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getContourLength();
                         features |= bigDropAtTheBeginning;
@@ -293,11 +293,11 @@ bool Classificator::analysis()
 
     }
     qDebug()<<"higheest Value "<<highestContourValue<<" index "<<indexOfHighestValue;
-    qDebug()<<"highestValueBeginning "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA()
+    qDebug()<<"highestValueBeginning "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA()
            <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()
           <<" "<<indexHighestValueOfRegresionLinesAtTheBeginning;
 
-    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 0.5)
+    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA() > 0.5)
             && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()>5))
         features |= highestContourAtBeginningStronglyRising;
 
@@ -336,7 +336,7 @@ bool Classificator::analysis()
     {
         qDebug()<<"(highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)";
         features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
-        if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA() > 1.5)
+        if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA() > 1.5)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength() > 10)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getStartIndex() > lastIndexOfBeginningPart))
             features |= highestContourStronglyRising;
@@ -427,28 +427,28 @@ bool Classificator::analysis()
          && highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheEnd)
         endPartIsTheLowest = true;
 
-    double wspA;
+    double CoefA;
     if  (features & centerHasContourWithBiggerF0ValueThanEnd)
     {
         if ((highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
                 && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getEndIndex() > lastIndexOfBeginningPart))
         {
-            wspA = contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getWspA();
+            CoefA = contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA();
             features |= highestContourLocatedBetweenStartEndCenter;
         }
         else if ((highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheBeginning)
                  &&  ((contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getStartIndex()) < lastIndexOfBeginningPart))
          {
-            wspA = contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getWspA();
+            CoefA = contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getCoefA();
             features |= highestContourLocatedBetweenStartEndCenter;
          }
         else if (highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheBeginning
                    && highestValueOfRegresionLinesAtTheCenter >highestValueOfRegresionLinesAtTheEnd)
-            wspA = contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getWspA();
+            CoefA = contours.at(indexHighestValueOfRegresionLinesAtTheCenter).getCoefA();
 
-        if (wspA < 0.0)
+        if (CoefA < 0.0)
         {
-            if ((wspA < -0.4) || (indexHighestValueOfRegresionLinesAtTheCenter > (contours.size()/2)))
+            if ((CoefA < -0.4) || (indexHighestValueOfRegresionLinesAtTheCenter > (contours.size()/2)))
                 features |= centerHighestContourSteeplyFalling;
             else
                 features |= centerHighestContourNotSteeplyFalling;

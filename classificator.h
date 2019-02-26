@@ -1,7 +1,7 @@
 #ifndef CLASSIFICATOR_H
 #define CLASSIFICATOR_H
 #include<vector>
-#include"singlesegment.h"
+#include"contour.h"
 #include <string>
 #include<QString>
 using namespace std;
@@ -10,15 +10,15 @@ class Classificator
 {
 public:
     Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart);
-    void addContour(SingleSegment contour) {contours.emplace_back(contour);}
-    SingleSegment getContour(int index) {return contours.at(index);}
+    void addContour(Contour contour) {contours.emplace_back(contour);}
+    Contour getContour(int index) {return contours.at(index);}
 
     std::vector<QString> classification();
     std::vector<QString>getAnalysisResult();
     std::vector<QString>getStateChanges(){return stateChanges;}
 
 private:
-    std::vector<SingleSegment>contours;
+    std::vector<Contour>contours;
     std::vector<QString>stateChanges;
     int lastIndexOfBeginningPart;
     int lastIndexOfCenterPart;

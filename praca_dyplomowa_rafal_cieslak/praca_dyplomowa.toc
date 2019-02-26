@@ -16,10 +16,10 @@
 \contentsline {subsection}{\numberline {3.3}Intonacja}{14}% 
 \contentsline {subsubsection}{\numberline {3.3.1}Typy intonacji}{14}% 
 \contentsline {subsubsection}{\numberline {3.3.2}Przebiegi intonacji dla poszczeg\IeC {\'o}lnych rodzaj\IeC {\'o}w zda\IeC {\'n}i}{14}% 
-\contentsline {section}{\numberline {4}Oprogramowanie}{17}% 
+\contentsline {section}{\numberline {4}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{17}% 
 \contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{17}% 
 \contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{18}% 
 \contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{18}% 
 \contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{19}% 
-\contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie}{20}% 
-\contentsline {subsection}{\numberline {4.5}rampam}{22}% 
+\contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{20}% 
+\contentsline {subsection}{\numberline {4.5}Wykrywanie kontur\IeC {\'o}w}{23}% 

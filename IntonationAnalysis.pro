@@ -43,13 +43,13 @@ SOURCES += \
     yin/fft.cpp \
     yin/fftimpl.cpp \
     classificator.cpp \
-    contoursextractor.cpp \
-    singlesegment.cpp \
     borderlayout.cpp \
     fftt.cpp \
     yin/ext/kiss_fft.c \
     yin/ext/kiss_fftr.c \
-    extractionHelper.cpp
+    extractionHelper.cpp \
+    contour.cpp \
+    contoursdetector.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -62,8 +62,6 @@ HEADERS += \
     yin/MeanFilter.h \
     yin/plugguard.h \
     classificator.h \
-    contoursextractor.h \
-    singlesegment.h \
     borderlayout.h \
     yin/ext/_kiss_fft_guts.h \
     yin/ext/kiss_fft.h \
@@ -71,7 +69,9 @@ HEADERS += \
     borderlayout.h \
     fftt.h \
     fftw/fftw3.h \
-    extractionHelper.h
+    extractionHelper.h \
+    contour.h \
+    contoursdetector.h
 
 FORMS += \
     mainwindow.ui

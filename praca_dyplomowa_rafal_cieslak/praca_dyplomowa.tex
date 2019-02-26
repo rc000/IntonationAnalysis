@@ -292,7 +292,7 @@ Istnieją również pytania o uzupełnienie, dla których wzrost intonacji ma sw
 Przebieg intonacji dla takiego pytania jest opadająco-rosnący.
 \end{enumerate}
 \end{enumerate}
-\section{Oprogramowanie}
+\section{Implementacja detekcji konturów częstotliwości podstawowej}
 Celem praktycznym pracy jest stworzenie aplikacji desktopowej umożliwiającej wczytanie próbki zawierającej nagrane zdanie oraz dokonanie identyfikacji rodzaju tej wypowiedzi
 
 \subsection{Język programowania oraz środowisko}
@@ -357,7 +357,7 @@ Sygnały mowy nie są sygnalami stacjonarnymi, co oznacza, że ich częstotliwo�
 W przetwarzaniu mowy korzystne jest dzielenie sygnału na części, celem uzyskania fragmentów sygnału bliskich byciu stacjonarnymi.
 Głośnia, odpowiedzialna za zmiany częstotliwości głosu, nie zamyka i nie otwiera się natychmiastowo, co oznacza, że w małych odstępach czasu wartości częstotliwości są do siebie zbliżone.
 Odpowiednio dzieląc sygnał możliwe jest uzyskanie krótszych  quasi-stacjonarnych fragmentów. Proces ten nazywa się ramkowaniem.
-\subsubsection{Ramkowanie}
+\subsubsection{Ramkowanie oraz ekstracja wartości F0}
 Sygnał najczęśniej dzielony jest na 20-50ms ramki. W tym projekcie ustalona długość ramki wynosi 25ms. Oznacza to, że każda ramka składa się z 1102 wartości.
 Pojawia się jednak problem związany z wartościami brzegowymi. Dzieląc sygnał na przystające do siebie, lecz nie zachodzące na siebie ramki istnieje duże ryzyko nie wykrycia pewnych cech, które mogą znajdować się pomiędzy dwoma kolejnymi ramkami. 
 Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia konturów częstotliwości podstawowej. Jeżeli relatywnie krótki kontur zaczynałby się w jednej ramce i kończył w drugiej, mógłby nie zostać wykryty.
@@ -419,8 +419,61 @@ W ciele funkcji calcF0 obiekt ten będzie wykorzystywany do estymacji konturów 
 Z racji zastosowania wysokiego overlappingu, proces dzielenia sygnału na fragmenty nie wygląda jak typowe ramkowanie. Okno sygnału przeznaczone do estymacji będzie przesuwane jedynie o 2,5ms.
 W tym celu zadeklarowane zostały dwie zmienne, frameStartIndexAfterShifting przechowuje początkowy indeks obecnie przetwarzanej ramki, a zmienna shift przechowuje wartość pojedynczego przesunięcia.
 Warunkiem kończącym działanie głównej pętli funkcji jest przekroczenie przez początkowy indeks ramki rozmiaru całego sygnału. Oznacza to, że końcowa ramka może być dowolnie mała.
-W wewnętrznej pętli wartości rozpatrywanej ramki są przypisywane do tablicy. Jeżeli indeks tej pętli przekroczy rozmiar całego sygnału, reszta pól tablicy wypełniona jest zerami. Powodem tego jest wymaganie implementacji algorytmu YIN, aby wszystkie ramki miały jednakowy rozmiar.
-Po zakończeniu estymacji wartości F0 dla danej ramki, wartość ta jest dodawana do wektoru jeżeli mieści się w zdefiniowanym zakresie. Musi być większa niż 60 i mniejsza niż 450. W przeciwnym razie do wektoru zostanie dodana wartość zerowa.
-\subsection{rampam}
+W wewnętrznej pętli wartości rozpatrywanej ramki są przypisywane do dynamicznie zadeklarowanej tablicy. Jeżeli indeks tej pętli przekroczy rozmiar całego sygnału, reszta pól tablicy wypełniona jest zerami. Powodem tego jest wymaganie implementacji algorytmu YIN, aby wszystkie ramki miały jednakowy rozmiar.
+Po zakończeniu estymacji wartości F0 dla danej ramki, wartość ta jest dodawana do wektoru jeżeli mieści się w zdefiniowanym zakresie. Musi być większa niż 60 i mniejsza niż 450. W przeciwnym razie do wektoru zostanie dodana wartość zerowa. Po obliczeniach zadeklarowana dla ramki pamięć zostaje zwolniona.
+\subsection{Wykrywanie konturów}
+Wszystkie wyestymowane wartości częstotliwości podstawowej na tą chwilę przechowywane są w jednym wektorze. Aby umożliwić analizę przebiegu intonacji, konieczne jest wydzielenie poszczególnych konturów. Segmentacji można dokonać analizując wartości pod kątem wartości odstających.
+ Do tego celu zostały stworzone dwie klasy.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.9]{contourDetector.png}
+\caption{Klasy stworzone do wykrycia poszczególnych konturów intonacyjnych, na podstawie wszystkich wartości F0}
+\end{figure}
+\FloatBarrier
+Dla każdej ze zmiennych istnieją funkcje typu get i set, odpowiednio zwracające wartość zmiennej oraz przypisujące dana wartość. Zostały one pominięte w celu zwiększenia czytelności diagramów.
+Główna funkcjonalność zawarta jest w funkcji findContours() w klasie ContoursDetector. Wykryte kontury będą umieszczane jako obiekty typu Contour, w wektorze contoursVector. W wektorze tym będą również umieszczane fragmenty z wartościami zerowymi, dla których nie wykryto występowania intonacji. Będą one pomijane w dalszej analizie, dodawane są w celu ułatwienia przejrzystego wyświetlania konturów na wykresie, w miejscu w którym rzeczywiście się znajdują.
 
+\begin{lstlisting}[caption={Początkowa faza funkcji wykrywającej kontury},label={lst:label},language=C++]
+#define TRANSITION 15
+
+void ContoursDetector::findContours()
+{
+    currentContour.setStart(1);
+    lastValueIndex = findIndexOfLastF0Value();
+    for(size_t i=1;i<extractionHelper.f0_size();i++)
+    {
+        double value =extractionHelper.f0_value(i);
+        double previousValue = extractionHelper.f0_value(i-1); 
+        seriesContours->append(i,value);
+        if (value > maxValue) maxValue = value;
+        if (value < minValue && value > F0_MIN) minValue = value;
+        if(std::abs(value - previousValue) > TRANSITION)
+        {
+            foundNewContour(i);
+        }
+    }
+\end{lstlisting}
+Początkowy indeks pierwszego konturu jest ustawiony jako 1. Główna pętla przebiega po wszystkich wyestymowanych wartościach tonu podstawowego. Oprócz poszukiwania konturów, wartości są również sprawdzane pod kątem wykrycia wartości maksymalnej i minimalnej. Funkcja wykrywanie danego konturu za zakończone, gdy aktualnie rozpatrywana wartość rózni się od poprzedniej o 15 jednostek. Metodą obserwacji ustalono taki przeskok za wystarczający do stwierdzenia, że dana wartość należy już do nowego konturu. Dany indeks zostaje przekazany do funkcji foundNewContour. Z uwagi na obszerność tej funkcji, będzie ona omawiana fragmentami.
+\begin{lstlisting}[caption={Funkcja zajmująca się analizą wstępną wykrytego konturu},label={lst:label},language=C++]
+void ContoursDetector::foundNewContour(int i)
+{
+    currentContour.setEnd(i-1);
+    currentContour.setCenter();    
+    for (int j = currentContour.getStartIndex();
+    		 j<currentContour.getEndIndex();j++)
+    {
+        currentContour.addValue(extractionHelper.f0_value(j));
+    }
+    if (currentContour.isContourValidate())
+    {
+        for (int j = currentContour.getStartIndex();
+        		 j<currentContour.getEndIndex();j++)
+        {
+            averageValue += extractionHelper.f0_value(j);
+            numberOfPositiveValues++;
+        }
+    }
+    
+\end{lstlisting}
 \end{document}
