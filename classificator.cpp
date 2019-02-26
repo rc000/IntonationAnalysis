@@ -45,14 +45,14 @@
 #define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<10)
 #define sentenceHasRisingTendention (1<<11)
 #define sentenceHasConstantTendention (1<<12)
-#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<13)
+#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<18)
 
 
 #define centerHighestContourNotSteeplyFalling (1<<14)
 #define startIsTheLowest (1<<15)
 #define highestContourStronglyRising (1<<16)
 #define bigGrowthAtTheEnd (1<<17)
-#define bigGrowthAtTheBeginning (1<<18)
+#define bigGrowthAtTheBeginning (1<<13)
 #define bigDropAtTheBeginning (1<<19)
 
 #define highestContourAtBeginningStronglyRising (1<<20)
@@ -126,8 +126,8 @@ void initialization()
                           //| highestContourStronglyRising
                           | bigGrowthAtTheEnd);
 
-   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter | bigGrowthAtTheBeginning | bigDropAtTheBeginning);
-   notCompletenessQuestion1 |= (conclusiveQuestion | sentenceHasConstantTendention);
+   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter);// | bigGrowthAtTheBeginning | bigDropAtTheBeginning);
+   notCompletenessQuestion1 |= (allContoursAreFalling);
 
    completenessQuestionCenterIntonation |= (centerHighestContourNotFalling
                                         |centerHasContourWithBiggerF0ValueThanStart
@@ -412,7 +412,7 @@ bool Classificator::analysis()
         features |= sentenceHasFallingTendention;
     }
     else if (highestValueOfRegresionLinesAtTheBeginning < highestValueOfRegresionLinesAtTheCenter
-            && highestValueOfRegresionLinesAtTheBeginning < highestValueOfRegresionLinesAtTheEnd
+            && highestValueOfRegresionLinesAtTheCenter < highestValueOfRegresionLinesAtTheEnd
             && differenceBetweenCenterEnd < tenPercentOfAverageValueCenterEnd)
     {
         features |= sentenceHasRisingTendention;
@@ -477,6 +477,7 @@ bool Classificator::analysis()
 std::vector<QString> Classificator::classification()
 {
 
+    int flag =0;
     analysis();
     qDebug()<<bin(features);
     qDebug()<<bin(declarative);
@@ -489,49 +490,32 @@ std::vector<QString> Classificator::classification()
     if ((features & declarative) >= startHasContourWithSlightlyBiggerF0ValueThanCenter
            // && (! (features & imperative)))
             && (!(features & notDeclarative1)))
+    {
+        flag |=1;
         result.emplace_back("zdanie twierdzace zwykle");
+    }
 
-    if (((features & completenessQuestion)))
-             //&&(!(features & notCompletenessQuestion1)))
+    if (((features & completenessQuestion)>bigGrowthAtTheBeginning)
+             &&(!(features & notCompletenessQuestion1)))
          result.emplace_back("pytanie uzupelnienia");
     if (features & conclusiveQuestion)
         result.emplace_back("pytanie rozstrzygniecia");
     if (((features & imperative))
             && (!(features & notImperative)))
-        result.emplace_back("rozkazujace");
-    /*
-    if ((features & declarative) > startHasContourWithSlightlyBiggerF0ValueThanCenter
-            && (! (features & imperative)))
-           // && (!(features & notDeclarative1)))
-        result += "zdanie twierdzace zwykle";
-
-    if (((features & imperative))
-            && (!(features & notImperative)))
-        result += "rozkazujace";
-
-    if ((indexHighestValueOfRegresionLinesAtTheCenter == indexOfHighestValue) ||
-            (features & highestContourLocatedBetweenStartEndCenter))
     {
-        if (((features & declarativeIntonationOnCenter) & centerHighestContourSteeplyFalling))
-           // && (!(features & notDeclarative1)))
-            result += "zdanie twierdzace z intonacja na srodek";
+        flag |= 2;
+        result.emplace_back("rozkazujace");
+    }
 
-        else if (features & endHasContourWithBiggerF0ValueThanStart)
-        {
-
-            if (features & conclusiveQuestion)
-                result += "pytanie rozstrzygniecia";
+    if ((flag & 1)&&(flag & 2))
+    {
+        if (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()>10)
+            result.erase(result.begin()+0);
+        else {
+            result.erase(result.begin()+1);
         }
+    }
 
-    }
-    else {
-        if (((features & completenessQuestion))
-                 &&(!(features & notCompletenessQuestion1)))
-             result += "pytanie uzupelnienia";
-        if (features & conclusiveQuestion)
-            result += "pytanie rozstrzygniecia";
-    }
-    contours.clear();*/
     if(result.size()==0)
         result.emplace_back("unrecognized");
     return result;

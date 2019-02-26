@@ -22,3 +22,4 @@
 \contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{18}% 
 \contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{19}% 
 \contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie}{20}% 
+\contentsline {subsection}{\numberline {4.5}rampam}{22}% 

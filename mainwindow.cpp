@@ -169,7 +169,6 @@ void MainWindow::getBuffer(QAudioBuffer buffer)
 }
 void MainWindow::putValuesIntoVector()
 {
-   // wholeBuffer.clear();
 
     sampleRate = audioBuffers[0].format().sampleRate();
     frameSize = audioBuffers[0].format().sampleRate()/40;

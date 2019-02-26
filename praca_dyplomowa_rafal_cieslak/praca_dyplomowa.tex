@@ -386,32 +386,41 @@ void ExtractionHelper::calcF0(int numberOfFrames)
    int numberOfShifts=10;
 
    Yin m_yin(frameSize, sampleRate);
-   for(int i = 0;i<numberOfFrames;i++)
+
+
+   int frameStartIndexAfterShifting = 0;
+   int shift= frameSize/numberOfShifts;
+
+   while(frameStartIndexAfterShifting < (whole_signal.size()))
    {
-        int frameStartIndex=i*frameSize;
-        for(int j=0;j<numberOfShifts;j++)
-        {
-            int shift=j*(frameSize/numberOfShifts);
-            double *shift_frame =new double [frameSize];
-            int index=0;
-            int frameStartIndexAfterShifting = frameStartIndex+shift;
-            for(int k=frameStartIndexAfterShifting;
-            	k<frameStartIndexAfterShifting+frameSize;k++)
-            {
-                if(k>=whole_signal.size())
-                    break;
-                shift_frame[index] = whole_signal.at(k) ;
-                index++;
-            }
-            Yin::YinOutput f0_struct=m_yin.process(shift_frame);
-            if (f0_struct.f0 <F0_MAX && f0_struct.f0 >F0_MIN)
-                f0.emplace_back(f0_struct.f0);
-            else
-                f0.emplace_back(0);
-            delete shift_frame;
-        }
+       double *shift_frame =new double [frameSize];
+       int index=0;
+       frameStartIndexAfterShifting +=shift;
+       for(int k=frameStartIndexAfterShifting;k<frameStartIndexAfterShifting+frameSize;k++)
+       {
+           if(k>=whole_signal.size())
+              shift_frame[index] = 0;
+           else
+              shift_frame[index] = whole_signal.at(k);
+           index++;
+       }
+       Yin::YinOutput f0_struct=m_yin.process(shift_frame);
+       if (f0_struct.f0 <F0_MAX && f0_struct.f0 >F0_MIN)
+           f0.emplace_back(f0_struct.f0);
+       else
+           f0.emplace_back(0);
+       delete shift_frame;
    }
+
 }
 \end{lstlisting}
+W funkcji wykorzystywana jest klasa Yin, pochodząca z ogólnodostępnej implementacji algorytmu YIN. Konstruktor obiektu tej klasy jako argumenty przyjmuje długość pojedynczej ramki oraz częstotliwośc próbkowania. W tym przypadku wartości te wynoszą kolejno 1102 i 44100. 
+W ciele funkcji calcF0 obiekt ten będzie wykorzystywany do estymacji konturów F0 dla pojedynczych ramek. 
+Z racji zastosowania wysokiego overlappingu, proces dzielenia sygnału na fragmenty nie wygląda jak typowe ramkowanie. Okno sygnału przeznaczone do estymacji będzie przesuwane jedynie o 2,5ms.
+W tym celu zadeklarowane zostały dwie zmienne, frameStartIndexAfterShifting przechowuje początkowy indeks obecnie przetwarzanej ramki, a zmienna shift przechowuje wartość pojedynczego przesunięcia.
+Warunkiem kończącym działanie głównej pętli funkcji jest przekroczenie przez początkowy indeks ramki rozmiaru całego sygnału. Oznacza to, że końcowa ramka może być dowolnie mała.
+W wewnętrznej pętli wartości rozpatrywanej ramki są przypisywane do tablicy. Jeżeli indeks tej pętli przekroczy rozmiar całego sygnału, reszta pól tablicy wypełniona jest zerami. Powodem tego jest wymaganie implementacji algorytmu YIN, aby wszystkie ramki miały jednakowy rozmiar.
+Po zakończeniu estymacji wartości F0 dla danej ramki, wartość ta jest dodawana do wektoru jeżeli mieści się w zdefiniowanym zakresie. Musi być większa niż 60 i mniejsza niż 450. W przeciwnym razie do wektoru zostanie dodana wartość zerowa.
+\subsection{rampam}
 
 \end{document}

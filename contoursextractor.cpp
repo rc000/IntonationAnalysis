@@ -81,8 +81,8 @@ void ContoursExtractor::findContours()
      {
          double averageWithoutCurrentContour = sumAllValues - SegmentsVector.at(i).getCenterOfRegressionLine();
          averageWithoutCurrentContour /= (numberAllValues-1);
-         if((SegmentsVector.at(i).getCenterOfRegressionLine() > (averageWithoutCurrentContour*1.8))
-                 && (SegmentsVector.at(i).getContourLength()<5))
+         if((SegmentsVector.at(i).getCenterOfRegressionLine() > (averageWithoutCurrentContour*1.6))
+                 && (SegmentsVector.at(i).getContourLength()<10))
          {
              for(auto & value:SegmentsVector.at(i).getValuesVector())
                  value = 0.0;
