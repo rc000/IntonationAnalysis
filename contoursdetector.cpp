@@ -30,16 +30,26 @@ void ContoursDetector::findContours()
 {
     currentContour.setStart(1);
     lastValueIndex = findIndexOfLastF0Value();
+
     for(size_t i=1;i<extractionHelper.f0_size();i++)
     {
         double value =extractionHelper.f0_value(i);
+
         double previousValue = extractionHelper.f0_value(i-1);
         seriesContours->append(i,value);
         if (value > maxValue) maxValue = value;
         if (value < minValue && value > F0_MIN) minValue = value;
         if(std::abs(value - previousValue) > TRANSITION)
         {
-            foundNewContour(i);
+            currentContour.setEnd(i-1);
+            currentContour.setCenter();
+            foundNewContour();
+            currentContour.setStart(i);
+            currentContour.addValue(value);
+        }
+        else
+        {
+            currentContour.addValue(value);
         }
     }
     lookForLastContour();
@@ -113,70 +123,56 @@ void ContoursDetector::findContours()
 
 
 }
-void ContoursDetector::foundNewContour(int i)
+void ContoursDetector::foundNewContour()
 {
+    if (!currentContour.isContourValidate())
+    {
+        currentContour.clear();
+        return;
+    }
 
-    currentContour.setEnd(i-1);
-    currentContour.setCenter();
-    qDebug()<<"hello "<<currentContour.getStartIndex()<<" "<<currentContour.getEndIndex()<<" "<<i;
 
     for (int j = currentContour.getStartIndex(); j<currentContour.getEndIndex();j++)
     {
-        qDebug()<<"DODAJEMY WARTOSCI ";
-        currentContour.addValue(extractionHelper.f0_value(j));
-    }
-    if (currentContour.isContourValidate())
-    {
-        qDebug()<<"validate!";
-        for (int j = currentContour.getStartIndex(); j<currentContour.getEndIndex();j++)
-        {
-            averageValue += extractionHelper.f0_value(j);
-            numberOfPositiveValues++;
-        }
+        averageValue += extractionHelper.f0_value(j);
+        numberOfPositiveValues++;
     }
 
-    if (lastIndexOfBeginningPart == 0 && currentContour.isContourValidate() && currentContour.getContourLength()>2)
+    if (lastIndexOfBeginningPart == 0)
     {
         firstValueIndex = currentContour.getStartIndex();
-        lastIndexOfBeginningPart = currentContour.getStartIndex()+ (lastValueIndex-currentContour.getStartIndex())/4;
-        lastIndexOfCenterPart = lastValueIndex - (lastValueIndex-firstValueIndex)/4;
-
-    }
-    if (currentContour.isContourValidate())
-    {
-        if (currentContour.getCenter() < lastIndexOfBeginningPart)
-            currentContour.setLocation(BEGINNING);
-        else if (currentContour.getCenter() < lastIndexOfCenterPart)
-            currentContour.setLocation(CENTER);
-        else
-            currentContour.setLocation(END);
+        double range = lastValueIndex-firstValueIndex;
+        lastIndexOfBeginningPart = currentContour.getStartIndex()+range/4;
+        lastIndexOfCenterPart = lastValueIndex - range/4;
     }
 
-    if (ValidateContoursVector.size()>0 && currentContour.isContourValidate())
+
+    if (currentContour.getCenter() < lastIndexOfBeginningPart)
+        currentContour.setLocation(BEGINNING);
+    else if (currentContour.getCenter() < lastIndexOfCenterPart)
+        currentContour.setLocation(CENTER);
+    else
+        currentContour.setLocation(END);
+
+
+    if (ValidateContoursVector.size()>0)
     {
-
-
         if ((currentContour.getValue(0)-ValidateContoursVector.back().getValue(ValidateContoursVector.back().getSize()-1))
-                >(currentContour.getValue(0)/5))
+                >(currentContour.getValue(0)/6))
         {
-            qDebug()<<"WZROST "<<currentContour.getStartIndex()<<" "<<currentContour.getCoefA();
-
             currentContour.setStartState(RISE);
         }
         else if ((ValidateContoursVector.back().getValue(ValidateContoursVector.back().getSize()-1) - currentContour.getValue(0))
                  >(ValidateContoursVector.back().getValue(ValidateContoursVector.back().getSize()-1)/4))
         {
-            qDebug()<<"spadek "<<currentContour.getStartIndex();
-
             currentContour.setStartState(FALL);
-
         }
     }
-    if (currentContour.isContourValidate())
-        ValidateContoursVector.push_back(currentContour);
+
+    ValidateContoursVector.push_back(currentContour);
+
     ContoursVector.push_back(currentContour);
 
-    currentContour.setStart(i);
 
     currentContour.clear();
 }

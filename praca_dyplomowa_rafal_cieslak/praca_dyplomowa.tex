@@ -450,21 +450,22 @@ void ContoursDetector::findContours()
         if (value < minValue && value > F0_MIN) minValue = value;
         if(std::abs(value - previousValue) > TRANSITION)
         {
-            foundNewContour(i);
+            currentContour.setEnd(i-1);
+  	    currentContour.setCenter();    
+            foundNewContour();
+            currentContour.setStart(i);
+            currentContour.addValue(value);
+        }
+        else
+        {
+            currentContour.addValue(value);
         }
     }
 \end{lstlisting}
-Początkowy indeks pierwszego konturu jest ustawiony jako 1. Główna pętla przebiega po wszystkich wyestymowanych wartościach tonu podstawowego. Oprócz poszukiwania konturów, wartości są również sprawdzane pod kątem wykrycia wartości maksymalnej i minimalnej. Funkcja wykrywanie danego konturu za zakończone, gdy aktualnie rozpatrywana wartość rózni się od poprzedniej o 15 jednostek. Metodą obserwacji ustalono taki przeskok za wystarczający do stwierdzenia, że dana wartość należy już do nowego konturu. Dany indeks zostaje przekazany do funkcji foundNewContour. Z uwagi na obszerność tej funkcji, będzie ona omawiana fragmentami.
+Początkowy indeks pierwszego konturu jest ustawiony jako 1. Główna pętla przebiega po wszystkich wyestymowanych wartościach tonu podstawowego. Oprócz poszukiwania konturów, wartości są również sprawdzane pod kątem wykrycia wartości maksymalnej i minimalnej. Funkcja wykrywanie danego konturu za zakończone, gdy aktualnie rozpatrywana wartość rózni się od poprzedniej o 15 jednostek. Metodą obserwacji ustalono taki przeskok za wystarczający do stwierdzenia, że dana wartość należy już do nowego konturu. Poprzedzający indeks jest uznawany za koniec danego konturu. Aktualny licznik pętli zostaje przekazany do funkcji foundNewContour. Z uwagi na obszerność tej funkcji, będzie ona omawiana fragmentami.
 \begin{lstlisting}[caption={Funkcja zajmująca się analizą wstępną wykrytego konturu},label={lst:label},language=C++]
-void ContoursDetector::foundNewContour(int i)
+void ContoursDetector::foundNewContour()
 {
-    currentContour.setEnd(i-1);
-    currentContour.setCenter();    
-    for (int j = currentContour.getStartIndex();
-    		 j<currentContour.getEndIndex();j++)
-    {
-        currentContour.addValue(extractionHelper.f0_value(j));
-    }
     if (currentContour.isContourValidate())
     {
         for (int j = currentContour.getStartIndex();
@@ -476,4 +477,5 @@ void ContoursDetector::foundNewContour(int i)
     }
     
 \end{lstlisting}
+\section{Analiza wykrytych konturów}
 \end{document}

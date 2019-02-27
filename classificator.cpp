@@ -74,12 +74,12 @@ static const char *analysisResults[] =
     "startHasContourWithSlightlyBiggerF0ValueThanCenter",
     "sentenceHasRisingTendention",
     "sentenceHasConstantTendention",
-    "startHasContourWithMuchBiggerF0ValueThanCenter",
+    "bigGrowthAtTheBeginning",
     "centerHighestContourNotSteeplyFalling",
     "startIsTheLowest",
     "highestContourStronglyRising",
     "bigGrowthAtTheEnd",
-    "bigGrowthAtTheBeginning",
+    "startHasContourWithMuchBiggerF0ValueThanCenter",
     "bigDropAtTheBeginning",
     "highestContourAtBeginningStronglyRising",
     "centerContourIsHighestAndSteeplyFalling"
@@ -495,8 +495,8 @@ std::vector<QString> Classificator::classification()
         result.emplace_back("zdanie twierdzace zwykle");
     }
 
-    if (((features & completenessQuestion)>bigGrowthAtTheBeginning)
-             &&(!(features & notCompletenessQuestion1)))
+    if (((features & completenessQuestion)>bigGrowthAtTheBeginning))
+            // &&(!(features & notCompletenessQuestion1)))
          result.emplace_back("pytanie uzupelnienia");
     if (features & conclusiveQuestion)
         result.emplace_back("pytanie rozstrzygniecia");

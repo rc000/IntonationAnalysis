@@ -16,7 +16,7 @@ class ContoursDetector
     ~ContoursDetector();
 
     void findContours();
-    void foundNewContour(int i);
+    void foundNewContour();
     void lookForLastContour();
     void calcRegressionLines();
     int findIndexOfLastF0Value();
