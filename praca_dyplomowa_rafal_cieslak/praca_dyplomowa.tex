@@ -12,25 +12,57 @@
 \usepackage{caption}
 \usepackage{placeins}
 \usepackage{listings}
-
+ 
+ 
 \DeclareCaptionType{mycapequ}[][List of equations]
 \captionsetup[mycapequ]{labelformat=empty}
 
 
 \makeatletter
 \setlength{\@fptop}{0pt}
-\makeatother
+
 
 \makeindex
 \selectlanguage{polish}
 
-\author{Rafał Cieślak}
-\title{Strona tytułowa }
-\date{ }
 
+\newcommand{\linia}{\rule{\linewidth}{0.4mm}}
+\renewcommand{\maketitle}{\begin{titlepage}
+    \vspace*{1cm}
+    \begin{center}\small
+   \textbf{ Rafał Cieślak}\\
+    nr albumu : 34203\\
+    kierunek studiów: Informatyka\\
+    specjalność: Systemy komputerowe i opramowanie\\
+    forma studiów: stacjonarne
+    \end{center}
+    \vspace{3cm}
+    \noindent\linia
+    \begin{center}
+      \textbf{ \textsc{\@title}}
+         \end{center}
+     \linia
+    \vspace{0.5cm}
+    \begin{flushright}
+
+    \vspace{5cm}
+        \begin{center}\small
+     {\small Praca dyplomowa inżynierska wykonana pod przewodnictwem:}\\
+         dr inż. Tomasz Mąka
+             \end{center}
+     \end{flushright}
+    \vspace*{\stretch{6}}
+    \begin{center}
+   Szczecin 2019
+    \end{center}
+  \end{titlepage}%
+}
+\makeatother
+\title{Identyfikacja akustyczna rodzaju zdania w systemach dialogowych	\newline \newline Acoustic identification of sentence type in dialogue systems	}
 \begin{document}
-
 \maketitle
+
+
 
 
 \newpage
@@ -292,6 +324,11 @@ Istnieją również pytania o uzupełnienie, dla których wzrost intonacji ma sw
 Przebieg intonacji dla takiego pytania jest opadająco-rosnący.
 \end{enumerate}
 \end{enumerate}
+\subsection{Regresja liniowa}
+Regresja liniowa jest statystyczną metodą służącą badaniu zależności między dwoma zmiennymi ciągłymi:
+\newline-zmienna X, zwana zmienną niezależną, lub objaśniającą
+\newline-zmienna Y, zwana zmienną zależną, lub objaśnianą
+
 \section{Implementacja detekcji konturów częstotliwości podstawowej}
 Celem praktycznym pracy jest stworzenie aplikacji desktopowej umożliwiającej wczytanie próbki zawierającej nagrane zdanie oraz dokonanie identyfikacji rodzaju tej wypowiedzi
 
@@ -461,8 +498,10 @@ void ContoursDetector::findContours()
             currentContour.addValue(value);
         }
     }
+    
 \end{lstlisting}
 Początkowy indeks pierwszego konturu jest ustawiony jako 1. Główna pętla przebiega po wszystkich wyestymowanych wartościach tonu podstawowego. Oprócz poszukiwania konturów, wartości są również sprawdzane pod kątem wykrycia wartości maksymalnej i minimalnej. Funkcja wykrywanie danego konturu za zakończone, gdy aktualnie rozpatrywana wartość rózni się od poprzedniej o 15 jednostek. Metodą obserwacji ustalono taki przeskok za wystarczający do stwierdzenia, że dana wartość należy już do nowego konturu. Poprzedzający indeks jest uznawany za koniec danego konturu. Aktualny licznik pętli zostaje przekazany do funkcji foundNewContour. Z uwagi na obszerność tej funkcji, będzie ona omawiana fragmentami.
+\subsubsection{Analiza wstępna wykrytego konturu}
 \begin{lstlisting}[caption={Funkcja zajmująca się analizą wstępną wykrytego konturu},label={lst:label},language=C++]
 void ContoursDetector::foundNewContour()
 {
@@ -479,14 +518,7 @@ void ContoursDetector::foundNewContour()
         lastIndexOfFirstPart = currentContour.getStartIndex()+occurenceRange/4;
         lastIndexOfCenterPart = lastValueIndex - occurenceRange/4;
     }
-    
-    if (currentContour.getCenter() < lastIndexOfFirstPart)
-       currentContour.setLocation(BEGINNING);
-    else if (currentContour.getCenter() < lastIndexOfCenterPart)
-        currentContour.setLocation(CENTER);
-    else
-        currentContour.setLocation(END);
-            
+                
 \end{lstlisting}
 Najpierw kontur jest poddawany walidacji. Sprawdzane jest, czy nie występują w nim wartości zerowe oraz czy jego długość jest większa niż 1. Przyjęta implementacja segmentacji traktuje wartości zerowe jako przerwy między konturami i nie powinny one być dodawane do wektoru przechowującego wykryte kontury. Do określania czy dany obiekt jest przerwą między konturami, wystarczy sprawdzić jego pierwszą wartość.
 Metodą obserwacji zauważono, że kontury składające się tylko z jednej wartości, często są błędami estymacji, lub powstają w wyniku róznego rodzaju zanieczyszczeń w nagraniu. Mogą zaburzać wyniki późniejszej klasyfikacji, dlatego są pomijane.
@@ -499,15 +531,8 @@ Metodą obserwacji zauważono, że kontury składające się tylko z jednej wart
     }
 \end{lstlisting}
 Póżniejsza analiza konturów w celu wykrycia rodzaju danego zdania, oparta jest w dużej mierze na położeniu danego konturu w przestrzeni przebiegu całej intonacji. Przebieg intonacji zawiera wartości od pierwszego poprawnego konturu do ostatniego. Wykres jest dzielony na 3 części. Na część początkową oraz końcową przypada po 25\% całości, podczas gdy część środkowa zawiera pozostałą połowę.
-W celu przydzielenia konturom odpowiedniej lokalizacji, używane są zmienne typu całkowitego, lastIndexOfFirstPart oraz lastIndexOfCenterPart. Wyznaczają one końce początkowej oraz środkowej części. Następnie, w zależności od położenia środka konturu, zostaje mu przypisane odpowiednie makro, zawierające informację o lokalizacji konturu.
- \FloatBarrier
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.7]{podzial_wykresu.png}
-\caption{Przykład podziału przebiegu intonacji na 3 części}
-\end{figure}
-\FloatBarrier
-\begin{lstlisting}
+W celu przydzielenia konturom odpowiedniej lokalizacji, używane są zmienne typu całkowitego, lastIndexOfFirstPart oraz lastIndexOfCenterPart. Wyznaczają one końce początkowej oraz środkowej części.
+\begin{lstlisting}[caption={Dalsza część funkcji foundNewContour},label={lst:label},language=C++]
      if (ContoursVector.size()>0)
     {
         if ((currentContour.getFirstValue()
@@ -535,6 +560,73 @@ W dalszej części kodu funkcji foundNewContour, dokonywana jest analiza położ
 \caption{Przykładowy przeskok(wzrost) między pierwszym i drugim konturem, zlokalizowanymi w początkowej części}
 \end{figure}
 \FloatBarrier
-Następnie kontur zostaje dodany do wektoru, a zmienna currentContour zostaje wyczyszczona w celu poszukiwania kolejnego konturu.
+Następnie kontur zostaje dodany do wektoru,  zmienna currentContour zostaje wyczyszczona w celu poszukiwania kolejnego konturu. Na tym funkcja foundNewContour kończy swoje działanie.
+
+\begin{lstlisting}[caption={Dalsza część głównej funkcji findContours},label={lst:label},language=C++]
+
+    double averageWithoutCurrentContour;
+    for(int i = 0;i<ContoursVector.size();)
+    {
+        averageWithoutCurrentContour = sumAllValues - 
+        		ContoursVector.at(i).getCenterOfRegressionLine();
+        averageWithoutCurrentContour /= (ContoursVector.size()-1);
+        if((ContoursVector.at(i).getCenterValue() 
+        	> (averageWithoutCurrentContour*1.6))
+                && (ContoursVector.at(i).getContourLength()<10))
+        {
+            ContoursVector.erase(ContoursVector.begin()+i);
+        }
+        else
+        {
+            setContourLocation(i);
+            i++;
+        }
+    }
+    calcRegressionLines();
+ }
+\end{lstlisting}
+W czasie implementacji wykrywania konturów oraz przy późniejszej analizie, zauważano występowanie krótkich, wyraźnie odstających konturów. Pojawiały się w miejscach, w których nie było logicznego uzasadnienia ich występowania. Miały wyraźny wpływ na zaburzenia procesu wykrywania rodzaju zdania.
+Podjęto decyzję o usuwaniu ze zbioru takie kontury, których wartości są bardzo wyraźnie większe od średniej oraz jednocześnie są bardzo krótkie. Pierwotnie zostało to zaimplemetowane w celach testowych, lecz okazało się, że zabieg ten znacząco poprawia stopień poprawnego rozpoznawania.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{usuniety_kontur.png}
+\caption{Przykład usuniętego konturu.}
+\end{figure}
+\FloatBarrier
+Na rysunku 14 przedstawiony został przykład usuniętego konturu. Jest to kontur, którego wartości oscylują około 345 jednostek. Jest to liczba ponad dwukrotnie większa od innych konturów, do tego kontur ten jest bardzo krótki.
+Słuchając nagrania, nie sposób było uzasadnić jego występowanie w tym miejscu, dlatego został uznany za błąd estymacji i usunięty ze zbioru. 
+Jeżeli warunek usunięcia konturu nie jest spełniony, wywoływana jest funkcja określająca jego położenie w przebiegu intonacji. Jak zostało już wspomniane, przebieg intonacji jest podzielony na 3 części. W zależności od położenia środka konturu, zostaje mu przypisane odpowiednie makro, zawierające informację o lokalizacji konturu.
+\begin{lstlisting}
+void ContoursDetector::setContourLocation(int i)
+{
+    if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
+        ContoursVector.at(i).setLocation(BEGINNING);
+    else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
+        ContoursVector.at(i).setLocation(CENTER);
+    else
+        ContoursVector.at(i).setLocation(END);
+}
+\end{lstlisting}
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{podzial_wykresu.png}
+\caption{Przykład podziału przebiegu intonacji na 3 części}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Współczynniki regresji liniowej}
+Dla każdego wykrytego konturu obliczane są współczynniki regresji liniowej. W tym celu została zaimplementowana metoda najmniejszych kwadratów, szerzej opisana we wstępie teoretycznym.
+Kod tej funkcji nie został umieszczony w pracy, z uwagi na jego obszerność oraz fakt, ze jest to  implementacja gotowego wzoru. Wewnątrz funkcji, każdemu konturowi zostają przypisane wartości obliczonych współczynników A i B oraz obiekt typu QLineSeries. Obiekt ten, bazując na obliczonych współczynnikach, słuzy do zobrazowania na wykresie przebiegu linii regresji dla danego konturu.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{regresja.png}
+\caption{Fragment przebiegu intonacji przed i po nałożeniu linii regresji}
+\end{figure}
+\FloatBarrier
 \section{Analiza wykrytych konturów}
+
+
 \end{document}

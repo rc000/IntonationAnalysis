@@ -94,12 +94,12 @@ void MainWindow::cellClicked(int nRow, int nCol)
  seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
  seriesContours->setMarkerSize(5.0);
 
-seriesRegresionLines = contoursDetector.getSeriesRegresionLines();
+//seriesRegresionLines = contoursDetector.getSeriesRegresionLines();
 qDebug()<<"before adding seriesContours";
 chart->addSeries(seriesContours);
 
 chart->legend()->hide();
-
+seriesRegresionLines.clear();
 
 QValueAxis *axisX = new QValueAxis;
 axisX->setTickCount(30);
@@ -123,10 +123,10 @@ qDebug()<<"after regression lines";
 
 for(int i=0;i<seriesRegresionLines.size();i++)
 {
-    chart->addSeries(seriesRegresionLines.at(i));
+    /*chart->addSeries(seriesRegresionLines.at(i));
     seriesRegresionLines.at(i)->attachAxis(axisX);
     seriesRegresionLines.at(i)->attachAxis(axisY);
-
+*/
 }
 qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
 
@@ -201,6 +201,7 @@ void MainWindow::decodingFinished()
     ContoursDetector contoursDetector(extractFeatures());
     qDebug()<<"przed find";
     contoursDetector.findContours();
+    contoursDetector.classification();
     for(int i = 0;i<contoursDetector.getResult().size();i++)
     {
         ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursDetector.getResult().at(i)));

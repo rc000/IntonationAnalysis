@@ -17,8 +17,9 @@ class ContoursDetector
 
     void findContours();
     void foundNewContour();
-    void lookForLastContour();
     void calcRegressionLines();
+    void classification();
+
     int findIndexOfLastF0Value();
     double getMaxValue() { return maxValue;}
     double getMinValue() { return minValue;}
@@ -50,7 +51,6 @@ private:
     Classificator *classificator;
     ExtractionHelper extractionHelper;
     std::vector<Contour> ContoursVector;
-    std::vector<Contour> ValidateContoursVector;
 
     Contour currentContour;
     std::vector<QString> analysisResults;

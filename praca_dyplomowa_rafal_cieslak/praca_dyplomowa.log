@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  2 MAR 2019 20:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  3 MAR 2019 23:17
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -280,10 +280,10 @@ Package: listings 2018/09/02 1.7 (Carsten Heinz)
 ty"
 Package: newfloat 2018/03/04 v1.1a Defining new floating environments (AR)
 )
-Package newfloat Info: New float `mycapequ' with options `' on input line 16.
+Package newfloat Info: New float `mycapequ' with options `' on input line 17.
 \c@mycapequ=\count115
 \newfloat@ftype=\count116
-Package newfloat Info: float type `mycapequ'=8 on input line 16.
+Package newfloat Info: float type `mycapequ'=8 on input line 17.
 \@indexfile=\write3
 \openout3 = `praca_dyplomowa.idx'.
 
@@ -302,22 +302,28 @@ LaTeX Warning: Label `lst:label' multiply defined.
 
 LaTeX Warning: Label `lst:label' multiply defined.
 
+
+LaTeX Warning: Label `lst:label' multiply defined.
+
+
+LaTeX Warning: Label `lst:label' multiply defined.
+
 )
 \openout1 = `praca_dyplomowa.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 62.
  ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -428,39 +434,35 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count123
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 33.
-
-("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 33.
-
-("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 33.
 
 
-("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 33.
-
-
-("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 33.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 33.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 33.
+LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
+(Font)              using `T1/lmr/bx/n' instead on input line 63.
 
 [1
 
 {C:/Users/Rafal/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 (praca_dyplomowa.toc
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 6.
+
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 6.
+
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 6.
+
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 6.
+
+("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 6.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -471,7 +473,8 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write4
 \openout4 = `praca_dyplomowa.toc'.
 
- (praca_dyplomowa.lof [2]
+
+(praca_dyplomowa.lof [1]
 Overfull \hbox (10.95953pt too wide) in paragraph at lines 12--12
  [][] []\T1/lmr/m/n/12 Zobrazowany po-dziaª sy-gnaªu na ramki wraz za-sto-so-wa
 -niem 30-procentowego 
@@ -489,104 +492,105 @@ Overfull \hbox (10.95953pt too wide) in paragraph at lines 12--12
 \tf@lomycapequ=\write7
 \openout7 = `praca_dyplomowa.lomycapequ'.
 
- [3] [4] [5]
-<faldy_glosowe.png, id=20, 376.40625pt x 180.675pt>
+ [2] [3] [4]
+<faldy_glosowe.png, id=21, 376.40625pt x 180.675pt>
 File: faldy_glosowe.png Graphic file (type png)
 <use faldy_glosowe.png>
-Package pdftex.def Info: faldy_glosowe.png  used on input line 66.
+Package pdftex.def Info: faldy_glosowe.png  used on input line 98.
 (pdftex.def)             Requested size: 376.40532pt x 180.67455pt.
- [6] [7 <./faldy_glosowe.png>]
-<stol_waveform.png, id=28, 273.27094pt x 150.5625pt>
+ [5] [6 <./faldy_glosowe.png>]
+<stol_waveform.png, id=29, 273.27094pt x 150.5625pt>
 File: stol_waveform.png Graphic file (type png)
 <use stol_waveform.png>
-Package pdftex.def Info: stol_waveform.png  used on input line 95.
+Package pdftex.def Info: stol_waveform.png  used on input line 127.
 (pdftex.def)             Requested size: 273.27025pt x 150.56212pt.
- [8 <./stol_waveform.png>]
-<energia.png, id=38, 274.02374pt x 182.93344pt>
+ [7 <./stol_waveform.png>]
+<energia.png, id=39, 274.02374pt x 182.93344pt>
 File: energia.png Graphic file (type png)
 <use energia.png>
-Package pdftex.def Info: energia.png  used on input line 128.
+Package pdftex.def Info: energia.png  used on input line 160.
 (pdftex.def)             Requested size: 274.02307pt x 182.93298pt.
-<fft.png, id=39, 249.93375pt x 183.68625pt>
+<fft.png, id=40, 249.93375pt x 183.68625pt>
 File: fft.png Graphic file (type png)
 <use fft.png>
-Package pdftex.def Info: fft.png  used on input line 142.
+Package pdftex.def Info: fft.png  used on input line 174.
 (pdftex.def)             Requested size: 249.93314pt x 183.68578pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./energia.png>] [10 <./fft.png>]
-<porownanie_metod.png, id=47, 349.305pt x 165.61874pt>
+[8 <./energia.png>] [9 <./fft.png>]
+<porownanie_metod.png, id=48, 349.305pt x 165.61874pt>
 File: porownanie_metod.png Graphic file (type png)
 <use porownanie_metod.png>
-Package pdftex.def Info: porownanie_metod.png  used on input line 178.
+Package pdftex.def Info: porownanie_metod.png  used on input line 210.
 (pdftex.def)             Requested size: 349.30414pt x 165.61833pt.
- [11 <./porownanie_metod.png>]
+ [10 <./porownanie_metod.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12] [13]
-<zdanie_twierdzace.png, id=59, 542.025pt x 217.5628pt>
+[11] [12]
+<zdanie_twierdzace.png, id=60, 542.025pt x 217.5628pt>
 File: zdanie_twierdzace.png Graphic file (type png)
 <use zdanie_twierdzace.png>
-Package pdftex.def Info: zdanie_twierdzace.png  used on input line 255.
+Package pdftex.def Info: zdanie_twierdzace.png  used on input line 287.
 (pdftex.def)             Requested size: 379.4149pt x 152.29292pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14]
-<pytanie_uzupelnienie.png, id=63, 475.02469pt x 140.77594pt>
+[13]
+<pytanie_uzupelnienie.png, id=64, 475.02469pt x 140.77594pt>
 File: pytanie_uzupelnienie.png Graphic file (type png)
 <use pytanie_uzupelnienie.png>
-Package pdftex.def Info: pytanie_uzupelnienie.png  used on input line 268.
+Package pdftex.def Info: pytanie_uzupelnienie.png  used on input line 300.
 (pdftex.def)             Requested size: 427.51825pt x 126.69714pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15 <./zdanie_twierdzace.png>]
-<pytanie_odwrocone.png, id=67, 427.5975pt x 147.55125pt>
+[14 <./zdanie_twierdzace.png>]
+<pytanie_odwrocone.png, id=68, 427.5975pt x 147.55125pt>
 File: pytanie_odwrocone.png Graphic file (type png)
 <use pytanie_odwrocone.png>
-Package pdftex.def Info: pytanie_odwrocone.png  used on input line 280.
+Package pdftex.def Info: pytanie_odwrocone.png  used on input line 312.
 (pdftex.def)             Requested size: 384.83418pt x 132.79488pt.
-<kiedy.png, id=68, 337.26pt x 170.13562pt>
+<kiedy.png, id=69, 337.26pt x 170.13562pt>
 File: kiedy.png Graphic file (type png)
 <use kiedy.png>
-Package pdftex.def Info: kiedy.png  used on input line 288.
+Package pdftex.def Info: kiedy.png  used on input line 320.
 (pdftex.def)             Requested size: 303.53119pt x 153.12062pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>]
-Overfull \hbox (16.64017pt too wide) in paragraph at lines 295--295
+[15 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>]
+Overfull \hbox (16.64017pt too wide) in paragraph at lines 332--332
 []\T1/lmr/bx/n/17.28 Implementacja de-tek-cji kon-tu-rów cz¦-sto-tli-wo-±ci pod
 -
  []
 
-[17 <./kiedy.png>]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 313.
+[16 <./kiedy.png>]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 350.
 
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 313.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 350.
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 317--318
+[17]
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 354--355
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 318--319
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 355--356
 [][][][][][][][][][][][][][][][] 
  []
 
-[18]
+
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstlang1.
 sty"
 File: lstlang1.sty 2018/09/02 1.7 listings language file
@@ -598,19 +602,19 @@ File: lstlang1.sty 2018/09/02 1.7 listings language file
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstmisc.s
 ty"
 File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
-) [19]
-<overlapping.png, id=82, 727.518pt x 334.24875pt>
+) [18]
+<overlapping.png, id=83, 727.518pt x 334.24875pt>
 File: overlapping.png Graphic file (type png)
 <use overlapping.png>
-Package pdftex.def Info: overlapping.png  used on input line 367.
+Package pdftex.def Info: overlapping.png  used on input line 404.
 (pdftex.def)             Requested size: 509.25914pt x 233.97252pt.
 
-Overfull \hbox (56.29124pt too wide) in paragraph at lines 367--368
+Overfull \hbox (56.29124pt too wide) in paragraph at lines 404--405
 [][] 
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 368--368
+Underfull \hbox (badness 2326) in paragraph at lines 405--405
 []\T1/lmr/m/n/12 Rysunek 10: |Zo-bra-zo-wany po-dziaª sy-gnaªu na ramki wraz za
 -sto-so-wa-niem 30-
  []
@@ -618,74 +622,109 @@ Underfull \hbox (badness 2326) in paragraph at lines 368--368
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20]
-<featuresExtractor.png, id=86, 238.491pt x 146.949pt>
+[19]
+<featuresExtractor.png, id=87, 238.491pt x 146.949pt>
 File: featuresExtractor.png Graphic file (type png)
 <use featuresExtractor.png>
-Package pdftex.def Info: featuresExtractor.png  used on input line 377.
+Package pdftex.def Info: featuresExtractor.png  used on input line 414.
 (pdftex.def)             Requested size: 214.6399pt x 132.25287pt.
- [21 <./overlapping.png> <./featuresExtractor.png>]
-Overfull \hbox (188.57822pt too wide) in paragraph at lines 399--400
+ [20 <./overlapping.png> <./featuresExtractor.png>]
+Overfull \hbox (188.57822pt too wide) in paragraph at lines 436--437
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-[22]
-<contourDetector.png, id=93, 533.5935pt x 414.348pt>
+[21]
+<contourDetector.png, id=94, 533.5935pt x 414.348pt>
 File: contourDetector.png Graphic file (type png)
 <use contourDetector.png>
-Package pdftex.def Info: contourDetector.png  used on input line 430.
+Package pdftex.def Info: contourDetector.png  used on input line 467.
 (pdftex.def)             Requested size: 480.2297pt x 372.90974pt.
 
-Overfull \hbox (27.26181pt too wide) in paragraph at lines 430--431
+Overfull \hbox (27.26181pt too wide) in paragraph at lines 467--468
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[23] [24 <./contourDetector.png>]
-Overfull \hbox (5.27933pt too wide) in paragraph at lines 450--451
+[22] [23 <./contourDetector.png>]
+Overfull \hbox (5.27933pt too wide) in paragraph at lines 487--488
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
+[24]
+Overfull \hbox (103.97873pt too wide) in paragraph at lines 518--519
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 519--520
+[][][][][][][][][][][][][] 
+ []
+
 [25]
-Overfull \hbox (103.97873pt too wide) in paragraph at lines 479--480
-[][][][][][][][][][][][][] 
+<przeskok.png, id=108, 385.44pt x 190.311pt>
+File: przeskok.png Graphic file (type png)
+<use przeskok.png>
+Package pdftex.def Info: przeskok.png  used on input line 559.
+(pdftex.def)             Requested size: 269.80615pt x 133.21677pt.
+ [26 <./przeskok.png>]
+Overfull \hbox (61.67899pt too wide) in paragraph at lines 571--572
+[][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.32928pt too wide) in paragraph at lines 480--481
-[][][][][][][][][][][][][] 
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 572--573
+[][][][][][][][][][][][] 
  []
 
-[26]
-<podzial_wykresu.png, id=107, 685.3605pt x 283.0575pt>
+<usuniety_kontur.png, id=112, 536.60475pt x 272.81924pt>
+File: usuniety_kontur.png Graphic file (type png)
+<use usuniety_kontur.png>
+Package pdftex.def Info: usuniety_kontur.png  used on input line 593.
+(pdftex.def)             Requested size: 375.62076pt x 190.97217pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[27]
+Overfull \hbox (40.52911pt too wide) in paragraph at lines 605--606
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+<podzial_wykresu.png, id=116, 685.3605pt x 283.0575pt>
 File: podzial_wykresu.png Graphic file (type png)
 <use podzial_wykresu.png>
-Package pdftex.def Info: podzial_wykresu.png  used on input line 506.
+Package pdftex.def Info: podzial_wykresu.png  used on input line 614.
 (pdftex.def)             Requested size: 479.74908pt x 198.13889pt.
 
-Overfull \hbox (26.78119pt too wide) in paragraph at lines 506--507
+Overfull \hbox (26.78119pt too wide) in paragraph at lines 614--615
  [][] 
  []
 
-[27 <./podzial_wykresu.png>]
-<przeskok.png, id=111, 385.44pt x 190.311pt>
-File: przeskok.png Graphic file (type png)
-<use przeskok.png>
-Package pdftex.def Info: przeskok.png  used on input line 534.
-(pdftex.def)             Requested size: 269.80615pt x 133.21677pt.
- [28 <./przeskok.png>] (praca_dyplomowa.aux)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[28 <./usuniety_kontur.png>]
+<regresja.png, id=120, 357.13425pt x 338.4645pt>
+File: regresja.png Graphic file (type png)
+<use regresja.png>
+Package pdftex.def Info: regresja.png  used on input line 625.
+(pdftex.def)             Requested size: 249.99226pt x 236.92352pt.
+ [29 <./podzial_wykresu.png> <./regresja.png>]
+[30] (praca_dyplomowa.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6799 strings out of 492946
- 100840 string characters out of 3126266
- 363706 words of memory out of 3000000
- 10550 multiletter control sequences out of 15000+200000
- 57124 words of font info for 47 fonts, out of 3000000 for 9000
+ 6816 strings out of 492946
+ 101261 string characters out of 3126266
+ 364884 words of memory out of 3000000
+ 10568 multiletter control sequences out of 15000+200000
+ 49280 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,16n,60p,995b,1609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
@@ -694,18 +733,19 @@ x.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-r
 m.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
 athsy.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/
 lm-mathit.enc}<C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmbx12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/lm/lmex10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmmi12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fon
-ts/type1/public/lm/lmmi8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/lm/lmr17.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (28 pages, 415516 bytes).
+lic/lm/lmbx10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/lm/lmbx12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmex10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fon
+ts/type1/public/lm/lmmi12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/lm/lmr10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
+Output written on praca_dyplomowa.pdf (31 pages, 470461 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
+ 167 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
