@@ -33,6 +33,7 @@ class ContoursDetector
     int getIndexOfLastValue() { return lastValueIndex;}
     int getLastIndexOfFirstPart() { return lastIndexOfFirstPart;}
     int getLastIndexOfCenterPart() { return lastIndexOfCenterPart;}
+    void setContourLocation(int i);
     std::vector<QString> getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
     std::vector<QString> getStateChanges(){return stateChanges;}

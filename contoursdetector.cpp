@@ -25,6 +25,15 @@ int ContoursDetector::findIndexOfLastF0Value()
         }
     }
 }
+void ContoursDetector::setContourLocation(int i)
+{
+    if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
+        ContoursVector.at(i).setLocation(BEGINNING);
+    else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
+        ContoursVector.at(i).setLocation(CENTER);
+    else
+        ContoursVector.at(i).setLocation(END);
+}
 
 void ContoursDetector::findContours()
 {
@@ -63,22 +72,11 @@ void ContoursDetector::findContours()
         if((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.6))
                 && (ContoursVector.at(i).getContourLength()<10))
         {
-            /*int nextValidate = getNextValidateContour(i);
-            if(nextValidate!=-1)
-                ContoursVector.at(nextValidate).setStartState(0);*/
             ContoursVector.erase(ContoursVector.begin()+i);
         }
         else
         {
-            if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
-            {
-                qDebug()<<"            if (currentContour.getCenter() < lastIndexOfFirstPart)";
-                ContoursVector.at(i).setLocation(BEGINNING);
-            }
-            else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
-                ContoursVector.at(i).setLocation(CENTER);
-            else
-                ContoursVector.at(i).setLocation(END);
+            setContourLocation(i);
             classificator->addContour(ContoursVector.at(i));
             i++;
         }
@@ -90,8 +88,6 @@ void ContoursDetector::findContours()
     analysisResults = classificator->getAnalysisResult();
     stateChanges = classificator->getStateChanges();
     delete classificator;
-
-
 }
 void ContoursDetector::foundNewContour()
 {
@@ -175,14 +171,7 @@ void ContoursDetector::calcRegressionLines()
     double prevB = 0.0;
     for (int i=0;i<ContoursVector.size();i++)
     {
-        if (!(ContoursVector.at(i).isContourValidate()) )
-            continue;
-        /*if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
-            ContoursVector.at(i).setLocation(BEGINNING);
-        else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
-            ContoursVector.at(i).setLocation(CENTER);
-        else
-            ContoursVector.at(i).setLocation(END);*/
+
         double A = 0.0;
         double B = 0.0;
         double sigX = 0.0;
@@ -204,34 +193,30 @@ void ContoursDetector::calcRegressionLines()
         A = (j * sigXY - sigX * sigY) / (j * sigSqrX - sigX * sigX);
         B =  (sigY - A * sigX) / j;
         double diffB = B - prevB;
-        QString state;
 
-        (diffB>0)? state = "wzrost, " : state = "spadek, ";
-        (A>0)? state+="kontur rosnacy" : state+="kontur opadajacy";
+        prevA=A;
+        prevB=B;
+
+        QLineSeries *lineSeries = new QLineSeries();
+        lineSeries->append(ContoursVector.at(i).getStartIndex(), B);
+        lineSeries->append(ContoursVector.at(i).getEndIndex(),A * (ContoursVector.at(i).getContourLength()) + B);
+        ContoursVector.at(i).setRegresionLine(lineSeries);
 
 
-        if(j>1)
-        {
             double centerRegresionLine;
-            if (A > 0.1)
+            /*if (A > 0.1)
             {
                 centerRegresionLine = A * (ContoursVector.at(i).getEndIndex()-ContoursVector.at(i).getStartIndex()) + B;
             }
-            else
+            else*/
 
                 centerRegresionLine = A * (ContoursVector.at(i).getCenter()-ContoursVector.at(i).getStartIndex()) + B;
             ContoursVector.at(i).setCoefA(A);
             ContoursVector.at(i).setCoefB(B);
             ContoursVector.at(i).setCenterRegressionLine(centerRegresionLine);
 
-        }
-        prevA=A;
-        prevB=B;
 
-        QLineSeries *lineSeries = new QLineSeries();
-        lineSeries->append(ContoursVector.at(i).getStartIndex(),A * (ContoursVector.at(i).getStartIndex()-ContoursVector.at(i).getStartIndex()) + B);
-        lineSeries->append(ContoursVector.at(i).getEndIndex(),A * (ContoursVector.at(i).getEndIndex()-ContoursVector.at(i).getStartIndex()) + B);
-        ContoursVector.at(i).setRegresionLine(lineSeries);
+
     }
 }
 std::vector<QLineSeries*> ContoursDetector::getSeriesRegresionLines()
