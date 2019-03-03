@@ -31,7 +31,7 @@ class ContoursDetector
 
     int getIndexOfFirstValue() { return firstValueIndex;}
     int getIndexOfLastValue() { return lastValueIndex;}
-    int getLastIndexOfBeginningPart() { return lastIndexOfBeginningPart;}
+    int getLastIndexOfFirstPart() { return lastIndexOfFirstPart;}
     int getLastIndexOfCenterPart() { return lastIndexOfCenterPart;}
     std::vector<QString> getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
@@ -43,7 +43,7 @@ private:
     double averageValue;
     int numberOfPositiveValues;
     int firstValueIndex,lastValueIndex;
-    int lastIndexOfBeginningPart = 0;
+    int lastIndexOfFirstPart = 0;
     int lastIndexOfCenterPart = 0;
      std::vector<QLineSeries*>seriesRegresionLines;
     Classificator *classificator;

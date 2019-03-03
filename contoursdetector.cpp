@@ -52,74 +52,44 @@ void ContoursDetector::findContours()
             currentContour.addValue(value);
         }
     }
-    lookForLastContour();
-
-
-
-
-
-
-
-
-
-
-    averageValue/=numberOfPositiveValues;
-
-    classificator = new Classificator(lastIndexOfBeginningPart,lastIndexOfCenterPart);
-
     calcRegressionLines();
 
-    for(int i = 0;i<ContoursVector.size();i++)
-    {
-        qDebug()<<"wektor?";
-        if(!ContoursVector.at(i).isContourValidate())
-            continue;
-        qDebug()<<"Wektor!";
-        sumAllValues += ContoursVector.at(i).getCenterOfRegressionLine();
-        numberAllValues++;
+    classificator = new Classificator(lastIndexOfFirstPart,lastIndexOfCenterPart);
 
-    }
-    qDebug()<<"allValues "<<sumAllValues;
-    qDebug()<<"number of values "<<numberAllValues;
-    qDebug()<<"average "<<sumAllValues/numberAllValues;
-    for(int i = 0;i<ContoursVector.size();i++)
+    for(int i = 0;i<ContoursVector.size();)
     {
         double averageWithoutCurrentContour = sumAllValues - ContoursVector.at(i).getCenterOfRegressionLine();
-        averageWithoutCurrentContour /= (numberAllValues-1);
-        if((ContoursVector.at(i).getCenterOfRegressionLine() > (averageWithoutCurrentContour*1.6))
+        averageWithoutCurrentContour /= (ContoursVector.size()-1);
+        if((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.6))
                 && (ContoursVector.at(i).getContourLength()<10))
         {
-            for(auto & value:ContoursVector.at(i).getValuesVector())
-                value = 0.0;
-
-            // std::fill(ContoursVector.at(i).getValuesVector().begin(),ContoursVector.at(i).getValuesVector().end(),0.0);
-
-
-            ContoursVector.at(i).setRegresionLine(nullptr);
-
-            int nextValidate = getNextValidateContour(i);
+            /*int nextValidate = getNextValidateContour(i);
             if(nextValidate!=-1)
-                ContoursVector.at(nextValidate).setStartState(0);
-
-
-            //std::fill(ContoursVector.at(i).getValuesVector().begin(),ContoursVector.at(i).getValuesVector().end(),0);
+                ContoursVector.at(nextValidate).setStartState(0);*/
+            ContoursVector.erase(ContoursVector.begin()+i);
         }
-        else if((ContoursVector.at(i).getStartState()== RISE )
-                && (ContoursVector.at(i).getCoefA()<-1.0))
-            ContoursVector.at(i).setStartState(0);
-
-        if(ContoursVector.at(i).getRegressionLine()!=nullptr)
+        else
+        {
+            if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
+            {
+                qDebug()<<"            if (currentContour.getCenter() < lastIndexOfFirstPart)";
+                ContoursVector.at(i).setLocation(BEGINNING);
+            }
+            else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
+                ContoursVector.at(i).setLocation(CENTER);
+            else
+                ContoursVector.at(i).setLocation(END);
             classificator->addContour(ContoursVector.at(i));
+            i++;
+        }
 
     }
-
 
     result = classificator->classification();
     qDebug()<<"result "<<result;
     analysisResults = classificator->getAnalysisResult();
     stateChanges = classificator->getStateChanges();
     delete classificator;
-    //extractionHelper.clear();
 
 
 }
@@ -130,42 +100,31 @@ void ContoursDetector::foundNewContour()
         currentContour.clear();
         return;
     }
+    sumAllValues += currentContour.getCenterValue();
 
-
-    for (int j = currentContour.getStartIndex(); j<currentContour.getEndIndex();j++)
-    {
-        averageValue += extractionHelper.f0_value(j);
-        numberOfPositiveValues++;
-    }
-
-    if (lastIndexOfBeginningPart == 0)
+    if (lastIndexOfFirstPart == 0)
     {
         firstValueIndex = currentContour.getStartIndex();
         double range = lastValueIndex-firstValueIndex;
-        lastIndexOfBeginningPart = currentContour.getStartIndex()+range/4;
+        lastIndexOfFirstPart = currentContour.getStartIndex()+range/4;
         lastIndexOfCenterPart = lastValueIndex - range/4;
     }
 
 
-    if (currentContour.getCenter() < lastIndexOfBeginningPart)
-        currentContour.setLocation(BEGINNING);
-    else if (currentContour.getCenter() < lastIndexOfCenterPart)
-        currentContour.setLocation(CENTER);
-    else
-        currentContour.setLocation(END);
 
 
-    if (ValidateContoursVector.size()>0)
+
+    if (ContoursVector.size()>0)
     {
-        if ((currentContour.getValue(0)-ValidateContoursVector.back().getValue(ValidateContoursVector.back().getSize()-1))
-                >(currentContour.getValue(0)/6))
+        if ((currentContour.getFirstValue()-ContoursVector.back().getLastValue())
+                >(currentContour.getFirstValue()/6))
         {
-            currentContour.setStartState(RISE);
+            currentContour.setStartState(GROWTH);
         }
-        else if ((ValidateContoursVector.back().getValue(ValidateContoursVector.back().getSize()-1) - currentContour.getValue(0))
-                 >(ValidateContoursVector.back().getValue(ValidateContoursVector.back().getSize()-1)/4))
+        else if ((ContoursVector.back().getLastValue() - currentContour.getFirstValue())
+                 >(ContoursVector.back().getLastValue()/4))
         {
-            currentContour.setStartState(FALL);
+            currentContour.setStartState(DROP);
         }
     }
 
@@ -218,12 +177,12 @@ void ContoursDetector::calcRegressionLines()
     {
         if (!(ContoursVector.at(i).isContourValidate()) )
             continue;
-        if (ContoursVector.at(i).getCenter() < lastIndexOfBeginningPart)
+        /*if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
             ContoursVector.at(i).setLocation(BEGINNING);
         else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
             ContoursVector.at(i).setLocation(CENTER);
         else
-            ContoursVector.at(i).setLocation(END);
+            ContoursVector.at(i).setLocation(END);*/
         double A = 0.0;
         double B = 0.0;
         double sigX = 0.0;

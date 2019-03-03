@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  27 FEB 2019 23:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  2 MAR 2019 20:58
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -290,6 +290,9 @@ Package newfloat Info: float type `mycapequ'=8 on input line 16.
 
 Writing index file praca_dyplomowa.idx
 (praca_dyplomowa.aux
+
+LaTeX Warning: Label `lst:label' multiply defined.
+
 
 LaTeX Warning: Label `lst:label' multiply defined.
 
@@ -645,16 +648,43 @@ Overfull \hbox (5.27933pt too wide) in paragraph at lines 450--451
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[25] [26] (praca_dyplomowa.aux)
+[25]
+Overfull \hbox (103.97873pt too wide) in paragraph at lines 479--480
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 480--481
+[][][][][][][][][][][][][] 
+ []
+
+[26]
+<podzial_wykresu.png, id=107, 685.3605pt x 283.0575pt>
+File: podzial_wykresu.png Graphic file (type png)
+<use podzial_wykresu.png>
+Package pdftex.def Info: podzial_wykresu.png  used on input line 506.
+(pdftex.def)             Requested size: 479.74908pt x 198.13889pt.
+
+Overfull \hbox (26.78119pt too wide) in paragraph at lines 506--507
+ [][] 
+ []
+
+[27 <./podzial_wykresu.png>]
+<przeskok.png, id=111, 385.44pt x 190.311pt>
+File: przeskok.png Graphic file (type png)
+<use przeskok.png>
+Package pdftex.def Info: przeskok.png  used on input line 534.
+(pdftex.def)             Requested size: 269.80615pt x 133.21677pt.
+ [28 <./przeskok.png>] (praca_dyplomowa.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6753 strings out of 492946
- 100150 string characters out of 3126266
+ 6799 strings out of 492946
+ 100840 string characters out of 3126266
  363706 words of memory out of 3000000
- 10506 multiletter control sequences out of 15000+200000
+ 10550 multiletter control sequences out of 15000+200000
  57124 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,16n,60p,995b,1609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -673,9 +703,9 @@ fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2
 X 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (26 pages, 393513 bytes).
+Output written on praca_dyplomowa.pdf (28 pages, 415516 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
+ 151 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
 

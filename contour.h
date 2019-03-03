@@ -10,8 +10,8 @@
 #define END 3
 #define ENTIRE 4
 
-#define FALL -1
-#define RISE 1
+#define DROP -1
+#define GROWTH 1
 #define FALLING 0
 #define RISING 1
 #define FLAT 2
@@ -37,6 +37,10 @@ public:
     QLineSeries* getRegressionLine(){return this->seriesRegresionLine;}
     int getLocationOnTheChart(){ return locationOnTheChart;}
     double getValue(size_t i){return values.at(i);}
+    double getLastValue(){return values.back();}
+    double getFirstValue(){return values.front();}
+    double getCenterValue(){return values.at(values.size()/2);}
+
     void addValue(double value){values.emplace_back(value);}
     void clear(){values.clear();startState = 0;}
     size_t getContourLength(){return endIndex-startIndex;}
@@ -45,10 +49,8 @@ public:
     {
         if (values.size()<2)
             return false;
-
-        if (values.at(0)==0)
+        if (values.at(0) == 0)
              return false;
-
         return true;
     }
     double getCoefA(){ return coefA;}

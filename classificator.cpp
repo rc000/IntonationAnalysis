@@ -32,8 +32,8 @@
 
 #define allEndContoursAreHigherThanStartContours (1<<16)
 #define allEndContoursAreHigherThanCenterContours (1<<17)
-#define beginningIntonationIsSteeplyFalling (1<<25)
-#define beginningIntonationIsNotSteeplyFalling (1<<26)
+#define beginningIntonationIsSteeplyDROPing (1<<25)
+#define beginningIntonationIsNotSteeplyDROPing (1<<26)
 #define centerIsTheHighest (1<<28)
 
 */
@@ -63,7 +63,7 @@
 static const char *analysisResults[] =
 {
     "centerHasContourWithBiggerF0ValueThanStart",
-    "sentenceHasFallingTendention",
+    "sentenceHasDROPingTendention",
     "centerHighestContourNotFalling",
     "centerHasContourWithBiggerF0ValueThanEnd",
     "highestContourLocatedBetweenStartEndCenter",
@@ -229,6 +229,7 @@ bool Classificator::analysis()
         qDebug()<<i<<" kontur "<<contours.at(i).getContourLength();
         if (contours.at(i).getLocationOnTheChart() == BEGINNING && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning )
         {
+            qDebug()<<"beginning";
             highestValueOfRegresionLinesAtTheBeginning = contours.at(i).getCenterOfRegressionLine();
             indexHighestValueOfRegresionLinesAtTheBeginning = i;
         }
@@ -249,9 +250,9 @@ bool Classificator::analysis()
         }
         if (contours.at(i).getLocationOnTheChart() == END)
         {
-            if (contours.at(i).getStartState() == RISE)
+            if (contours.at(i).getStartState() == GROWTH)
                 isGrowthAtEnd = true;
-            if (contours.at(i).getStartState() == FALL)
+            if (contours.at(i).getStartState() == DROP)
                 isDropAtEnd = true;
         }
 
@@ -264,7 +265,7 @@ bool Classificator::analysis()
             if (contours.at(i).getLocationOnTheChart() == BEGINNING)
             {
                 state = "Beginning";
-                if (contours.at(i).getStartState() == FALL)
+                if (contours.at(i).getStartState() == DROP)
                 {
                     if(contours.at(i+1).getCoefA()<0.0)
                     {
@@ -280,8 +281,8 @@ bool Classificator::analysis()
             else if (contours.at(i).getLocationOnTheChart() == CENTER) state = "CENTER";
             else state = "END";
 
-            if (contours.at(i).getStartState() == RISE) state +=" GROWTH";
-            else if (contours.at(i).getStartState() == FALL)
+            if (contours.at(i).getStartState() == GROWTH) state +=" GROWTH";
+            else if (contours.at(i).getStartState() == DROP)
             {
                 qDebug()<<"DROP "<<i<<" "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getContourLength();
 
@@ -292,7 +293,9 @@ bool Classificator::analysis()
 
 
     }
-    qDebug()<<"higheest Value "<<highestContourValue<<" index "<<indexOfHighestValue;
+    qDebug()<<"higheest Value "<<highestContourValue<<" index "<<indexOfHighestValue<<" "<<
+              indexHighestValueOfRegresionLinesAtTheBeginning;
+
     qDebug()<<"highestValueBeginning "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA()
            <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()
           <<" "<<indexHighestValueOfRegresionLinesAtTheBeginning;

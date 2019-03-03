@@ -466,16 +466,75 @@ Początkowy indeks pierwszego konturu jest ustawiony jako 1. Główna pętla prz
 \begin{lstlisting}[caption={Funkcja zajmująca się analizą wstępną wykrytego konturu},label={lst:label},language=C++]
 void ContoursDetector::foundNewContour()
 {
-    if (currentContour.isContourValidate())
+    if (!currentContour.isContourValidate())
     {
-        for (int j = currentContour.getStartIndex();
-        		 j<currentContour.getEndIndex();j++)
-        {
-            averageValue += extractionHelper.f0_value(j);
-            numberOfPositiveValues++;
-        }
+        currentContour.clear();
+        return;
     }
     
+    if (lastIndexOfFirstPart == 0)
+    {
+        firstValueIndex = currentContour.getStartIndex();
+        double occurenceRange = lastValueIndex-firstValueIndex;
+        lastIndexOfFirstPart = currentContour.getStartIndex()+occurenceRange/4;
+        lastIndexOfCenterPart = lastValueIndex - occurenceRange/4;
+    }
+    
+    if (currentContour.getCenter() < lastIndexOfFirstPart)
+       currentContour.setLocation(BEGINNING);
+    else if (currentContour.getCenter() < lastIndexOfCenterPart)
+        currentContour.setLocation(CENTER);
+    else
+        currentContour.setLocation(END);
+            
 \end{lstlisting}
+Najpierw kontur jest poddawany walidacji. Sprawdzane jest, czy nie występują w nim wartości zerowe oraz czy jego długość jest większa niż 1. Przyjęta implementacja segmentacji traktuje wartości zerowe jako przerwy między konturami i nie powinny one być dodawane do wektoru przechowującego wykryte kontury. Do określania czy dany obiekt jest przerwą między konturami, wystarczy sprawdzić jego pierwszą wartość.
+Metodą obserwacji zauważono, że kontury składające się tylko z jednej wartości, często są błędami estymacji, lub powstają w wyniku róznego rodzaju zanieczyszczeń w nagraniu. Mogą zaburzać wyniki późniejszej klasyfikacji, dlatego są pomijane.
+\begin{lstlisting}[caption={Funkcja dokonująca walidacji konturu},label={lst:label},language=C++]
+    bool isContourValidate()
+    {
+        if (values.size()<2) return false;
+        if (values.at(0) == 0)  return false;
+        return true;
+    }
+\end{lstlisting}
+Póżniejsza analiza konturów w celu wykrycia rodzaju danego zdania, oparta jest w dużej mierze na położeniu danego konturu w przestrzeni przebiegu całej intonacji. Przebieg intonacji zawiera wartości od pierwszego poprawnego konturu do ostatniego. Wykres jest dzielony na 3 części. Na część początkową oraz końcową przypada po 25\% całości, podczas gdy część środkowa zawiera pozostałą połowę.
+W celu przydzielenia konturom odpowiedniej lokalizacji, używane są zmienne typu całkowitego, lastIndexOfFirstPart oraz lastIndexOfCenterPart. Wyznaczają one końce początkowej oraz środkowej części. Następnie, w zależności od położenia środka konturu, zostaje mu przypisane odpowiednie makro, zawierające informację o lokalizacji konturu.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{podzial_wykresu.png}
+\caption{Przykład podziału przebiegu intonacji na 3 części}
+\end{figure}
+\FloatBarrier
+\begin{lstlisting}
+     if (ContoursVector.size()>0)
+    {
+        if ((currentContour.getFirstValue()
+        	-ContoursVector.back().getLastValue())
+                >(currentContour.getFirstValue()/6))
+        {
+            currentContour.setStartState(GROWTH);
+        }
+        else if ((ContoursVector.back().getLastValue() 
+        	- currentContour.getFirstValue())
+                 >(ContoursVector.back().getLastValue()/4))
+        {
+            currentContour.setStartState(DROP);
+        }
+    }
+    ContoursVector.push_back(currentContour);
+    currentContour.clear();
+}
+\end{lstlisting}
+W dalszej części kodu funkcji foundNewContour, dokonywana jest analiza położenia danego konturu względem poprzednika. Jeżeli początkowa wartość analizowanego konturu jest znacząco mniejsza lub większa od ostatniej wartości konturu poprzedzającego, zapisywana jest informacja o gwałtownym przeskoku w przebiegu intonacji.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{przeskok.png}
+\caption{Przykładowy przeskok(wzrost) między pierwszym i drugim konturem, zlokalizowanymi w początkowej części}
+\end{figure}
+\FloatBarrier
+Następnie kontur zostaje dodany do wektoru, a zmienna currentContour zostaje wyczyszczona w celu poszukiwania kolejnego konturu.
 \section{Analiza wykrytych konturów}
 \end{document}

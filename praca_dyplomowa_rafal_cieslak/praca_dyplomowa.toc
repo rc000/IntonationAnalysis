@@ -23,4 +23,4 @@
 \contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{19}% 
 \contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{20}% 
 \contentsline {subsection}{\numberline {4.5}Wykrywanie kontur\IeC {\'o}w}{23}% 
-\contentsline {section}{\numberline {5}Analiza wykrytych kontur\IeC {\'o}w}{26}% 
+\contentsline {section}{\numberline {5}Analiza wykrytych kontur\IeC {\'o}w}{28}% 
