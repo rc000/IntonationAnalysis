@@ -22,7 +22,7 @@ QT_CHARTS_USE_NAMESPACE
 
 class Contour {
 public:
-    Contour(int state=0){startState = state; seriesRegresionLine = nullptr;}
+    Contour(int state=0){startState = state; seriesRegresionLine = nullptr; centerRegressionLine = 0.0;}
     size_t getStartIndex(){return startIndex;}
     size_t getEndIndex(){return endIndex;}
     size_t getCenter(){return centerIndex;}

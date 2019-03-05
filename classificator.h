@@ -24,20 +24,20 @@ private:
     int lastIndexOfCenterPart;
     double highestValueOfRegresionLinesAtTheBeginning;
     int features;
+    Contour startHighestContour, centerHighestContour, endHighestContour;
 
     double highestValueOfRegresionLinesAtTheCenter;
     double highestValueOfRegresionLinesAtTheEnd;
     int indexHighestValueOfRegresionLinesAtTheBeginning;
     int indexHighestValueOfRegresionLinesAtTheCenter;
     int indexHighestValueOfRegresionLinesAtTheEnd;
-    bool analysis();
+    void analysis();
 
 
     bool areAllContoursFalling();
     int getLastIndexOfBeginningPart() {return lastIndexOfBeginningPart;}
     int getLastIndexOfCenterPart() {return lastIndexOfCenterPart;}
 
-    bool compareTwoParts(int part1,int part2);
 
 };
 
