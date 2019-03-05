@@ -91,11 +91,12 @@ void MainWindow::cellClicked(int nRow, int nCol)
       ui->textBrowser->append(contoursDetector.getStateChanges().at(i));
   }
  seriesContours = contoursDetector.getSeriesContours();
- seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
- seriesContours->setMarkerSize(5.0);
+
 
 //seriesRegresionLines = contoursDetector.getSeriesRegresionLines();
 qDebug()<<"before adding seriesContours";
+seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+seriesContours->setMarkerSize(5.0);
 chart->addSeries(seriesContours);
 
 chart->legend()->hide();
@@ -425,5 +426,88 @@ void MainWindow::on_bTestBase_clicked()
        this->wavFiles.emplace_back(directory.absoluteFilePath(filename));
     }
     loadWavFile(this->wavFiles.front());
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    chart = new QChart();
+
+    QScatterSeries *seriesContours1 = new QScatterSeries();
+    seriesContours1->append(1990,151.3);
+    seriesContours1->append(1995,135.5);
+    seriesContours1->append(2000,102.1);
+    seriesContours1->append(2005,93.0);
+    seriesContours1->append(2010,69.2);
+    seriesContours1->append(2015,65.1);
+
+    std::vector<double> blabla;
+    blabla.emplace_back(151.3);
+    blabla.emplace_back(135.5);
+    blabla.emplace_back(102.1);
+    blabla.emplace_back(93.0);
+    blabla.emplace_back(69.2);
+    blabla.emplace_back(65.1);
+
+    seriesContours1->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+    seriesContours1->setMarkerSize(20.0);
+    chart->addSeries(seriesContours1);
+
+    chart->legend()->hide();
+
+    QValueAxis *axisX = new QValueAxis;
+    axisX->setTitleText("Lata");
+    axisX->setTickCount(6);
+    QValueAxis *axisY = new QValueAxis;
+    //axisY->setTickCount(6);
+    axisY->setRange(60,160);
+    axisX->setRange(1990,2015);
+    axisY->setTitleText("Wydobycie węgla w Polsce w mln ton");
+
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    seriesContours1->attachAxis(axisX);
+    seriesContours1->attachAxis(axisY);
+
+    double prevA = 0.0;
+    double prevB = 0.0;
+
+        double A = 0.0;
+        double B = 0.0;
+        double sigX = 0.0;
+        double sigY = 0.0;
+        double sigXY = 0.0;
+        double sigSqrX = 0.0;
+        double sigSqrY = 0.0;
+        int j;
+        for (j=0;j<blabla.size();j++)
+        {
+            sigX+=j;
+            sigY+=blabla.at(j);
+            sigXY+=j*blabla.at(j);
+            sigSqrX+=j*j;
+            sigSqrY+=blabla.at(j)*blabla.at(j);
+        }
+        A = (j * sigXY - sigX * sigY) / (j * sigSqrX - sigX * sigX);
+        B =  (sigY - A * sigX) / j;
+
+        prevA=A;
+        prevB=B;
+
+        QLineSeries *lineSeries = new QLineSeries();
+        lineSeries->append(1990, B);
+        lineSeries->append(2015,A * 5 + B);
+
+        chart->addSeries(lineSeries);
+        lineSeries->attachAxis(axisX);
+        lineSeries->attachAxis(axisY);
+
+
+qDebug()<<A;
+
+    setLayout();
+
+
+
 
 }

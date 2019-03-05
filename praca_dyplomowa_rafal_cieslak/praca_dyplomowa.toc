@@ -17,13 +17,14 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Typy intonacji}{13}% 
 \contentsline {subsubsection}{\numberline {3.3.2}Przebiegi intonacji dla poszczeg\IeC {\'o}lnych rodzaj\IeC {\'o}w zda\IeC {\'n}i}{13}% 
 \contentsline {subsection}{\numberline {3.4}Regresja liniowa}{16}% 
-\contentsline {section}{\numberline {4}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{16}% 
-\contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{16}% 
-\contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{17}% 
-\contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{17}% 
-\contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{19}% 
-\contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{19}% 
-\contentsline {subsection}{\numberline {4.5}Wykrywanie kontur\IeC {\'o}w}{22}% 
-\contentsline {subsubsection}{\numberline {4.5.1}Analiza wst\IeC {\k e}pna wykrytego konturu}{24}% 
-\contentsline {subsubsection}{\numberline {4.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{29}% 
-\contentsline {section}{\numberline {5}Analiza wykrytych kontur\IeC {\'o}w}{30}% 
+\contentsline {subsection}{\numberline {3.5}Metoda najmniejszych kwadrat\IeC {\'o}w}{17}% 
+\contentsline {section}{\numberline {4}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{18}% 
+\contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{18}% 
+\contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{18}% 
+\contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{19}% 
+\contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{20}% 
+\contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{21}% 
+\contentsline {subsection}{\numberline {4.5}Wykrywanie kontur\IeC {\'o}w}{23}% 
+\contentsline {subsubsection}{\numberline {4.5.1}Analiza wst\IeC {\k e}pna wykrytego konturu}{25}% 
+\contentsline {subsubsection}{\numberline {4.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{30}% 
+\contentsline {section}{\numberline {5}Analiza wykrytych kontur\IeC {\'o}w}{31}% 

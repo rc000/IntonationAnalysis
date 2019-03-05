@@ -329,6 +329,43 @@ Regresja liniowa jest statystyczną metodą służącą badaniu zależności mi�
 \newline-zmienna X, zwana zmienną niezależną, lub objaśniającą
 \newline-zmienna Y, zwana zmienną zależną, lub objaśnianą
 
+Pozwala na przewidywanie wartości zmiennej Y, na podstawie wartości zmiennej X. W tym celu konieczne jest obliczenie parametrów prostej \textbf{y = ax + b}, gdzie \textbf{a} oznacza współczynnik kierunkowy prostej, a \textbf{b} jest wyrazem wolnym.
+Celem uzyskanej prostej jest najlepsze oddanie zależności występującej między tymi zmiennymi.  Oznacza to, że musi przebiegać w jak najbliższej możliwej odległości od każdego z punktów reprezentujących wartości zmiennej zależnej.
+
+
+\begin{figure}[h]
+
+\centering
+\includegraphics[scale=0.8]{wegiel_regresja.png}
+\caption{Przykład regresji liniowej}
+\end{figure}
+\FloatBarrier
+
+
+Na rysunku 10 przedstawiony został spadek wydobycia węgla na przestrzeni ostatnich 30 lat. Linia regresji nie przebiega przez każdy punkt, gdyż dane nie są wprost liniowe, lecz pokazuje ogólną tendencję danych. Odległość między wartością zmiennej zależnej , a wartością linii regresji w danym punkcie nazywana jest błędem oszacowania.
+
+\subsection{Metoda najmniejszych kwadratów}
+Jest to najczęściej stosowana metoda wyznaczania linii trendu. Dopasowuje ją do wartości zmiennej zależnej w taki sposób, aby ogólny błąd oszacowania był najmniejszy. W tym celu sumowane są kwadraty wszystkich obliczonych błędów oszacowania.
+W metodziej tej, parametry prostej wyznaczane są według następujących wzorów:
+
+\begin{mycapequ}[h]
+
+\begin{equation}
+a = \frac{n\sum{x_{i}y_{i}} - \sum{x_{i}}\sum{y_{i}}}{n\sum{x_{i}^2} - (\sum{y_{i}})^2}
+\end{equation}
+\caption{Współczynnik kierunkowy prostej}
+\end{mycapequ} 
+\FloatBarrier
+
+\begin{mycapequ}[h]
+
+\begin{equation}
+b = \frac{1}{n} (\sum{y_{i}} - a\sum{x_{i}})
+\end{equation}
+\caption{Wyraz wolny}
+\end{mycapequ} 
+\FloatBarrier
+
 \section{Implementacja detekcji konturów częstotliwości podstawowej}
 Celem praktycznym pracy jest stworzenie aplikacji desktopowej umożliwiającej wczytanie próbki zawierającej nagrane zdanie oraz dokonanie identyfikacji rodzaju tej wypowiedzi
 

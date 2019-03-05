@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  3 MAR 2019 23:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  5 MAR 2019 14:01
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -475,7 +475,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 (praca_dyplomowa.lof [1]
-Overfull \hbox (10.95953pt too wide) in paragraph at lines 12--12
+Overfull \hbox (10.95953pt too wide) in paragraph at lines 13--13
  [][] []\T1/lmr/m/n/12 Zobrazowany po-dziaª sy-gnaªu na ramki wraz za-sto-so-wa
 -niem 30-procentowego 
  []
@@ -565,28 +565,41 @@ Package pdftex.def Info: kiedy.png  used on input line 320.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [15 <./pytanie_uzupelnienie.png> <./pytanie_odwrocone.png>]
-Overfull \hbox (16.64017pt too wide) in paragraph at lines 332--332
+<wegiel_regresja.png, id=73, 609.477pt x 333.04425pt>
+File: wegiel_regresja.png Graphic file (type png)
+<use wegiel_regresja.png>
+Package pdftex.def Info: wegiel_regresja.png  used on input line 339.
+(pdftex.def)             Requested size: 487.58228pt x 266.43575pt.
+
+Overfull \hbox (34.61438pt too wide) in paragraph at lines 339--340
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[16 <./kiedy.png>]
+Overfull \hbox (16.64017pt too wide) in paragraph at lines 369--369
 []\T1/lmr/bx/n/17.28 Implementacja de-tek-cji kon-tu-rów cz¦-sto-tli-wo-±ci pod
 -
  []
 
-[16 <./kiedy.png>]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 350.
+[17 <./wegiel_regresja.png>] [18]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 387.
 
 
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 350.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 387.
 
-[17]
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 354--355
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 391--392
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (47.57907pt too wide) in paragraph at lines 355--356
+Overfull \hbox (47.57907pt too wide) in paragraph at lines 392--393
 [][][][][][][][][][][][][][][][] 
  []
 
@@ -602,116 +615,117 @@ File: lstlang1.sty 2018/09/02 1.7 listings language file
 ("C:\Users\Rafal\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listings\lstmisc.s
 ty"
 File: lstmisc.sty 2018/09/02 1.7 (Carsten Heinz)
-) [18]
-<overlapping.png, id=83, 727.518pt x 334.24875pt>
+) [19]
+<overlapping.png, id=87, 727.518pt x 334.24875pt>
 File: overlapping.png Graphic file (type png)
 <use overlapping.png>
-Package pdftex.def Info: overlapping.png  used on input line 404.
+Package pdftex.def Info: overlapping.png  used on input line 441.
 (pdftex.def)             Requested size: 509.25914pt x 233.97252pt.
 
-Overfull \hbox (56.29124pt too wide) in paragraph at lines 404--405
+Overfull \hbox (56.29124pt too wide) in paragraph at lines 441--442
 [][] 
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 405--405
-[]\T1/lmr/m/n/12 Rysunek 10: |Zo-bra-zo-wany po-dziaª sy-gnaªu na ramki wraz za
+Underfull \hbox (badness 2326) in paragraph at lines 442--442
+[]\T1/lmr/m/n/12 Rysunek 11: |Zo-bra-zo-wany po-dziaª sy-gnaªu na ramki wraz za
 -sto-so-wa-niem 30-
  []
+
+[20]
+<featuresExtractor.png, id=91, 238.491pt x 146.949pt>
+File: featuresExtractor.png Graphic file (type png)
+<use featuresExtractor.png>
+Package pdftex.def Info: featuresExtractor.png  used on input line 451.
+(pdftex.def)             Requested size: 214.6399pt x 132.25287pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19]
-<featuresExtractor.png, id=87, 238.491pt x 146.949pt>
-File: featuresExtractor.png Graphic file (type png)
-<use featuresExtractor.png>
-Package pdftex.def Info: featuresExtractor.png  used on input line 414.
-(pdftex.def)             Requested size: 214.6399pt x 132.25287pt.
- [20 <./overlapping.png> <./featuresExtractor.png>]
-Overfull \hbox (188.57822pt too wide) in paragraph at lines 436--437
+[21 <./overlapping.png>]
+Overfull \hbox (188.57822pt too wide) in paragraph at lines 473--474
 [][][][][][][][][][][][][][][][][][][] 
  []
 
-[21]
-<contourDetector.png, id=94, 533.5935pt x 414.348pt>
+[22 <./featuresExtractor.png>]
+<contourDetector.png, id=98, 533.5935pt x 414.348pt>
 File: contourDetector.png Graphic file (type png)
 <use contourDetector.png>
-Package pdftex.def Info: contourDetector.png  used on input line 467.
+Package pdftex.def Info: contourDetector.png  used on input line 504.
 (pdftex.def)             Requested size: 480.2297pt x 372.90974pt.
 
-Overfull \hbox (27.26181pt too wide) in paragraph at lines 467--468
+Overfull \hbox (27.26181pt too wide) in paragraph at lines 504--505
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[22] [23 <./contourDetector.png>]
-Overfull \hbox (5.27933pt too wide) in paragraph at lines 487--488
+[23] [24 <./contourDetector.png>]
+Overfull \hbox (5.27933pt too wide) in paragraph at lines 524--525
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[24]
-Overfull \hbox (103.97873pt too wide) in paragraph at lines 518--519
-[][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (12.32928pt too wide) in paragraph at lines 519--520
-[][][][][][][][][][][][][] 
- []
-
 [25]
-<przeskok.png, id=108, 385.44pt x 190.311pt>
+Overfull \hbox (103.97873pt too wide) in paragraph at lines 555--556
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 556--557
+[][][][][][][][][][][][][] 
+ []
+
+[26]
+<przeskok.png, id=112, 385.44pt x 190.311pt>
 File: przeskok.png Graphic file (type png)
 <use przeskok.png>
-Package pdftex.def Info: przeskok.png  used on input line 559.
+Package pdftex.def Info: przeskok.png  used on input line 596.
 (pdftex.def)             Requested size: 269.80615pt x 133.21677pt.
- [26 <./przeskok.png>]
-Overfull \hbox (61.67899pt too wide) in paragraph at lines 571--572
+ [27 <./przeskok.png>]
+Overfull \hbox (61.67899pt too wide) in paragraph at lines 608--609
 [][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.32928pt too wide) in paragraph at lines 572--573
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 609--610
 [][][][][][][][][][][][] 
  []
 
-<usuniety_kontur.png, id=112, 536.60475pt x 272.81924pt>
+<usuniety_kontur.png, id=116, 536.60475pt x 272.81924pt>
 File: usuniety_kontur.png Graphic file (type png)
 <use usuniety_kontur.png>
-Package pdftex.def Info: usuniety_kontur.png  used on input line 593.
+Package pdftex.def Info: usuniety_kontur.png  used on input line 630.
 (pdftex.def)             Requested size: 375.62076pt x 190.97217pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[27]
-Overfull \hbox (40.52911pt too wide) in paragraph at lines 605--606
+[28]
+Overfull \hbox (40.52911pt too wide) in paragraph at lines 642--643
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<podzial_wykresu.png, id=116, 685.3605pt x 283.0575pt>
+<podzial_wykresu.png, id=120, 685.3605pt x 283.0575pt>
 File: podzial_wykresu.png Graphic file (type png)
 <use podzial_wykresu.png>
-Package pdftex.def Info: podzial_wykresu.png  used on input line 614.
+Package pdftex.def Info: podzial_wykresu.png  used on input line 651.
 (pdftex.def)             Requested size: 479.74908pt x 198.13889pt.
 
-Overfull \hbox (26.78119pt too wide) in paragraph at lines 614--615
+Overfull \hbox (26.78119pt too wide) in paragraph at lines 651--652
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[28 <./usuniety_kontur.png>]
-<regresja.png, id=120, 357.13425pt x 338.4645pt>
+[29 <./usuniety_kontur.png>]
+<regresja.png, id=124, 357.13425pt x 338.4645pt>
 File: regresja.png Graphic file (type png)
 <use regresja.png>
-Package pdftex.def Info: regresja.png  used on input line 625.
+Package pdftex.def Info: regresja.png  used on input line 662.
 (pdftex.def)             Requested size: 249.99226pt x 236.92352pt.
- [29 <./podzial_wykresu.png> <./regresja.png>]
-[30] (praca_dyplomowa.aux)
+ [30 <./podzial_wykresu.png> <./regresja.png>]
+[31] (praca_dyplomowa.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -720,13 +734,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6816 strings out of 492946
- 101261 string characters out of 3126266
- 364884 words of memory out of 3000000
- 10568 multiletter control sequences out of 15000+200000
+ 6821 strings out of 492946
+ 101375 string characters out of 3126266
+ 363115 words of memory out of 3000000
+ 10572 multiletter control sequences out of 15000+200000
  49280 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,16n,60p,995b,1609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,16n,60p,995b,1716s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
 c}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathe
 x.enc}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-r
@@ -743,9 +757,9 @@ eX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Prog
 rams/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (31 pages, 470461 bytes).
+Output written on praca_dyplomowa.pdf (32 pages, 483978 bytes).
 PDF statistics:
- 167 PDF objects out of 1000 (max. 8388607)
+ 171 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 

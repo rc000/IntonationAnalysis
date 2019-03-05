@@ -9,10 +9,11 @@
 \contentsline {figure}{\numberline {7}{\ignorespaces Przyk\IeC {\l }ad pytania o uzupe\IeC {\l }nienie : \IeC {\quotedblbase }Jak\IeC {\k a} intonacj\IeC {\k e} ma to pytanie?\IeC {\textquotedblright }\relax }}{15}% 
 \contentsline {figure}{\numberline {8}{\ignorespaces Jest to pytanie odwr\IeC {\'o}cone, kt\IeC {\'o}re brzmi \IeC {\quotedblbase }A w Belgii?\IeC {\textquotedblright }\relax }}{15}% 
 \contentsline {figure}{\numberline {9}{\ignorespaces Przyk\IeC {\l }ad pytania nawi\IeC {\k a}zuj\IeC {\k a}cego upewnienie : \IeC {\quotedblbase }Kiedy?\IeC {\textquotedblright }\relax }}{16}% 
-\contentsline {figure}{\numberline {10}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{20}% 
-\contentsline {figure}{\numberline {11}{\ignorespaces Klasa stworzona w celu ekstracji F0, obliczenia energii sygna\IeC {\l }u oraz przechowywania tych warto\IeC {\'s}ci\relax }}{20}% 
-\contentsline {figure}{\numberline {12}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych kontur\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{23}% 
-\contentsline {figure}{\numberline {13}{\ignorespaces Przyk\IeC {\l }adowy przeskok(wzrost) mi\IeC {\k e}dzy pierwszym i drugim konturem, zlokalizowanymi w pocz\IeC {\k a}tkowej cz\IeC {\k e}\IeC {\'s}ci\relax }}{26}% 
-\contentsline {figure}{\numberline {14}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego konturu.\relax }}{28}% 
-\contentsline {figure}{\numberline {15}{\ignorespaces Przyk\IeC {\l }ad podzia\IeC {\l }u przebiegu intonacji na 3 cz\IeC {\k e}\IeC {\'s}ci\relax }}{29}% 
-\contentsline {figure}{\numberline {16}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{29}% 
+\contentsline {figure}{\numberline {10}{\ignorespaces Przyk\IeC {\l }ad regresji liniowej\relax }}{17}% 
+\contentsline {figure}{\numberline {11}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{21}% 
+\contentsline {figure}{\numberline {12}{\ignorespaces Klasa stworzona w celu ekstracji F0, obliczenia energii sygna\IeC {\l }u oraz przechowywania tych warto\IeC {\'s}ci\relax }}{22}% 
+\contentsline {figure}{\numberline {13}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych kontur\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{24}% 
+\contentsline {figure}{\numberline {14}{\ignorespaces Przyk\IeC {\l }adowy przeskok(wzrost) mi\IeC {\k e}dzy pierwszym i drugim konturem, zlokalizowanymi w pocz\IeC {\k a}tkowej cz\IeC {\k e}\IeC {\'s}ci\relax }}{27}% 
+\contentsline {figure}{\numberline {15}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego konturu.\relax }}{29}% 
+\contentsline {figure}{\numberline {16}{\ignorespaces Przyk\IeC {\l }ad podzia\IeC {\l }u przebiegu intonacji na 3 cz\IeC {\k e}\IeC {\'s}ci\relax }}{30}% 
+\contentsline {figure}{\numberline {17}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{30}% 

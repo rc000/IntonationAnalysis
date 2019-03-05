@@ -3,14 +3,7 @@
 #include<QDebug>
 #include <sstream>
 
-/*NOT USED FOR NOW
-#define startPartHasContourWithBiggestF0Value (1<<1)
-#define centerPartHasContourWithBiggestF0Value (1<<2)
-#define endPartHasContourWithBiggestF0Value (1<<3)
-#define startAndEndPartsHaveBiggerF0ValueThanCenter (1<<6)
-#define endHasContourWithSlightlyBiggerF0ValueThanCenter (1<<7)
 
-*/
 #define centerHasContourWithBiggerF0ValueThanStart (1<<1)
 
 #define sentenceHasFallingTendention (1<<2)
@@ -23,20 +16,7 @@
 
 #define centerHighestContourSteeplyFalling (1<<6)
 
-/* NOT USED FOR NOW
-#define allStartContoursAreHigherThanCenterContours (1<<12)
-#define allStartContoursAreHigherThanEndContours (1<<13)
 
-#define allCenterContoursAreHigherThanStartContours (1<<14)
-#define allCenterContoursAreHigherThanEndContours (1<<15)
-
-#define allEndContoursAreHigherThanStartContours (1<<16)
-#define allEndContoursAreHigherThanCenterContours (1<<17)
-#define beginningIntonationIsSteeplyDROPing (1<<25)
-#define beginningIntonationIsNotSteeplyDROPing (1<<26)
-#define centerIsTheHighest (1<<28)
-
-*/
 #define allContoursAreFalling (1<<7)
 #define endHasContourWithBiggerF0ValueThanStart (1<<8)
 
@@ -50,7 +30,7 @@
 
 #define centerHighestContourNotSteeplyFalling (1<<14)
 #define startIsTheLowest (1<<15)
-#define highestContourStronglyRising (1<<16)
+
 #define bigGrowthAtTheEnd (1<<17)
 #define bigGrowthAtTheBeginning (1<<13)
 #define bigDropAtTheBeginning (1<<19)
@@ -121,8 +101,9 @@ void initialization()
                                      |centerHighestContourSteeplyFalling);
 
    conclusiveQuestion |=  (endHasContourWithMuchBiggerF0ValueThanCenter
-                          | startIsTheLowest
+                          //| startIsTheLowest
                           | sentenceHasRisingTendention
+                          | endHasContourWithBiggerF0ValueThanStart
                           //| highestContourStronglyRising
                           | bigGrowthAtTheEnd);
 
@@ -190,7 +171,7 @@ bool Classificator::areAllContoursFalling()
 {
     for (int i=0;i<contours.size();i++)
     {
-        if(contours.at(i).getCoefA()>0.2 && contours.at(i).getContourLength()>1 )
+        if(contours.at(i).getCoefA()>0.2 )
         {
             return false;
          }
@@ -216,7 +197,6 @@ std::vector<QString> Classificator::getAnalysisResult()
 }
 bool Classificator::analysis()
 {
-    bool endPartIsTheLowest = false;
     highestContourValue = 0.0;
     indexOfHighestValue = 0;
     bool isDropAtEnd = false;
@@ -227,127 +207,67 @@ bool Classificator::analysis()
         ss<<i<<" "<<contours.at(i).getCoefA();
         stateChanges.push_back(QString::fromStdString(ss.str()));
         qDebug()<<i<<" kontur "<<contours.at(i).getContourLength();
-        if (contours.at(i).getLocationOnTheChart() == BEGINNING && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning )
+        if (contours.at(i).getLocationOnTheChart() == BEGINNING)
         {
-            qDebug()<<"beginning";
-            highestValueOfRegresionLinesAtTheBeginning = contours.at(i).getCenterOfRegressionLine();
-            indexHighestValueOfRegresionLinesAtTheBeginning = i;
+            if(contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning)
+            {
+                highestValueOfRegresionLinesAtTheBeginning = contours.at(i).getCenterOfRegressionLine();
+                indexHighestValueOfRegresionLinesAtTheBeginning = i;
+            }
+            if (contours.at(i).getStartState() == DROP)
+                    features |= bigDropAtTheBeginning;
+            else if (contours.at(i).getStartState() == GROWTH)
+                features |= bigGrowthAtTheBeginning;
         }
-        if (contours.at(i).getLocationOnTheChart() == CENTER && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheCenter )
+        if (contours.at(i).getLocationOnTheChart() == CENTER)
         {
-            highestValueOfRegresionLinesAtTheCenter = contours.at(i).getCenterOfRegressionLine();
-            indexHighestValueOfRegresionLinesAtTheCenter = i;
+            if (contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheCenter)
+            {
+                highestValueOfRegresionLinesAtTheCenter = contours.at(i).getCenterOfRegressionLine();
+                indexHighestValueOfRegresionLinesAtTheCenter = i;
+            }
         }
-        if (contours.at(i).getLocationOnTheChart() == END && contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheEnd )
+        if (contours.at(i).getLocationOnTheChart() == END)
         {
-            highestValueOfRegresionLinesAtTheEnd = contours.at(i).getCenterOfRegressionLine();
-            indexHighestValueOfRegresionLinesAtTheEnd = i;
+            if (contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheEnd)
+            {
+                highestValueOfRegresionLinesAtTheEnd = contours.at(i).getCenterOfRegressionLine();
+                indexHighestValueOfRegresionLinesAtTheEnd = i;
+            }
+            if (contours.at(i).getStartState() == GROWTH)
+                isGrowthAtEnd = true;
+            if (contours.at(i).getStartState() == DROP)
+                isDropAtEnd = true;
         }
         if (contours.at(i).getCenterOfRegressionLine() > highestContourValue)
         {
             highestContourValue = contours.at(i).getCenterOfRegressionLine();
             indexOfHighestValue =i;
         }
-        if (contours.at(i).getLocationOnTheChart() == END)
-        {
-            if (contours.at(i).getStartState() == GROWTH)
-                isGrowthAtEnd = true;
-            if (contours.at(i).getStartState() == DROP)
-                isDropAtEnd = true;
-        }
 
         if ((isGrowthAtEnd) && (!isDropAtEnd))
             features |= bigGrowthAtTheEnd;
-
-        if (contours.at(i).getStartState()!=0)
-        {
-            QString state;
-            if (contours.at(i).getLocationOnTheChart() == BEGINNING)
-            {
-                state = "Beginning";
-                if (contours.at(i).getStartState() == DROP)
-                {
-                    if(contours.at(i+1).getCoefA()<0.0)
-                    {
-                        qDebug()<<"DROP "<<i<<" "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getContourLength();
-                        features |= bigDropAtTheBeginning;
-                    }
-
-                }
-                else
-                    features |= bigGrowthAtTheBeginning;
-
-            }
-            else if (contours.at(i).getLocationOnTheChart() == CENTER) state = "CENTER";
-            else state = "END";
-
-            if (contours.at(i).getStartState() == GROWTH) state +=" GROWTH";
-            else if (contours.at(i).getStartState() == DROP)
-            {
-                qDebug()<<"DROP "<<i<<" "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getContourLength();
-
-                state += " DROP";
-            }
-            stateChanges.push_back(state);
-        }
-
-
     }
-    qDebug()<<"higheest Value "<<highestContourValue<<" index "<<indexOfHighestValue<<" "<<
-              indexHighestValueOfRegresionLinesAtTheBeginning;
 
-    qDebug()<<"highestValueBeginning "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA()
-           <<" "<<contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()
-          <<" "<<indexHighestValueOfRegresionLinesAtTheBeginning;
 
-    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA() > 0.5)
-            && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength()>5))
+    if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA() > 0.5))
         features |= highestContourAtBeginningStronglyRising;
 
-    if (highestValueOfRegresionLinesAtTheEnd > 1.2 *highestValueOfRegresionLinesAtTheCenter)
+    if (highestValueOfRegresionLinesAtTheEnd > 1.5*highestValueOfRegresionLinesAtTheCenter)
     {
         features |= endHasContourWithMuchBiggerF0ValueThanCenter;
     }
-    /* NOT USED FOR NOW
-    else if (highestValueOfRegresionLinesAtTheEnd > 1.1
-             *highestValueOfRegresionLinesAtTheCenter)
-    {
-        qDebug()<<"at the end "<<highestValueOfRegresionLinesAtTheEnd;
-        qDebug()<<"center "<<highestValueOfRegresionLinesAtTheCenter;
-        features |= endHasContourWithSlightlyBiggerF0ValueThanCenter;
-    }*/
 
-    if (highestValueOfRegresionLinesAtTheBeginning > 1.4 *highestValueOfRegresionLinesAtTheCenter)
+    if (highestValueOfRegresionLinesAtTheBeginning > 1.5 *highestValueOfRegresionLinesAtTheCenter)
     {
-        qDebug()<<"(highestValueOfRegresionLinesAtTheBeginning > 1.5 *highestValueOfRegresionLinesAtTheCenter)";
-        if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCenterOfRegressionLine()
-                - contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getCenterOfRegressionLine())
-                > 10.0)
-        {
-            qDebug()<<"startHasContourWithMuchBiggerF0ValueThanCenter";
-            features |= startHasContourWithMuchBiggerF0ValueThanCenter;
-         }
-        else
-        {
-            qDebug()<<" startHasContourWithSlightlyBiggerF0ValueThanCenter";
-            features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
-        }
-
-        //return true;
+        features |= startHasContourWithMuchBiggerF0ValueThanCenter;
     }
     else if (highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
     {
-        qDebug()<<"(highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)";
         features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
-        if ((contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getCoefA() > 1.5)
-                && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning).getContourLength() > 10)
-                && (contours.at(indexHighestValueOfRegresionLinesAtTheBeginning+1).getStartIndex() > lastIndexOfBeginningPart))
-            features |= highestContourStronglyRising;
-         //return true;
     }
-    else {
-        qDebug()<<"beginning mniejszy";
-    }
+
+
     if (highestValueOfRegresionLinesAtTheCenter >  highestValueOfRegresionLinesAtTheBeginning)
     {
          features |= centerHasContourWithBiggerF0ValueThanStart;
@@ -361,74 +281,14 @@ bool Classificator::analysis()
     {
         features |= endHasContourWithBiggerF0ValueThanStart;
     }
-    /* NOT USED FOR NOW
-     *
-     if (highestValueOfRegresionLinesAtTheEnd > highestValueOfRegresionLinesAtTheCenter
-          && highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter)
-    {
-        qDebug()<<"start end";
-        features |= startAndEndPartsHaveBiggerF0ValueThanCenter;
-    }
-    if (compareTwoParts(BEGINNING,CENTER))
-    {
-       features |= allStartContoursAreHigherThanCenterContours;
-    }
-    else if (compareTwoParts(CENTER,BEGINNING))
-    {
-        features |= allCenterContoursAreHigherThanStartContours;
-    }
 
-    if (compareTwoParts(BEGINNING,END))
-    {
-        features |= allStartContoursAreHigherThanEndContours;
-    }
-    else if (compareTwoParts(END, BEGINNING))
-    {
-        features |= allEndContoursAreHigherThanStartContours;
-    }
-    if (compareTwoParts(CENTER,END))
-    {
-        features |= allCenterContoursAreHigherThanEndContours;
-    }
-    else if (compareTwoParts(END, CENTER))
-    {
-        features |= allEndContoursAreHigherThanCenterContours;
-    }
-    */
     if (areAllContoursFalling())
     {
         features |= allContoursAreFalling;
 
      }
-    int differenceBetweenBeginningCenter = std::abs(highestValueOfRegresionLinesAtTheBeginning
-                                                    - highestValueOfRegresionLinesAtTheCenter);
-    int differenceBetweenCenterEnd = std::abs(highestValueOfRegresionLinesAtTheCenter
-                                              - highestValueOfRegresionLinesAtTheEnd);
-    int tenPercentOfAverageValueBegginingCenter = ((highestValueOfRegresionLinesAtTheBeginning
-                                                   +highestValueOfRegresionLinesAtTheCenter)/2)/10;
 
-    int tenPercentOfAverageValueCenterEnd = ((highestValueOfRegresionLinesAtTheEnd
-                                                   +highestValueOfRegresionLinesAtTheCenter)/2)/10;
-    if (highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheCenter
-            && highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheEnd)
-    {
-        features |= sentenceHasFallingTendention;
-    }
-    else if (highestValueOfRegresionLinesAtTheBeginning < highestValueOfRegresionLinesAtTheCenter
-            && highestValueOfRegresionLinesAtTheCenter < highestValueOfRegresionLinesAtTheEnd
-            && differenceBetweenCenterEnd < tenPercentOfAverageValueCenterEnd)
-    {
-        features |= sentenceHasRisingTendention;
-    }
-    else if (differenceBetweenBeginningCenter < tenPercentOfAverageValueBegginingCenter
-             && differenceBetweenCenterEnd < tenPercentOfAverageValueCenterEnd)
-    {
-        features |= sentenceHasConstantTendention;
-    }
 
-    if ( highestValueOfRegresionLinesAtTheBeginning > highestValueOfRegresionLinesAtTheEnd
-         && highestValueOfRegresionLinesAtTheCenter > highestValueOfRegresionLinesAtTheEnd)
-        endPartIsTheLowest = true;
 
     double CoefA;
     if  (features & centerHasContourWithBiggerF0ValueThanEnd)
