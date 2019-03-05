@@ -17,7 +17,7 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Typy intonacji}{13}% 
 \contentsline {subsubsection}{\numberline {3.3.2}Przebiegi intonacji dla poszczeg\IeC {\'o}lnych rodzaj\IeC {\'o}w zda\IeC {\'n}i}{13}% 
 \contentsline {subsection}{\numberline {3.4}Regresja liniowa}{16}% 
-\contentsline {subsection}{\numberline {3.5}Metoda najmniejszych kwadrat\IeC {\'o}w}{17}% 
+\contentsline {subsubsection}{\numberline {3.4.1}Metoda najmniejszych kwadrat\IeC {\'o}w}{17}% 
 \contentsline {section}{\numberline {4}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{18}% 
 \contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{18}% 
 \contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{18}% 

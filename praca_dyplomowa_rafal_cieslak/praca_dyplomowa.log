@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  5 MAR 2019 14:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  6 MAR 2019 00:22
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -642,19 +642,14 @@ Package pdftex.def Info: featuresExtractor.png  used on input line 451.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21 <./overlapping.png>]
-Overfull \hbox (188.57822pt too wide) in paragraph at lines 473--474
-[][][][][][][][][][][][][][][][][][][] 
- []
-
-[22 <./featuresExtractor.png>]
+[21 <./overlapping.png>] [22 <./featuresExtractor.png>]
 <contourDetector.png, id=98, 533.5935pt x 414.348pt>
 File: contourDetector.png Graphic file (type png)
 <use contourDetector.png>
-Package pdftex.def Info: contourDetector.png  used on input line 504.
+Package pdftex.def Info: contourDetector.png  used on input line 505.
 (pdftex.def)             Requested size: 480.2297pt x 372.90974pt.
 
-Overfull \hbox (27.26181pt too wide) in paragraph at lines 504--505
+Overfull \hbox (27.26181pt too wide) in paragraph at lines 505--506
  [][] 
  []
 
@@ -662,17 +657,12 @@ Overfull \hbox (27.26181pt too wide) in paragraph at lines 504--505
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [23] [24 <./contourDetector.png>]
-Overfull \hbox (5.27933pt too wide) in paragraph at lines 524--525
+Overfull \hbox (5.27933pt too wide) in paragraph at lines 525--526
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [25]
-Overfull \hbox (103.97873pt too wide) in paragraph at lines 555--556
-[][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (12.32928pt too wide) in paragraph at lines 556--557
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 558--559
 [][][][][][][][][][][][][] 
  []
 
@@ -680,38 +670,38 @@ Overfull \hbox (12.32928pt too wide) in paragraph at lines 556--557
 <przeskok.png, id=112, 385.44pt x 190.311pt>
 File: przeskok.png Graphic file (type png)
 <use przeskok.png>
-Package pdftex.def Info: przeskok.png  used on input line 596.
+Package pdftex.def Info: przeskok.png  used on input line 598.
 (pdftex.def)             Requested size: 269.80615pt x 133.21677pt.
  [27 <./przeskok.png>]
-Overfull \hbox (61.67899pt too wide) in paragraph at lines 608--609
+Overfull \hbox (61.67899pt too wide) in paragraph at lines 610--611
 [][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.32928pt too wide) in paragraph at lines 609--610
+Overfull \hbox (12.32928pt too wide) in paragraph at lines 611--612
 [][][][][][][][][][][][] 
  []
 
 <usuniety_kontur.png, id=116, 536.60475pt x 272.81924pt>
 File: usuniety_kontur.png Graphic file (type png)
 <use usuniety_kontur.png>
-Package pdftex.def Info: usuniety_kontur.png  used on input line 630.
+Package pdftex.def Info: usuniety_kontur.png  used on input line 632.
 (pdftex.def)             Requested size: 375.62076pt x 190.97217pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [28]
-Overfull \hbox (40.52911pt too wide) in paragraph at lines 642--643
+Overfull \hbox (40.52911pt too wide) in paragraph at lines 644--645
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 <podzial_wykresu.png, id=120, 685.3605pt x 283.0575pt>
 File: podzial_wykresu.png Graphic file (type png)
 <use podzial_wykresu.png>
-Package pdftex.def Info: podzial_wykresu.png  used on input line 651.
+Package pdftex.def Info: podzial_wykresu.png  used on input line 653.
 (pdftex.def)             Requested size: 479.74908pt x 198.13889pt.
 
-Overfull \hbox (26.78119pt too wide) in paragraph at lines 651--652
+Overfull \hbox (26.78119pt too wide) in paragraph at lines 653--654
  [][] 
  []
 
@@ -722,7 +712,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <regresja.png, id=124, 357.13425pt x 338.4645pt>
 File: regresja.png Graphic file (type png)
 <use regresja.png>
-Package pdftex.def Info: regresja.png  used on input line 662.
+Package pdftex.def Info: regresja.png  used on input line 664.
 (pdftex.def)             Requested size: 249.99226pt x 236.92352pt.
  [30 <./podzial_wykresu.png> <./regresja.png>]
 [31] (praca_dyplomowa.aux)
@@ -757,7 +747,7 @@ eX 2.9/fonts/type1/public/lm/lmr12.pfb><C:/Users/Rafal/AppData/Local/Programs/M
 iKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Users/Rafal/AppData/Local/Programs
 /MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Prog
 rams/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on praca_dyplomowa.pdf (32 pages, 483978 bytes).
+Output written on praca_dyplomowa.pdf (32 pages, 484032 bytes).
 PDF statistics:
  171 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -344,7 +344,7 @@ Celem uzyskanej prostej jest najlepsze oddanie zależności występującej międ
 
 Na rysunku 10 przedstawiony został spadek wydobycia węgla na przestrzeni ostatnich 30 lat. Linia regresji nie przebiega przez każdy punkt, gdyż dane nie są wprost liniowe, lecz pokazuje ogólną tendencję danych. Odległość między wartością zmiennej zależnej , a wartością linii regresji w danym punkcie nazywana jest błędem oszacowania.
 
-\subsection{Metoda najmniejszych kwadratów}
+\subsubsection{Metoda najmniejszych kwadratów}
 Jest to najczęściej stosowana metoda wyznaczania linii trendu. Dopasowuje ją do wartości zmiennej zależnej w taki sposób, aby ogólny błąd oszacowania był najmniejszy. W tym celu sumowane są kwadraty wszystkich obliczonych błędów oszacowania.
 W metodziej tej, parametry prostej wyznaczane są według następujących wzorów:
 
@@ -470,7 +470,8 @@ void ExtractionHelper::calcF0(int numberOfFrames)
        double *shift_frame =new double [frameSize];
        int index=0;
        frameStartIndexAfterShifting +=shift;
-       for(int k=frameStartIndexAfterShifting;k<frameStartIndexAfterShifting+frameSize;k++)
+       for(int k=frameStartIndexAfterShifting;
+		k<frameStartIndexAfterShifting+frameSize;k++)
        {
            if(k>=whole_signal.size())
               shift_frame[index] = 0;
@@ -552,7 +553,8 @@ void ContoursDetector::foundNewContour()
     {
         firstValueIndex = currentContour.getStartIndex();
         double occurenceRange = lastValueIndex-firstValueIndex;
-        lastIndexOfFirstPart = currentContour.getStartIndex()+occurenceRange/4;
+        lastIndexOfFirstPart = currentContour.getStartIndex()
+					+occurenceRange/4;
         lastIndexOfCenterPart = lastValueIndex - occurenceRange/4;
     }
                 

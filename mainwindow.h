@@ -64,12 +64,8 @@ public:
     void cellSelected(int nRow, int nCol);
 
 private slots:
-    void on_bF0_clicked();
     void on_bLoad_pressed();
-
-
     void on_bTestBase_clicked();
-
     void on_pushButton_clicked();
 
 private:

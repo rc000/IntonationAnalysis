@@ -69,8 +69,6 @@ void MainWindow::cellSelected(int nRow,int nCol)
 void MainWindow::cellClicked(int nRow, int nCol)
 {
    activeColumn = nRow;
-   ui->tableWidget->item(nRow,0)->setBackgroundColor(Qt::red);
-   ui->tableWidget->item(nRow,1)->setBackgroundColor(Qt::red);
 
   ui->textBrowser->clear();
  qDebug()<<nRow<<" "<<nCol;
@@ -136,7 +134,6 @@ qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
 }
 void MainWindow::setEnabledFeatureButtons(bool state)
 {
-        ui->bF0->setEnabled(state);
         ui->bShowWaveform->setEnabled(state);
         ui->bPlay->setEnabled(state);
 }
@@ -333,54 +330,7 @@ void MainWindow::readBuffer()
     audioBuffers.emplace_back(audioDecoder->read());
 }
 
-void MainWindow::on_bF0_clicked()
-{
 
-
-
-
-   chart = new QChart();
-   qDebug()<<detectors.size();
-   qDebug()<<activeColumn;
-    ContoursDetector contoursDetector = detectors.at(activeColumn);
-
-   seriesContours = contoursDetector.getSeriesContours();
-   seriesContours->setMarkerShape(QScatterSeries::MarkerShapeCircle);
-   seriesContours->setMarkerSize(5.0);
-
-  seriesRegresionLines = contoursDetector.getSeriesRegresionLines();
-  chart->addSeries(seriesContours);
-
-  chart->legend()->hide();
-
-  QValueAxis *axisX = new QValueAxis;
-  axisX->setTickCount(30);
-  QValueAxis *axisY = new QValueAxis;
-  axisY->setTickCount(20);
-  axisY->setRange((int)contoursDetector.getMinValue()-10,(int)contoursDetector.getMaxValue()+10);
-  axisX->setRange((int)contoursDetector.getIndexOfFirstValue()-10,(int)contoursDetector.getIndexOfLastValue()+10);
-
-  chart->addAxis(axisX, Qt::AlignBottom);
-  chart->addAxis(axisY, Qt::AlignLeft);
-  seriesContours->attachAxis(axisX);
-  seriesContours->attachAxis(axisY);
-  seriesRegresionLines.push_back(new QLineSeries());
-  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfFirstPart(), contoursDetector.getMaxValue());
-  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfFirstPart(), 20);
-  seriesRegresionLines.push_back(new QLineSeries());
-  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfCenterPart(), contoursDetector.getMaxValue());
-  seriesRegresionLines.back()->append(contoursDetector.getLastIndexOfCenterPart(), 20);
-  for(int i=0;i<seriesRegresionLines.size();i++)
-  {
-      chart->addSeries(seriesRegresionLines.at(i));
-      seriesRegresionLines.at(i)->attachAxis(axisX);
-      seriesRegresionLines.at(i)->attachAxis(axisY);
-
-  }
-  qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
-
-   setLayout();
-}
 void MainWindow::on_bLoad_pressed()
 {
 
