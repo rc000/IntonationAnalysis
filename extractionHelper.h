@@ -8,7 +8,7 @@
 #include <yin/Yin.h>
 #include <vector>
 #include <fftw/fftw3.h>
-#define F0_MIN 60
+#define F0_MIN 50
 #define F0_MAX 450
 
 class ExtractionHelper

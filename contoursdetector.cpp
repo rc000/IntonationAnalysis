@@ -1,7 +1,7 @@
 #include "contoursdetector.h"
 
 #include <QDebug>
-#define TRANSITION 15
+#define TRANSITION 30
 
 ContoursDetector::ContoursDetector(ExtractionHelper extractionHelper)
 {
