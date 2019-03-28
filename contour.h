@@ -66,6 +66,8 @@ public:
     void setCenterRegressionLine(double center){this->centerRegressionLine = center;}
     void setValue(int index, double value){this->values.at(index) = value;}
 
+    void setImp(bool imp){this->imperative = imp;}
+    bool getImp(){return imperative;}
 
 private:
     size_t startIndex;
@@ -77,7 +79,7 @@ private:
     double coefA,coefB;
     int contourLength;
     int startState;
-
+    bool imperative = false;
     double centerRegressionLine;
     QLineSeries *seriesRegresionLine;
 

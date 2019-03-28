@@ -28,9 +28,17 @@ int ContoursDetector::findIndexOfLastF0Value()
 void ContoursDetector::setContourLocation(int i)
 {
     if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
+    {
         ContoursVector.at(i).setLocation(BEGINNING);
+        if (ContoursVector.at(i).getStartIndex() > (lastIndexOfFirstPart/2))
+                ContoursVector.at(i).setImp(true);
+    }
     else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
+    {
         ContoursVector.at(i).setLocation(CENTER);
+        if (ContoursVector.at(i).getEndIndex() < (lastIndexOfFirstPart*1.5))
+                ContoursVector.at(i).setImp(true);
+    }
     else
         ContoursVector.at(i).setLocation(END);
 }
@@ -79,7 +87,7 @@ void ContoursDetector::findContours()
     {
         double averageWithoutCurrentContour = sumAllValues - ContoursVector.at(i).getCenterOfRegressionLine();
         averageWithoutCurrentContour /= (ContoursVector.size()-1);
-        if((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.6))
+        if((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.2))
                 && (ContoursVector.at(i).getContourLength()<10))
         {
             ContoursVector.erase(ContoursVector.begin()+i);
@@ -114,13 +122,14 @@ void ContoursDetector::foundNewContour()
 
     if (ContoursVector.size()>0)
     {
-        if ((currentContour.getFirstValue()-ContoursVector.back().getLastValue())
-                >(currentContour.getFirstValue()/6))
+        if ((currentContour.getFirstValue()> (20.0+ContoursVector.back().getLastValue()))
+                || ((currentContour.getLastValue() - ContoursVector.back().getFirstValue()) > 100) )
         {
             currentContour.setStartState(GROWTH);
         }
-        else if ((ContoursVector.back().getLastValue() - currentContour.getFirstValue())
+        else if (((ContoursVector.back().getLastValue() - currentContour.getFirstValue())
                  >(ContoursVector.back().getLastValue()/4))
+                 || ((ContoursVector.back().getFirstValue() - currentContour.getLastValue()) > 100))
         {
             currentContour.setStartState(DROP);
         }
@@ -183,7 +192,9 @@ void ContoursDetector::calcRegressionLines()
             centerRegresionLine = A * (ContoursVector.at(i).getContourLength()) + B;
         }
         else
-            centerRegresionLine = A * (ContoursVector.at(i).getCenter()-ContoursVector.at(i).getStartIndex()) + B;
+            centerRegresionLine =  B;
+
+          //  centerRegresionLine = A * (ContoursVector.at(i).getCenter()-ContoursVector.at(i).getStartIndex()) + B;
         ContoursVector.at(i).setCoefA(A);
         ContoursVector.at(i).setCoefB(B);
         ContoursVector.at(i).setCenterRegressionLine(centerRegresionLine);

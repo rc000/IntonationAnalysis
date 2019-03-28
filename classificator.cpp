@@ -4,43 +4,40 @@
 #include <sstream>
 
 
-#define centerHasContourWithBiggerF0ValueThanStart (1<<1)
 
 
-#define centerHighestContourNotFalling (1<<2)
 
-#define centerHasContourWithBiggerF0ValueThanEnd (1<<3)
+#define centerHasContourWithBiggerF0ValueThanEnd (1<<1)
 
-#define highestContourLocatedBetweenStartEndCenter (1<<4)
+#define highestContourLocatedBetweenStartEndCenter (1<<2)
 
-#define centerHighestContourSteeplyFalling (1<<5)
+#define centerHighestContourSteeplyFalling (1<<3)
 
 
-#define allContoursAreFalling (1<<6)
-#define endHasContourWithBiggerF0ValueThanStart (1<<7)
+#define allContoursAreFalling (1<<4)
+#define endHasContourWithBiggerF0ValueThanStart (1<<5)
 
-#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<8)
+#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<6)
 
-#define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<9)
+#define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<7)
 
-#define bigGrowthAtTheBeginning (1<<10)
+#define bigGrowthAtTheBeginning (1<<8)
 
-#define centerHighestContourNotSteeplyFalling (1<<11)
+#define centerHighestContourNotSteeplyFalling (1<<9)
 
-#define bigGrowthAtTheEnd (1<<12)
-#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<13)
+#define bigGrowthAtTheEnd (1<<10)
+#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<11)
 
-#define bigDropAtTheBeginning (1<<14)
+#define bigDropAtTheBeginning (1<<12)
 
-#define highestContourAtBeginningStronglyRising (1<<15)
+#define highestContourAtBeginningStronglyRising (1<<13)
 
-#define centerContourIsHighestAndSteeplyFalling (1<<16)
+#define centerContourIsHighestAndSteeplyFalling (1<<14)
+#define impRegion (1<<15)
 
 
 static const char *analysisResults[] =
 {
-    "centerHasContourWithBiggerF0ValueThanStart",
-    "centerHighestContourNotFalling",
     "centerHasContourWithBiggerF0ValueThanEnd",
     "highestContourLocatedBetweenStartEndCenter",
     "centerHighestContourSteeplyFalling",
@@ -54,10 +51,11 @@ static const char *analysisResults[] =
     "startHasContourWithMuchBiggerF0ValueThanCenter",
     "bigDropAtTheBeginning",
     "highestContourAtBeginningStronglyRising",
-    "centerContourIsHighestAndSteeplyFalling"
+    "centerContourIsHighestAndSteeplyFalling",
+    "impRegion"
 };
 
-int numberOfMaxResults = 16;
+int numberOfMaxResults = 15;
 int declarative = 0;
 int conclusiveQuestion = 0;
 int completenessQuestion = 0;
@@ -96,7 +94,8 @@ void initialization()
 
    imperative |= (highestContourLocatedBetweenStartEndCenter
                  |centerHighestContourNotSteeplyFalling
-                  |highestContourAtBeginningStronglyRising);
+                  |highestContourAtBeginningStronglyRising
+                  |impRegion);
    notImperative |= (endHasContourWithMuchBiggerF0ValueThanCenter
                      | endHasContourWithBiggerF0ValueThanStart);
 
@@ -165,9 +164,9 @@ void Classificator::analysis()
     for (int i = 0;i<contours.size();i++)
     {
         std::ostringstream ss;
-        ss<<i<<" "<<contours.at(i).getCoefA();
+        ss<<i<<" "<<contours.at(i).getCoefA()<<" "<<contours.at(i).getCenterOfRegressionLine();
         stateChanges.push_back(QString::fromStdString(ss.str()));
-        qDebug()<<i<<" kontur "<<contours.at(i).getContourLength();
+
         if (contours.at(i).getLocationOnTheChart() == BEGINNING)
         {
             if(contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning)
@@ -200,10 +199,22 @@ void Classificator::analysis()
                 endHighestContour = contours.at(i);
 
             }
-            if (contours.at(i).getStartState() == GROWTH)
-                isGrowthAtEnd = true;
+            if (contours.at(i).getStartState() == GROWTH && contours.at(i).getContourLength() >3)
+            {
+                if (contours.at(i).getCenterOfRegressionLine() > centerHighestContour.getCenterOfRegressionLine()
+                               || contours.at(i).getCenterOfRegressionLine() > (30.0+contours.at(i-1).getCenterOfRegressionLine()))
+                {
+                    isGrowthAtEnd = true;
+                    ss<<i<<" big growth "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getEndIndex();
+                    stateChanges.push_back(QString::fromStdString(ss.str()));
+                }
+            }
             if (contours.at(i).getStartState() == DROP)
+            {
                 isDropAtEnd = true;
+                ss<<i<<" big drop "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getEndIndex();
+                stateChanges.push_back(QString::fromStdString(ss.str()));
+            }
         }
         if (contours.at(i).getCenterOfRegressionLine() > highestContourValue)
         {
@@ -221,7 +232,7 @@ void Classificator::analysis()
     {
         features |= endHasContourWithMuchBiggerF0ValueThanCenter;
     }
-    if (endHighestContour.getCenterOfRegressionLine() > 1.1*startHighestContour.getCenterOfRegressionLine())
+    if (endHighestContour.getCenterOfRegressionLine() > (40.0+startHighestContour.getCenterOfRegressionLine()))
     {
         features |= endHasContourWithBiggerF0ValueThanStart;
     }
@@ -229,7 +240,7 @@ void Classificator::analysis()
 
 
 
-    if (startHighestContour.getCenterOfRegressionLine() > 1.5*centerHighestContour.getCenterOfRegressionLine())
+    if (startHighestContour.getCenterOfRegressionLine() > 1.4*centerHighestContour.getCenterOfRegressionLine())
     {
         features |= startHasContourWithMuchBiggerF0ValueThanCenter;
     }
@@ -238,7 +249,7 @@ void Classificator::analysis()
         features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
     }
 
-    if (startHighestContour.getCoefA() > 0.5)
+    if (startHighestContour.getCoefA() > 0.5 && startHighestContour.getCoefA() < 1.5 )
         features |= highestContourAtBeginningStronglyRising;
 
 
@@ -250,10 +261,7 @@ void Classificator::analysis()
      }
 
 
-    if (centerHighestContour.getCenterOfRegressionLine() > startHighestContour.getCenterOfRegressionLine())
-    {
-         features |= centerHasContourWithBiggerF0ValueThanStart;
-    }
+
     if (centerHighestContour.getCenterOfRegressionLine() > endHighestContour.getCenterOfRegressionLine())
     {
          features |= centerHasContourWithBiggerF0ValueThanEnd;
@@ -276,15 +284,27 @@ void Classificator::analysis()
             features |= highestContourLocatedBetweenStartEndCenter;
          }
         else if(centerHighestContour.getCenterOfRegressionLine() > startHighestContour.getCenterOfRegressionLine())
+        {
               CoefA = centerHighestContour.getCoefA();
-
+              if(centerHighestContour.getImp())
+                  features |= impRegion;
+        }
+        else if(centerHighestContour.getCenterOfRegressionLine() < startHighestContour.getCenterOfRegressionLine())
+        {
+            if(startHighestContour.getImp())
+                features |= impRegion;
+        }
         if ((CoefA < -0.4) || (indexHighestValueOfRegresionLinesAtTheCenter > (contours.size()/2)))
              features |= centerHighestContourSteeplyFalling;
         else if (CoefA < 0.0)
              features |= centerHighestContourNotSteeplyFalling;
 
     }
+    std::ostringstream ss;
 
+    ss<<"start "<<startHighestContour.getCenterOfRegressionLine()<<" center "<<centerHighestContour.getCenterOfRegressionLine()
+     <<" end "<<endHighestContour.getCenterOfRegressionLine();
+    stateChanges.push_back(QString::fromStdString(ss.str()));
     if((indexOfHighestValue == indexHighestValueOfRegresionLinesAtTheCenter)
             && (features & centerHighestContourSteeplyFalling))
         features |= centerContourIsHighestAndSteeplyFalling;   
@@ -331,6 +351,7 @@ std::vector<QString> Classificator::classification()
         else {
             result.erase(result.begin()+1);
         }
+        result.emplace_back("*");
     }
 
     if(result.size()==0)

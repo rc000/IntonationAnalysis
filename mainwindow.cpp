@@ -106,6 +106,7 @@ axisY->setTickCount(20);
 axisY->setRange((int)contoursDetector.getMinValue()-10,(int)contoursDetector.getMaxValue()+10);
 axisX->setRange((int)contoursDetector.getIndexOfFirstValue()-10,(int)contoursDetector.getIndexOfLastValue()+10);
 
+
 chart->addAxis(axisX, Qt::AlignBottom);
 chart->addAxis(axisY, Qt::AlignLeft);
 seriesContours->attachAxis(axisX);
@@ -126,9 +127,10 @@ for(int i=0;i<seriesRegresionLines.size();i++)
     seriesRegresionLines.at(i)->attachAxis(axisY);
 
 }
+setLayout();
+
 qDebug()<<"seriesRegresion main"<<seriesRegresionLines.size();
 
- setLayout();
  qDebug()<<"after setting layout";
 
 }
@@ -459,4 +461,13 @@ qDebug()<<A;
 
 
 
+}
+
+void MainWindow::on_bRegression_clicked()
+{
+    for(int i=0;i<seriesRegresionLines.size();i++)
+    {
+        seriesRegresionLines.at(i)->setVisible(!seriesRegresionLines.at(i)->isVisible());
+    }
+    setLayout();
 }

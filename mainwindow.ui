@@ -105,6 +105,19 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="bRegression">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Regression lines</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="bPlay">
        <property name="minimumSize">
         <size>

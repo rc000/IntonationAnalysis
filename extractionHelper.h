@@ -9,7 +9,7 @@
 #include <vector>
 #include <fftw/fftw3.h>
 #define F0_MIN 50
-#define F0_MAX 450
+#define F0_MAX 400
 
 class ExtractionHelper
 {
