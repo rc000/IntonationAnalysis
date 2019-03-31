@@ -30,13 +30,17 @@ void ContoursDetector::setContourLocation(int i)
     if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
     {
         ContoursVector.at(i).setLocation(BEGINNING);
-        if (ContoursVector.at(i).getStartIndex() > (lastIndexOfFirstPart/2))
+        if (ContoursVector.at(i).getStartIndex() > (lastIndexOfFirstPart-(lastIndexOfFirstPart-firstValueIndex)/2))
+        {
+                qDebug()<<"Start Index "<<ContoursVector.at(i).getStartIndex();
+                qDebug()<<(lastIndexOfFirstPart-(lastIndexOfFirstPart-firstValueIndex)/2);
                 ContoursVector.at(i).setImp(true);
+        }
     }
     else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
     {
         ContoursVector.at(i).setLocation(CENTER);
-        if (ContoursVector.at(i).getEndIndex() < (lastIndexOfFirstPart*1.5))
+        if (ContoursVector.at(i).getEndIndex() < (lastIndexOfFirstPart+(lastIndexOfFirstPart-firstValueIndex)/2))
                 ContoursVector.at(i).setImp(true);
     }
     else
@@ -88,7 +92,7 @@ void ContoursDetector::findContours()
         double averageWithoutCurrentContour = sumAllValues - ContoursVector.at(i).getCenterOfRegressionLine();
         averageWithoutCurrentContour /= (ContoursVector.size()-1);
         if((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.2))
-                && (ContoursVector.at(i).getContourLength()<10))
+                && (ContoursVector.at(i).getContourLength()<10)               )
         {
             ContoursVector.erase(ContoursVector.begin()+i);
         }

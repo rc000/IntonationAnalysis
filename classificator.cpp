@@ -161,8 +161,14 @@ void Classificator::analysis()
     indexOfHighestValue = 0;
     bool isDropAtEnd = false;
     bool isGrowthAtEnd = false;
+    double min = 400;
+    double max = 0.0;
+    double range = 0;
     for (int i = 0;i<contours.size();i++)
     {
+        if (contours.at(i).getMax()>max)max = contours.at(i).getMax();
+        if (contours.at(i).getMin()<min)min = contours.at(i).getMin();
+
         std::ostringstream ss;
         ss<<i<<" "<<contours.at(i).getCoefA()<<" "<<contours.at(i).getCenterOfRegressionLine();
         stateChanges.push_back(QString::fromStdString(ss.str()));
@@ -286,12 +292,12 @@ void Classificator::analysis()
         else if(centerHighestContour.getCenterOfRegressionLine() > startHighestContour.getCenterOfRegressionLine())
         {
               CoefA = centerHighestContour.getCoefA();
-              if(centerHighestContour.getImp())
+              if(centerHighestContour.getImp() && centerHighestContour.getCoefA()>-0.2)
                   features |= impRegion;
         }
         else if(centerHighestContour.getCenterOfRegressionLine() < startHighestContour.getCenterOfRegressionLine())
         {
-            if(startHighestContour.getImp())
+            if(startHighestContour.getImp() && startHighestContour.getCoefA()>-0.2)
                 features |= impRegion;
         }
         if ((CoefA < -0.4) || (indexHighestValueOfRegresionLinesAtTheCenter > (contours.size()/2)))
@@ -301,9 +307,10 @@ void Classificator::analysis()
 
     }
     std::ostringstream ss;
-
+    range = max - min;
     ss<<"start "<<startHighestContour.getCenterOfRegressionLine()<<" center "<<centerHighestContour.getCenterOfRegressionLine()
      <<" end "<<endHighestContour.getCenterOfRegressionLine();
+    ss<<"min "<<min<<" max "<<max<<" range "<<range;
     stateChanges.push_back(QString::fromStdString(ss.str()));
     if((indexOfHighestValue == indexHighestValueOfRegresionLinesAtTheCenter)
             && (features & centerHighestContourSteeplyFalling))

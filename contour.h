@@ -58,6 +58,8 @@ public:
     int getStartState(){return startState;}
     double getCenterOfRegressionLine(){return centerRegressionLine;}
     std::vector<double>getValuesVector(){return values;}
+    double getMin(){ return *std::min_element(values.begin(),values.end());}
+    double getMax(){ return *std::max_element(values.begin(),values.end());}
 
     void setCoefA(double coefA){ this->coefA = coefA;}
     void setCoefB(double coefB){ this->coefB = coefB;}

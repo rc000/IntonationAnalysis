@@ -1,14 +1,14 @@
 \babel@toc {polish}{}
 \babel@toc {polish}{}
 \contentsline {figure}{\numberline {1}{\ignorespaces Fa\IeC {\l }dy g\IeC {\l }osowe http://terapiamowy.com/index.php/niedowlad-krtani/\relax }}{6}% 
-\contentsline {figure}{\numberline {2}{\ignorespaces Przebieg kontur\IeC {\'o}w intonacyjnych dla zdania \IeC {\quotedblbase }Intonacja w zdaniach twierdz\IeC {\k a}cych jest opadaj\IeC {\k a}ca\IeC {\textquotedblright }. Pr\IeC {\'o}bkowanie 44kHz, estymacja z wykorzystaniem algorytmu YIN\relax }}{9}% 
-\contentsline {figure}{\numberline {3}{\ignorespaces Przyk\IeC {\l }ad pytania o uzupe\IeC {\l }nienie : \IeC {\quotedblbase }Jak\IeC {\k a} intonacj\IeC {\k e} ma to pytanie?\IeC {\textquotedblright }\relax }}{10}% 
-\contentsline {figure}{\numberline {4}{\ignorespaces Jest to pytanie odwr\IeC {\'o}cone, kt\IeC {\'o}re brzmi \IeC {\quotedblbase }A w Belgii?\IeC {\textquotedblright }\relax }}{11}% 
-\contentsline {figure}{\numberline {5}{\ignorespaces Przyk\IeC {\l }ad pytania nawi\IeC {\k a}zuj\IeC {\k a}cego upewnienie : \IeC {\quotedblbase }Kiedy?\IeC {\textquotedblright }\relax }}{11}% 
-\contentsline {figure}{\numberline {6}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{15}% 
-\contentsline {figure}{\numberline {7}{\ignorespaces Klasa stworzona w celu ekstracji F0, obliczenia energii sygna\IeC {\l }u oraz przechowywania tych warto\IeC {\'s}ci\relax }}{15}% 
-\contentsline {figure}{\numberline {8}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych kontur\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{18}% 
-\contentsline {figure}{\numberline {9}{\ignorespaces Przyk\IeC {\l }adowy przeskok(wzrost) mi\IeC {\k e}dzy pierwszym i drugim konturem, zlokalizowanymi w pocz\IeC {\k a}tkowej cz\IeC {\k e}\IeC {\'s}ci\relax }}{21}% 
-\contentsline {figure}{\numberline {10}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego konturu.\relax }}{23}% 
-\contentsline {figure}{\numberline {11}{\ignorespaces Przyk\IeC {\l }ad podzia\IeC {\l }u przebiegu intonacji na 3 cz\IeC {\k e}\IeC {\'s}ci\relax }}{24}% 
-\contentsline {figure}{\numberline {12}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{24}% 
+\contentsline {figure}{\numberline {2}{\ignorespaces Przebieg kontur\IeC {\'o}w intonacyjnych dla zdania \IeC {\quotedblbase }Intonacja w zdaniach twierdz\IeC {\k a}cych jest opadaj\IeC {\k a}ca\IeC {\textquotedblright }. Pr\IeC {\'o}bkowanie 44kHz, estymacja z wykorzystaniem algorytmu YIN\relax }}{11}% 
+\contentsline {figure}{\numberline {3}{\ignorespaces Przyk\IeC {\l }ad pytania o uzupe\IeC {\l }nienie : \IeC {\quotedblbase }Jak\IeC {\k a} intonacj\IeC {\k e} ma to pytanie?\IeC {\textquotedblright }\relax }}{12}% 
+\contentsline {figure}{\numberline {4}{\ignorespaces Jest to pytanie odwr\IeC {\'o}cone, kt\IeC {\'o}re brzmi \IeC {\quotedblbase }A w Belgii?\IeC {\textquotedblright }\relax }}{12}% 
+\contentsline {figure}{\numberline {5}{\ignorespaces Przyk\IeC {\l }ad pytania nawi\IeC {\k a}zuj\IeC {\k a}cego upewnienie : \IeC {\quotedblbase }Kiedy?\IeC {\textquotedblright }\relax }}{13}% 
+\contentsline {figure}{\numberline {6}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{17}% 
+\contentsline {figure}{\numberline {7}{\ignorespaces Klasa stworzona w celu ekstracji F0, obliczenia energii sygna\IeC {\l }u oraz przechowywania tych warto\IeC {\'s}ci\relax }}{17}% 
+\contentsline {figure}{\numberline {8}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych kontur\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{20}% 
+\contentsline {figure}{\numberline {9}{\ignorespaces Przyk\IeC {\l }adowy przeskok(wzrost) mi\IeC {\k e}dzy pierwszym i drugim konturem, zlokalizowanymi w pocz\IeC {\k a}tkowej cz\IeC {\k e}\IeC {\'s}ci\relax }}{23}% 
+\contentsline {figure}{\numberline {10}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego konturu.\relax }}{25}% 
+\contentsline {figure}{\numberline {11}{\ignorespaces Przyk\IeC {\l }ad podzia\IeC {\l }u przebiegu intonacji na 3 cz\IeC {\k e}\IeC {\'s}ci\relax }}{26}% 
+\contentsline {figure}{\numberline {12}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{26}% 

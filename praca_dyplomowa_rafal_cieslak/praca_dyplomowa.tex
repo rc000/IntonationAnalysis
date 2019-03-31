@@ -84,11 +84,13 @@
 \subsection{Sygnał mowy}
 Mową okreslamy komunikowanie się między sobą ludzi, za pomocą ukształtowanego zbioru dźwięków i reguł, zwanego językiem. Każdy język używa własnych fonetycznych kombinacji zbioru spółgłosek i samogłosek, które tworzą słowa mające semantyczne znaczenie. W czasie mówienia, osoba mówiąca poza samym wypowiadaniem słów, nadaje wypowiedzi znaczenie również za pomocą dodatkowych aspektów, takich jak intonacja, tempo mówienia czy stopień głosnosci.
 Sama produkcja mowy jest wielokrokowym procesem zamiany myśli w ustną wypowiedź, która może być zarejestrowana jako sygnał mowy.
-\subsubsection{Reprezentacja mowy}
-W językoznastwie za najmniejszą częsć mowy uznawane są formanty.
+
+
+ 
 \subsubsection{Powstawanie mowy}
 
 Sygnal mowy ludzkiej jest sygnałem akustycznym powstającym podczas przepływu powietrza poprzez aparat mowy, który jest definiowany jako 3 osobne grupy narządów. 
+
 Składowymi aparatu mowy są:
 \begin{enumerate}
 \item Aparat oddechowy. Bierze udział w początkowej fazie powstawania mowy, dostarczając kolejnym składowym strumień powietrza, który jest niezbędny do wygenerowania drgań. Dzieje się to podczas wydechu. Elementy, z których jest zbudowany to płuca, oskrzela, przepona oraz tchawica.
@@ -108,9 +110,15 @@ Dzięki tej czynności, strumień powietrza wprowadzany jest w drgania, co postr
 \item Aparat artykulacyjny, w którego skład wchodzą jamy przewodu oddechowego, znajdującego się ponad krtanią. Najważniejsze z punktu widzenia artykulacji - nosowa, gardłowa oraz ustna - nazywane są nasadą. Artykulatory znajdujące się w nasadzie dzielone są na ruchome oraz nieruchome. Do ruchomych zaliczamy język, podniebienie miękkie, wargi oraz żuchwę. Nieruchomymi określamy zęby, dziąsła oraz podniebienie twarde. Ich ustawienie ostatecznie determinuje cechy wytwarzanego dźwięku. 
 \end{enumerate}
 Cały proces powstania dźwięku, nazywany jest fonacją. W początkowej fazie jego przebiegu wzrasta cisnienie w płucach, co prowadzi do wydechu. Powietrze dostaje się do tchawicy. Na szczycie tchawicy znajduje się krtań, należąca do aparatu fonacyjnego. W miarę przepływu powietrza przez głosnię, spada lokalne cisnienie, co pozwala mięsniom krtani zamknąć głosnię, przerywając przepływ powietrza. To powoduje wzrost cisnienia, prowadzący do kolejnego oddalenia się strun głosowych. Cały ten cykl zapętla się, tworząc dźwięk, kierowany do aparatu artykulacyjnego. Na tym etapie, poza artykulacją, zachodzi również tłumienie niektórych częstotliwosci, nie będących harmonicznymi fali głosniowej. Nie wytłumione zostają tylko częstotliwosci będace bliskie naturalnemu rezonansowi traktu głosowego. Jako rezultat kompletnego procesu, uzyskiwana jest fala akustyczna, wydostająca się z ust. Ruszając szczęką, ustami lub zmieniając połozenie języka, możemy zmieniać uzyskiwany dźwięk, ponieważ zmieni się rezonans traktu głosowego, a zatem inne częstotliwosci zostaną wytłumione.
+Fakt, że wiele różnych narządów bierze udział w tworzeniu mowy powoduje, że zaburzenia zdrowotne każdego z nich mają istotny wpływ na cały proces. Zakres powstałych w ten sposób zaburzeń mowy jest szeroki - od drobnych wad wymowy do całkowitej utraty mowy.
 
 \paragraph{Dźwięcznosć głosek}
+\subsubsection{Reprezentacja mowy}
+W procesie rozwoju technologii związanych z  przetwarzaniem mowy, konieczne bylo ustalenie sposobu przedstawienia wypowiedzi za pomocą symboli reprezentujacych wyprodukowany sygnal. Litery, używane w tym celu w języku pisanym, są niewystarczające, ponieważ w różnych wyrazach mogą być wymawiane na rózne sposoby.  Często produkowany dźwięk dla danej litery różni się w zależnosci od otaczających ją liter. Dla języka polskiego charakterystyczne jest występowanie tak zwanych dwuznaków, na przykład ''rz,sz,ch''. Dźwięk produkowany dla tych znaków jest calkowicie odmienny od dźwięków reprezentujących każdą z liter osobno. 
+Jednym ze sposobów reprezentowanie dźwięków powszechnie występujących w danym języku są fonemy. Są to najmniejsze elementy języka mówionego, pozwalające na rozróżnienie poszczególnych słów. Często po zamienieniu jednego z fonemów składowych na inny, znaczenie słowa może ulec zmianie. W lingwistyce istnieją rózne sposoby definiowania czym są fonemy oraz w jaki sposób dany język powinien być przez nie reprezentowany. Najczęsciej jednak fonem jest rozumiany jako często powtarzający się w danym języku zbiór głosek. W języku polskim, w zależnosci od sposobu definiowania, liczba fonemów waha sie od 31 do 42.
 \subsubsection{Rozumienie mowy}
+Rozumieniem mowy nazywany jest proces, w trakcie którego wypowiedziana mowa jest słyszana, interpretowana oraz rozumiana przez człowieka. Badania nad postrzeganiem mowy są scisle związane
+z lingwistyką oraz psychologią poznawczą i próbują odpowiedzieć na pytanie w jaki sposób ludzie rozpoznają dźwięki mowy i na ich podstawie rozumieją mówiony język. Rezultaty tych poszukiwań mają swoje zastosowania w tworzeniu systemów komputerowych służących rozpoznawaniu mowy. Rozumienie mowy w danym języku jest scisle związane z rozpoznawaniem przez mózg fonemów charakterystycznych dla tego języka. Z tego powodu często ludzie uczący się obcego języka znacznie łatwiej przyswajają język w formie pisanej niż mówionej.
 \subsubsection{Rejestrowanie sygnału mowy}
 
 Dźwięk opuszczający aparat mowy może zostać zarejestrowany przez mikrofon w celu poddania szczegółowej analizie. Aby możliwe było przetwarzanie sygnału przez program komputerowy, konieczne jest przetworzenie sygnału z postaci analogowej do cyfrowej. W tym celu pobiera się próbki sygnału. Wartość określającą ilość próbek w jednostce czasu nazywamy częstotliwością próbkowania. Najczęściej spotykana wartość to 44,1 kHz. Oznacza to, że podczas sekundy pobierane jest 44100 wartości sygnału ciągłego. Liczba ta została przyjęta jako standard przy nagrywaniu audio na płytach CD. Tak pobrane próbki, po poddaniu procesowi kwantyzacji, tworzą sygnał cyfrowy.
@@ -123,8 +131,13 @@ Sygnał dźwiękowy może być nagrywany w wersji monofonicznej lub stereofonicz
 \subsection{Ton podstawowy}
 
 \subsubsection{Definicja tonu podstawowego}
-W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0.W zależności od potrzeb, ton podstawowy bywa różnie definiowany. W kontekście przetwarzania sygnału  mowy rozumiany jest jako wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Przebieg częstotliwości podstawowej w dużym stopniu odzwierciedla intonację wypowiedzi. Pełni istotną funkcję w językach tonalnych, w których wielu słów jest zapisywanych tak samo, a jedynie nadawany im ton pozwala rozróżnić ich znaczenie. Z tego powodu też poprawna estymacja F0 jest konieczna w systemach rozpoznawania mowy dla języków tonalnych.
-Dla idealnie okresowego sygnału, częstotliwość podstawowa byłaby po prostu odwrotnością okresu. Jednak sygnał mowy jest sygnałem bardzo dynamicznym, co sprawia, że estymacja F0 przestaje być zadaniem trywialnym. Dodatkowo transformacja sygnału analogowego do postaci dyskretnej, wiążąca się zawsze z utratą danych oraz towarzyszący nagranemu głosowi szum wpływają negatywnie na dokładność estymacji. 
+W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0.W zależności od potrzeb, ton podstawowy bywa różnie definiowany. W kontekście przetwarzania sygnału  mowy rozumiany jest jako wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Powstałe w ten sposób częstotliwosci mieszczą się w zakresie 85-180Hz dla mężczyzn oraz w zakresie 165-255Hz dla kobiet.Wartosci te mogą być wyższe gdy osoba mówiąca znajduje się pod wpływem silnych emocji. Poza płcią oraz stanem emocjalnym, zależne są również od wieku, budowy i kształtu strun głosowych ogólnego stanu zdrowia oraz rodzaju wypowiedzi. Badania nad częstotliwoscią podstawową produkowaną przez męzczyzn pokazały, że jej srednie wartosci spadają po osięgnięciu 35 roku życia, by ponownie ulec wzrostowi po przekroczeniu 55 roku życia.  (Hollien and Ship, 1972; Kitzing, 1979; Pegoraro-Krook,
+1988). W przypadku kobiet, wartosci F0 zaczynaja spadać w okresie menopauzy, osiagając finalne wartosci okolo 70 roku zycia. (Chevrie-Muller et al., 1971; Kitzing,
+1979; Stoicheff, 1981; Pegoraro-Krook, 1988). Badania nad wpływem palenia papierosów na wartosci F0 pokazały, że wieloletnie palenie również doprowadza do obniżenia tych wartosci, jako że nawyk ten wpływa negatywnie na krtań. (Gilbert and Weismer, 1974).
+Przebieg częstotliwości podstawowej w dużym stopniu odzwierciedla intonację wypowiedzi. Gdyby ten przebieg był stały, mowa byłaby odbierana jako monotonna lub brzmiąca maszynowo.  Pełni istotną funkcję w językach tonalnych, w których wielu słów jest zapisywanych tak samo, a jedynie nadawany im ton pozwala rozróżnić ich znaczenie. Z tego powodu też poprawna estymacja F0 jest konieczna w systemach rozpoznawania mowy dla języków tonalnych.
+Dla idealnie okresowego sygnału, częstotliwość podstawowa byłaby po prostu odwrotnością okresu. Okresem nazywamy czas pomiędzy kompletnym cyklem otwarcia i zamknięcia głosni. Jednak sygnał mowy jest sygnałem bardzo dynamicznym, co sprawia, że estymacja F0 przestaje być zadaniem trywialnym. Dodatkowo transformacja sygnału analogowego do postaci dyskretnej, wiążąca się zawsze z utratą danych oraz towarzyszący nagranemu głosowi szum wpływają negatywnie na dokładność estymacji. 
+\subsubsection{Formanty}
+Częstotliwosć podstawowa powiązana jest w największej mierze z intonacją. Jednak w badaniach związanych z technologią przetwarzania mowy, wyznaczane z sygnału mowy sa również inne częstotliwosci, związane z rezonansem innych częsci traktu głosowego. Nie są one bezposrednio związane z intonacją, lecz wiedza na ich temat jest istotna dla każdych badań związanych z sygnałami mowy. Są to formanty. Pod tym pojęciem rozumiane sa skupiska energii akustycznej, zgromadzone wokół konkretnej częstotliwosci w sygnale mowy. Istnieje kilka formantów, lecz zazwyczaj wyznaczane sa cztery - F1, F2, F3, F4. Każdy z nich występuje na innej częstotliwosci. W dużym przybliżeniu można stwierdzić, że F1 występuje w okolicach 500 Hz, a kolejne formanty są zlokalizowane na częstotliwosciach będących kolejnymi nieparzystymi wielokrotnosciami pierwszego formantu.
 \subsubsection{Przegląd metod estymacji}
 Prowadzone badania nad częstotliwością podstawową doprowadziły do wynalezienie wielu algorytmów estymacji o różnej skuteczności, zarówno w dziedzinie czasowej jak i widmowej.
 Przykłady metod czasowych:
@@ -202,7 +215,7 @@ Istnieją również pytania o uzupełnienie, dla których wzrost intonacji ma sw
 Przebieg intonacji dla takiego pytania jest opadająco-rosnący.
 \end{enumerate}
 \end{enumerate}
-
+\subsection{Analiza dotychczasowych badan}
 
 \section{Implementacja detekcji konturów częstotliwości podstawowej}
 Celem praktycznym pracy jest stworzenie aplikacji desktopowej umożliwiającej wczytanie próbki zawierającej nagrane zdanie oraz dokonanie identyfikacji rodzaju tej wypowiedzi
