@@ -130,6 +130,19 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="bPraat">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Praat file</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">

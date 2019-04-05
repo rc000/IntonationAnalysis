@@ -161,17 +161,21 @@ Metody widmowe umożliwiały lepszą dokładność estymacji częstotliwości po
 
 
 
-\subsection{Intonacja}
+\subsection{Prozodia}
+Słowo prozodia pochodzi ze starożytnej Greki, w języku tym oznaczało piesń spiewaną przy akompaniamencie muzyki instrumentalnej. Współczenie, terminem tym nazywane są te własciwosci mowy, które nie mogą byc wyznaczone na podstawie wykrytych fonemów, a więc nie przenoszą informacji o wypowiedzianych słowach, lecz mogą wpływać na znaczenie całej wypowiedzi. Jako przykłady takich własciwosci może być postrzegane kontrolowane zmienianie wysokosci głosów, przeciąganie sylab lub celowane zmienianie głosnosci poszczególnych fragmentów wypowiedzi.
+Z fonetycznego punktu widzenia, mowa ludzka nie może charakteryzowana jedynie jako zbiór fonemów, sylab czy słów, przenoszących znaczenie semantyczne danej wypowiedzi. W normalnej mowie słyszymy, że niektóre sylaby są celowe wydłużane lub skracane, niektóre słowa są nacechowane większą siłą głosu oraz zauważymy zmieniającą się wysokosć głosu.
+Prozodyczne własciwosci mowy nie są odzwierciedlone w ortografii lub transkrypcji fonetycznej żadnego języka.
+\subsubsection{Intonacja}
 Intonacja jest zmianą tonu podstawowego, nie wpływającą na rozpoznawanie słów. Jest jedną z trzech głównych brzmieniowych właściwości mowy, obok akcentu i iloczasu. Najczęściej jest dodawana podczas wypowiedzi w celu oddania emocji. W wielu językach, w tym także w polskim, nadawanie wypowiedzi określonej intonacji może determinować jej typ. W pewnych sytuacjach modulacja intonacyjna może być jedyną informacją pozwalającą rozmówcy zrozumiec czy wypowiedź była twierdzeniem czy pytaniem. 
 Przykład takiego zdania:
 \newline Musisz jutro wcześnie wstać.
 \newline Musisz jutro wcześnie wstać?
 \newline Jako, że taki szyk zarówno zdania jak i pytania jest całkowicie poprawny w języku polskim, bez nadania wypowiedzi odpowiedniej intonacji odbiorca nie jest w stanie zrozumieć intencji osoby mówiącej.
 
-\subsubsection{Typy intonacji}
+\paragraph{Typy intonacji}
 Najczęściej rozróżniane są dwa typy intonacji, opadająca oraz rosnąca. Opadająca, zwana kadencją zwyczajowo kojarzona jest ze zdaniami twierdzącymi, natomiast intonacja rosnąca, znana jako antykadencja, określana jest jako pytanie. W rzeczywistości podział nie jest tak klarowny. Należy wziąć również pod uwagę kontury z intonacją będącą połączeniem dwóch podstawowych zmian, czyli intonację rosnąco – opadająca oraz opadająco – rosnąca. Rozróżniany jest również brak wyraźnych zmian w przebiegu tonu podstawowego, zwany progrediencją. Jest on charakterystyczny dla tekstu czytanego.
 
-\subsubsection{Przebiegi intonacji dla poszczególnych rodzajów zdańi}
+\paragraph{Przebiegi intonacji dla poszczególnych rodzajów zdańi}
 Ogólna tendencja tonu podstawowego dla zdań twierdzących jest rzeczywiście spadkowa. Powodowane jest to najprawdopodobniej kładzeniem większego akcentu na pierwszą część zdania, zwłaszcza na pierwszy wyraz
 \begin{figure}[h]
 \centering
@@ -516,7 +520,61 @@ Kod tej funkcji nie został umieszczony w pracy, z uwagi na jego obszerność or
 \caption{Fragment przebiegu intonacji przed i po nałożeniu linii regresji}
 \end{figure}
 \FloatBarrier
-\section{Analiza wykrytych konturów}
+\section{Analiza wykrytych segmentów}
+Po zakończeniu implementacji segmentacji konturów oraz obliczania współczynników regresji liniowej, kolejnym etapem pracy była analiza wykrytych segmentów. Celem tej analizy było wykrycie wszelkiego rodzaju cech, które powtarzałyby się w zdaniach tego samego typu, a więc mogły by być użyteczne w procesie klasyfikacji zdań. 
+Analizowane były takie własciwosci przebiegu intonacji jak:
+\newline-gwałtowne wzrosty/spadki częstotliwosci podstawowej w całym przebiegu 
+\newline-ogólna tendencja zmian konturu
+\newline-ilosc oraz długosć poszczególnych segmentów
+\newline Szybko została zauważona istotna własciwosć kontorów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
+By ułatwić wykrywanie położenia tych zmian, przebiegi intonacji zostały podzielone na 3 częsci, co zostało opisane w poprzednim rozdziale.
+\subsection{Pytania rozstrzygnięcia}
+Najłatwiejszym zadanie okazało się rozróżnianie pytań rozstrzygnięcia. Ten rodzaj wypowiedzi cechuje się silną antykadencją zlokalizowaną w końcowej częsci zdania.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_rozstrzygniecia.png}
+\caption{Pytanie rozstrzygnięcia zadane przez mężczyznę}
+\end{figure}
+\FloatBarrier
+Pytanie przedstawione na rysunku 13 brzmi 'Faktycznie jest gdzies w Tobie taka pasja?'. Jest ono wypowiedziane przez mężczyznę. Nie ma w tej wypowiedzi żadnego słowa, które wyraźnie wskazywałoby na to, że jest to pytanie, a nie stwierdzenie. Jednak, dzięki nadaniu wypowiedzi odpowiedniej intonacji, możliwe jest rozpoznanie jej jako pytanie - zarówno przez program, jak i przez człowieka. W przedstawionym przykładzie, wzrost intonacji na końcu nagrania jest bardzo wyraźny, znacznie przekracza zakres typowych częstotliwosci F0 uzyskiwanych w głosie męskim. Dla pytań rozstrzygnięcia dosć charakterystyczne jest to, że ogólna tendencja intonacji wcale nie musi być rosnąca, zazwyczaj ten wzrost następuje gwałtowanie, dla jednego lub kilku końcowych segmentów. W danym przykładzie, przed wystąpieniem akcentu intonacyjnego w ostatnim słowie, intonacja utrzymywała się na stałym poziomie. Nie może jednak być to uznane za regułę, co udowodni kolejny przykład.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_rozstrzygniecia_2_emocje.png}
+\caption{Pytanie rozstrzygnięcia z nacechowaniem emocjonalnym}, wypowiedziane przez mężczyznę
+\end{figure}
+\FloatBarrier
+Pytanie, którego intonacja została przedstawiona na rysunku 14, brzmi ''Może o to, że jest to rażąco niesprawiedliwe?'' Zostało wypowiedziane przez mężczyzne. Nosi ono również znamiona pytania retorycznego.  W tej wypowiedzi nie ma gwałtowanego wzrostu intonacji na samym końcu nagrania, zamiast tego intonacja zauważalnie rosnie w trakcie całej wypowiedzi. Mimo, że jest to nagranie głosu męskiego, wyestymowane wartosci F0 znacznie wykraczają poza zakres typowy dla mężczyzn. Spowodowane jest to dużym zabarwieniem emocjalnym wypowiedzi.
 
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_rozstrzygniecia_3_kobieta.png}
+\caption{Pytanie rozstrzygnięcia zadane przez kobietę}
+\end{figure}
+\FloatBarrier
+Ostatnie z przedstawionych pytań rozstrzygnięcia zostało wypowiedziane przez kobietę. Brzmi ono ''A czy Tobie marzy się kariera zagraniczna?''.  Przebieg intonacji jest zbliżony do przykładu przedstawionego na rysunku 13, tutaj również tendencja intonacji nie jest rosnąca, lecz następuje silny skok intonacji na końcu wypowiedzi.
+\subsection{Pytania dopełnienia}
+Intonacja nadawana pytaniom dopełnienia całkowicie różni się od opisanej dla pytań rozstrzygnięcia. W tym przypadku zaobserwowany został brak jakiekolwiek wzrostu intonacji w końcowej częsci wypowiedzi, oraz cały przebieg intonacji jest najczęsciej opadający. Tresc tych wypowiedzi jawnie wskazuje, że jest to pytanie, ponieważ na ich początku zawarty jest zaimek pytajny. Przykłady takich zaimków to ''kto, dlaczego, który, czemu, jak, co''. Charakterystyczny dla tego rodzaju pytań jest wysoko zaintonowany początek wypowiedzi,  po którym następuje znaczny spadek estymowanych wartosci.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_uzupelnienia_marynarz.png}
+\caption{Pytanie dopełnienia zadane przez mężczyznę}
+\end{figure}
+\FloatBarrier
+Pytanie, którego intonacja została przedstawiona na rysunku 16, zostało wypowiedziane przez mężczyznę. Jego tresć to ''Jak zostać marynarzem?''. Na pierwszy rzut oka zauważalny jest pierwszy segment, którego wartosci górują nad resztą wykresu. W wypowiedzianym pytaniu, duży nacisk intonacyjny został nałożony na zaimek pytajny, po czym nastąpił znaczny spadek wartosci F0. Cała intonacja jest wyraźnie opadająca. Jako, że zaimek występujący w tym zdaniu składa sie jedynie z trzech liter, odpowiadający mu segment również jest krótki. Istotne jest również to, że wartosci segmentów położonych w centralnej oraz końcowej częsci przebiegu intonacji są mniejsze aż o 80-140Hz w porównaniu do segmentu położonego najwyżej.
 
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_dopelnienia_kobieta.png}
+\caption{Pytanie dopełnienia zadane przez kobietę}
+\end{figure}
+\FloatBarrier
+Na rysunku 17 przedstawiony został przebieg intonacji pytania wypowiedzianego przez kobietę, którego tresć brzmi ''Dlaczego zdecydowałas się wyjechać do Stanów?'' Ponownie, największe wartosci intonacji zostały zaobserwowane w pierwszym słowie, a konkretnie w jego drugiej oraz trzeciej sylabie. Również w tym przypadku, różnica między wartosciami najwyżej zlokalizowanego segmentu, a tymi położonymi w dalszych częsciach wykresu, jest znacząca.
+\subsection{Zdania twierdzące}
+\subsection{Zdania rozkazujące}
+\section{Porównanie wyników otrzymanych z wykorzystaniem YIN i Praata}
 \end{document}

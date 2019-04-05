@@ -310,7 +310,7 @@ void Classificator::analysis()
     range = max - min;
     ss<<"start "<<startHighestContour.getCenterOfRegressionLine()<<" center "<<centerHighestContour.getCenterOfRegressionLine()
      <<" end "<<endHighestContour.getCenterOfRegressionLine();
-    ss<<"min "<<min<<" max "<<max<<" range "<<range;
+    ss<<"min "<<min<<" max "<<max<<" range "<<range<<"percent "<<range/max*100;
     stateChanges.push_back(QString::fromStdString(ss.str()));
     if((indexOfHighestValue == indexHighestValueOfRegresionLinesAtTheCenter)
             && (features & centerHighestContourSteeplyFalling))

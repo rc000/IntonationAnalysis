@@ -70,8 +70,7 @@ void ContoursDetector::findContours()
 
         double previousValue = extractionHelper.f0_value(i-1);
         seriesContours->append(i,value);
-        if (value > maxValue) maxValue = value;
-        if (value < minValue && value > F0_MIN) minValue = value;
+
         if(std::abs(value - previousValue) > TRANSITION)
         {
             currentContour.setEnd(i-1);
@@ -103,6 +102,17 @@ void ContoursDetector::findContours()
         }
 
     }
+
+    for(int i = 0;i<ContoursVector.size();i++)
+    {
+
+        qDebug()<<i;
+            if (ContoursVector.at(i).getMax() > maxValue) maxValue = ContoursVector.at(i).getMax();
+            if (ContoursVector.at(i).getMin() < minValue && ContoursVector.at(i).getMin() > F0_MIN) minValue = ContoursVector.at(i).getMin();
+
+    }
+
+
     calcRegressionLines();
 
 

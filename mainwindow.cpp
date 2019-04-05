@@ -13,6 +13,7 @@
 #include<QSound>
 #include<QFileDialog>
 #include<Windows.h>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -72,8 +73,7 @@ void MainWindow::cellClicked(int nRow, int nCol)
 
   ui->textBrowser->clear();
  qDebug()<<nRow<<" "<<nCol;
- qDebug()<<"file "<<wavFilesList.at(nRow);
-  chart = new QChart();
+   chart = new QChart();
   ContoursDetector contoursDetector = detectors.at(nRow);
 
   for (int i = 0;i<contoursDetector.getAnalysisResults().size();i++)
@@ -376,6 +376,7 @@ void MainWindow::on_bTestBase_clicked()
         qDebug()<<"file "<<directory.absoluteFilePath(filename);
        this->wavFiles.emplace_back(directory.absoluteFilePath(filename));
     }
+    if(wavFiles.empty()) return;
     loadWavFile(this->wavFiles.front());
 
 }
@@ -470,4 +471,63 @@ void MainWindow::on_bRegression_clicked()
         seriesRegresionLines.at(i)->setVisible(!seriesRegresionLines.at(i)->isVisible());
     }
     setLayout();
+}
+
+void MainWindow::on_bPraat_clicked()
+{
+    QString filepath = (QFileDialog::getOpenFileName(this, tr("choose_import"), ".", tr("txt(*.txt)")));
+    QFile file(filepath);
+    if(!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::information(0, "error", file.errorString());
+    }
+
+    QTextStream in(&file);
+    std::vector<double> f0;
+    while(!in.atEnd()) {
+        QString line = in.readLine();
+
+        std::string stringLine = line.toStdString();
+        std::string number = stringLine.substr(11,stringLine.length());
+        line = QString::fromStdString(number);
+        double value;
+        if(line.at(0) == '-')
+            value = 0.0;
+        else
+            value = line.toDouble();
+        f0.emplace_back(value);
+        qDebug()<<line<<" value "<<value;
+      }
+
+    file.close();
+    ExtractionHelper exHelper;
+    exHelper.setF0(f0);
+    ContoursDetector contoursDetector(exHelper);
+    qDebug()<<"przed find";
+    contoursDetector.findContours();
+    contoursDetector.classification();
+
+    rowCounter++;
+    ui->tableWidget->setRowCount(rowCounter);
+
+    std::size_t found = filepath.toStdString().find_last_of("/");
+    ui->tableWidget->setItem(rowCounter-1,0,new QTableWidgetItem(filepath.toStdString().substr(found+1).c_str()));
+
+
+    for(int i = 0;i<contoursDetector.getResult().size();i++)
+    {
+        ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursDetector.getResult().at(i)));
+    }
+   //ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursDetector.getResult()));
+
+    detectors.push_back(contoursDetector);
+
+    obliczone = true;
+    if(ui->tableWidget->item(rowCounter-1,0)->text().length()==0) return;
+    if(ui->tableWidget->item(rowCounter-1,0)->text().at(0)!=ui->tableWidget->item(rowCounter-1,1)->text().at(0))
+    {
+
+        ui->tableWidget->item(rowCounter-1,0)->setBackgroundColor(Qt::red);
+        ui->tableWidget->item(rowCounter-1,1)->setBackgroundColor(Qt::red);
+       // }
+    }
 }

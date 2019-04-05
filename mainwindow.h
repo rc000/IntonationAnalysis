@@ -70,6 +70,8 @@ private slots:
 
     void on_bRegression_clicked();
 
+    void on_bPraat_clicked();
+
 private:
     Ui::MainWindow *ui;
     BorderLayout *layout;

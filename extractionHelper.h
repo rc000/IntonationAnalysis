@@ -36,5 +36,6 @@ public:
     std::vector<double>getWholeSignal(){return this->whole_signal;}
     size_t f0_size();
     double f0_value(int index);
+    void setF0(std::vector<double>f0){this->f0 = f0;}
 };
 #endif // ExtractionHelper_H
