@@ -47,7 +47,8 @@ public:
     void setEnabledFeatureButtons(bool state);
     void setLayout();
     void loadWavFile(QString wavFilePath);
-
+    void setResultInTable(ContoursDetector contourDetector);
+    void processPraatFile(QString filepath);
 
 
 
@@ -71,6 +72,8 @@ private slots:
     void on_bRegression_clicked();
 
     void on_bPraat_clicked();
+
+    void on_bPraatAllFiles_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -106,6 +109,8 @@ private:
     std::vector<QString>wavFiles;
     std::vector<ContoursDetector> detectors;
     QStringList wavFilesList;
+    int praatFilesNumber = 0;
+
 
 };
 

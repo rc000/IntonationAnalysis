@@ -38,10 +38,13 @@ class ContoursDetector
     std::vector<QString> getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
     std::vector<QString> getStateChanges(){return stateChanges;}
+    void findLongest();
+
 
 private:
     double maxValue = 0.0;
     double minValue = 400.0;
+    double longestContourLength;
     double averageValue;
     int numberOfPositiveValues;
     int firstValueIndex,lastValueIndex;

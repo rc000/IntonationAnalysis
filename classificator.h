@@ -9,7 +9,7 @@ using namespace std;
 class Classificator
 {
 public:
-    Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart);
+    Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart, double length);
     void addContour(Contour contour) {contours.emplace_back(contour);}
     Contour getContour(int index) {return contours.at(index);}
 
@@ -22,6 +22,7 @@ private:
     std::vector<QString>stateChanges;
     int lastIndexOfBeginningPart;
     int lastIndexOfCenterPart;
+    double longestContoursLength;
     double highestValueOfRegresionLinesAtTheBeginning;
     int features;
     Contour startHighestContour, centerHighestContour, endHighestContour;

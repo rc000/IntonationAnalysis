@@ -34,6 +34,7 @@
 
 #define centerContourIsHighestAndSteeplyFalling (1<<14)
 #define impRegion (1<<15)
+#define longContour (1<<16)
 
 
 static const char *analysisResults[] =
@@ -52,10 +53,11 @@ static const char *analysisResults[] =
     "bigDropAtTheBeginning",
     "highestContourAtBeginningStronglyRising",
     "centerContourIsHighestAndSteeplyFalling",
-    "impRegion"
+    "impRegion",
+    "longContour"
 };
 
-int numberOfMaxResults = 15;
+int numberOfMaxResults = 16;
 int declarative = 0;
 int conclusiveQuestion = 0;
 int completenessQuestion = 0;
@@ -95,7 +97,8 @@ void initialization()
    imperative |= (highestContourLocatedBetweenStartEndCenter
                  |centerHighestContourNotSteeplyFalling
                   |highestContourAtBeginningStronglyRising
-                  |impRegion);
+                  |impRegion
+                  |longContour);
    notImperative |= (endHasContourWithMuchBiggerF0ValueThanCenter
                      | endHasContourWithBiggerF0ValueThanStart);
 
@@ -117,8 +120,9 @@ QString bin(unsigned n)
     return result;
 }
 
-Classificator::Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart)
-    :lastIndexOfBeginningPart(lastIndexOfBeginningPart),lastIndexOfCenterPart(lastIndexOfCenterPart)
+Classificator::Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart, double length)
+    :lastIndexOfBeginningPart(lastIndexOfBeginningPart),lastIndexOfCenterPart(lastIndexOfCenterPart),
+      longestContoursLength(length)
 {
     highestValueOfRegresionLinesAtTheBeginning = 0.0;
     highestValueOfRegresionLinesAtTheCenter = 0.0;
@@ -170,7 +174,8 @@ void Classificator::analysis()
         if (contours.at(i).getMin()<min)min = contours.at(i).getMin();
 
         std::ostringstream ss;
-        ss<<i<<" "<<contours.at(i).getCoefA()<<" "<<contours.at(i).getCenterOfRegressionLine();
+        ss<<i<<" "<<contours.at(i).getCoefA()<<" "<<contours.at(i).getCenterOfRegressionLine()<<" length "<<contours.at(i).getContourLength()
+         <<" range "<<contours.at(i).getMax()-contours.at(i).getMin();
         stateChanges.push_back(QString::fromStdString(ss.str()));
 
         if (contours.at(i).getLocationOnTheChart() == BEGINNING)
@@ -229,6 +234,7 @@ void Classificator::analysis()
         }
         if ((isGrowthAtEnd) && (!isDropAtEnd))
             features |= bigGrowthAtTheEnd;
+
     }
 
 
@@ -246,16 +252,16 @@ void Classificator::analysis()
 
 
 
-    if (startHighestContour.getCenterOfRegressionLine() > 1.4*centerHighestContour.getCenterOfRegressionLine())
+    if (startHighestContour.getCenterOfRegressionLine() > 1.45*centerHighestContour.getCenterOfRegressionLine())
     {
         features |= startHasContourWithMuchBiggerF0ValueThanCenter;
     }
-    else if (startHighestContour.getCenterOfRegressionLine() > centerHighestContour.getCenterOfRegressionLine())
+    else if (startHighestContour.getCenterOfRegressionLine() > (centerHighestContour.getCenterOfRegressionLine()-5.0))
     {
         features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
     }
 
-    if (startHighestContour.getCoefA() > 0.5 && startHighestContour.getCoefA() < 1.5 )
+    if (startHighestContour.getCoefA() > 0.5 && startHighestContour.falling )
         features |= highestContourAtBeginningStronglyRising;
 
 
@@ -275,6 +281,13 @@ void Classificator::analysis()
 
     if  (features & centerHasContourWithBiggerF0ValueThanEnd)
     {
+        if(startHighestContour.getCenterOfRegressionLine()>centerHighestContour.getCenterOfRegressionLine() && startHighestContour.getContourLength()>(longestContoursLength-10)
+                && std::abs(startHighestContour.getCoefA())>0.3)
+            features |= longContour;
+        else if(startHighestContour.getCenterOfRegressionLine() < centerHighestContour.getCenterOfRegressionLine() && centerHighestContour.getContourLength()>(longestContoursLength-10)
+                 && std::abs(centerHighestContour.getCoefA())>0.3)
+            features |= longContour;
+
         double CoefA;
         if ((startHighestContour.getCenterOfRegressionLine() > centerHighestContour.getCenterOfRegressionLine())
             && startHighestContour.getEndIndex() > lastIndexOfBeginningPart)

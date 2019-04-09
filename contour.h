@@ -70,6 +70,11 @@ public:
 
     void setImp(bool imp){this->imperative = imp;}
     bool getImp(){return imperative;}
+    void setAsLongest(){isLongest = true;}
+    bool getIsLongest(){return isLongest;}
+    double getLongestValue(){return longestValue;}
+    void setLongestValue(double value){longestValue = value;}
+     bool falling = false;
 
 private:
     size_t startIndex;
@@ -78,12 +83,14 @@ private:
     std::vector<double> values;
     int locationOnTheChart;
 
+    double longestValue;
     double coefA,coefB;
     int contourLength;
     int startState;
     bool imperative = false;
     double centerRegressionLine;
     QLineSeries *seriesRegresionLine;
+    bool isLongest = false;
 
 };
 

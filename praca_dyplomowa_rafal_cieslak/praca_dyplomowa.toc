@@ -5,7 +5,6 @@
 \contentsline {section}{\numberline {3}Wprowadzenie teoretyczne}{5}% 
 \contentsline {subsection}{\numberline {3.1}Sygna\IeC {\l } mowy}{5}% 
 \contentsline {subsubsection}{\numberline {3.1.1}Powstawanie mowy}{5}% 
-\contentsline {paragraph}{\numberline {3.1.1.1}D\IeC {\'z}wi\IeC {\k e}cznos\IeC {\'c} g\IeC {\l }osek}{7}% 
 \contentsline {subsubsection}{\numberline {3.1.2}Reprezentacja mowy}{7}% 
 \contentsline {subsubsection}{\numberline {3.1.3}Rozumienie mowy}{7}% 
 \contentsline {subsubsection}{\numberline {3.1.4}Rejestrowanie sygna\IeC {\l }u mowy}{8}% 
@@ -17,20 +16,19 @@
 \contentsline {subsection}{\numberline {3.3}Prozodia}{10}% 
 \contentsline {subsubsection}{\numberline {3.3.1}Intonacja}{10}% 
 \contentsline {paragraph}{\numberline {3.3.1.1}Typy intonacji}{11}% 
-\contentsline {paragraph}{\numberline {3.3.1.2}Przebiegi intonacji dla poszczeg\IeC {\'o}lnych rodzaj\IeC {\'o}w zda\IeC {\'n}i}{11}% 
-\contentsline {subsection}{\numberline {3.4}Analiza dotychczasowych badan}{13}% 
-\contentsline {section}{\numberline {4}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{13}% 
-\contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{13}% 
-\contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{14}% 
-\contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{14}% 
-\contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{16}% 
-\contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{16}% 
-\contentsline {subsection}{\numberline {4.5}Wykrywanie kontur\IeC {\'o}w}{19}% 
-\contentsline {subsubsection}{\numberline {4.5.1}Analiza wst\IeC {\k e}pna wykrytego konturu}{21}% 
-\contentsline {subsubsection}{\numberline {4.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{26}% 
-\contentsline {section}{\numberline {5}Analiza wykrytych segment\IeC {\'o}w}{27}% 
-\contentsline {subsection}{\numberline {5.1}Pytania rozstrzygni\IeC {\k e}cia}{27}% 
-\contentsline {subsection}{\numberline {5.2}Pytania dope\IeC {\l }nienia}{29}% 
-\contentsline {subsection}{\numberline {5.3}Zdania twierdz\IeC {\k a}ce}{31}% 
+\contentsline {subsection}{\numberline {3.4}Analiza dotychczasowych badan}{11}% 
+\contentsline {section}{\numberline {4}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{11}% 
+\contentsline {subsection}{\numberline {4.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{11}% 
+\contentsline {subsection}{\numberline {4.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{12}% 
+\contentsline {subsection}{\numberline {4.3}Wczytanie pr\IeC {\'o}bki}{12}% 
+\contentsline {subsection}{\numberline {4.4}Ekstrakcja tonu podstawowego}{14}% 
+\contentsline {subsubsection}{\numberline {4.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{14}% 
+\contentsline {subsection}{\numberline {4.5}Wykrywanie kontur\IeC {\'o}w}{17}% 
+\contentsline {subsubsection}{\numberline {4.5.1}Analiza wst\IeC {\k e}pna wykrytego konturu}{19}% 
+\contentsline {subsubsection}{\numberline {4.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{24}% 
+\contentsline {section}{\numberline {5}Analiza wykrytych segment\IeC {\'o}w}{25}% 
+\contentsline {subsection}{\numberline {5.1}Pytania rozstrzygni\IeC {\k e}cia}{25}% 
+\contentsline {subsection}{\numberline {5.2}Pytania dope\IeC {\l }nienia}{27}% 
+\contentsline {subsection}{\numberline {5.3}Zdania twierdz\IeC {\k a}ce}{29}% 
 \contentsline {subsection}{\numberline {5.4}Zdania rozkazuj\IeC {\k a}ce}{31}% 
 \contentsline {section}{\numberline {6}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{31}% 

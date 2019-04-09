@@ -1,7 +1,7 @@
 #include "contoursdetector.h"
 
 #include <QDebug>
-#define TRANSITION 30
+#define TRANSITION 20
 
 ContoursDetector::ContoursDetector(ExtractionHelper extractionHelper)
 {
@@ -48,7 +48,7 @@ void ContoursDetector::setContourLocation(int i)
 }
 void ContoursDetector::classification()
 {
-    classificator = new Classificator(lastIndexOfFirstPart,lastIndexOfCenterPart);
+    classificator = new Classificator(lastIndexOfFirstPart,lastIndexOfCenterPart, longestContourLength);
 
     for(Contour contour : ContoursVector)
         classificator->addContour(contour);
@@ -58,6 +58,21 @@ void ContoursDetector::classification()
     stateChanges = classificator->getStateChanges();
     qDebug()<<"result "<<result;
     delete classificator;
+}
+void ContoursDetector::findLongest()
+{
+    int longest = 0;
+    int longestLength = 0;
+    for (int i = 0;i<ContoursVector.size();i++)
+    {
+        if (ContoursVector.at(i).getContourLength()>longestLength)
+        {
+            longestLength = ContoursVector.at(i).getContourLength();
+            longest = i;
+        }
+    }
+    longestContourLength = longestLength;
+    ContoursVector.at(longest).setAsLongest();
 }
 void ContoursDetector::findContours()
 {
@@ -81,8 +96,14 @@ void ContoursDetector::findContours()
         }
         else
         {
+            if(currentContour.getSize()>1)
+            {
+                if(value < currentContour.getLastValue())
+                    currentContour.falling = true;
+            }
+
             currentContour.addValue(value);
-        }
+}
     }
 
 
@@ -114,6 +135,7 @@ void ContoursDetector::findContours()
 
 
     calcRegressionLines();
+    findLongest();
 
 
 }

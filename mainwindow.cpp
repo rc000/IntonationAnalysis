@@ -201,25 +201,8 @@ void MainWindow::decodingFinished()
     qDebug()<<"przed find";
     contoursDetector.findContours();
     contoursDetector.classification();
-    for(int i = 0;i<contoursDetector.getResult().size();i++)
-    {
-        ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursDetector.getResult().at(i)));
-    }
-   //ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursDetector.getResult()));
+    setResultInTable(contoursDetector);
 
-    detectors.push_back(contoursDetector);
-
-    obliczone = true;
-    if(ui->tableWidget->item(rowCounter-1,0)->text().length()==0) return;
-    if(ui->tableWidget->item(rowCounter-1,0)->text().at(0)!=ui->tableWidget->item(rowCounter-1,1)->text().at(0))
-    {
-        /*if(ui->tableWidget->item(rowCounter-1,2)->text().at(0)!=""
-                || (ui->tableWidget->item(rowCounter-1,0)->text().at(0)!=ui->tableWidget->item(rowCounter-1,2)->text().at(0)))
-        {*/
-        ui->tableWidget->item(rowCounter-1,0)->setBackgroundColor(Qt::red);
-        ui->tableWidget->item(rowCounter-1,1)->setBackgroundColor(Qt::red);
-       // }
-    }
 
     setEnabledFeatureButtons(true);
     qDebug()<<"decoding finished";
@@ -322,9 +305,9 @@ void MainWindow::on_bPlay_clicked()
 {
     qDebug()<<activeColumn<<" ac";
     qDebug()<<wavFilesList.size();
-    qDebug()<<wavFilesList.at(activeColumn);
+    qDebug()<<wavFilesList.at(activeColumn-praatFilesNumber);
 
-    QSound::play(wavFilesList.at(activeColumn));
+    QSound::play(wavFilesList.at(activeColumn-praatFilesNumber));
 
 }
 void MainWindow::readBuffer()
@@ -476,6 +459,14 @@ void MainWindow::on_bRegression_clicked()
 void MainWindow::on_bPraat_clicked()
 {
     QString filepath = (QFileDialog::getOpenFileName(this, tr("choose_import"), ".", tr("txt(*.txt)")));
+    processPraatFile(filepath);
+
+
+}
+
+void MainWindow::processPraatFile(QString filepath)
+{
+    praatFilesNumber++;
     QFile file(filepath);
     if(!file.open(QIODevice::ReadOnly)) {
         QMessageBox::information(0, "error", file.errorString());
@@ -508,9 +499,13 @@ void MainWindow::on_bPraat_clicked()
 
     rowCounter++;
     ui->tableWidget->setRowCount(rowCounter);
-
     std::size_t found = filepath.toStdString().find_last_of("/");
     ui->tableWidget->setItem(rowCounter-1,0,new QTableWidgetItem(filepath.toStdString().substr(found+1).c_str()));
+    setResultInTable(contoursDetector);
+}
+void MainWindow::setResultInTable(ContoursDetector contoursDetector)
+{
+
 
 
     for(int i = 0;i<contoursDetector.getResult().size();i++)
@@ -529,5 +524,15 @@ void MainWindow::on_bPraat_clicked()
         ui->tableWidget->item(rowCounter-1,0)->setBackgroundColor(Qt::red);
         ui->tableWidget->item(rowCounter-1,1)->setBackgroundColor(Qt::red);
        // }
+    }
+}
+void MainWindow::on_bPraatAllFiles_clicked()
+{
+    QDir directory = QFileDialog::getExistingDirectory(this);
+
+    QStringList list = directory.entryList(QStringList() << "*.txt" << "*.txt",QDir::Files);
+
+    foreach(QString filename, list) {
+        processPraatFile(directory.absoluteFilePath(filename));
     }
 }
