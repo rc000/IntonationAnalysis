@@ -109,10 +109,13 @@ void ContoursDetector::findContours()
 
     for(int i = 0;i<ContoursVector.size();)
     {
+
         double averageWithoutCurrentContour = sumAllValues - ContoursVector.at(i).getCenterOfRegressionLine();
         averageWithoutCurrentContour /= (ContoursVector.size()-1);
-        if((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.2))
-                && (ContoursVector.at(i).getContourLength()<10)               )
+        if(((ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.2))
+                && (ContoursVector.at(i).getContourLength()<10)))
+            /*|| (ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.1))
+                && (ContoursVector.at(i).getContourLength()<3))*/
         {
             ContoursVector.erase(ContoursVector.begin()+i);
         }
@@ -146,6 +149,7 @@ void ContoursDetector::foundNewContour()
         currentContour.clear();
         return;
     }
+    qDebug()<<"przeszlo "<<currentContour.getSize();
     sumAllValues += currentContour.getCenterValue();
 
     if (lastIndexOfFirstPart == 0)

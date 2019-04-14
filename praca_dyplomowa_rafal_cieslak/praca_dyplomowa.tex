@@ -81,6 +81,7 @@
 
 \newpage
 \section{Wprowadzenie teoretyczne}
+W tym rozdziale przedstawione zostaną
 \subsection{Sygnał mowy}
 Mową okreslamy komunikowanie się między sobą ludzi, za pomocą ukształtowanego zbioru dźwięków i reguł, zwanego językiem. Każdy język używa własnych fonetycznych kombinacji zbioru spółgłosek i samogłosek, które tworzą słowa mające semantyczne znaczenie. W czasie mówienia, osoba mówiąca poza samym wypowiadaniem słów, nadaje wypowiedzi znaczenie również za pomocą dodatkowych aspektów, takich jak intonacja, tempo mówienia czy stopień głosnosci.
 Sama produkcja mowy jest wielokrokowym procesem zamiany myśli w ustną wypowiedź, która może być zarejestrowana jako sygnał mowy.
@@ -141,11 +142,9 @@ Dla idealnie okresowego sygnału, częstotliwość podstawowa byłaby po prostu 
 Częstotliwosć podstawowa powiązana jest w największej mierze z intonacją. Jednak w badaniach związanych z technologią przetwarzania mowy, wyznaczane z sygnału mowy sa również inne częstotliwosci, związane z rezonansem innych częsci traktu głosowego. Nie są one bezposrednio związane z intonacją, lecz wiedza na ich temat jest istotna dla każdych badań związanych z sygnałami mowy. Są to formanty. Pod tym pojęciem rozumiane sa skupiska energii akustycznej, zgromadzone wokół konkretnej częstotliwosci w sygnale mowy. Istnieje kilka formantów, lecz zazwyczaj wyznaczane sa cztery - F1, F2, F3, F4. Każdy z nich występuje na innej częstotliwosci. W dużym przybliżeniu można stwierdzić, że F1 występuje w okolicach 500 Hz, a kolejne formanty są zlokalizowane na częstotliwosciach będących kolejnymi nieparzystymi wielokrotnosciami pierwszego formantu.
 \subsubsection{Przegląd metod estymacji}
 Prowadzone badania nad częstotliwością podstawową doprowadziły do wynalezienie wielu algorytmów estymacji o różnej skuteczności, zarówno w dziedzinie czasowej jak i widmowej.
-Przykłady metod czasowych:
-\begin{enumerate}
-\item Analiza funkcji autokorelacji, polegająca na badaniu korelacji między danymi wejściowymi sygnału przy różnych opóźnieniach. Implikuje to wiele operacji mnożenia oraz dodawania. Estymacja F0 z wykorzystaniem tej metody związana jest z wykrywaniem maksimów lokalnych funkcji autokorelacji.
+Jedną z najpopularniejszych metod czasowych jest algorytm YIN. Jest on zmodyfikowaną wersję funkcję autokoleracji. Algorytm został wzbogacony o parę kroków, mających na celu obniżenie stopy błędów. Został on użyty w implementancji programu będącego rezultatem tej pracy.
+YAAPT, którego rozwinięcie brzmi `Yet Another Algorithm of Pitch Tracking' poza interesującą nazwą, cechuje się również bardzo dobrymi wynikami estymacji. Jest to metoda hybrydowa, łącząca w sobie zalety i wady metod czasowych oraz widmowych.
  
-\end{enumerate}
  
 
 
@@ -153,7 +152,7 @@ Przykłady metod czasowych:
 
 \subsubsection{Definicja algorytmu YIN}
 
-Metody widmowe umożliwiały lepszą dokładność estymacji częstotliwości podstawowej, do momentu opracowania algorytmu YIN. W podstawowej wersji bazuje na analizie funkcji autokorelacji w dziedzinie czasu. Jego autorami są Hideki Kawahara oraz Alain de Cheveigne, którzy zaprezentowali te podejście w 2002 roku. Algorytm ten posiada kilka własności, dających mu przewagę nad konkurencyjnymi metodami. Nie posiada górnego limitu frekwencji, dla których działa poprawnie, dzięki czemu wyniki nie są zakłamywane dla wysokich głosów. Ta cecha jest również znacząca w użyciu algorytmu do analizy muzyki. Ważną własnością jest fakt, że algorytm ten jest relatywnie prosty, co pozwala na efektywną implementację, bez dużych opóźnień. Na jego prostotę istotnie wpływa niewielka liczba wymaganych parametrów.
+W podstawowej wersji bazuje na analizie funkcji autokorelacji w dziedzinie czasu. Jego autorami są Hideki Kawahara oraz Alain de Cheveigne, którzy zaprezentowali te podejście w 2002 roku. Algorytm ten posiada kilka własności, dających mu przewagę nad konkurencyjnymi metodami. Nie posiada górnego limitu frekwencji, dla których działa poprawnie, dzięki czemu wyniki nie są zakłamywane dla wysokich głosów. Ta cecha jest również znacząca w użyciu algorytmu do analizy muzyki. Ważną własnością jest fakt, że algorytm ten jest relatywnie prosty, co pozwala na efektywną implementację, bez dużych opóźnień. Na jego prostotę istotnie wpływa niewielka liczba wymaganych parametrów.
 
 
 
@@ -162,7 +161,7 @@ Metody widmowe umożliwiały lepszą dokładność estymacji częstotliwości po
 
 \subsection{Prozodia}
 Słowo prozodia pochodzi ze starożytnej Greki, w języku tym oznaczało piesń spiewaną przy akompaniamencie muzyki instrumentalnej. Współczenie, terminem tym nazywane są te własciwosci mowy, które nie mogą byc wyznaczone na podstawie wykrytych fonemów, a więc nie przenoszą informacji o wypowiedzianych słowach, lecz mogą wpływać na znaczenie całej wypowiedzi. Jako przykłady takich własciwosci może być postrzegane kontrolowane zmienianie wysokosci głosów, przeciąganie sylab lub celowane zmienianie głosnosci poszczególnych fragmentów wypowiedzi.
-Z fonetycznego punktu widzenia, mowa ludzka nie może charakteryzowana jedynie jako zbiór fonemów, sylab czy słów, przenoszących znaczenie semantyczne danej wypowiedzi. W normalnej mowie słyszymy, że niektóre sylaby są celowe wydłużane lub skracane, niektóre słowa są nacechowane większą siłą głosu oraz zauważymy zmieniającą się wysokosć głosu.
+Z fonetycznego punktu widzenia, mowa ludzka nie może charakteryzowana jedynie jako zbiór fonemów, sylab czy słów, przenoszących znaczenie semantyczne danej wypowiedzi. W normalnej mowie słyszymy, że niektóre sylaby są celowe wydłużane lub skracane, niektóre słowa są nacechowane większą siłą głosu oraz zauważamy zmieniającą się wysokosć głosu.
 Prozodyczne własciwosci mowy nie są odzwierciedlone w ortografii lub transkrypcji fonetycznej żadnego języka.
 \subsubsection{Intonacja}
 Intonacja jest zmianą tonu podstawowego, nie wpływającą na rozpoznawanie słów. Jest jedną z trzech głównych brzmieniowych właściwości mowy, obok akcentu i iloczasu. Najczęściej jest dodawana podczas wypowiedzi w celu oddania emocji. W wielu językach, w tym także w polskim, nadawanie wypowiedzi określonej intonacji może determinować jej typ. W pewnych sytuacjach modulacja intonacyjna może być jedyną informacją pozwalającą rozmówcy zrozumiec czy wypowiedź była twierdzeniem czy pytaniem. 
@@ -170,15 +169,61 @@ Przykład takiego zdania:
 \newline Musisz jutro wcześnie wstać.
 \newline Musisz jutro wcześnie wstać?
 \newline Jako, że taki szyk zarówno zdania jak i pytania jest całkowicie poprawny w języku polskim, bez nadania wypowiedzi odpowiedniej intonacji odbiorca nie jest w stanie zrozumieć intencji osoby mówiącej.
+\subsubsection{Funkcje intonacji}
+Intonacja jest używana we wszystkich wokalnych językach, spełniając różne funkcje. 
+Przedstawiona poniżej lista funkcji jest rezultatem badań nowozelandzkiego lingwisty Scotta Thornbury Thornbury, Scott. (2006). An A-Z of ELT. Oxford: Macmillan Publishers, Ltd.
 
-\paragraph{Typy intonacji}
-Najczęściej rozróżniane są dwa typy intonacji, opadająca oraz rosnąca. Opadająca, zwana kadencją zwyczajowo kojarzona jest ze zdaniami twierdzącymi, natomiast intonacja rosnąca, znana jako antykadencja, określana jest jako pytanie. W rzeczywistości podział nie jest tak klarowny. Należy wziąć również pod uwagę kontury z intonacją będącą połączeniem dwóch podstawowych zmian, czyli intonację rosnąco – opadająca oraz opadająco – rosnąca. Rozróżniany jest również brak wyraźnych zmian w przebiegu tonu podstawowego, zwany progrediencją. Jest on charakterystyczny dla tekstu czytanego.
 
+\begin{itemize}
+\item{Okazanie nastawienia} 
+\leavevmode
+\newline
+Intonacja oddaje odczucia mówcy związane z wypowiadanym zdaniem. Zauważalne są spadki oraz wzrosty wartości F0, w zależności od okazywanych emocji:
+\begin{enumerate}
+\item{Spadek - asertywność, przedstawianie faktu}
+\item{Wzrost - wyrażanie uprzejmości}
+\item{Spadek-wzrost - okazywanie zwątpienia lub niepewności}
+\item{Wzrost-spadek -niecierpliwość lub sarkazm}
+\item{Brak zmian - neutralność lub brak zainteresowania}
+\end{enumerate}
+Mimo, że zmiany w przebiegu intonacji związane z okazywanymi emocjami z całą pewnością istnieją, są trudne do jednoznacznego rozpoznania. Nawet dla ludzi posługujących się danym językiem od urodzenia, rozpoznanie emocji mówcy na podstawie zmian w intonacji w jednym zdaniu wyrwanym z kontekstu może być zadaniem niemożliwym do wykonanania. Zmiany te są subiektywne, ponieważ każdy wyraża emocje w indywidualny sposób. Przedstawiona powyżej lista pokazuje jedynie ogólne tendencje.
+\item{funkcja gramatyczna}
+\leavevmode
+\newline
+Pod tą nazwą kryją się różnice między gramatycznymi typami wypowiedzi, a więc jest to funkcja będąca głównym obiektem badań w tej pracy. Zmiany w przebiegu intonacjin mogą wskazywać na dany typ wypowiedzi. Najbardziej znanymi tendencjami są gwałtowne wzrosty na końcu wypowiedzi, wskazujące na pytania, oraz spadkowa tendencja całej wypowiedzi wskazująca na zdanie twierdzące.
+\item{funkcję dyskursu} 
+\leavevmode
+\newline
+Ta funkcja oparta jest na analizie dłuższych fragmentów wypowiedzi, zamiast pojedyńczych zdań.Wysokość intonacji na końcu poszczególnych zdań pozwala ocenić, czy mówca zamierza kontynuować wypowiedź ( wysokie wartości), czy też ją skończył (niskie wartości).
 
+\item{podkreślenie(highlighting)}
+\leavevmode
+\newline
+Nadając wyższą intonację poszczególnym słowom, osoba mówiąca może uwydatnić ich znaczenie i skierować na nie uwagę odbiorcy.
+\end{itemize}
+
+ 
 
 \subsection{Analiza dotychczasowych badan}
-An introduction to intonation-functions and models Martine Grice Stefan Baumann 
+Do tej pory przeprowadzono wiele badań analizujących każdą z funkcji intonacji. W tym podrozdziale zostaną opisane rezultaty badań nad funkcją gramatyczną intonacji. Najczęściej badane były różnice między zdaniami twierdzącymi, a pytaniami z intonacją rosnącą.
+\leavevmode
+\newline
+Martine Grice i Stefan Baumann (An introduction to intonation-functions and models) zajmowali się badaniem intonacji w języku niemieckim. Zauważyli wpływ intonacji na odróżnianie pytań od zdań, składających się z tych samych słów.W badanych przez z nich pytaniach nawiązujących upewnienie, wyraźnie zauważalny był silny wzrost wartości F0 na końcu wypowiedzi. Nie dotyczyło to jednak każdego rodzaju pytań. W pytaniach zawierających zaimek pytajny, nie zaobserwowali końcowego wzrostu intonacji. W literaturze anglojęzycznej takie pytania nazywane są `Wh-questions', ponieważ zaczynają się najczęściej od When, Who, Where, itd. Jednak bazując na wynikach ich badań, można zauważyć, że ta zasada nie jest aplikowalna do każdego języka, w przeprowadzanych przez autorów badaniach nad pytaniami zadanymi w językach romańskich, zaobserwowano wzrost intonacji nie na samym końcu wypowiedzi, lecz moment przed, a po samym wzroście nastąpił spadek.
+\leavevmode
+\newline
 
+Daniel Hirst i Albert Dicristo (A survey of intonation systems) badając intonację dla wielu języków odnotowali powszechność tendencji wzrostowej wartości F0 w przebiegu intonacji dla pytań typu tak-nie. Nie zawsze tego pytanie musiało kończyc się wysokim skokiem wartości częstotliwości podstawowej. W niektórych językach (angielski, szwedzki, portugalijski, fiński, zachodnioarabski, węgierski, tajski), tendencja wzrostowa była zauważalna jedynie w części wypowiedzi.
+Jednak w przypadkach dwóch języków, wzrost taki nie występował. W języku duńskim oraz wietnamskim pytania tak-nie od zdań twierdzących odróżnia jedynie brak deklinacji wartości intonacji.
+
+Kolejną cechą zaobserwowaną przez Hirsta i Dicristo był gwałtowany skok wartości F0 w końcowej części wypowiedzi. Jest to cecha uniwersalna dla prawie wszystkich języków, występująca przy tym rodzaju pytań. Wyjątek stanowią język duński, bułgarski, rosyjski, arabski, fiński, oraz brazylijska odmiana języka portugalskiego.
+
+\leavevmode
+\newline
+Kolejnym badanym rodzajem wypowiedzi były pytania dopełnienia (WH-questions). Zauważono, że w wielu językach (angielski, hiszpański, rumuński, rosyjski, grecki) przebieg intonacji występującej przy wypowiadaniu tego rodzaju pytań dużo bardziej przypomina przebieg intonacji zdania twierdzącego niż pytań rozstrzygnięcia.
+
+
+
+Podsumowując, łatwo zauważyć, że wiele badań zostało już przeprowadzonych, głównie w celu rozróżniania poszczególnych rodzajów pytań i zdań twierdzących. Brakuje jednak takich badań dla zdań rozkazujących.
 
 \section{Implementacja detekcji konturów częstotliwości podstawowej}
 Celem praktycznym pracy jest stworzenie aplikacji desktopowej umożliwiającej wczytanie próbki zawierającej nagrane zdanie oraz dokonanie identyfikacji rodzaju tej wypowiedzi
@@ -485,7 +530,7 @@ Analizowane były takie własciwosci przebiegu intonacji jak:
 \newline-gwałtowne wzrosty/spadki częstotliwosci podstawowej w całym przebiegu 
 \newline-ogólna tendencja zmian konturu
 \newline-ilosc oraz długosć poszczególnych segmentów
-\newline Szybko została zauważona istotna własciwosć kontorów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
+\newline Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
 By ułatwić wykrywanie położenia tych zmian, przebiegi intonacji zostały podzielone na 3 częsci, co zostało opisane w poprzednim rozdziale.
 \subsection{Pytania rozstrzygnięcia}
 Najłatwiejszym zadanie okazało się rozróżnianie pytań rozstrzygnięcia. Ten rodzaj wypowiedzi cechuje się silną antykadencją zlokalizowaną w końcowej częsci zdania.
@@ -560,7 +605,8 @@ Kolejny przykład zdania twierdzącego, przedstawiony na rysunku 15, został wyp
 \FloatBarrier
 Przykład przedstawiony na rysunku 16, przedstawia przebieg intonacji zdania twierdzącego, wypowiedzianego przez kobietę, którego tresć brzmi ''Więc to też naraża ich na niebezpieczeństwo''. Przebieg intonacji ma wyraźnie stałą tendencję. Najwyżej położony segment również znajduje się w poczatkowej częsci wypowiedzi, lecz nie sposób tutaj mówić o znaczącej różnicy. Stała tendencja przebiegu intonacji jest jedną z cech wyraźnie wskazujących, że dana wypowiedź jest zdaniem twierdzącym.
 \subsection{Zdania rozkazujące}
-Dla zdań twierdzących oraz pytań dopełnienia charakterystyczna jest obecnosć krótkich segmentów o wysokich wartosciach zlokalizowanych na początku przebiegu intonacji. W przypadku pytań rozstrzygnięcia, taki charakterystyczny segment obecny był na końcu wypowiedzi. W zdaniach nakazujących komus wykonanie jakiej czynnosci, kładziony jest silny akcent na czasownik. W skutek tego, najczęsciej segmenty o największych wartosciach F0 zlokalizowane są w centralnej częsci przebiegu intonacji, lub zaczynają się w początkowej częsci, kończąc w srodkowej. Z racji nałożonego na nie akcentu, dosć często są najdłuższymi segmentami w danej wypowiedzi.
+Dla zdań twierdzących oraz pytań dopełnienia charakterystyczna jest obecnosć krótkich segmentów o wysokich wartosciach zlokalizowanych na początku przebiegu intonacji. W przypadku pytań rozstrzygnięcia, taki charakterystyczny segment obecny był na końcu wypowiedzi. W zdaniach nakazujących komus wykonanie jakiej czynnosci, kładziony jest silny akcent na czasownik. W skutek tego, najczęsciej segmenty o największych wartosciach F0 zlokalizowane są w centralnej częsci przebiegu intonacji, lub zaczynają się w początkowej częsci, kończąc w srodkowej. Z racji nałożonego na nie akcentu, dosć często są najdłuższymi segmentami w danej wypowiedzi. W tym przypadku funkcja gramatyczna intonacji przeplata się z funkcją podkreślającą znaczenie danego słowa.
+
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -568,5 +614,25 @@ Dla zdań twierdzących oraz pytań dopełnienia charakterystyczna jest obecnos�
 \caption{Zdanie rozkazujące wypowiedziane przez mężczyznę}
 \end{figure}
 \FloatBarrier
+Zdanie przedstawione na rysunku 17 zostało wypowiedziane przez mężczyznę, a jego treść brzmi ''Nie próbujcie tego w domu''. Wyraźny akcent w tej wypowiedzi jest położony na drugie słowo, sylaby w czasowniku są wręcz przeciagnięte, a więc wykorzystany został również iloczas. Na skutek tego omawiany segment poza największymi wartościami, odznacza się również długością. Jest położony w większości w centralnej części przebiegu intonacji. Kolejną zauważalną cechą jest jego gwaltowny wzrost, zakończony krótkim spadkiem. 
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{rozkaz_rece_kobieta.png}
+\caption{Zdanie rozkazujące wypowiedziane przez kobietę}
+\end{figure}
+\FloatBarrier
+Zdanie przedstawione na rysunku 18 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wyciągnij ręce z kieszeni''. Akcent intonacyjny ponownie nałożony jest na czasownik w trybie rozkazującym, lecz tym razem jedynie na jego drugą oraz trzecią sylabę. Po pierwszej zauważalna jest krótka pauza.
+W tym przypadku najistotniejszy segment jest opadający, co pokazuje, że nie zawsze jest rosnący jak w poprzednim przykładzie i nie może być ta właściwość traktowana jako powszechna cecha.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{rozkaz_mezczyzna_telewizor.png}
+\caption{Zdanie rozkazujące wypowiedziane przez mężczyznę}
+\end{figure}
+\FloatBarrier
+Zdanie przedstawione na rysunku 19 zostało wypowiedziane przez mężczyznę, brzmi ''Wyłącz w końcu ten telewizor''.
+W tym przypadku segment zawierający największe wartości w całości zlokalizowany jest w początkowej części przebiegu. Jako, że jego wartości nie są znacząco większe od wartości segmentów zlokalizowanych w części centralnej, wypowiedź ta mogłaby zostać sklasyfikowana jako zdanie twierdzące. Decydująca w przypadku tej wypowiedzi była długość najistotniejszego segmentu oraz zakres jego wartości. Proporcjonalnie do całego konturu, są one znacznie większe niż odpowiedniki zaobserwowane podczas analizy zdań twierdzących.
+\subsection{Podsumowanie skuteczności analizy}
 \section{Porównanie wyników otrzymanych z wykorzystaniem YIN i Praata}
 \end{document}

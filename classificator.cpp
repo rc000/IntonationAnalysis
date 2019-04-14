@@ -175,7 +175,7 @@ void Classificator::analysis()
 
         std::ostringstream ss;
         ss<<i<<" "<<contours.at(i).getCoefA()<<" "<<contours.at(i).getCenterOfRegressionLine()<<" length "<<contours.at(i).getContourLength()
-         <<" range "<<contours.at(i).getMax()-contours.at(i).getMin();
+         <<" range "<<contours.at(i).getMax()-contours.at(i).getMin()<<" size "<<contours.at(i).getSize();
         stateChanges.push_back(QString::fromStdString(ss.str()));
 
         if (contours.at(i).getLocationOnTheChart() == BEGINNING)
@@ -244,7 +244,8 @@ void Classificator::analysis()
     {
         features |= endHasContourWithMuchBiggerF0ValueThanCenter;
     }
-    if (endHighestContour.getCenterOfRegressionLine() > (40.0+startHighestContour.getCenterOfRegressionLine()))
+    if (endHighestContour.getCenterOfRegressionLine() > (40.0+startHighestContour.getCenterOfRegressionLine())
+            && endHighestContour.getContourLength()>2)
     {
         features |= endHasContourWithBiggerF0ValueThanStart;
     }
@@ -282,7 +283,7 @@ void Classificator::analysis()
     if  (features & centerHasContourWithBiggerF0ValueThanEnd)
     {
         if(startHighestContour.getCenterOfRegressionLine()>centerHighestContour.getCenterOfRegressionLine() && startHighestContour.getContourLength()>(longestContoursLength-10)
-                && std::abs(startHighestContour.getCoefA())>0.3)
+                && std::abs(startHighestContour.getCoefA())>0.2)
             features |= longContour;
         else if(startHighestContour.getCenterOfRegressionLine() < centerHighestContour.getCenterOfRegressionLine() && centerHighestContour.getContourLength()>(longestContoursLength-10)
                  && std::abs(centerHighestContour.getCoefA())>0.3)
