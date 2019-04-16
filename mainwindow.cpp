@@ -476,24 +476,20 @@ void MainWindow::processPraatFile(QString filepath)
     std::vector<double> f0;
     while(!in.atEnd()) {
         QString line = in.readLine();
-
-        std::string stringLine = line.toStdString();
-        std::string number = stringLine.substr(11,stringLine.length());
-        line = QString::fromStdString(number);
+        std::string stringLine = line.toStdString().substr(11,line.size());
+         line = QString::fromStdString(stringLine);
         double value;
         if(line.at(0) == '-')
             value = 0.0;
         else
             value = line.toDouble();
         f0.emplace_back(value);
-        qDebug()<<line<<" value "<<value;
       }
 
     file.close();
     ExtractionHelper exHelper;
     exHelper.setF0(f0);
     ContoursDetector contoursDetector(exHelper);
-    qDebug()<<"przed find";
     contoursDetector.findContours();
     contoursDetector.classification();
 
