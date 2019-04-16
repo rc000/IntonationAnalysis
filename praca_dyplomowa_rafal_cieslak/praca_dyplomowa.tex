@@ -12,6 +12,9 @@
 \usepackage{caption}
 \usepackage{placeins}
 \usepackage{listings}
+\usepackage{gb4e}
+\noautomath
+
  \setcounter{tocdepth}{4}
  \setcounter{secnumdepth}{4}
  
@@ -88,7 +91,8 @@
 \newpage
 \section*{Wstęp}
 \addcontentsline{toc}{section}{Wstęp}
-Intonacja jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Jako, że nie niesie ze sobą żadnej semantycznej treści, jej znaczenie bywa pomijane. 
+Intonacja jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Nie niesie ze sobą żadnej semantycznej treści, dotyczy tego w jaki sposób coś mówimy, a nie co mówimy. Bez niej bardzo trudne byłoby zrozumienie języka mówionego i przekazywanych za jego pomocą myśli. Jej znaczenie często jest pomijane w syntezatorach mowy, przez co uzyskiwana w ten sposób mowa nie brzmi podobnie do ludzkiej.
+\newline
 \newline
 Celem pracy jest wykrycie charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program. Metodą badawczą używaną w tej pracy była metoda obserwacyjna.
 \begin{itemize}
@@ -238,9 +242,41 @@ Kolejną cechą zaobserwowaną przez Hirsta i Dicristo był gwałtowany skok war
 \leavevmode
 \newline
 Kolejnym badanym rodzajem wypowiedzi były pytania dopełnienia (WH-questions). Zauważono, że w wielu językach (angielski, hiszpański, rumuński, rosyjski, grecki) przebieg intonacji występującej przy wypowiadaniu tego rodzaju pytań dużo bardziej przypomina przebieg intonacji zdania twierdzącego niż pytań rozstrzygnięcia.
+\newline
 
 
+Najobszerniejsze badania nad funkcją gramatyczną intonacji zostały przeprowadzone dla języka hiszpańskiego przez Pilar Prieto i Paolo Roseano. W swoich badaniach zaobserwowali cechy charakterystyczne intonacji nie tylko dla głównych rodzajów wypowiedzi, lecz dokonali również rozróżnienia kilku rodzajów zdań twierdzących oraz pytań. Kryterium była przekazywana przez mówcę treść oraz intencje.
+\newline
+Zdania twierdzące zostały podzielone w następujący sposób:
+\begin{itemize}
+\item{Całe zdanie jest nową informacją dla słuchającego. Zdanie jest odpowiedzią na bardzo ogólne pytanie}
+\begin{exe}
+\ex Co się potem stało?
+\newline
+\textbf{Wszyscy poszli na dwór.}
+\end{exe}
+\item{Tylko część zdania jest nową informacją dla słuchającego. Jest to odpowiedź na sprecyzowane pytanie}
+\begin{exe}
+\ex Kto z nim tam poszedł?
+\newline
+Jego \textbf{brat} z nim poszedł.
+\end{exe}
 
+\item{Osoba mówiąca jest przekonana, że przekazywana przez nią informacja jest oczywista i słuchacz już ją zna}
+\item{Osoba mówiąca nie jest przekonana co do wypowiadanego zdania.}
+\begin{exe}
+\ex Kupiłeś juz jej prezent?
+\newline
+Tak, ale nie wiem czy się spodoba.
+\end{exe}
+
+\end{itemize}
+Pytania
+\begin{itemize}
+\item{Pytania dopełnienia zawierające zaimek pytajny}
+\item{Pytania rozstrzygnięcia. Pytający zadaje sprecyzowane pytanie z intencją uzyskania precyzyjnej informacji.}
+\item{Pytania oczekujące potwierdzenia. Pytający nie spodziewa się uzyskania nowej dla niego informacji, a jedynie potwierdzenia wypowiadanych słów}
+\end{itemize}
 Podsumowując, łatwo zauważyć, że wiele badań zostało już przeprowadzonych, głównie w celu rozróżniania poszczególnych rodzajów pytań i zdań twierdzących. Brakuje jednak takich badań dla zdań rozkazujących.
 
 \section{Implementacja detekcji konturów częstotliwości podstawowej}
@@ -557,7 +593,7 @@ Time_s   F0_Hz
 0.130828   229.259109
 \end{lstlisting}
 Wartości estymowane są co 10 milisekund. Brak wykrytej wartości w danym momencie, oznaczany jest przez PRAATa jako ''--undefined--''.
-\begin{lstlisting}
+\begin{lstlisting}[caption={Funkcja wczytująca do programu wartości F0 z pliku tekstowego},label={lst:label},language=C++]
 void MainWindow::processPraatFile(QString filepath)
 {
     praatFilesNumber++;
@@ -586,7 +622,9 @@ void MainWindow::processPraatFile(QString filepath)
     ContoursDetector contoursDetector(exHelper);
     contoursDetector.findContours();
     contoursDetector.classification();
+  }
 \end{lstlisting}
+Zadaniem przedstawionej funkcji jest wczytanie do programu wartości częstotliwości podstawowej uzyskanych za pomocą PRAATa, przechowywanych w pliku tekstowym. Funkcja najpierw sprawdza czy dany plik istnieje i czy da się go otworzyć. Następnie wczytywane są kolejno wszystkie linie tego pliku. Z wczytanej linii uzyskiwany jest podzbiór znaków, jako, że wartości F0 zaczynają się w 11 kolumnie każdej z linii. Jak zostało już wspomniane, pauzy w przebiegu intonacji oznaczone są jako ''--undefined--'', więc pierwszy znak tego podzbioru porównywany jest ze znakiem ''-''. Jeżeli porównanie zwróci wartość prawdziwą, do wektoru przechowującego wczytane wartości, wczytane zostanie zero. W przeciwnym razie wczytany podzbiór jest konwertowany do wartości typu zmiennoprzecinkowego o podwójnej precyzji, a nastepnie dodany do wektoru. Gdy wszystkie wartości zostaną wczytane, plik jest zamykany, a wektor wczytanych wartości poddawany jest segmentacji oraz analizie.
 \section{Analiza wykrytych segmentów}
 Po zakończeniu implementacji segmentacji konturów oraz obliczania współczynników regresji liniowej, kolejnym etapem pracy była analiza wykrytych segmentów. Celem tej analizy było wykrycie wszelkiego rodzaju cech, które powtarzałyby się w zdaniach tego samego typu, a więc mogły by być użyteczne w procesie klasyfikacji zdań. 
 Analizowane były takie własciwosci przebiegu intonacji jak:
@@ -698,6 +736,7 @@ Zdanie przedstawione na rysunku 19 zostało wypowiedziane przez mężczyznę, br
 W tym przypadku segment zawierający największe wartości w całości zlokalizowany jest w początkowej części przebiegu. Jako, że jego wartości nie są znacząco większe od wartości segmentów zlokalizowanych w części centralnej, wypowiedź ta mogłaby zostać sklasyfikowana jako zdanie twierdzące. Decydująca w przypadku tej wypowiedzi była długość najistotniejszego segmentu oraz zakres jego wartości. Proporcjonalnie do całego konturu, są one znacznie większe niż odpowiedniki zaobserwowane podczas analizy zdań twierdzących.
  
 \section{Porównanie wyników otrzymanych z wykorzystaniem YIN i Praata}
+\newpage
 \section{Wnioski}
 Uzyskane rezultaty można rozpatrywać dwustopniowo. Program uzyskuje zadowalającą skuteczność w rozpoznawaniu obu rodzajów pytań. Zaobserwowane zmiany w intonacji towarzyszącej pytaniom są wystarczające dla poprawnego rozpoznania w zdecydowanej większości przypadków. Potwierdza to dotychczasowe badania wykonane w tym zakresie. 
 \newline
@@ -715,7 +754,8 @@ The prosody of speech: Melody and rythm, Sieb Nooteboom, 1997, Utrecht Universit
 Martine Grice and Stefan Baumann, An introduction to intonation-functions and models, Ifl Phonetik and Universität Köln(2007)
 \bibitem{INT-SYS}
 Daniel Hirst Albert François di Cristo, A survey of intonation systems, 1998
-
+\bibitem{SPA}
+Prieto, P., and Roseano, P. (2018). Prosody: Stress, Rhythm, and Intonation. In K. Geeslin (Ed.), The Cambridge Handbook of Spanish Linguistics (Cambridge Handbooks in Language and Linguistics, pp. 211-236)
 
 
 

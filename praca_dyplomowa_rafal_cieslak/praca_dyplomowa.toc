@@ -16,20 +16,20 @@
 \contentsline {subsubsection}{\numberline {1.3.1}Intonacja}{10}% 
 \contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{11}% 
 \contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{12}% 
-\contentsline {section}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{13}% 
-\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{13}% 
+\contentsline {section}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{14}% 
+\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{14}% 
 \contentsline {subsection}{\numberline {2.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{14}% 
-\contentsline {subsection}{\numberline {2.3}Wczytanie pr\IeC {\'o}bki}{14}% 
-\contentsline {subsection}{\numberline {2.4}Ekstrakcja tonu podstawowego}{15}% 
-\contentsline {subsubsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{16}% 
-\contentsline {subsection}{\numberline {2.5}Wykrywanie kontur\IeC {\'o}w}{18}% 
-\contentsline {subsubsection}{\numberline {2.5.1}Analiza wst\IeC {\k e}pna wykrytego konturu}{20}% 
-\contentsline {subsubsection}{\numberline {2.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{25}% 
-\contentsline {subsection}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci kontur\IeC {\'o}w uzyskanych za pomoc\IeC {\k a} programu PRAAT}{26}% 
-\contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{27}% 
-\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{27}% 
-\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{30}% 
-\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{31}% 
-\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{34}% 
-\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{36}% 
-\contentsline {section}{\numberline {5}Wnioski}{36}% 
+\contentsline {subsection}{\numberline {2.3}Wczytanie pr\IeC {\'o}bki}{15}% 
+\contentsline {subsection}{\numberline {2.4}Ekstrakcja tonu podstawowego}{16}% 
+\contentsline {subsubsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{17}% 
+\contentsline {subsection}{\numberline {2.5}Wykrywanie kontur\IeC {\'o}w}{19}% 
+\contentsline {subsubsection}{\numberline {2.5.1}Analiza wst\IeC {\k e}pna wykrytego konturu}{21}% 
+\contentsline {subsubsection}{\numberline {2.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{26}% 
+\contentsline {subsection}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci kontur\IeC {\'o}w uzyskanych za pomoc\IeC {\k a} programu PRAAT}{27}% 
+\contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{28}% 
+\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{29}% 
+\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{31}% 
+\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{32}% 
+\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{35}% 
+\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{37}% 
+\contentsline {section}{\numberline {5}Wnioski}{38}% 
