@@ -1,21 +1,22 @@
 \babel@toc {polish}{}
 \babel@toc {polish}{}
-\contentsline {figure}{\numberline {1}{\ignorespaces Fa\IeC {\l }dy g\IeC {\l }osowe http://terapiamowy.com/index.php/niedowlad-krtani/\relax }}{6}% 
-\contentsline {figure}{\numberline {2}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{17}% 
-\contentsline {figure}{\numberline {3}{\ignorespaces Klasa stworzona w celu ekstracji F0, obliczenia energii sygna\IeC {\l }u oraz przechowywania tych warto\IeC {\'s}ci\relax }}{18}% 
-\contentsline {figure}{\numberline {4}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych kontur\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{20}% 
-\contentsline {figure}{\numberline {5}{\ignorespaces Przyk\IeC {\l }adowy przeskok(wzrost) mi\IeC {\k e}dzy pierwszym i drugim konturem, zlokalizowanymi w pocz\IeC {\k a}tkowej cz\IeC {\k e}\IeC {\'s}ci\relax }}{23}% 
-\contentsline {figure}{\numberline {6}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego konturu.\relax }}{25}% 
-\contentsline {figure}{\numberline {7}{\ignorespaces Przyk\IeC {\l }ad podzia\IeC {\l }u przebiegu intonacji na 3 cz\IeC {\k e}\IeC {\'s}ci\relax }}{26}% 
-\contentsline {figure}{\numberline {8}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{26}% 
-\contentsline {figure}{\numberline {9}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{29}% 
-\contentsline {figure}{\numberline {10}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia z nacechowaniem emocjonalnym\relax }}{30}% 
-\contentsline {figure}{\numberline {11}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez kobiet\IeC {\k e}\relax }}{30}% 
-\contentsline {figure}{\numberline {12}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{31}% 
-\contentsline {figure}{\numberline {13}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez kobiet\IeC {\k e}\relax }}{32}% 
-\contentsline {figure}{\numberline {14}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{33}% 
-\contentsline {figure}{\numberline {15}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{34}% 
-\contentsline {figure}{\numberline {16}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{34}% 
-\contentsline {figure}{\numberline {17}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{35}% 
-\contentsline {figure}{\numberline {18}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{36}% 
-\contentsline {figure}{\numberline {19}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{36}% 
+\contentsline {figure}{\numberline {1}{\ignorespaces Fa\IeC {\l }dy g\IeC {\l }osowe \IeC {\'Z}r\IeC {\'o}d\IeC {\l }o ~\cite {krtan}\relax }}{6}% 
+\contentsline {figure}{\numberline {2}{\ignorespaces Graficzny wygl\IeC {\k a}d aplikacji\relax }}{15}% 
+\contentsline {figure}{\numberline {3}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{18}% 
+\contentsline {figure}{\numberline {4}{\ignorespaces Klasa stworzona w celu ekstracji F0, obliczenia energii sygna\IeC {\l }u oraz przechowywania tych warto\IeC {\'s}ci\relax }}{19}% 
+\contentsline {figure}{\numberline {5}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych segment\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{21}% 
+\contentsline {figure}{\numberline {6}{\ignorespaces Przyk\IeC {\l }adowy przeskok(wzrost) mi\IeC {\k e}dzy pierwszym i drugim konturem, zlokalizowanymi w pocz\IeC {\k a}tkowej cz\IeC {\k e}\IeC {\'s}ci\relax }}{24}% 
+\contentsline {figure}{\numberline {7}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego segmentu.\relax }}{26}% 
+\contentsline {figure}{\numberline {8}{\ignorespaces Przyk\IeC {\l }ad podzia\IeC {\l }u przebiegu intonacji na 3 cz\IeC {\k e}\IeC {\'s}ci\relax }}{27}% 
+\contentsline {figure}{\numberline {9}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{27}% 
+\contentsline {figure}{\numberline {10}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{30}% 
+\contentsline {figure}{\numberline {11}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia z nacechowaniem emocjonalnym\relax }}{31}% 
+\contentsline {figure}{\numberline {12}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez kobiet\IeC {\k e}\relax }}{31}% 
+\contentsline {figure}{\numberline {13}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{32}% 
+\contentsline {figure}{\numberline {14}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez kobiet\IeC {\k e}\relax }}{33}% 
+\contentsline {figure}{\numberline {15}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{34}% 
+\contentsline {figure}{\numberline {16}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{35}% 
+\contentsline {figure}{\numberline {17}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{35}% 
+\contentsline {figure}{\numberline {18}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{36}% 
+\contentsline {figure}{\numberline {19}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{37}% 
+\contentsline {figure}{\numberline {20}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{37}% 

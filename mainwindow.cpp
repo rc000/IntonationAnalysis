@@ -37,10 +37,11 @@ MainWindow::MainWindow(QWidget *parent) :
         centralWidget ->setLayout(layout);
 
         setCentralWidget(centralWidget);
-        ui->tableWidget->setColumnCount(3);
+        ui->tableWidget->setVisible(false);
+        ui->tableWidget->setColumnCount(2);
         ui->tableWidget->setColumnWidth(0,200);
         ui->tableWidget->setColumnWidth(1,200);
-        ui->tableWidget->setColumnWidth(2,200);
+       // ui->tableWidget->setColumnWidth(2,200);
 
         ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -138,6 +139,7 @@ void MainWindow::setEnabledFeatureButtons(bool state)
 {
         ui->bShowWaveform->setEnabled(state);
         ui->bPlay->setEnabled(state);
+        ui->bRegression->setEnabled(state);
 }
 bool obliczone = false;
 void MainWindow::startRecording()
@@ -269,25 +271,24 @@ void MainWindow::on_bShowWaveform_clicked()
 
 void MainWindow::setLayout()
 {
-    qDebug()<<"set layout";
 
     if(chartView==nullptr)
     {
         chartView = new QChartView(chart);
        // ui->horizontalLayout_3->replaceWidget(ui->horizontalLayout_3->widget());
         ui->verticalLayout_2->addWidget(chartView);
-        qDebug()<<"if";
-        ui->textBrowser->setVisible(true);
+         //ui->textBrowser->setVisible(true);
 
 
     }
     else
     {
-        qDebug()<<"else"<<endl;
-        chartView->setChart(chart);
+         chartView->setChart(chart);
         ui->textBrowser->reload();
         chartView->repaint();
     }
+
+
 
 }
 void MainWindow::addAxis()
@@ -319,7 +320,8 @@ void MainWindow::readBuffer()
 void MainWindow::on_bLoad_pressed()
 {
 
-
+    if(!ui->tableWidget->isVisible())
+        ui->tableWidget->setVisible(true);
     setEnabledFeatureButtons(false);
     audioBuffers.clear();
 
@@ -460,7 +462,8 @@ void MainWindow::on_bPraat_clicked()
 {
     QString filepath = (QFileDialog::getOpenFileName(this, tr("choose_import"), ".", tr("txt(*.txt)")));
     processPraatFile(filepath);
-
+    if(!ui->tableWidget->isVisible())
+        ui->tableWidget->setVisible(true);
 
 }
 
@@ -503,11 +506,12 @@ void MainWindow::setResultInTable(ContoursDetector contoursDetector)
 {
 
 
+    ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursDetector.getResult().at(0)));
 
-    for(int i = 0;i<contoursDetector.getResult().size();i++)
+    /*for(int i = 0;i<contoursDetector.getResult().size();i++)
     {
         ui->tableWidget->setItem(rowCounter-1,i+1,new QTableWidgetItem(contoursDetector.getResult().at(i)));
-    }
+    }*/
    //ui->tableWidget->setItem(rowCounter-1,1,new QTableWidgetItem(contoursDetector.getResult()));
 
     detectors.push_back(contoursDetector);
