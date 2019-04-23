@@ -48,8 +48,9 @@ SOURCES += \
     yin/ext/kiss_fft.c \
     yin/ext/kiss_fftr.c \
     extractionHelper.cpp \
-    contour.cpp \
-    contoursdetector.cpp
+    segment.cpp \
+    segmentsdetector.cpp \
+    classificatornew.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -70,8 +71,9 @@ HEADERS += \
     fftt.h \
     fftw/fftw3.h \
     extractionHelper.h \
-    contour.h \
-    contoursdetector.h
+    segment.h \
+    segmentsdetector.h \
+    classificatornew.h
 
 FORMS += \
     mainwindow.ui

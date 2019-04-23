@@ -1,35 +1,35 @@
 \babel@toc {polish}{}
 \babel@toc {polish}{}
 \contentsline {section}{Wst\IeC {\k e}p}{4}% 
-\contentsline {section}{\numberline {1}Wprowadzenie teoretyczne}{5}% 
-\contentsline {subsection}{\numberline {1.1}Sygna\IeC {\l } mowy}{5}% 
-\contentsline {subsubsection}{\numberline {1.1.1}Powstawanie mowy}{5}% 
-\contentsline {subsubsection}{\numberline {1.1.2}Reprezentacja mowy}{7}% 
-\contentsline {subsubsection}{\numberline {1.1.3}Rozumienie mowy}{7}% 
-\contentsline {subsubsection}{\numberline {1.1.4}Rejestrowanie sygna\IeC {\l }u mowy}{8}% 
-\contentsline {subsection}{\numberline {1.2}Ton podstawowy}{8}% 
-\contentsline {subsubsection}{\numberline {1.2.1}Definicja tonu podstawowego}{8}% 
-\contentsline {subsubsection}{\numberline {1.2.2}Formanty}{9}% 
-\contentsline {subsubsection}{\numberline {1.2.3}Przegl\IeC {\k a}d metod estymacji}{9}% 
-\contentsline {subsubsection}{\numberline {1.2.4}Definicja algorytmu YIN}{10}% 
-\contentsline {subsection}{\numberline {1.3}Prozodia}{10}% 
-\contentsline {subsubsection}{\numberline {1.3.1}Intonacja}{10}% 
-\contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{11}% 
-\contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{12}% 
-\contentsline {section}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{14}% 
-\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{14}% 
-\contentsline {subsection}{\numberline {2.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{15}% 
-\contentsline {subsection}{\numberline {2.3}Wczytanie pr\IeC {\'o}bki}{16}% 
-\contentsline {subsection}{\numberline {2.4}Ekstrakcja tonu podstawowego}{17}% 
-\contentsline {subsubsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{17}% 
-\contentsline {subsection}{\numberline {2.5}Wykrywanie poszczeg\IeC {\'o}lnych segment\IeC {\'o}w}{20}% 
-\contentsline {subsubsection}{\numberline {2.5.1}Analiza wst\IeC {\k e}pna wykrytego fragmentu}{22}% 
-\contentsline {subsubsection}{\numberline {2.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{27}% 
-\contentsline {subsection}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci uzyskanych za pomoc\IeC {\k a} programu PRAAT}{28}% 
-\contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{29}% 
-\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{30}% 
-\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{32}% 
-\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{33}% 
-\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{36}% 
-\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{38}% 
-\contentsline {section}{\numberline {5}Wnioski}{39}% 
+\contentsline {section}{\numberline {1}Wprowadzenie teoretyczne}{6}% 
+\contentsline {subsection}{\numberline {1.1}Sygna\IeC {\l } mowy}{6}% 
+\contentsline {subsubsection}{\numberline {1.1.1}Powstawanie mowy}{6}% 
+\contentsline {subsubsection}{\numberline {1.1.2}Reprezentacja mowy}{8}% 
+\contentsline {subsubsection}{\numberline {1.1.3}Rozumienie mowy}{8}% 
+\contentsline {subsubsection}{\numberline {1.1.4}Rejestrowanie sygna\IeC {\l }u mowy}{9}% 
+\contentsline {subsection}{\numberline {1.2}Ton podstawowy}{9}% 
+\contentsline {subsubsection}{\numberline {1.2.1}Definicja tonu podstawowego}{9}% 
+\contentsline {subsubsection}{\numberline {1.2.2}Formanty}{10}% 
+\contentsline {subsubsection}{\numberline {1.2.3}Przegl\IeC {\k a}d metod estymacji}{10}% 
+\contentsline {subsubsection}{\numberline {1.2.4}Definicja algorytmu YIN}{11}% 
+\contentsline {subsection}{\numberline {1.3}Prozodia}{11}% 
+\contentsline {subsubsection}{\numberline {1.3.1}Intonacja}{11}% 
+\contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{12}% 
+\contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{13}% 
+\contentsline {section}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{16}% 
+\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{16}% 
+\contentsline {subsection}{\numberline {2.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{16}% 
+\contentsline {subsection}{\numberline {2.3}Wczytanie pr\IeC {\'o}bki}{17}% 
+\contentsline {subsection}{\numberline {2.4}Ekstrakcja tonu podstawowego}{19}% 
+\contentsline {subsubsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{19}% 
+\contentsline {subsection}{\numberline {2.5}Wykrywanie poszczeg\IeC {\'o}lnych segment\IeC {\'o}w}{22}% 
+\contentsline {subsubsection}{\numberline {2.5.1}Analiza wst\IeC {\k e}pna wykrytego fragmentu}{25}% 
+\contentsline {subsubsection}{\numberline {2.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{29}% 
+\contentsline {subsection}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci uzyskanych za pomoc\IeC {\k a} programu PRAAT}{30}% 
+\contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{31}% 
+\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{32}% 
+\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{34}% 
+\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{35}% 
+\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{38}% 
+\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{40}% 
+\contentsline {section}{\numberline {5}Wnioski}{41}% 

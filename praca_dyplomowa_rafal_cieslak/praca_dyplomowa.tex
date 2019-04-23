@@ -72,9 +72,7 @@
 \newpage
 \tableofcontents
 \listoffigures
-\listoftables
 
-\listofmycapequs
 
 \newpage
 \begin{abstract}
@@ -91,10 +89,18 @@
 \newpage
 \section*{Wstęp}
 \addcontentsline{toc}{section}{Wstęp}
-Intonacja jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Nie niesie ze sobą żadnej semantycznej treści, dotyczy tego w jaki sposób coś mówimy, a nie co mówimy. Bez niej bardzo trudne byłoby zrozumienie języka mówionego i przekazywanych za jego pomocą myśli. Jej znaczenie często jest pomijane w syntezatorach mowy, przez co uzyskiwana w ten sposób mowa nie brzmi podobnie do ludzkiej.
+Mowa jest najpowszechniejszym sposobem komunikacji międzyludzkiej. Używając jej na codzień, nie zdajemy sobie sprawy jak bardzo złożonym jest procesem. Wydaje się być czymś normalnym i oczywistym. Mimo tego, że otacza nas cały czas, nauka wciąż nie poznała dokładnie wszystkich mechanizmów stojących za jej wytwarzaniem i rozumieniem. Złożoności dodaje fakt, że w mowie nie chodzi tylko o wypowiedziane słowa. Dla naszego odbierania mowy ważna jest również cała otoczka - ton głosu, jego barwa, akcentowanie i wiele więcej cech, których postrzeganie jest subiektywne. Dawno zostało zauważone, że cechy te mogą istotnie wpływać na nasze życie. Ludzie podświadomie wybierają towarzystwo osób, których głos jest dobrze przez nich postrzegany. Bez tych otaczających wypowiadane słowa cech, nasza mowa brzmiałaby podobnie do uzyskiwanej za pomocą syntezatorów.
 \newline
 \newline
-Celem pracy jest wykrycie charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program. Metodą badawczą używaną w tej pracy była metoda obserwacyjna.
+Jedną z takich cech jest intonacja. Przy tym jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Nie niesie ze sobą żadnej semantycznej treści, dotyczy tego w jaki sposób coś mówimy, a nie co mówimy. Nie zdajemy sobie na codzień z tego sprawy ale bez niej bardzo trudne byłoby zrozumienie języka mówionego i przekazywanych za jego pomocą myśli. Wpływa na nasze postrzeganie zdań wypowiedzianych przez naszego rozmówcę. Dzięki niej momentalnie wiemy czy osoba, z którą rozmawiamy zadała nam pytanie czy nakazała nam wykonanie jakiejś czynności. Nie potrzebujemy do tego znaków przestankowych, używanych w języku pisanym.
+\newline
+\newline
+Celem pracy jest zrozumienie jak bardzo wpływa na ten proces i odpowiedź na pytanie czy analizowanie samej intonacji jest wystarczające do stwierdzenia do jakiej kategorii można zakwalifikować daną wypowiedź. W tym celu podjęta zostanie próba wykrycia charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program.
+\newline
+\newline
+Jako, że analiza będzie się opierać w głównej mierze na próbach zauważenia charakterystycznych róznic między róznymi wypowiedziami, metodą badawczą zastosowaną w tej pracy będzie metoda obserwacyjna.
+\newpage
+Praca została podzielona na trzy główne rozdziały:
 \begin{itemize}
 \item{W rozdziale pierwszym przedstawione zostały istotne zagadnienia teoretyczne związane z produkcją mowy, wytwarzaniem częstotliwości podstawowej,
 oraz przybliżone zostały funkcje intonacji}
@@ -132,7 +138,7 @@ Składowymi aparatu mowy są:
 Dzięki tej czynności, strumień powietrza wprowadzany jest w drgania, co postrzegamy jako dźwięczność. Cecha ta występuje wraz z każdą samogłoską oraz przy niektórych spółgłoskach. Podczas drgań generowany jest ton krtaniowy, zwany również częstotliwością podstawową, oznaczany w literaturze jako F0. 
 \item Aparat artykulacyjny, w którego skład wchodzą jamy przewodu oddechowego, znajdującego się ponad krtanią. Najważniejsze z punktu widzenia artykulacji - nosowa, gardłowa oraz ustna - nazywane są nasadą. Artykulatory znajdujące się w nasadzie dzielone są na ruchome oraz nieruchome. Do ruchomych zaliczamy język, podniebienie miękkie, wargi oraz żuchwę. Nieruchomymi określamy zęby, dziąsła oraz podniebienie twarde. Ich ustawienie ostatecznie determinuje cechy wytwarzanego dźwięku. 
 \end{enumerate}
- W zaleźnosci od tego czy dana głoska jest dźwięczna czy bezdźwięczna proces powstawania dźwięku przebiega w trochę inny sposób. W obu przypadkach w początkowej fazie wzrasta cisnienie w płucach, co prowadzi do wydechu. ~\cite{produkcja_mowy} Powietrze dostaje się do tchawicy. Na szczycie tchawicy znajduje się krtań, należąca do aparatu fonacyjnego. W przypadku głosek dźwięcznych, w miarę przepływu powietrza przez głosnię, spada lokalne cisnienie, co pozwala mięsniom krtani zamknąć głosnię, przerywając przepływ powietrza. To powoduje wzrost cisnienia, prowadzący do kolejnego oddalenia się strun głosowych. Cały ten cykl zapętla się, struny wibrują tworząc dźwięk, kierowany do aparatu artykulacyjnego. Na tym etapie, poza artykulacją, zachodzi również tłumienie niektórych częstotliwosci, nie będących harmonicznymi fali głosniowej. Nie wytłumione zostają tylko częstotliwosci będace bliskie naturalnemu rezonansowi traktu głosowego. Ruszając szczęką, ustami lub zmieniając połozenie języka, możemy zmieniać uzyskiwany dźwięk, ponieważ zmieni się rezonans traktu głosowego, a zatem inne częstotliwosci zostaną wytłumione. Gdy wypowiadane są głoski bezdźwięczne, krtań nie odgrywa istotnej roli, a modulacja dźwięku odpowiedzialna za uzyskanie brzmienia głoski odbywa się w aparacie artykulacyjnym. Jako rezultat kompletnego procesu, uzyskiwana jest fala akustyczna, wydostająca się z ust. Prawdziwosć opisanych różnic między dwoma rodzajami głosek można sprawdzić w prosty sposób, przykładając palce do krtani. W czasie wypowiadania głosek dźwięcznych czyli wszystkich samogłosek oraz częsci spółgłosek, takich jak b, d, g, w, z, ź, ż, l, ł, r, m, n, j , dz, dź, dż, wyczuwalne będę wibracje, które nie wystąpią podczas wypowiadania głosek bezdźwięcznych, takich jak p, t, k, f, s, ś, sz, c, ć, cz, ch.
+ W zaleźnosci od tego czy dana głoska jest dźwięczna czy bezdźwięczna proces powstawania dźwięku przebiega w trochę inny sposób. W obu przypadkach w początkowej fazie wzrasta cisnienie w płucach, co prowadzi do wydechu.~\cite{produkcja_mowy} Powietrze dostaje się do tchawicy. Na szczycie tchawicy znajduje się krtań, należąca do aparatu fonacyjnego. W przypadku głosek dźwięcznych, w miarę przepływu powietrza przez głosnię, spada lokalne cisnienie, co pozwala mięsniom krtani zamknąć głosnię, przerywając przepływ powietrza. To powoduje wzrost cisnienia, prowadzący do kolejnego oddalenia się strun głosowych. Cały ten cykl zapętla się, struny wibrują tworząc dźwięk, kierowany do aparatu artykulacyjnego. Na tym etapie, poza artykulacją, zachodzi również tłumienie niektórych częstotliwosci, nie będących harmonicznymi fali głosniowej. Nie wytłumione zostają tylko częstotliwosci będace bliskie naturalnemu rezonansowi traktu głosowego. Ruszając szczęką, ustami lub zmieniając połozenie języka, możemy zmieniać uzyskiwany dźwięk, ponieważ zmieni się rezonans traktu głosowego, a zatem inne częstotliwosci zostaną wytłumione. Gdy wypowiadane są głoski bezdźwięczne, krtań nie odgrywa istotnej roli, a modulacja dźwięku odpowiedzialna za uzyskanie brzmienia głoski odbywa się w aparacie artykulacyjnym. Jako rezultat kompletnego procesu, uzyskiwana jest fala akustyczna, wydostająca się z ust. Prawdziwosć opisanych różnic między dwoma rodzajami głosek można sprawdzić w prosty sposób, przykładając palce do krtani. W czasie wypowiadania głosek dźwięcznych czyli wszystkich samogłosek oraz częsci spółgłosek, takich jak b, d, g, w, z, ź, ż, l, ł, r, m, n, j , dz, dź, dż, wyczuwalne będę wibracje, które nie wystąpią podczas wypowiadania głosek bezdźwięcznych, takich jak p, t, k, f, s, ś, sz, c, ć, cz, ch.
 Fakt, że wiele różnych narządów bierze udział w tworzeniu mowy powoduje, że zaburzenia zdrowotne każdego z nich mają istotny wpływ na cały proces. Zakres powstałych w ten sposób zaburzeń mowy jest szeroki - od drobnych wad wymowy do całkowitej utraty mowy.
 
 
@@ -155,7 +161,7 @@ Sygnał dźwiękowy może być nagrywany w wersji monofonicznej lub stereofonicz
 \subsection{Ton podstawowy}
 
 \subsubsection{Definicja tonu podstawowego}
-W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0.W zależności od potrzeb, ton podstawowy bywa różnie definiowany. W kontekście przetwarzania sygnału  mowy rozumiany jest jako wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Powstałe w ten sposób częstotliwosci mieszczą się w zakresie 85-180Hz dla mężczyzn oraz w zakresie 165-255Hz dla kobiet.Wartosci te mogą być wyższe gdy osoba mówiąca znajduje się pod wpływem silnych emocji. Poza płcią oraz stanem emocjalnym, zależne są również od wieku, budowy i kształtu strun głosowych ogólnego stanu zdrowia oraz rodzaju wypowiedzi. Badania nad częstotliwoscią podstawową produkowaną przez męzczyzn pokazały, że jej srednie wartosci spadają po osięgnięciu 35 roku życia, by ponownie ulec wzrostowi po przekroczeniu 55 roku życia. ~\cite{Hollien_Ship} W przypadku kobiet, wartosci F0 zaczynaja spadać w okresie menopauzy, osiagając finalne wartosci okolo 70 roku zycia.~\cite{Pegoraro-Krook} Badania nad wpływem palenia papierosów na wartosci F0 pokazały, że wieloletnie palenie również doprowadza do obniżenia tych wartosci, jako że nawyk ten wpływa negatywnie na krtań. ~\cite{Gilbert}
+W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0.W zależności od potrzeb, ton podstawowy bywa różnie definiowany. W kontekście przetwarzania sygnału  mowy rozumiany jest jako wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Powstałe w ten sposób częstotliwosci mieszczą się w zakresie 85-180Hz dla mężczyzn oraz w zakresie 165-255Hz dla kobiet.Wartosci te mogą być wyższe gdy osoba mówiąca znajduje się pod wpływem silnych emocji. Poza płcią oraz stanem emocjalnym, zależne są również od wieku, budowy i kształtu strun głosowych ogólnego stanu zdrowia oraz rodzaju wypowiedzi. Badania nad częstotliwoscią podstawową produkowaną przez męzczyzn pokazały, że jej srednie wartosci spadają po osięgnięciu 35 roku życia, by ponownie ulec wzrostowi po przekroczeniu 55 roku życia. ~\cite{Hollien_Ship} W przypadku kobiet, wartosci F0 zaczynaja spadać w okresie menopauzy, osiagając finalne wartosci okolo 70 roku zycia.~\cite{Pegoraro-Krook} Badania nad wpływem palenia papierosów na wartosci F0 pokazały, że wieloletnie palenie również doprowadza do obniżenia tych wartosci, jako że nawyk ten wpływa negatywnie na krtań.~\cite{Gilbert}
 Przebieg częstotliwości podstawowej w dużym stopniu odzwierciedla intonację wypowiedzi. Gdyby ten przebieg był stały, mowa byłaby odbierana jako monotonna lub brzmiąca maszynowo.  Pełni istotną funkcję w językach tonalnych, w których wielu słów jest zapisywanych tak samo, a jedynie nadawany im ton pozwala rozróżnić ich znaczenie. Z tego powodu też poprawna estymacja F0 jest konieczna w systemach rozpoznawania mowy dla języków tonalnych.
 Dla idealnie okresowego sygnału, częstotliwość podstawowa byłaby po prostu odwrotnością okresu. Okresem nazywamy czas pomiędzy kompletnym cyklem otwarcia i zamknięcia głosni. Jednak sygnał mowy jest sygnałem bardzo dynamicznym, co sprawia, że estymacja F0 przestaje być zadaniem trywialnym. Dodatkowo transformacja sygnału analogowego do postaci dyskretnej, wiążąca się zawsze z utratą danych oraz towarzyszący nagranemu głosowi szum wpływają negatywnie na dokładność estymacji. 
 \subsubsection{Formanty}
@@ -181,7 +187,7 @@ Przykład takiego zdania:
 \newline Jako, że taki szyk zarówno zdania jak i pytania jest całkowicie poprawny w języku polskim, bez nadania wypowiedzi odpowiedniej intonacji odbiorca nie jest w stanie zrozumieć intencji osoby mówiącej.
 \subsubsection{Funkcje intonacji}
 Intonacja jest używana we wszystkich wokalnych językach, spełniając różne funkcje. 
-Przedstawiona poniżej lista funkcji jest rezultatem badań nowozelandzkiego lingwisty Scotta Thornbury ~\cite{TS} 
+Przedstawiona poniżej lista funkcji jest rezultatem badań nowozelandzkiego lingwisty Scotta Thornbury~\cite{TS} 
 
 
 \begin{itemize}
@@ -218,7 +224,7 @@ Nadając wyższą intonację poszczególnym słowom, osoba mówiąca może uwyda
 Do tej pory przeprowadzono wiele badań analizujących każdą z funkcji intonacji. W tym podrozdziale zostaną opisane rezultaty badań nad funkcją gramatyczną intonacji. Najczęściej badane były różnice między zdaniami twierdzącymi, a pytaniami z intonacją rosnącą.
 \leavevmode
 \newline
-Martine Grice i Stefan Baumann ~\cite{GRI-BA} zajmowali się badaniem intonacji w języku niemieckim. Zauważyli wpływ intonacji na odróżnianie pytań od zdań, składających się z tych samych słów.W badanych przez z nich pytaniach nawiązujących upewnienie, wyraźnie zauważalny był silny wzrost wartości F0 na końcu wypowiedzi. Nie dotyczyło to jednak każdego rodzaju pytań. W pytaniach zawierających zaimek pytajny, nie zaobserwowali końcowego wzrostu intonacji. W literaturze anglojęzycznej takie pytania nazywane są `Wh-questions', ponieważ zaczynają się najczęściej od When, Who, Where, itd. Jednak bazując na wynikach ich badań, można zauważyć, że ta zasada nie jest aplikowalna do każdego języka, w przeprowadzanych przez autorów badaniach nad pytaniami zadanymi w językach romańskich, zaobserwowano wzrost intonacji nie na samym końcu wypowiedzi, lecz moment przed, a po samym wzroście nastąpił spadek.
+Martine Grice i Stefan Baumann~\cite{GRI-BA} zajmowali się badaniem intonacji w języku niemieckim. Zauważyli wpływ intonacji na odróżnianie pytań od zdań, składających się z tych samych słów.W badanych przez z nich pytaniach nawiązujących upewnienie, wyraźnie zauważalny był silny wzrost wartości F0 na końcu wypowiedzi. Nie dotyczyło to jednak każdego rodzaju pytań. W pytaniach zawierających zaimek pytajny, nie zaobserwowali końcowego wzrostu intonacji. W literaturze anglojęzycznej takie pytania nazywane są `Wh-questions', ponieważ zaczynają się najczęściej od When, Who, Where, itd. Jednak bazując na wynikach ich badań, można zauważyć, że ta zasada nie jest aplikowalna do każdego języka, w przeprowadzanych przez autorów badaniach nad pytaniami zadanymi w językach romańskich, zaobserwowano wzrost intonacji nie na samym końcu wypowiedzi, lecz moment przed, a po samym wzroście nastąpił spadek.
 \leavevmode
 \newline
 Daniel Hirst i Albert Dicristo~\cite{INT-SYS} badając intonację dla wielu języków odnotowali powszechność tendencji wzrostowej wartości F0 w przebiegu intonacji dla pytań typu tak-nie. Nie zawsze tego pytanie musiało kończyc się wysokim skokiem wartości częstotliwości podstawowej. W niektórych językach (angielski, szwedzki, portugalijski, fiński, zachodnioarabski, węgierski, tajski), tendencja wzrostowa była zauważalna jedynie w części wypowiedzi.
@@ -227,6 +233,7 @@ Jednak w przypadkach dwóch języków, wzrost taki nie występował. W języku d
 \leavevmode
 \newline
 Kolejnym badanym rodzajem wypowiedzi były pytania dopełnienia (WH-questions). Zauważono, że w wielu językach (angielski, hiszpański, rumuński, rosyjski, grecki) przebieg intonacji występującej przy wypowiadaniu tego rodzaju pytań dużo bardziej przypomina przebieg intonacji zdania twierdzącego niż pytań rozstrzygnięcia.
+\newline
 \newline
 Najobszerniejsze badania nad funkcją gramatyczną intonacji zostały przeprowadzone dla języka hiszpańskiego przez Pilar Prieto i Paolo Roseano~\cite{SPA} W swoich badaniach zaobserwowali cechy charakterystyczne intonacji nie tylko dla głównych rodzajów wypowiedzi, lecz dokonali również rozróżnienia kilku rodzajów zdań twierdzących oraz pytań. Kryterium była przekazywana przez mówcę treść oraz intencje.
 \newline
@@ -278,7 +285,7 @@ Pytania
 Przyklady podane do każdej z kategorii mają na celu pokazać, że taki podział może istnieć również w języku polskim. Niemniej jednak ich intonacja może znacznie sie różnić od zdań wypowiedzianych w języku hiszpańskim, który był obiektem badań. Rezultaty badań dla zdań rozkazujących pokazały duże podobieństwo konturów do dwóch pierwszych kategorii zdań twierdzących. Nie zostały zaobserwowane wyraźne róznice.
 \newline
 Podsumowując, łatwo zauważyć, że wiele badań zostało już przeprowadzonych, głównie w celu rozróżniania poszczególnych rodzajów pytań i zdań twierdzących. Brakuje jednak takich badań dla zdań rozkazujących.
-
+\newpage
 \section{Implementacja detekcji konturów częstotliwości podstawowej}
 
 
@@ -370,10 +377,10 @@ Do ekstrakcji cech stworzona została klasa ExtractionHelper.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.9]{featuresExtractor.png}
-\caption{Klasa stworzona w celu ekstracji F0, obliczenia energii sygnału oraz przechowywania tych wartości}
+\caption{Klasa stworzona w celu ekstracji F0 oraz przechowywania tych wartości}
 \end{figure}
 \FloatBarrier
-
+\newpage
 \begin{lstlisting}[caption={Przedstawienie sposobu dokonywania podziału na ramki, wraz z zastosowaniem overlappingu},label={lst:label},language=C++]
 void ExtractionHelper::calcF0(int numberOfFrames)
 {
@@ -426,6 +433,7 @@ Wszystkie wyestymowane wartości częstotliwości podstawowej na tą chwilę prz
 Dla każdej ze zmiennych istnieją funkcje typu get i set, odpowiednio zwracające wartość zmiennej oraz przypisujące dana wartość. Zostały one pominięte w celu zwiększenia czytelności diagramów.
 Główna funkcjonalność zawarta jest w funkcji findContours() w klasie ContoursDetector. Wykryte kontury będą umieszczane jako obiekty typu Contour, w wektorze contoursVector. W wektorze tym będą również umieszczane fragmenty z wartościami zerowymi, dla których nie wykryto występowania intonacji. Będą one pomijane w dalszej analizie, dodawane są w celu ułatwienia przejrzystego wyświetlania konturów na wykresie, w miejscu w którym rzeczywiście się znajdują.
 
+\newpage
 \begin{lstlisting}[caption={Początkowa faza funkcji wykrywającej segmenty},label={lst:label},language=C++]
 #define TRANSITION 15
 
@@ -486,7 +494,7 @@ Metodą obserwacji zauważono, że te składające się tylko z jednej wartości
         return true;
     }
 \end{lstlisting}
-Póżniejsza analiza segmentów w celu wykrycia rodzaju danego zdania, oparta jest w dużej mierze na położeniu danegofragmentu w przestrzeni przebiegu całej intonacji. Przebieg intonacji zawiera wartości od pierwszego poprawnego segmentu do ostatniego. Wykres jest dzielony na 3 części. Na część początkową oraz końcową przypada po 25\% całości, podczas gdy część środkowa zawiera pozostałą połowę.
+Póżniejsza analiza segmentów w celu wykrycia rodzaju danego zdania, oparta jest w dużej mierze na położeniu danego fragmentu w przestrzeni przebiegu całej intonacji. Przebieg intonacji zawiera wartości od pierwszego poprawnego segmentu do ostatniego. Wykres jest dzielony na 3 części. Na część początkową oraz końcową przypada po 25\% całości, podczas gdy część środkowa zawiera pozostałą połowę.
 W celu przydzielenia segmentom odpowiedniej lokalizacji, używane są zmienne typu całkowitego, lastIndexOfFirstPart oraz lastIndexOfCenterPart. Wyznaczają one końce początkowej oraz środkowej części.
 \begin{lstlisting}[caption={Dalsza część funkcji foundNewContour},label={lst:label},language=C++]
      if (ContoursVector.size()>0)

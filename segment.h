@@ -20,9 +20,9 @@
 #define MAN 1
 QT_CHARTS_USE_NAMESPACE
 
-class Contour {
+class Segment {
 public:
-    Contour(int state=0){startState = state; seriesRegresionLine = nullptr; centerRegressionLine = 0.0;}
+    Segment(int state=0){startState = state; seriesRegresionLine = nullptr; centerRegressionLine = 0.0;}
     size_t getStartIndex(){return startIndex;}
     size_t getEndIndex(){return endIndex;}
     size_t getCenter(){return centerIndex;}
@@ -43,9 +43,9 @@ public:
 
     void addValue(double value){values.emplace_back(value);}
     void clear(){values.clear();startState = 0;}
-    size_t getContourLength(){return endIndex-startIndex;}
+    size_t getSegmentLength(){return endIndex-startIndex;}
 
-    bool isContourValidate()
+    bool isSegmentValidate()
     {
         if (values.size()<2)
             return false;
@@ -56,14 +56,20 @@ public:
     double getCoefA(){ return coefA;}
     double getCoefB(){ return coefB;}
     int getStartState(){return startState;}
-    double getCenterOfRegressionLine(){return centerRegressionLine;}
+    double getCenterOfRegressionLine()
+    {
+        if (std::abs(coefA)< 0.1)
+        {
+            return getMax();
+        }
+        return centerRegressionLine;}
     std::vector<double>getValuesVector(){return values;}
     double getMin(){ return *std::min_element(values.begin(),values.end());}
     double getMax(){ return *std::max_element(values.begin(),values.end());}
 
     void setCoefA(double coefA){ this->coefA = coefA;}
     void setCoefB(double coefB){ this->coefB = coefB;}
-    void setContourLength(int length){this->contourLength = length;}
+    void setSegmentLength(int length){this->segmentLength = length;}
     void setStartState(int state){startState = state;}
     void setCenterRegressionLine(double center){this->centerRegressionLine = center;}
     void setValue(int index, double value){this->values.at(index) = value;}
@@ -85,7 +91,7 @@ private:
 
     double longestValue;
     double coefA,coefB;
-    int contourLength;
+    int segmentLength;
     int startState;
     bool imperative = false;
     double centerRegressionLine;

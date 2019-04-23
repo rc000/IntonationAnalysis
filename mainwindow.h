@@ -19,7 +19,7 @@
 #include <borderlayout.h>
 #include <classificator.h>
 //#include <contour.h>
-#include "contoursdetector.h"
+#include "segmentsdetector.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -47,7 +47,7 @@ public:
     void setEnabledFeatureButtons(bool state);
     void setLayout();
     void loadWavFile(QString wavFilePath);
-    void setResultInTable(ContoursDetector contourDetector);
+    void setResultInTable(SegmentsDetector segmentDetector);
     void processPraatFile(QString filepath);
 
 
@@ -67,7 +67,6 @@ public:
 private slots:
     void on_bLoad_pressed();
     void on_bTestBase_clicked();
-    void on_pushButton_clicked();
 
     void on_bRegression_clicked();
 
@@ -101,13 +100,13 @@ private:
      QAudioDecoder *audioDecoder;
     qreal peak = SHRT_MAX;
 
-    QScatterSeries *seriesContours = new QScatterSeries();
+    QScatterSeries *seriesSegments = new QScatterSeries();
     std::vector<QLineSeries*>seriesRegresionLines;
     int rowCounter = 0;
     QAudioFormat desiredFormat;
     QString wavFilePath;
     std::vector<QString>wavFiles;
-    std::vector<ContoursDetector> detectors;
+    std::vector<SegmentsDetector> detectors;
     QStringList wavFilesList;
     int praatFilesNumber = 0;
 

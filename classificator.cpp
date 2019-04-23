@@ -7,54 +7,54 @@
 
 
 
-#define centerHasContourWithBiggerF0ValueThanEnd (1<<1)
+#define centerHasSegmentWithBiggerF0ValueThanEnd (1<<1)
 
-#define highestContourLocatedBetweenStartEndCenter (1<<2)
+#define highestSegmentLocatedBetweenStartEndCenter (1<<2)
 
-#define centerHighestContourSteeplyFalling (1<<3)
+#define centerHighestSegmentSteeplyFalling (1<<3)
 
 
-#define allContoursAreFalling (1<<4)
-#define endHasContourWithBiggerF0ValueThanStart (1<<5)
+#define allSegmentsAreFalling (1<<4)
+#define endHasSegmentWithBiggerF0ValueThanStart (1<<5)
 
-#define endHasContourWithMuchBiggerF0ValueThanCenter (1<<6)
+#define endHasSegmentWithMuchBiggerF0ValueThanCenter (1<<6)
 
-#define startHasContourWithSlightlyBiggerF0ValueThanCenter (1<<7)
+#define startHasSegmentWithSlightlyBiggerF0ValueThanCenter (1<<7)
 
 #define bigGrowthAtTheBeginning (1<<8)
 
-#define centerHighestContourNotSteeplyFalling (1<<9)
+#define centerHighestSegmentNotSteeplyFalling (1<<9)
 
 #define bigGrowthAtTheEnd (1<<10)
-#define startHasContourWithMuchBiggerF0ValueThanCenter (1<<11)
+#define startHasSegmentWithMuchBiggerF0ValueThanCenter (1<<11)
 
 #define bigDropAtTheBeginning (1<<12)
 
-#define highestContourAtBeginningStronglyRising (1<<13)
+#define highestSegmentAtBeginningStronglyRising (1<<13)
 
-#define centerContourIsHighestAndSteeplyFalling (1<<14)
+#define centerSegmentIsHighestAndSteeplyFalling (1<<14)
 #define impRegion (1<<15)
-#define longContour (1<<16)
+#define longSegment (1<<16)
 
 
 static const char *analysisResults[] =
 {
-    "centerHasContourWithBiggerF0ValueThanEnd",
-    "highestContourLocatedBetweenStartEndCenter",
-    "centerHighestContourSteeplyFalling",
-    "allContoursAreFalling",
-    "endHasContourWithBiggerF0ValueThanStart",
-    "endHasContourWithMuchBiggerF0ValueThanCenter",
-    "startHasContourWithSlightlyBiggerF0ValueThanCenter",
+    "centerHasSegmentWithBiggerF0ValueThanEnd",
+    "highestSegmentLocatedBetweenStartEndCenter",
+    "centerHighestSegmentSteeplyFalling",
+    "allSegmentsAreFalling",
+    "endHasSegmentWithBiggerF0ValueThanStart",
+    "endHasSegmentWithMuchBiggerF0ValueThanCenter",
+    "startHasSegmentWithSlightlyBiggerF0ValueThanCenter",
     "bigGrowthAtTheBeginning",
-    "centerHighestContourNotSteeplyFalling",
+    "centerHighestSegmentNotSteeplyFalling",
     "bigGrowthAtTheEnd",
-    "startHasContourWithMuchBiggerF0ValueThanCenter",
+    "startHasSegmentWithMuchBiggerF0ValueThanCenter",
     "bigDropAtTheBeginning",
-    "highestContourAtBeginningStronglyRising",
-    "centerContourIsHighestAndSteeplyFalling",
+    "highestSegmentAtBeginningStronglyRising",
+    "centerSegmentIsHighestAndSteeplyFalling",
     "impRegion",
-    "longContour"
+    "longSegment"
 };
 
 int numberOfMaxResults = 16;
@@ -67,40 +67,40 @@ int notImperative = 0;
 int notDeclarative = 0;
 
 
-double highestContourValue = 0.0;
+double highestSegmentValue = 0.0;
 int indexOfHighestValue = 0;
 
 void initialization()
 {
-   declarative|= (startHasContourWithSlightlyBiggerF0ValueThanCenter
-                  | allContoursAreFalling
-                  |centerContourIsHighestAndSteeplyFalling);
+   declarative|= (startHasSegmentWithSlightlyBiggerF0ValueThanCenter
+                  | allSegmentsAreFalling
+                  |centerSegmentIsHighestAndSteeplyFalling);
 
-   notDeclarative |= (endHasContourWithBiggerF0ValueThanStart
-                       |endHasContourWithMuchBiggerF0ValueThanCenter
+   notDeclarative |= (endHasSegmentWithBiggerF0ValueThanStart
+                       |endHasSegmentWithMuchBiggerF0ValueThanCenter
                        |bigGrowthAtTheEnd
-                       |startHasContourWithMuchBiggerF0ValueThanCenter
-                       |highestContourLocatedBetweenStartEndCenter);
+                       |startHasSegmentWithMuchBiggerF0ValueThanCenter
+                       |highestSegmentLocatedBetweenStartEndCenter);
 
 
 
 
-   conclusiveQuestion |=  (endHasContourWithMuchBiggerF0ValueThanCenter
-                          | endHasContourWithBiggerF0ValueThanStart
+   conclusiveQuestion |=  (endHasSegmentWithMuchBiggerF0ValueThanCenter
+                          | endHasSegmentWithBiggerF0ValueThanStart
                           | bigGrowthAtTheEnd);
 
-   completenessQuestion |= (startHasContourWithMuchBiggerF0ValueThanCenter);
+   completenessQuestion |= (startHasSegmentWithMuchBiggerF0ValueThanCenter);
 
 
 
 
-   imperative |= (highestContourLocatedBetweenStartEndCenter
-                 |centerHighestContourNotSteeplyFalling
-                  |highestContourAtBeginningStronglyRising
+   imperative |= (highestSegmentLocatedBetweenStartEndCenter
+                 |centerHighestSegmentNotSteeplyFalling
+                  |highestSegmentAtBeginningStronglyRising
                   |impRegion
-                  |longContour);
-   notImperative |= (endHasContourWithMuchBiggerF0ValueThanCenter
-                     | endHasContourWithBiggerF0ValueThanStart);
+                  |longSegment);
+   notImperative |= (endHasSegmentWithMuchBiggerF0ValueThanCenter
+                     | endHasSegmentWithBiggerF0ValueThanStart);
 
 }
 
@@ -122,7 +122,7 @@ QString bin(unsigned n)
 
 Classificator::Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart, double length)
     :lastIndexOfBeginningPart(lastIndexOfBeginningPart),lastIndexOfCenterPart(lastIndexOfCenterPart),
-      longestContoursLength(length)
+      longestSegmentLength(length)
 {
     highestValueOfRegresionLinesAtTheBeginning = 0.0;
     highestValueOfRegresionLinesAtTheCenter = 0.0;
@@ -131,11 +131,11 @@ Classificator::Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterP
     initialization();
 }
 
-bool Classificator::areAllContoursFalling()
+bool Classificator::areAllSegmentsFalling()
 {
-    for (int i=0;i<contours.size();i++)
+    for (int i=0;i<segments.size();i++)
     {
-        if(contours.at(i).getCoefA()>0.2 )
+        if(segments.at(i).getCoefA()>0.2 )
         {
             return false;
          }
@@ -161,75 +161,75 @@ std::vector<QString> Classificator::getAnalysisResult()
 }
 void Classificator::analysis()
 {
-    highestContourValue = 0.0;
+    highestSegmentValue = 0.0;
     indexOfHighestValue = 0;
     bool isDropAtEnd = false;
     bool isGrowthAtEnd = false;
     double min = 400;
     double max = 0.0;
     double range = 0;
-    for (int i = 0;i<contours.size();i++)
+    for (int i = 0;i<segments.size();i++)
     {
-        if (contours.at(i).getMax()>max)max = contours.at(i).getMax();
-        if (contours.at(i).getMin()<min)min = contours.at(i).getMin();
+        if (segments.at(i).getMax()>max)max = segments.at(i).getMax();
+        if (segments.at(i).getMin()<min)min = segments.at(i).getMin();
 
         std::ostringstream ss;
-        ss<<i<<" "<<contours.at(i).getCoefA()<<" "<<contours.at(i).getCenterOfRegressionLine()<<" length "<<contours.at(i).getContourLength()
-         <<" range "<<contours.at(i).getMax()-contours.at(i).getMin()<<" size "<<contours.at(i).getSize();
+        ss<<i<<" "<<segments.at(i).getCoefA()<<" "<<segments.at(i).getCenterOfRegressionLine()<<" length "<<segments.at(i).getSegmentLength()
+         <<" range "<<segments.at(i).getMax()-segments.at(i).getMin()<<" size "<<segments.at(i).getSize();
         stateChanges.push_back(QString::fromStdString(ss.str()));
 
-        if (contours.at(i).getLocationOnTheChart() == BEGINNING)
+        if (segments.at(i).getLocationOnTheChart() == BEGINNING)
         {
-            if(contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning)
+            if(segments.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheBeginning)
             {
-                highestValueOfRegresionLinesAtTheBeginning = contours.at(i).getCenterOfRegressionLine();
+                highestValueOfRegresionLinesAtTheBeginning = segments.at(i).getCenterOfRegressionLine();
                 indexHighestValueOfRegresionLinesAtTheBeginning = i;
 
-                startHighestContour = contours.at(i);
+                startHighestSegment = segments.at(i);
             }
-            if (contours.at(i).getStartState() == DROP)
+            if (segments.at(i).getStartState() == DROP)
                     features |= bigDropAtTheBeginning;
-            else if (contours.at(i).getStartState() == GROWTH)
+            else if (segments.at(i).getStartState() == GROWTH)
                 features |= bigGrowthAtTheBeginning;
         }
-        if (contours.at(i).getLocationOnTheChart() == CENTER)
+        if (segments.at(i).getLocationOnTheChart() == CENTER)
         {
-            if (contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheCenter)
+            if (segments.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheCenter)
             {
-                highestValueOfRegresionLinesAtTheCenter = contours.at(i).getCenterOfRegressionLine();
+                highestValueOfRegresionLinesAtTheCenter = segments.at(i).getCenterOfRegressionLine();
                 indexHighestValueOfRegresionLinesAtTheCenter = i;
-                centerHighestContour = contours.at(i);
+                centerHighestSegment = segments.at(i);
             }
         }
-        if (contours.at(i).getLocationOnTheChart() == END)
+        if (segments.at(i).getLocationOnTheChart() == END)
         {
-            if (contours.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheEnd)
+            if (segments.at(i).getCenterOfRegressionLine() > highestValueOfRegresionLinesAtTheEnd)
             {
-                highestValueOfRegresionLinesAtTheEnd = contours.at(i).getCenterOfRegressionLine();
+                highestValueOfRegresionLinesAtTheEnd = segments.at(i).getCenterOfRegressionLine();
                 indexHighestValueOfRegresionLinesAtTheEnd = i;
-                endHighestContour = contours.at(i);
+                endHighestSegment = segments.at(i);
 
             }
-            if (contours.at(i).getStartState() == GROWTH && contours.at(i).getContourLength() >3)
+            if (segments.at(i).getStartState() == GROWTH && segments.at(i).getSegmentLength() >3)
             {
-                if (contours.at(i).getCenterOfRegressionLine() > centerHighestContour.getCenterOfRegressionLine()
-                               || contours.at(i).getCenterOfRegressionLine() > (30.0+contours.at(i-1).getCenterOfRegressionLine()))
+                if (segments.at(i).getCenterOfRegressionLine() > centerHighestSegment.getCenterOfRegressionLine()
+                               || segments.at(i).getCenterOfRegressionLine() > (30.0+segments.at(i-1).getCenterOfRegressionLine()))
                 {
                     isGrowthAtEnd = true;
-                    ss<<i<<" big growth "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getEndIndex();
+                    ss<<i<<" big growth "<<segments.at(i).getStartIndex()<<" "<<segments.at(i).getEndIndex();
                     stateChanges.push_back(QString::fromStdString(ss.str()));
                 }
             }
-            if (contours.at(i).getStartState() == DROP)
+            if (segments.at(i).getStartState() == DROP)
             {
                 isDropAtEnd = true;
-                ss<<i<<" big drop "<<contours.at(i).getStartIndex()<<" "<<contours.at(i).getEndIndex();
+                ss<<i<<" big drop "<<segments.at(i).getStartIndex()<<" "<<segments.at(i).getEndIndex();
                 stateChanges.push_back(QString::fromStdString(ss.str()));
             }
         }
-        if (contours.at(i).getCenterOfRegressionLine() > highestContourValue)
+        if (segments.at(i).getCenterOfRegressionLine() > highestSegmentValue)
         {
-            highestContourValue = contours.at(i).getCenterOfRegressionLine();
+            highestSegmentValue = segments.at(i).getCenterOfRegressionLine();
             indexOfHighestValue =i;
         }
         if ((isGrowthAtEnd) && (!isDropAtEnd))
@@ -240,95 +240,95 @@ void Classificator::analysis()
 
 
 
-    if (endHighestContour.getCenterOfRegressionLine() > 1.5*centerHighestContour.getCenterOfRegressionLine())
+    if (endHighestSegment.getCenterOfRegressionLine() > 1.5*centerHighestSegment.getCenterOfRegressionLine())
     {
-        features |= endHasContourWithMuchBiggerF0ValueThanCenter;
+        features |= endHasSegmentWithMuchBiggerF0ValueThanCenter;
     }
-    if (endHighestContour.getCenterOfRegressionLine() > (40.0+startHighestContour.getCenterOfRegressionLine())
-            && endHighestContour.getContourLength()>2)
+    if (endHighestSegment.getCenterOfRegressionLine() > (20.0+startHighestSegment.getCenterOfRegressionLine())
+            && endHighestSegment.getSegmentLength()>2)
     {
-        features |= endHasContourWithBiggerF0ValueThanStart;
-    }
-
-
-
-
-    if (startHighestContour.getCenterOfRegressionLine() > 1.45*centerHighestContour.getCenterOfRegressionLine())
-    {
-        features |= startHasContourWithMuchBiggerF0ValueThanCenter;
-    }
-    else if (startHighestContour.getCenterOfRegressionLine() > (centerHighestContour.getCenterOfRegressionLine()-5.0))
-    {
-        features |= startHasContourWithSlightlyBiggerF0ValueThanCenter;
+        features |= endHasSegmentWithBiggerF0ValueThanStart;
     }
 
-    if (startHighestContour.getCoefA() > 0.5 && startHighestContour.falling )
-        features |= highestContourAtBeginningStronglyRising;
 
 
 
-    if (areAllContoursFalling())
+    if (startHighestSegment.getCenterOfRegressionLine() > 1.45*centerHighestSegment.getCenterOfRegressionLine())
     {
-        features |= allContoursAreFalling;
+        features |= startHasSegmentWithMuchBiggerF0ValueThanCenter;
+    }
+    else if (startHighestSegment.getCenterOfRegressionLine() > (centerHighestSegment.getCenterOfRegressionLine()-5.0))
+    {
+        features |= startHasSegmentWithSlightlyBiggerF0ValueThanCenter;
+    }
+
+    if (startHighestSegment.getCoefA() > 0.5 && startHighestSegment.falling )
+        features |= highestSegmentAtBeginningStronglyRising;
+
+
+
+    if (areAllSegmentsFalling())
+    {
+        features |= allSegmentsAreFalling;
 
      }
 
 
 
-    if (centerHighestContour.getCenterOfRegressionLine() > endHighestContour.getCenterOfRegressionLine())
+    if (centerHighestSegment.getCenterOfRegressionLine() > endHighestSegment.getCenterOfRegressionLine())
     {
-         features |= centerHasContourWithBiggerF0ValueThanEnd;
+         features |= centerHasSegmentWithBiggerF0ValueThanEnd;
     }
 
-    if  (features & centerHasContourWithBiggerF0ValueThanEnd)
+    if  (features & centerHasSegmentWithBiggerF0ValueThanEnd)
     {
-        if(startHighestContour.getCenterOfRegressionLine()>centerHighestContour.getCenterOfRegressionLine() && startHighestContour.getContourLength()>(longestContoursLength-10)
-                && std::abs(startHighestContour.getCoefA())>0.2)
-            features |= longContour;
-        else if(startHighestContour.getCenterOfRegressionLine() < centerHighestContour.getCenterOfRegressionLine() && centerHighestContour.getContourLength()>(longestContoursLength-10)
-                 && std::abs(centerHighestContour.getCoefA())>0.3)
-            features |= longContour;
+        if(startHighestSegment.getCenterOfRegressionLine()>centerHighestSegment.getCenterOfRegressionLine() && startHighestSegment.getSegmentLength()>(longestSegmentLength-10)
+                && std::abs(startHighestSegment.getCoefA())>0.2)
+            features |= longSegment;
+        else if(startHighestSegment.getCenterOfRegressionLine() < centerHighestSegment.getCenterOfRegressionLine() && centerHighestSegment.getSegmentLength()>(longestSegmentLength-10)
+                 && std::abs(centerHighestSegment.getCoefA())>0.3)
+            features |= longSegment;
 
         double CoefA;
-        if ((startHighestContour.getCenterOfRegressionLine() > centerHighestContour.getCenterOfRegressionLine())
-            && startHighestContour.getEndIndex() > lastIndexOfBeginningPart)
+        if ((startHighestSegment.getCenterOfRegressionLine() > centerHighestSegment.getCenterOfRegressionLine())
+            && startHighestSegment.getEndIndex() > lastIndexOfBeginningPart)
         {
-            CoefA = startHighestContour.getCoefA();
+            CoefA = startHighestSegment.getCoefA();
 
-            features |= highestContourLocatedBetweenStartEndCenter;
+            features |= highestSegmentLocatedBetweenStartEndCenter;
         }
-        else if ((centerHighestContour.getCenterOfRegressionLine() > startHighestContour.getCenterOfRegressionLine())
-                   && centerHighestContour.getStartIndex() < lastIndexOfBeginningPart)
+        else if ((centerHighestSegment.getCenterOfRegressionLine() > startHighestSegment.getCenterOfRegressionLine())
+                   && centerHighestSegment.getStartIndex() < lastIndexOfBeginningPart)
          {
-            CoefA = centerHighestContour.getCoefA();
-            features |= highestContourLocatedBetweenStartEndCenter;
+            CoefA = centerHighestSegment.getCoefA();
+            features |= highestSegmentLocatedBetweenStartEndCenter;
          }
-        else if(centerHighestContour.getCenterOfRegressionLine() > startHighestContour.getCenterOfRegressionLine())
+        else if(centerHighestSegment.getCenterOfRegressionLine() > startHighestSegment.getCenterOfRegressionLine())
         {
-              CoefA = centerHighestContour.getCoefA();
-              if(centerHighestContour.getImp() && centerHighestContour.getCoefA()>-0.2)
+              CoefA = centerHighestSegment.getCoefA();
+              if(centerHighestSegment.getImp() && centerHighestSegment.getCoefA()>-0.2)
                   features |= impRegion;
         }
-        else if(centerHighestContour.getCenterOfRegressionLine() < startHighestContour.getCenterOfRegressionLine())
+        else if(centerHighestSegment.getCenterOfRegressionLine() < startHighestSegment.getCenterOfRegressionLine())
         {
-            if(startHighestContour.getImp() && startHighestContour.getCoefA()>-0.2)
+            if(startHighestSegment.getImp() && startHighestSegment.getCoefA()>-0.2)
                 features |= impRegion;
         }
-        if ((CoefA < -0.4) || (indexHighestValueOfRegresionLinesAtTheCenter > (contours.size()/2)))
-             features |= centerHighestContourSteeplyFalling;
+        if ((CoefA < -0.4) || (indexHighestValueOfRegresionLinesAtTheCenter > (segments.size()/2)))
+             features |= centerHighestSegmentSteeplyFalling;
         else if (CoefA < 0.0)
-             features |= centerHighestContourNotSteeplyFalling;
+             features |= centerHighestSegmentNotSteeplyFalling;
 
     }
     std::ostringstream ss;
     range = max - min;
-    ss<<"start "<<startHighestContour.getCenterOfRegressionLine()<<" center "<<centerHighestContour.getCenterOfRegressionLine()
-     <<" end "<<endHighestContour.getCenterOfRegressionLine();
+    ss<<"start "<<startHighestSegment.getCenterOfRegressionLine()<<" center "<<centerHighestSegment.getCenterOfRegressionLine()
+     <<" end "<<endHighestSegment.getCenterOfRegressionLine();
     ss<<"min "<<min<<" max "<<max<<" range "<<range<<"percent "<<range/max*100;
     stateChanges.push_back(QString::fromStdString(ss.str()));
     if((indexOfHighestValue == indexHighestValueOfRegresionLinesAtTheCenter)
-            && (features & centerHighestContourSteeplyFalling))
-        features |= centerContourIsHighestAndSteeplyFalling;   
+            && (features & centerHighestSegmentSteeplyFalling))
+        features |= centerSegmentIsHighestAndSteeplyFalling;
 }
 std::vector<QString> Classificator::classification()
 {
@@ -367,7 +367,7 @@ std::vector<QString> Classificator::classification()
 
     if ((flag & decl)&&(flag & imper))
     {
-        if (startHighestContour.getContourLength()>10)
+        if (startHighestSegment.getSegmentLength()>10)
             result.erase(result.begin()+0);
         else {
             result.erase(result.begin()+1);

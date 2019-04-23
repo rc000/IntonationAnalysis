@@ -4,19 +4,20 @@
 #include <QScatterSeries>
 #include <QtCharts/QLineSeries>
 #include "extractionHelper.h"
-#include "contour.h"
+#include "segment.h"
 #include "classificator.h"
+#include "classificatornew.h"
 QT_CHARTS_USE_NAMESPACE
 
-class ContoursDetector
+class SegmentsDetector
 {
  public:
-    ContoursDetector(ExtractionHelper extractionHelper);
+    SegmentsDetector(ExtractionHelper extractionHelper);
 
-    ~ContoursDetector();
+    ~SegmentsDetector();
 
-    void findContours();
-    void foundNewContour();
+    void findSegments();
+    void foundNewSegment();
     void calcRegressionLines();
     void classification();
 
@@ -25,16 +26,16 @@ class ContoursDetector
     double getMinValue() { return minValue;}
 
     std::vector<QLineSeries*> getSeriesRegresionLines();
-    QScatterSeries *seriesContours;
-    QScatterSeries * getSeriesContours(){return seriesContours;}
+    QScatterSeries *seriesSegments;
+    QScatterSeries * getSeriesSegments(){return seriesSegments;}
     ExtractionHelper getFeatures(){ return extractionHelper;}
-    int getNextValidateContour(int index);
+    int getNextValidateSegment(int index);
 
     int getIndexOfFirstValue() { return firstValueIndex;}
     int getIndexOfLastValue() { return lastValueIndex;}
     int getLastIndexOfFirstPart() { return lastIndexOfFirstPart;}
     int getLastIndexOfCenterPart() { return lastIndexOfCenterPart;}
-    void setContourLocation(int i);
+    void setSegmentLocation(int i);
     std::vector<QString> getResult(){return result;}
     std::vector<QString> getAnalysisResults(){return analysisResults;}
     std::vector<QString> getStateChanges(){return stateChanges;}
@@ -44,7 +45,7 @@ class ContoursDetector
 private:
     double maxValue = 0.0;
     double minValue = 400.0;
-    double longestContourLength;
+    double longestSegmentLength;
     double averageValue;
     int numberOfPositiveValues;
     int firstValueIndex,lastValueIndex;
@@ -52,10 +53,12 @@ private:
     int lastIndexOfCenterPart = 0;
      std::vector<QLineSeries*>seriesRegresionLines;
     Classificator *classificator;
-    ExtractionHelper extractionHelper;
-    std::vector<Contour> ContoursVector;
+    ClassificatorNew *classificatorNew;
 
-    Contour currentContour;
+    ExtractionHelper extractionHelper;
+    std::vector<Segment> SegmentsVector;
+
+    Segment currentSegment;
     std::vector<QString> analysisResults;
     std::vector<QString> stateChanges;
     double sumAllValues = 0.0;

@@ -1,7 +1,7 @@
 #ifndef CLASSIFICATOR_H
 #define CLASSIFICATOR_H
 #include<vector>
-#include"contour.h"
+#include"segment.h"
 #include <string>
 #include<QString>
 using namespace std;
@@ -10,22 +10,22 @@ class Classificator
 {
 public:
     Classificator(int lastIndexOfBeginningPart,int lastIndexOfCenterPart, double length);
-    void addContour(Contour contour) {contours.emplace_back(contour);}
-    Contour getContour(int index) {return contours.at(index);}
+    void addSegment(Segment segment) {segments.emplace_back(segment);}
+    Segment getSegment(int index) {return segments.at(index);}
 
     std::vector<QString> classification();
     std::vector<QString>getAnalysisResult();
     std::vector<QString>getStateChanges(){return stateChanges;}
 
 private:
-    std::vector<Contour>contours;
+    std::vector<Segment>segments;
     std::vector<QString>stateChanges;
     int lastIndexOfBeginningPart;
     int lastIndexOfCenterPart;
-    double longestContoursLength;
+    double longestSegmentLength;
     double highestValueOfRegresionLinesAtTheBeginning;
     int features;
-    Contour startHighestContour, centerHighestContour, endHighestContour;
+    Segment startHighestSegment, centerHighestSegment, endHighestSegment;
 
     double highestValueOfRegresionLinesAtTheCenter;
     double highestValueOfRegresionLinesAtTheEnd;
@@ -35,7 +35,7 @@ private:
     void analysis();
 
 
-    bool areAllContoursFalling();
+    bool areAllSegmentsFalling();
     int getLastIndexOfBeginningPart() {return lastIndexOfBeginningPart;}
     int getLastIndexOfCenterPart() {return lastIndexOfCenterPart;}
 
