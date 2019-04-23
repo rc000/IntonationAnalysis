@@ -405,7 +405,11 @@ void MainWindow::processPraatFile(QString filepath)
             value = 0.0;
         else
             value = line.toDouble();
-        f0.emplace_back(value);
+        if(value > 50 && value < 400)
+            f0.emplace_back(value);
+        else {
+            f0.emplace_back(0.0);
+        }
       }
 
     file.close();

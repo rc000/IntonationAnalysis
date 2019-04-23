@@ -55,7 +55,7 @@ void SegmentsDetector::classification()
         classificator->addSegment(segment);
         classificatorNew->addSegment(segment);
     }
-    classificator->classification();
+   classificator->classification();
     //result = classificator->classification();
     result.emplace_back(classificatorNew->classification());
     analysisResults = classificator->getAnalysisResult();
@@ -110,17 +110,20 @@ void SegmentsDetector::findSegments()
 }
     }
 
+    calcRegressionLines();
 
-    for(int i = 0;i<SegmentsVector.size();)
+    for(int i = 0;i<SegmentsVector.size()-1;)
     {
 
         double averageWithoutCurrentSegment = sumAllValues - SegmentsVector.at(i).getCenterOfRegressionLine();
         averageWithoutCurrentSegment /= (SegmentsVector.size()-1);
+        qDebug()<<SegmentsVector.at(i).getSegmentLength()<<" blabla "<<SegmentsVector.at(i).getCoefA();
         if(((SegmentsVector.at(i).getCenterValue() > (averageWithoutCurrentSegment*1.2))
-                && (SegmentsVector.at(i).getSegmentLength()<10)))
+                && ((SegmentsVector.at(i).getSegmentLength()<5) || ((SegmentsVector.at(i).getSegmentLength()<10) && (SegmentsVector.at(i).getCoefA()< 2.0))) ))
             /*|| (ContoursVector.at(i).getCenterValue() > (averageWithoutCurrentContour*1.1))
                 && (ContoursVector.at(i).getContourLength()<3))*/
         {
+
             SegmentsVector.erase(SegmentsVector.begin()+i);
         }
         else if(((SegmentsVector.at(i).getCenterValue() < (averageWithoutCurrentSegment*0.7))
@@ -146,7 +149,6 @@ void SegmentsDetector::findSegments()
     }
 
 
-    calcRegressionLines();
     findLongest();
 
 
