@@ -54,6 +54,9 @@ QString ClassificatorNew::classification()
         secondValue = 0.0;
 
     }
+
+
+
     bool endRising = true;
     int indexPreviousSegment = -1;
     int firstValidFromEnd = 0;
@@ -67,7 +70,7 @@ QString ClassificatorNew::classification()
     }
     if (segments.at(firstValidFromEnd).getSegmentLength() > 50)
         firstValidFromEnd = 0;
-    qDebug()<<"FIRSTVALIDFROMEND "<<firstValidFromEnd;
+
     for (int i = firstValidFromEnd;i > firstValidFromEnd -3;i--)
     {
         if(i==0) break;
@@ -140,10 +143,10 @@ QString ClassificatorNew::classification()
             if (i+2 < segments.size())
             {
                 if (segments.at(i+1).getCenterOfRegressionLine() > (segments.at(i+2).getCenterOfRegressionLine()-10.0))
-                    return "pyt dopelnienia "+QString::number(firstValue)+" ";
+                    return "pyt dopelnienia 1 "+QString::number(firstValue)+" ";
             }
             else {
-                return "pyt dopelnienia "+QString::number(firstValue)+" ";
+                return "pyt dopelnienia 2 "+QString::number(firstValue)+" ";
             }
         }
         if(segments.at(i+1).getCoefA() < -2.0 && (segments.at(i).getCoefA() > -4.0 && segments.at(i+1).getCoefA()>-4.0))
@@ -158,10 +161,10 @@ QString ClassificatorNew::classification()
             if (i+2 < segments.size())
             {
                 if (segments.at(i+1).getCenterOfRegressionLine() > (segments.at(i+2).getCenterOfRegressionLine()-10.0))
-                    return "pyt dopelnienia "+QString::number(firstValue)+" ";
+                    return "pyt dopelnienia 3 "+QString::number(firstValue)+" ";
             }
             else {
-                return "pyt dopelnienia "+QString::number(firstValue)+" ";
+                return "pyt dopelnienia 4 "+QString::number(firstValue)+" ";
             }
         }
 

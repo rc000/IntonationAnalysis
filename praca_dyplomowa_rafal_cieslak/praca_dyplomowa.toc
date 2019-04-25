@@ -28,8 +28,8 @@
 \contentsline {subsection}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci uzyskanych za pomoc\IeC {\k a} programu PRAAT}{30}% 
 \contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{31}% 
 \contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{31}% 
-\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{35}% 
-\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{36}% 
-\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{39}% 
-\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{41}% 
-\contentsline {section}{\numberline {5}Wnioski}{42}% 
+\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{36}% 
+\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{38}% 
+\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{40}% 
+\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{42}% 
+\contentsline {section}{\numberline {5}Wnioski}{43}% 

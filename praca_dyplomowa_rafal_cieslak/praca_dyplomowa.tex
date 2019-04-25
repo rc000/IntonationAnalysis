@@ -685,7 +685,7 @@ Pytanie przedstawione na rysunku 10 brzmi 'Faktycznie jest gdzies w Tobie taka p
 \caption{Schemat rozpoznawania pytań rozstrzygnięcia}
 \end{figure}
 \FloatBarrier
-Na rysunku przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nastąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi. Pod uwagę brane są trzy ostatnie kontury. Porównywane jest położenie  (\textit{ang.intercept}), oraz sprawdzane jest nachylenie (\textit{ang.slope}) przypisanej do sąsiadujących segmentów linii regresji. Jeżeli róznica w położeniu segmentów jest znacząca, a do tego przynajmniej jeden z nich nie jest gwałtownie opadający, wypowiedź zostaje rozpoznana jako pytanie rozstrzygnięcia.
+Na rysunku 11 przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nastąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi. Pod uwagę brane są trzy ostatnie kontury. Porównywane jest położenie  (\textit{ang.intercept}), oraz sprawdzane jest nachylenie (\textit{ang.slope}) przypisanej do sąsiadujących segmentów linii regresji. Jeżeli róznica w położeniu segmentów jest znacząca, a do tego przynajmniej jeden z nich nie jest gwałtownie opadający, wypowiedź zostaje rozpoznana jako pytanie rozstrzygnięcia.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -693,12 +693,20 @@ Na rysunku przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia,
 \caption{Pytanie rozstrzygnięcia z nacechowaniem emocjonalnym}, wypowiedziane przez mężczyznę
 \end{figure}
 \FloatBarrier
-Pytanie, którego intonacja została przedstawiona na rysunku 11, brzmi ''Może o to, że jest to rażąco niesprawiedliwe?'' Zostało wypowiedziane przez mężczyzne. Nosi ono również znamiona pytania retorycznego.  W tej wypowiedzi nie ma gwałtowanego wzrostu intonacji na samym końcu nagrania, zamiast tego intonacja zauważalnie rosnie w trakcie całej wypowiedzi. Mimo, że jest to nagranie głosu męskiego, wyestymowane wartosci F0 znacznie wykraczają poza zakres typowy dla mężczyzn. Spowodowane jest to dużym zabarwieniem emocjalnym wypowiedzi.
-
+Pytanie, którego intonacja została przedstawiona na rysunku 12, brzmi ''Może o to, że jest to rażąco niesprawiedliwe?'' Zostało wypowiedziane przez mężczyzne. Nosi ono również znamiona pytania retorycznego.  W tej wypowiedzi nie ma gwałtowanego wzrostu intonacji na samym końcu nagrania, zamiast tego intonacja zauważalnie rosnie w trakcie całej wypowiedzi. Mimo, że jest to nagranie głosu męskiego, wyestymowane wartosci F0 znacznie wykraczają poza zakres typowy dla mężczyzn. Spowodowane jest to dużym zabarwieniem emocjonalnym wypowiedzi.
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{pytanie_rozstrzygniecia_3_kobieta.png}
+\includegraphics[scale=0.9]{conclusive2.png}
+\caption{Schemat rozpoznawania pytań rozstrzygnięcia z tendencją rosnącą}
+\end{figure}
+\FloatBarrier
+Na rysunku 13 przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nie wystąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi lecz ogólna tendencja intonacji była rosnąca.
+Ponownie pod uwagę brane są ostatnie trzy kontury. Jako ,że zaobserwowane zostało występowanie wysokich wartości F0 w przypadku tego rodzaju pytań, jako pierwsze sprawdzane jest położenie segmentów. Jeżeli uzyskane wartość dla któregoś z sąsiadujących segmentów jest mniejsza od 200, wypowiedź na pewno nie jest pytaniem rozstrzygnięcia. Jeżeli warunek jest spełniony, program porównuje połozenie badanych segmentów. Jeżeli segment znajdujący się bliżej początku jest położony wyżej od porównywanego z nim segmentu oraz dodatkowo leży wyżej również od ostatniego segmentu, intonacja nie może być postrzegana jako rosnąca, a zatem wypowiedź nie jest pytaniem rozstrzygnięcia. Tym sposobem zostało rozpoznane pytanie przedstawione na rysunku 12.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.65]{pytanie_rozstrzygniecia_3_kobieta.png}
 \caption{Pytanie rozstrzygnięcia zadane przez kobietę}
 \end{figure}
 \FloatBarrier
@@ -708,7 +716,7 @@ Intonacja nadawana pytaniom dopełnienia całkowicie różni się od opisanej dl
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{pytanie_uzupelnienia_marynarz.png}
+\includegraphics[scale=0.6]{pytanie_uzupelnienia_marynarz.png}
 \caption{Pytanie dopełnienia zadane przez mężczyznę}
 \end{figure}
 \FloatBarrier
