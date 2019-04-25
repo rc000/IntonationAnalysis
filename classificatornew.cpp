@@ -112,6 +112,54 @@ QString ClassificatorNew::classification()
         firstValue = 0.0;
         secondValue = 0.0;
     }
+
+    Segment highestSegmentFirstHalf = segments.at(0);
+
+    int indexHighestSegment = 0;
+    for(int i = 1;i < segments.size()/2;i++)
+    {
+        if(segments.at(i).getCenterOfRegressionLine() > highestSegmentFirstHalf.getCenterOfRegressionLine()
+                && segments.at(i).getCoefA() > -3.0
+                && segments.at(i).getSegmentLength() > 5.0)
+        {
+            highestSegmentFirstHalf = segments.at(i);
+            indexHighestSegment = i;
+        }
+    }
+    if (highestSegmentFirstHalf.getCoefA() > 0.6 && highestSegmentFirstHalf.getSegmentLength()>20)
+        return "rozkaz1";
+    else if (highestSegmentFirstHalf.getCoefA() > 0.3 && highestSegmentFirstHalf.getSegmentLength()>60)
+        return "rozkaz2";
+    if (indexHighestSegment > 0 && segments.at(indexHighestSegment-1).getCoefA() < 0.1 && segments.at(indexHighestSegment-1).getSegmentLength()>5.0)
+    {
+        if (highestSegmentFirstHalf.getCenterOfRegressionLine() > (segments.at(indexHighestSegment-1).getEndRegressionLine()+20.0))
+            return "rozkaz3";
+    }
+
+    if(highestSegmentFirstHalf.getSegmentLength() > 20.0 && highestSegmentFirstHalf.getCoefA() < -0.5
+            && segments.at(indexHighestSegment+1).getCoefA()<-0.2
+            && highestSegmentFirstHalf.getCenterOfRegressionLine() > (segments.at(indexHighestSegment+1).getCenterOfRegressionLine() + 10.0))
+    {
+        if (indexHighestSegment > 0 && highestSegmentFirstHalf.getCenterOfRegressionLine() > (segments.at(indexHighestSegment-1).getCenterOfRegressionLine() + 10.0))
+           {
+         qDebug()<<   highestSegmentFirstHalf.getCenterOfRegressionLine();
+         qDebug() << segments.at(indexHighestSegment-1).getCenterOfRegressionLine();
+         qDebug() <<"rozkaz4";
+            return "rozkazz4";
+        }
+        else if (indexHighestSegment == 0)
+        {
+            qDebug()<<   highestSegmentFirstHalf.getCenterOfRegressionLine();
+            qDebug() << segments.at(indexHighestSegment+1).getCenterOfRegressionLine();
+            qDebug() <<"rozkaz4 "<<indexHighestSegment;
+                return "rozkazz4";
+        }
+
+    }
+    double spaceBetweenHighestAndNext = segments.at(indexHighestSegment+1).getStartIndex() - highestSegmentFirstHalf.getEndIndex();
+    qDebug()<<"startIndex "<<segments.at(indexHighestSegment+1).getStartIndex()<<" end "<<highestSegmentFirstHalf.getEndIndex();
+    if (spaceBetweenHighestAndNext > highestSegmentFirstHalf.getSegmentLength())
+        return "rozkazz5";
     return " ";
   /*  double averageFirstHalf = 0.0;
     int counter = 0;

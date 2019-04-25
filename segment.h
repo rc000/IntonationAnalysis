@@ -72,6 +72,9 @@ public:
     void setSegmentLength(int length){this->segmentLength = length;}
     void setStartState(int state){startState = state;}
     void setCenterRegressionLine(double center){this->centerRegressionLine = center;}
+    void setEndRegressionLine(double end){this->endRegressionLine = end;}
+    double getEndRegressionLine(){return endRegressionLine;}
+
     void setValue(int index, double value){this->values.at(index) = value;}
 
     void setImp(bool imp){this->imperative = imp;}
@@ -95,6 +98,7 @@ private:
     int startState;
     bool imperative = false;
     double centerRegressionLine;
+    double endRegressionLine;
     QLineSeries *seriesRegresionLine;
     bool isLongest = false;
 

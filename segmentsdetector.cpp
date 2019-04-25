@@ -248,6 +248,7 @@ void SegmentsDetector::calcRegressionLines()
         SegmentsVector.at(i).setCoefA(A);
         SegmentsVector.at(i).setCoefB(B);
         SegmentsVector.at(i).setCenterRegressionLine(centerRegresionLine);
+        SegmentsVector.at(i).setEndRegressionLine(A * (SegmentsVector.at(i).getSegmentLength()) + B);
     }
 }
 std::vector<QLineSeries*> SegmentsDetector::getSeriesRegresionLines()
