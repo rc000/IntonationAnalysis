@@ -113,12 +113,12 @@ chart->addAxis(axisY, Qt::AlignLeft);
 seriesSegments->attachAxis(axisX);
 seriesSegments->attachAxis(axisY);
 qDebug()<<"before regression lines";
-seriesRegresionLines.push_back(new QLineSeries());
+/*seriesRegresionLines.push_back(new QLineSeries());
 seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfFirstPart(), segmentsDetector.getMaxValue());
 seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfFirstPart(), 20);
 seriesRegresionLines.push_back(new QLineSeries());
 seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfCenterPart(), segmentsDetector.getMaxValue());
-seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfCenterPart(), 20);
+seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfCenterPart(), 20);*/
 qDebug()<<"after regression lines";
 
 for(int i=0;i<seriesRegresionLines.size();i++)

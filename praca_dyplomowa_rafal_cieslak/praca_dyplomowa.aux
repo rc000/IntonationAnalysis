@@ -11,7 +11,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Sygna\IeC {\l } mowy}{6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.1}Powstawanie mowy}{6}\protected@file@percent }
 \citation{produkcja_mowy}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Fa\IeC {\l }dy g\IeC {\l }osowe \IeC {\'Z}r\IeC {\'o}d\IeC {\l }o ~\cite  {krtan}\relax }}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Fa\IeC {\l }dy g\IeC {\l }osowe ~\cite  {krtan}\relax }}{7}\protected@file@percent }
 \citation{phonem}
 \citation{liczba_fonem}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.1.2}Reprezentacja mowy}{8}\protected@file@percent }
@@ -26,21 +26,21 @@
 \citation{YIN}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.2}Formanty}{10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.3}Przegl\IeC {\k a}d metod estymacji}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.4}Algorytm YIN}{10}\protected@file@percent }
 \citation{pros}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.2.4}Definicja algorytmu YIN}{11}\protected@file@percent }
+\citation{TS}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Prozodia}{11}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.1}Intonacja}{11}\protected@file@percent }
-\citation{TS}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{11}\protected@file@percent }
 \citation{GRI-BA}
 \citation{INT-SYS}
 \citation{SPA}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{12}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{16}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{16}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{16}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Graficzny wygl\IeC {\k a}d aplikacji\relax }}{17}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Wczytanie pr\IeC {\'o}bki}{17}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Interfejs graficzny aplikacji\relax }}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Wczytanie nagrania}{17}\protected@file@percent }
 \newlabel{lst:label}{{1}{17}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Po\IeC {\l }\IeC {\k a}czenie sygna\IeC {\l }\IeC {\'o}w nios\IeC {\k a}cych informacje o starcie lub zako\IeC {\'n}czeniu wczytywania nagrania, ze slotami}{17}\protected@file@percent }
 \newlabel{lst:label}{{2}{18}}
@@ -49,7 +49,7 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {3}Funkcja dodaj\IeC {\k a}ca do wektora wszystkie odczytane pr\IeC {\'o}bki}{18}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Ekstrakcja tonu podstawowego}{19}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{19}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie w\IeC {\l }asne\relax }}{20}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego zak\IeC {\l }adkowania. Opracowanie w\IeC {\l }asne\relax }}{20}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Klasa stworzona w celu ekstracji F0 oraz przechowywania tych warto\IeC {\'s}ci\relax }}{20}\protected@file@percent }
 \newlabel{lst:label}{{4}{21}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4}Przedstawienie sposobu dokonywania podzia\IeC {\l }u na ramki, wraz z zastosowaniem overlappingu}{21}\protected@file@percent }
@@ -75,23 +75,24 @@
 \newlabel{lst:label}{{10}{30}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {10}Funkcja wczytuj\IeC {\k a}ca do programu warto\IeC {\'s}ci F0 z pliku tekstowego}{30}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{31}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{31}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{32}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia z nacechowaniem emocjonalnym\relax }}{33}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez kobiet\IeC {\k e}\relax }}{33}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{34}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{34}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez kobiet\IeC {\k e}\relax }}{35}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{35}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{36}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{37}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{38}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{38}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{39}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{39}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{40}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Wnioski}{41}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Schemat rozpoznawania pyta\IeC {\'n} rozstrzygni\IeC {\k e}cia\relax }}{33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia z nacechowaniem emocjonalnym\relax }}{34}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez kobiet\IeC {\k e}\relax }}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{35}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{35}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez kobiet\IeC {\k e}\relax }}{36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{36}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{37}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{38}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{38}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{39}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{39}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{40}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{40}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{41}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Wnioski}{42}\protected@file@percent }
 \bibcite{krtan}{1}
 \bibcite{speech}{2}
 \bibcite{mowa}{3}

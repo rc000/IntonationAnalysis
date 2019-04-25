@@ -12,7 +12,31 @@
 \usepackage{caption}
 \usepackage{placeins}
 \usepackage{listings}
+\usepackage{xcolor}
 \usepackage{gb4e}
+
+\lstset {
+    language=C++,
+    frame=tb,
+    tabsize=4,
+    showstringspaces=false,
+    numbers=left,
+    %upquote=true,
+    commentstyle=\color{commentgreen},
+    keywordstyle=\color{brown},
+    stringstyle=\color{red},
+    basicstyle=\small\ttfamily, % basic font setting
+    emph={int,char,double,float,unsigned,void,bool},
+    emphstyle={\color{blue}},
+    escapechar=\&,
+    % keyword highlighting
+    classoffset=1, % starting new class
+    otherkeywords={>,<,.,;,-,!,=,~},
+    morekeywords={>,<,.,;,-,!,=,~},
+    keywordstyle=\color{orange},
+    classoffset=0,
+}
+
 \noautomath
 
  \setcounter{tocdepth}{4}
@@ -91,12 +115,9 @@
 \addcontentsline{toc}{section}{Wstęp}
 Mowa jest najpowszechniejszym sposobem komunikacji międzyludzkiej. Używając jej na codzień, nie zdajemy sobie sprawy jak bardzo złożonym jest procesem. Wydaje się być czymś normalnym i oczywistym. Mimo tego, że otacza nas cały czas, nauka wciąż nie poznała dokładnie wszystkich mechanizmów stojących za jej wytwarzaniem i rozumieniem. Złożoności dodaje fakt, że w mowie nie chodzi tylko o wypowiedziane słowa. Dla naszego odbierania mowy ważna jest również cała otoczka - ton głosu, jego barwa, akcentowanie i wiele więcej cech, których postrzeganie jest subiektywne. Dawno zostało zauważone, że cechy te mogą istotnie wpływać na nasze życie. Ludzie podświadomie wybierają towarzystwo osób, których głos jest dobrze przez nich postrzegany. Bez tych otaczających wypowiadane słowa cech, nasza mowa brzmiałaby podobnie do uzyskiwanej za pomocą syntezatorów.
 \newline
-\newline
 Jedną z takich cech jest intonacja. Przy tym jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Nie niesie ze sobą żadnej semantycznej treści, dotyczy tego w jaki sposób coś mówimy, a nie co mówimy. Nie zdajemy sobie na codzień z tego sprawy ale bez niej bardzo trudne byłoby zrozumienie języka mówionego i przekazywanych za jego pomocą myśli. Wpływa na nasze postrzeganie zdań wypowiedzianych przez naszego rozmówcę. Dzięki niej momentalnie wiemy czy osoba, z którą rozmawiamy zadała nam pytanie czy nakazała nam wykonanie jakiejś czynności. Nie potrzebujemy do tego znaków przestankowych, używanych w języku pisanym.
 \newline
-\newline
-Celem pracy jest zrozumienie jak bardzo wpływa na ten proces i odpowiedź na pytanie czy analizowanie samej intonacji jest wystarczające do stwierdzenia do jakiej kategorii można zakwalifikować daną wypowiedź. W tym celu podjęta zostanie próba wykrycia charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program.
-\newline
+Celem pracy jest zrozumienie jak bardzo wpływa na ten proces i odpowiedź na pytanie czy analizowanie samej intonacji jest wystarczające do stwierdzenia do jakiej kategorii można zakwalifikować daną wypowiedź. W tym celu podjęta została próba wykrycia charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program.
 \newline
 Jako, że analiza będzie się opierać w głównej mierze na próbach zauważenia charakterystycznych róznic między róznymi wypowiedziami, metodą badawczą zastosowaną w tej pracy będzie metoda obserwacyjna.
 \newpage
@@ -118,34 +139,34 @@ Sama produkcja mowy jest wielokrokowym procesem zamiany myśli w ustną wypowied
  
 \subsubsection{Powstawanie mowy}
 
-Sygnal mowy ludzkiej jest sygnałem akustycznym powstającym podczas przepływu powietrza poprzez aparat mowy, który jest definiowany jako 3 osobne grupy narządów.~\cite{speech}
+Sygnal mowy ludzkiej jest sygnałem akustycznym powstającym podczas przepływu powietrza poprzez aparat mowy, który jest definiowany jako 3 osobne grupy narządów~\cite{speech}.
 
 Składowymi aparatu mowy są:
 \begin{enumerate}
 \item Aparat oddechowy. Bierze udział w początkowej fazie powstawania mowy, dostarczając kolejnym składowym strumień powietrza, który jest niezbędny do wygenerowania drgań. Dzieje się to podczas wydechu. Elementy, z których jest zbudowany to płuca, oskrzela, przepona oraz tchawica.
 
 \item Aparat fonacyjny, którego głównym elementem jest krtań. Jest to narząd niezbędny do wygenerowania jakiegokolwiek dźwięku, nie tylko mowy. Najważniejszym elementem krtani, w kontekście procesu powtarzania dźwięku, są fałdy głosowe. W ich skład wchodzą więzadła głosowe oraz mięśnie głosowe. Przestrzeń pomiędzy nimi nazywana jest szparą głośni. Struktury te przybliżają się i oddalają od siebie podczas powstawania dźwięku co powoduje zwarcie i rozwarcie szpary głośni. Podczas oddychania oraz przy generowaniu głosek bezdźwięcznych, fałdy są rozsunięte, natomiast zwierają się  i rozwierają podczas powstawania głosek dźwięcznych. 
-
+Dzięki tej czynności, strumień powietrza wprowadzany jest w drgania, co postrzegamy jako dźwięczność. Cecha ta występuje wraz z każdą samogłoską oraz przy niektórych spółgłoskach. Podczas drgań generowany jest ton krtaniowy, zwany również częstotliwością podstawową, oznaczany w literaturze jako F0. 
 \begin{figure}[!htbp]
 
 \centering
 \includegraphics[scale=0.5]{faldy_glosowe}
-\caption{Fałdy głosowe Źródło ~\cite{krtan}}
+\caption{Fałdy głosowe ~\cite{krtan}}
 
 \end{figure}
 \FloatBarrier
 
-Dzięki tej czynności, strumień powietrza wprowadzany jest w drgania, co postrzegamy jako dźwięczność. Cecha ta występuje wraz z każdą samogłoską oraz przy niektórych spółgłoskach. Podczas drgań generowany jest ton krtaniowy, zwany również częstotliwością podstawową, oznaczany w literaturze jako F0. 
+
 \item Aparat artykulacyjny, w którego skład wchodzą jamy przewodu oddechowego, znajdującego się ponad krtanią. Najważniejsze z punktu widzenia artykulacji - nosowa, gardłowa oraz ustna - nazywane są nasadą. Artykulatory znajdujące się w nasadzie dzielone są na ruchome oraz nieruchome. Do ruchomych zaliczamy język, podniebienie miękkie, wargi oraz żuchwę. Nieruchomymi określamy zęby, dziąsła oraz podniebienie twarde. Ich ustawienie ostatecznie determinuje cechy wytwarzanego dźwięku. 
 \end{enumerate}
- W zaleźnosci od tego czy dana głoska jest dźwięczna czy bezdźwięczna proces powstawania dźwięku przebiega w trochę inny sposób. W obu przypadkach w początkowej fazie wzrasta cisnienie w płucach, co prowadzi do wydechu.~\cite{produkcja_mowy} Powietrze dostaje się do tchawicy. Na szczycie tchawicy znajduje się krtań, należąca do aparatu fonacyjnego. W przypadku głosek dźwięcznych, w miarę przepływu powietrza przez głosnię, spada lokalne cisnienie, co pozwala mięsniom krtani zamknąć głosnię, przerywając przepływ powietrza. To powoduje wzrost cisnienia, prowadzący do kolejnego oddalenia się strun głosowych. Cały ten cykl zapętla się, struny wibrują tworząc dźwięk, kierowany do aparatu artykulacyjnego. Na tym etapie, poza artykulacją, zachodzi również tłumienie niektórych częstotliwosci, nie będących harmonicznymi fali głosniowej. Nie wytłumione zostają tylko częstotliwosci będace bliskie naturalnemu rezonansowi traktu głosowego. Ruszając szczęką, ustami lub zmieniając połozenie języka, możemy zmieniać uzyskiwany dźwięk, ponieważ zmieni się rezonans traktu głosowego, a zatem inne częstotliwosci zostaną wytłumione. Gdy wypowiadane są głoski bezdźwięczne, krtań nie odgrywa istotnej roli, a modulacja dźwięku odpowiedzialna za uzyskanie brzmienia głoski odbywa się w aparacie artykulacyjnym. Jako rezultat kompletnego procesu, uzyskiwana jest fala akustyczna, wydostająca się z ust. Prawdziwosć opisanych różnic między dwoma rodzajami głosek można sprawdzić w prosty sposób, przykładając palce do krtani. W czasie wypowiadania głosek dźwięcznych czyli wszystkich samogłosek oraz częsci spółgłosek, takich jak b, d, g, w, z, ź, ż, l, ł, r, m, n, j , dz, dź, dż, wyczuwalne będę wibracje, które nie wystąpią podczas wypowiadania głosek bezdźwięcznych, takich jak p, t, k, f, s, ś, sz, c, ć, cz, ch.
+ W zaleźnosci od tego czy dana głoska jest dźwięczna czy bezdźwięczna proces powstawania dźwięku przebiega w trochę inny sposób. W obu przypadkach w początkowej fazie wzrasta cisnienie w płucach, co prowadzi do wydechu~\cite{produkcja_mowy}. Powietrze dostaje się do tchawicy. Na szczycie tchawicy znajduje się krtań, należąca do aparatu fonacyjnego. W przypadku głosek dźwięcznych, w miarę przepływu powietrza przez głosnię, spada lokalne cisnienie, co pozwala mięsniom krtani zamknąć głosnię, przerywając przepływ powietrza. To powoduje wzrost cisnienia, prowadzący do kolejnego oddalenia się strun głosowych. Cały ten cykl zapętla się, struny wibrują tworząc dźwięk, kierowany do aparatu artykulacyjnego. Na tym etapie, poza artykulacją, zachodzi również tłumienie niektórych częstotliwosci, nie będących harmonicznymi fali głosniowej. Nie wytłumione zostają tylko częstotliwosci będace bliskie naturalnemu rezonansowi traktu głosowego. Ruszając szczęką, ustami lub zmieniając połozenie języka, możemy zmieniać uzyskiwany dźwięk, ponieważ zmieni się rezonans traktu głosowego, a zatem inne częstotliwosci zostaną wytłumione. Gdy wypowiadane są głoski bezdźwięczne, krtań nie odgrywa istotnej roli, a modulacja dźwięku odpowiedzialna za uzyskanie brzmienia głoski odbywa się w aparacie artykulacyjnym. Jako rezultat kompletnego procesu, uzyskiwana jest fala akustyczna, wydostająca się z ust. Prawdziwosć opisanych różnic między dwoma rodzajami głosek można sprawdzić w prosty sposób, przykładając palce do krtani. W czasie wypowiadania głosek dźwięcznych czyli wszystkich samogłosek oraz częsci spółgłosek, takich jak b, d, g, w, z, ź, ż, l, ł, r, m, n, j , dz, dź, dż, wyczuwalne będę wibracje, które nie wystąpią podczas wypowiadania głosek bezdźwięcznych, takich jak p, t, k, f, s, ś, sz, c, ć, cz, ch.
 Fakt, że wiele różnych narządów bierze udział w tworzeniu mowy powoduje, że zaburzenia zdrowotne każdego z nich mają istotny wpływ na cały proces. Zakres powstałych w ten sposób zaburzeń mowy jest szeroki - od drobnych wad wymowy do całkowitej utraty mowy.
 
 
 
 \subsubsection{Reprezentacja mowy}
 W procesie rozwoju technologii związanych z  przetwarzaniem mowy, konieczne bylo ustalenie sposobu przedstawienia wypowiedzi za pomocą symboli reprezentujacych wyprodukowany sygnal. Litery, używane w tym celu w języku pisanym, są niewystarczające, ponieważ w różnych wyrazach mogą być wymawiane na rózne sposoby.  Często produkowany dźwięk dla danej litery różni się w zależnosci od otaczających ją liter. Dla języka polskiego charakterystyczne jest występowanie tak zwanych dwuznaków, na przykład ''rz,sz,ch''. Dźwięk produkowany dla tych znaków jest calkowicie odmienny od dźwięków reprezentujących każdą z liter osobno. 
-Jednym ze sposobów reprezentowanie dźwięków powszechnie występujących w danym języku są fonemy. Są to najmniejsze elementy języka mówionego, pozwalające na rozróżnienie poszczególnych słów.~\cite{phonem} Często po zamienieniu jednego z fonemów składowych na inny, znaczenie słowa może ulec zmianie. W lingwistyce istnieją rózne sposoby definiowania czym są fonemy oraz w jaki sposób dany język powinien być przez nie reprezentowany. Najczęsciej jednak fonem jest rozumiany jako często powtarzający się w danym języku zbiór głosek. W języku polskim, w zależnosci od sposobu definiowania, liczba fonemów waha sie od 31 do 42.~\cite{liczba_fonem}
+Jednym ze sposobów reprezentowanie dźwięków powszechnie występujących w danym języku są fonemy. Są to najmniejsze elementy języka mówionego, pozwalające na rozróżnienie poszczególnych słów~\cite{phonem}. Często po zamienieniu jednego z fonemów składowych na inny, znaczenie słowa może ulec zmianie. W lingwistyce istnieją rózne sposoby definiowania czym są fonemy oraz w jaki sposób dany język powinien być przez nie reprezentowany. Najczęsciej jednak fonem jest rozumiany jako często powtarzający się w danym języku zbiór głosek. W języku polskim, w zależnosci od sposobu definiowania, liczba fonemów waha sie od 31 do 42~\cite{liczba_fonem}.
 \subsubsection{Rozumienie mowy}
 Rozumieniem mowy nazywany jest proces, w trakcie którego wypowiedziana mowa jest słyszana, interpretowana oraz rozumiana przez człowieka. Badania nad postrzeganiem mowy są scisle związane
 z lingwistyką oraz psychologią poznawczą i próbują odpowiedzieć na pytanie w jaki sposób ludzie rozpoznają dźwięki mowy i na ich podstawie rozumieją mówiony język. Rezultaty tych poszukiwań mają swoje zastosowania w tworzeniu systemów komputerowych służących rozpoznawaniu mowy. Rozumienie mowy w danym języku jest scisle związane z rozpoznawaniem przez mózg fonemów charakterystycznych dla tego języka. Z tego powodu często ludzie uczący się obcego języka znacznie łatwiej przyswajają język w formie pisanej niż mówionej.
@@ -161,22 +182,22 @@ Sygnał dźwiękowy może być nagrywany w wersji monofonicznej lub stereofonicz
 \subsection{Ton podstawowy}
 
 \subsubsection{Definicja tonu podstawowego}
-W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0.W zależności od potrzeb, ton podstawowy bywa różnie definiowany. W kontekście przetwarzania sygnału  mowy rozumiany jest jako wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Powstałe w ten sposób częstotliwosci mieszczą się w zakresie 85-180Hz dla mężczyzn oraz w zakresie 165-255Hz dla kobiet.Wartosci te mogą być wyższe gdy osoba mówiąca znajduje się pod wpływem silnych emocji. Poza płcią oraz stanem emocjalnym, zależne są również od wieku, budowy i kształtu strun głosowych ogólnego stanu zdrowia oraz rodzaju wypowiedzi. Badania nad częstotliwoscią podstawową produkowaną przez męzczyzn pokazały, że jej srednie wartosci spadają po osięgnięciu 35 roku życia, by ponownie ulec wzrostowi po przekroczeniu 55 roku życia. ~\cite{Hollien_Ship} W przypadku kobiet, wartosci F0 zaczynaja spadać w okresie menopauzy, osiagając finalne wartosci okolo 70 roku zycia.~\cite{Pegoraro-Krook} Badania nad wpływem palenia papierosów na wartosci F0 pokazały, że wieloletnie palenie również doprowadza do obniżenia tych wartosci, jako że nawyk ten wpływa negatywnie na krtań.~\cite{Gilbert}
+W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0. Pod tym pojęciem rozumiane są wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Powstałe w ten sposób częstotliwosci mieszczą się w zakresie 85-180Hz dla mężczyzn oraz w zakresie 165-255Hz dla kobiet. Wartosci te mogą być wyższe gdy osoba mówiąca znajduje się pod wpływem silnych emocji. Poza płcią oraz stanem emocjalnym, zależne są również od wieku, budowy i kształtu strun głosowych ogólnego stanu zdrowia oraz rodzaju wypowiedzi. Badania nad częstotliwoscią podstawową produkowaną przez męzczyzn pokazały, że jej srednie wartosci spadają po osięgnięciu 35 roku życia, by ponownie ulec wzrostowi po przekroczeniu 55 roku życia ~\cite{Hollien_Ship}. W przypadku kobiet, wartosci F0 zaczynaja spadać w okresie menopauzy, osiagając finalne wartosci okolo 70 roku zycia~\cite{Pegoraro-Krook}. Badania nad wpływem palenia papierosów na wartosci F0 pokazały, że wieloletnie palenie również doprowadza do obniżenia tych wartosci, jako że nawyk ten wpływa negatywnie na krtań~\cite{Gilbert}.
 Przebieg częstotliwości podstawowej w dużym stopniu odzwierciedla intonację wypowiedzi. Gdyby ten przebieg był stały, mowa byłaby odbierana jako monotonna lub brzmiąca maszynowo.  Pełni istotną funkcję w językach tonalnych, w których wielu słów jest zapisywanych tak samo, a jedynie nadawany im ton pozwala rozróżnić ich znaczenie. Z tego powodu też poprawna estymacja F0 jest konieczna w systemach rozpoznawania mowy dla języków tonalnych.
 Dla idealnie okresowego sygnału, częstotliwość podstawowa byłaby po prostu odwrotnością okresu. Okresem nazywamy czas pomiędzy kompletnym cyklem otwarcia i zamknięcia głosni. Jednak sygnał mowy jest sygnałem bardzo dynamicznym, co sprawia, że estymacja F0 przestaje być zadaniem trywialnym. Dodatkowo transformacja sygnału analogowego do postaci dyskretnej, wiążąca się zawsze z utratą danych oraz towarzyszący nagranemu głosowi szum wpływają negatywnie na dokładność estymacji. 
 \subsubsection{Formanty}
-Częstotliwosć podstawowa powiązana jest w największej mierze z intonacją. Jednak w badaniach związanych z technologią przetwarzania mowy, wyznaczane z sygnału mowy sa również inne częstotliwosci, związane z rezonansem innych częsci traktu głosowego. Nie są one bezposrednio związane z intonacją, lecz wiedza na ich temat jest istotna dla każdych badań związanych z sygnałami mowy. Są to formanty. Pod tym pojęciem rozumiane sa skupiska energii akustycznej, zgromadzone wokół konkretnej częstotliwosci w sygnale mowy.~\cite{formant} Istnieje kilka formantów, lecz zazwyczaj wyznaczane sa cztery - F1, F2, F3, F4. Każdy z nich występuje na innej częstotliwosci. W dużym przybliżeniu można stwierdzić, że F1 występuje w okolicach 500 Hz, a kolejne formanty są zlokalizowane na częstotliwosciach będących kolejnymi nieparzystymi wielokrotnosciami pierwszego formantu.
+Częstotliwosć podstawowa powiązana jest w największej mierze z intonacją. Jednak w badaniach związanych z technologią przetwarzania mowy, wyznaczane z sygnału mowy sa również inne częstotliwosci, związane z rezonansem innych częsci traktu głosowego. Nie są one bezposrednio związane z intonacją, lecz wiedza na ich temat jest istotna dla każdych badań związanych z sygnałami mowy. Są to formanty. Pod tym pojęciem rozumiane sa skupiska energii akustycznej, zgromadzone wokół konkretnej częstotliwosci w sygnale mowy.~\cite{formant} Istnieje kilka formantów, lecz zazwyczaj wyznaczane sa cztery - F1, F2, F3, F4. Każdy z nich występuje na innej częstotliwosci. W dużym przybliżeniu można stwierdzić, że F1 występuje w okolicach 500 Hz, a kolejne formanty są zlokalizowane na częstotliwosciach będących kolejnymi nieparzystymi wielokrotnosciami pierwszego formantu. Wartości te są jednak bardzo indywidualne, zależą od płci, używanego języka oraz różnic w budowie traktu głosowego.
 \subsubsection{Przegląd metod estymacji}
-Prowadzone badania nad częstotliwością podstawową doprowadziły do wynalezienie wielu algorytmów estymacji o różnej skuteczności, zarówno w dziedzinie czasowej jak i widmowej.
-Jedną z najpopularniejszych metod czasowych jest algorytm YIN. Jest on zmodyfikowaną wersję funkcję autokoleracji. Algorytm został wzbogacony o parę kroków, mających na celu obniżenie stopy błędów. Został on użyty w implementancji programu będącego rezultatem tej pracy.
+Prowadzone badania nad częstotliwością podstawową doprowadziły do opracowania wielu algorytmów estymacji o różnej skuteczności, zarówno w dziedzinie czasowej jak i widmowej.
+Jedną z najpopularniejszych metod czasowych jest algorytm YIN. Jest on zmodyfikowaną wersję funkcję autokoleracji. Algorytm został wzbogacony o kilka kroków, mających na celu obniżenie stopy błędów. Został on użyty w implementancji programu będącego rezultatem tej pracy.
 YAAPT, którego rozwinięcie brzmi `Yet Another Algorithm of Pitch Tracking'  cechuje się również bardzo dobrymi wynikami estymacji. Jest to metoda hybrydowa, łącząca w sobie zalety i wady metod czasowych oraz widmowych.
  
-\subsubsection{Definicja algorytmu YIN}
+\subsubsection{Algorytm YIN}
 
-W podstawowej wersji bazuje na analizie funkcji autokorelacji w dziedzinie czasu. Jego autorami są Hideki Kawahara oraz Alain de Cheveigne, którzy zaprezentowali te podejście w 2002 roku.~\cite{YIN} Algorytm ten posiada kilka własności, dających mu przewagę nad konkurencyjnymi metodami. Nie posiada górnego limitu frekwencji, dla których działa poprawnie, dzięki czemu wyniki nie są zakłamywane dla wysokich głosów. Ta cecha jest również znacząca w użyciu algorytmu do analizy muzyki. Ważną własnością jest fakt, że algorytm ten jest relatywnie prosty, co pozwala na efektywną implementację, bez dużych opóźnień. Na jego prostotę istotnie wpływa niewielka liczba wymaganych parametrów.
+W podstawowej wersji bazuje na analizie funkcji autokorelacji w dziedzinie czasu. Jego autorami są Hideki Kawahara oraz Alain de Cheveigne, którzy zaprezentowali te podejście w 2002 roku.~\cite{YIN} Algorytm ten posiada kilka własności, dających mu przewagę nad konkurencyjnymi metodami. Nie posiada górnego limitu frekwencji, dla których działa poprawnie, dzięki czemu wyniki nie są zakłamywane dla wysokich głosów. Ta cecha jest również znacząca w użyciu algorytmu do analizy muzyki. 
 
 \subsection{Prozodia}
-Słowo prozodia pochodzi ze starożytnej Greki, w języku tym oznaczało piesń spiewaną przy akompaniamencie muzyki instrumentalnej.~\cite{pros} Współcześnie, terminem tym nazywane są te własciwosci mowy, które nie mogą byc wyznaczone na podstawie wykrytych fonemów, a więc nie przenoszą informacji o wypowiedzianych słowach, lecz mogą wpływać na znaczenie całej wypowiedzi. Jako przykłady takich własciwosci może być postrzegane kontrolowane zmienianie wysokosci głosów, przeciąganie sylab lub celowane zmienianie głosnosci poszczególnych fragmentów wypowiedzi.
+Słowo prozodia pochodzi ze starożytnej Greki, w języku tym oznaczało piesń spiewaną przy akompaniamencie muzyki instrumentalnej~\cite{pros}. Współcześnie, terminem tym nazywane są te własciwosci mowy, które nie mogą byc wyznaczone na podstawie wykrytych fonemów, a więc nie przenoszą informacji o wypowiedzianych słowach, lecz mogą wpływać na znaczenie całej wypowiedzi. Jako przykłady takich własciwosci może być postrzegane kontrolowane zmienianie wysokosci głosów, przeciąganie sylab lub celowane zmienianie głosnosci poszczególnych fragmentów wypowiedzi.
 Z fonetycznego punktu widzenia, mowa ludzka nie może charakteryzowana jedynie jako zbiór fonemów, sylab czy słów, przenoszących znaczenie semantyczne danej wypowiedzi. W normalnej mowie słyszymy, że niektóre sylaby są celowe wydłużane lub skracane, niektóre słowa są nacechowane większą siłą głosu oraz zauważamy zmieniającą się wysokosć głosu.
 Prozodyczne własciwosci mowy nie są odzwierciedlone w ortografii lub transkrypcji fonetycznej żadnego języka.
 \subsubsection{Intonacja}
@@ -187,7 +208,7 @@ Przykład takiego zdania:
 \newline Jako, że taki szyk zarówno zdania jak i pytania jest całkowicie poprawny w języku polskim, bez nadania wypowiedzi odpowiedniej intonacji odbiorca nie jest w stanie zrozumieć intencji osoby mówiącej.
 \subsubsection{Funkcje intonacji}
 Intonacja jest używana we wszystkich wokalnych językach, spełniając różne funkcje. 
-Przedstawiona poniżej lista funkcji jest rezultatem badań nowozelandzkiego lingwisty Scotta Thornbury~\cite{TS} 
+Przedstawiona poniżej lista funkcji jest rezultatem badań nowozelandzkiego lingwisty Scotta Thornbury~\cite{TS}.
 
 
 \begin{itemize}
@@ -199,20 +220,20 @@ Intonacja oddaje odczucia mówcy związane z wypowiadanym zdaniem. Zauważalne s
 \item{Spadek - asertywność, przedstawianie faktu}
 \item{Wzrost - wyrażanie uprzejmości}
 \item{Spadek-wzrost - okazywanie zwątpienia lub niepewności}
-\item{Wzrost-spadek -niecierpliwość lub sarkazm}
+\item{Wzrost-spadek - niecierpliwość lub sarkazm}
 \item{Brak zmian - neutralność lub brak zainteresowania}
 \end{enumerate}
 Mimo, że zmiany w przebiegu intonacji związane z okazywanymi emocjami z całą pewnością istnieją, są trudne do jednoznacznego rozpoznania. Nawet dla ludzi posługujących się danym językiem od urodzenia, rozpoznanie emocji mówcy na podstawie zmian w intonacji w jednym zdaniu wyrwanym z kontekstu może być zadaniem niemożliwym do wykonanania. Zmiany te są subiektywne, ponieważ każdy wyraża emocje w indywidualny sposób. Przedstawiona powyżej lista pokazuje jedynie ogólne tendencje.
-\item{funkcja gramatyczna}
+\item{Funkcja gramatyczna}
 \leavevmode
 \newline
-Pod tą nazwą kryją się różnice między gramatycznymi typami wypowiedzi, a więc jest to funkcja będąca głównym obiektem badań w tej pracy. Zmiany w przebiegu intonacjin mogą wskazywać na dany typ wypowiedzi. Najbardziej znanymi tendencjami są gwałtowne wzrosty na końcu wypowiedzi, wskazujące na pytania, oraz spadkowa tendencja całej wypowiedzi wskazująca na zdanie twierdzące.
-\item{funkcję dyskursu} 
+Pod tą nazwą kryją się różnice między gramatycznymi typami wypowiedzi, a więc jest to funkcja będąca głównym obiektem badań w tej pracy. Zmiany w przebiegu intonacji mogą wskazywać na dany typ wypowiedzi. Najbardziej znanymi tendencjami są gwałtowne wzrosty na końcu wypowiedzi, wskazujące na pytania, oraz spadkowa tendencja całej wypowiedzi wskazująca na zdanie twierdzące.
+\item{Funkcję dyskursu} 
 \leavevmode
 \newline
-Ta funkcja oparta jest na analizie dłuższych fragmentów wypowiedzi, zamiast pojedyńczych zdań.Wysokość intonacji na końcu poszczególnych zdań pozwala ocenić, czy mówca zamierza kontynuować wypowiedź ( wysokie wartości), czy też ją skończył (niskie wartości).
+Ta funkcja oparta jest na analizie dłuższych fragmentów wypowiedzi, zamiast pojedyńczych zdań.Wysokość intonacji na końcu poszczególnych zdań pozwala ocenić, czy mówca zamierza kontynuować wypowiedź (wysokie wartości), czy też ją skończył (niskie wartości).
 
-\item{podkreślenie(highlighting)}
+\item{Podkreślenie(highlighting)}
 \leavevmode
 \newline
 Nadając wyższą intonację poszczególnym słowom, osoba mówiąca może uwydatnić ich znaczenie i skierować na nie uwagę odbiorcy.
@@ -224,7 +245,7 @@ Nadając wyższą intonację poszczególnym słowom, osoba mówiąca może uwyda
 Do tej pory przeprowadzono wiele badań analizujących każdą z funkcji intonacji. W tym podrozdziale zostaną opisane rezultaty badań nad funkcją gramatyczną intonacji. Najczęściej badane były różnice między zdaniami twierdzącymi, a pytaniami z intonacją rosnącą.
 \leavevmode
 \newline
-Martine Grice i Stefan Baumann~\cite{GRI-BA} zajmowali się badaniem intonacji w języku niemieckim. Zauważyli wpływ intonacji na odróżnianie pytań od zdań, składających się z tych samych słów.W badanych przez z nich pytaniach nawiązujących upewnienie, wyraźnie zauważalny był silny wzrost wartości F0 na końcu wypowiedzi. Nie dotyczyło to jednak każdego rodzaju pytań. W pytaniach zawierających zaimek pytajny, nie zaobserwowali końcowego wzrostu intonacji. W literaturze anglojęzycznej takie pytania nazywane są `Wh-questions', ponieważ zaczynają się najczęściej od When, Who, Where, itd. Jednak bazując na wynikach ich badań, można zauważyć, że ta zasada nie jest aplikowalna do każdego języka, w przeprowadzanych przez autorów badaniach nad pytaniami zadanymi w językach romańskich, zaobserwowano wzrost intonacji nie na samym końcu wypowiedzi, lecz moment przed, a po samym wzroście nastąpił spadek.
+Martine Grice i Stefan Baumann~\cite{GRI-BA} zajmowali się badaniem intonacji w języku niemieckim. Zauważyli wpływ intonacji na odróżnianie pytań od zdań, składających się z tych samych słów.W badanych przez z nich pytaniach nawiązujących upewnienie, wyraźnie zauważalny był silny wzrost wartości F0 na końcu wypowiedzi. Nie dotyczyło to jednak każdego rodzaju pytań. W pytaniach zawierających zaimek pytajny, nie zaobserwowali końcowego wzrostu intonacji. W literaturze anglojęzycznej takie pytania nazywane są `WH-questions', ponieważ zaczynają się najczęściej od When, Who, Where, itd. Jednak bazując na wynikach ich badań, można zauważyć, że ta zasada nie jest aplikowalna do każdego języka. W przeprowadzanych przez autorów badaniach nad pytaniami zadanymi w językach romańskich, zaobserwowano wzrost intonacji nie na samym końcu wypowiedzi, lecz moment przed, a po samym wzroście nastąpił spadek.
 \leavevmode
 \newline
 Daniel Hirst i Albert Dicristo~\cite{INT-SYS} badając intonację dla wielu języków odnotowali powszechność tendencji wzrostowej wartości F0 w przebiegu intonacji dla pytań typu tak-nie. Nie zawsze tego pytanie musiało kończyc się wysokim skokiem wartości częstotliwości podstawowej. W niektórych językach (angielski, szwedzki, portugalijski, fiński, zachodnioarabski, węgierski, tajski), tendencja wzrostowa była zauważalna jedynie w części wypowiedzi.
@@ -235,7 +256,7 @@ Jednak w przypadkach dwóch języków, wzrost taki nie występował. W języku d
 Kolejnym badanym rodzajem wypowiedzi były pytania dopełnienia (WH-questions). Zauważono, że w wielu językach (angielski, hiszpański, rumuński, rosyjski, grecki) przebieg intonacji występującej przy wypowiadaniu tego rodzaju pytań dużo bardziej przypomina przebieg intonacji zdania twierdzącego niż pytań rozstrzygnięcia.
 \newline
 \newline
-Najobszerniejsze badania nad funkcją gramatyczną intonacji zostały przeprowadzone dla języka hiszpańskiego przez Pilar Prieto i Paolo Roseano~\cite{SPA} W swoich badaniach zaobserwowali cechy charakterystyczne intonacji nie tylko dla głównych rodzajów wypowiedzi, lecz dokonali również rozróżnienia kilku rodzajów zdań twierdzących oraz pytań. Kryterium była przekazywana przez mówcę treść oraz intencje.
+Najobszerniejsze badania nad funkcją gramatyczną intonacji zostały przeprowadzone dla języka hiszpańskiego przez Pilar Prieto i Paolo Roseano~\cite{SPA}. W swoich badaniach zaobserwowali cechy charakterystyczne intonacji nie tylko dla głównych rodzajów wypowiedzi, lecz dokonali również rozróżnienia kilku rodzajów zdań twierdzących oraz pytań. Kryterium była przekazywana przez mówcę treść oraz intencje.
 \newline
 Zdania twierdzące zostały podzielone w następujący sposób:
 \begin{itemize}
@@ -294,7 +315,7 @@ Podsumowując, łatwo zauważyć, że wiele badań zostało już przeprowadzonyc
 Pierwszym rozważanym zagadnieniem był wybór języka programowania oraz środowiska. Należało wziąć pod uwagę zawartość bibliotek związanych z przetwarzeniem dźwięku, oferowanych przez poszczególne języki.
 Mimo rozpatrywania możlwości wielu języków, główny wybór zawarty był między Javą oraz C++. Dla obu języków dostępna jest mnogość gotowych funkcji wspierających pracę z dźwiękiem. Jako, że projekt zakładał stworzenie graficznego interfejsu użytkownika, 
 konieczny był również wybór odpowiedniego środowiska, umożliwiającego stworzenie takiej aplikacji. Dla języka Java jako środowisko spełniające takie wymagania postrzegany był Eclipse wraz z frameworkiem JavaFx. Nie posiadają one wbudowanych pomocy do pracy z próbkami dźwięku, lecz dla Javy stworzone zostało
-Java Sound API. API te zawiera podstawowe funkcjonalności, jest pomocne przy wczytywaniu plików wav. W celu korzystania z tego rozszerzenia, należy je po prostu zaimportować. Dla  C++ sytuacja wygląda zgoła inaczej. Pracując z tym językiem, można korzystać z możliwości obszernego frameworka - Qt. Oferuje on wiele węwnetrznych klas ułatwiających pracę z dźwiękiem. Działają one niskopoziomowo, wszelkie zadania wykonywane są dużo szybciej niż w przypadku Javy.  System sygnałów i slotów, charakterystyczny dla Qt, jest bardzo wygodny przy wczytywaniu kolejnych próbek dźwieków. Umożliwia to aktualizowanie wykresów przedstawiających odczytane lub obliczone wartości na bieżąco. Dodatkowo, tworzenie graficznego interfejsu użytkownika w tym środowisku jest bardziej intuincyjne. Biorąc pod uwagę argumenty, wybór padł na język C++ z wykorzystaniem frameworka Qt.
+Java Sound API. API te zawiera podstawowe funkcjonalności, jest pomocne przy wczytywaniu plików WAVE. W celu korzystania z tego rozszerzenia, należy je po prostu zaimportować. Dla  C++ sytuacja wygląda zgoła inaczej. Pracując z tym językiem, można korzystać z możliwości obszernego frameworka - Qt. Oferuje on wiele węwnetrznych klas ułatwiających pracę z dźwiękiem. Działają one niskopoziomowo, wszelkie zadania wykonywane są dużo szybciej niż w przypadku Javy.  System sygnałów i slotów, charakterystyczny dla Qt, jest bardzo wygodny przy wczytywaniu kolejnych próbek dźwieków. Umożliwia to aktualizowanie wykresów przedstawiających odczytane lub obliczone wartości na bieżąco. Dodatkowo, tworzenie graficznego interfejsu użytkownika w tym środowisku jest bardziej intuincyjne. Biorąc pod uwagę argumenty, wybór padł na język C++ z wykorzystaniem frameworka Qt.
 
 \subsection{Opis możliwości aplikacji}
 W pierwotnym założeniu aplikacja miała umożliwiać nagrywanie wypowiedzi, która następnie miała zostać poddana rozpoznaniu. Jednak w trakcie implentacji nie sposób było nie zauważyć, że znacznie lepsze wyniki rozpoznania są uzyskiwane, gdy do programu zostanie wczytana wypowiedź nagrana zewnętrznym programem, oraz poddana w nim obróbce wstępnej. Spowodowało to porzucenie tej funkcjonalności, jako że nie jest ona konieczna do osiągnięcia zakładanego celu, jakim jest poprawne rozpoznawanie rodzaju wypowiedzi.
@@ -303,16 +324,17 @@ Aplikacja umożliwa wczytanie pojedynczego nagrania lub całego katalogu z nagra
 \begin{figure}[h]
 
 \includegraphics[scale=0.5]{gui.png}
-\caption{Graficzny wygląd aplikacji}
+\caption{Interfejs graficzny aplikacji}
 \end{figure}
 \FloatBarrier
-\subsection{Wczytanie próbki}
+\subsection{Wczytanie nagrania}
 Pierwszym krokiem na drodze do rozpoznania rodzaju zdania, jest wczytanie calego nagrania przez program. Wykonuje sie to z wykorzystaniem mozliwosci oferowanych przez Qt. Framework oferuje do tego klase QAudioDecoder. 
 Nagranie jest wczytywane w 100 milisekundowych fragmentach. Jako że częstotliwość próbkowania wynosi 44100Hz, na jeden fragment przypada 4410 wartości. Każda częśc jest odczytana jako obiekt klasy QAudioBuffer. Wektor typu QAudioBuffer zawiera cale wczytane nagranie.
 \begin{lstlisting}[caption={Połączenie sygnałów niosących informacje o starcie lub zakończeniu wczytywania nagrania, ze slotami},label={lst:label},language=C++]
 std::vector<QAudioBuffer>audioBuffers;
 QAudioDecoder *audioDecoder;
 \end{lstlisting}
+
 \begin{lstlisting}
 audioDecoder = new QAudioDecoder();
 connect(audioDecoder, SIGNAL(bufferReady()), this, 
@@ -349,8 +371,7 @@ void MainWindow::putValuesIntoVector()
     }
 }
 \end{lstlisting}
-W powyższej funkcji, najpierw pobierana jest ilość próbek przypadających na jedną sekundę, oraz na 25 milisekundową ramkę. Następnie wartości kolejno z każdego obiektu typu QAudioBuffer, znajdującego się w wektorze audioBuffers, są dodawane do wektora wholeBuffer. Jest to wektor przechowujący zmienne
-zmiennoprzecinkowe, o podwójnej precyzji, tj.double.
+W powyższej funkcji, najpierw pobierana jest liczba próbek przypadających na jedną sekundę, oraz na 25 milisekundową ramkę. Następnie wartości kolejno z każdego obiektu typu QAudioBuffer, znajdującego się w wektorze audioBuffers, są dodawane do wektora wholeBuffer.
 
 \subsection{Ekstrakcja tonu podstawowego}
 W pierwotnym założeniu program, poza estymacją częstotliwości podstawowej miał również dokonywać ekstrakcji niskopoziomowych cech.
@@ -361,13 +382,13 @@ W przetwarzaniu mowy korzystne jest dzielenie sygnału na części, celem uzyska
 Głośnia, odpowiedzialna za zmiany częstotliwości głosu, nie zamyka i nie otwiera się natychmiastowo, co oznacza, że w małych odstępach czasu wartości częstotliwości są do siebie zbliżone.
 Odpowiednio dzieląc sygnał możliwe jest uzyskanie krótszych  quasi-stacjonarnych fragmentów. Proces ten nazywa się ramkowaniem.
 \subsubsection{Ramkowanie oraz ekstracja wartości F0}
-Sygnał najczęśniej dzielony jest na 20-50ms ramki. W tym projekcie ustalona długość ramki wynosi 25ms. Oznacza to, że każda ramka składa się z 1102 wartości.
+Sygnał najczęśniej dzielony jest na ramki o długości 20-50ms. W tym projekcie ustalona długość ramki wynosi 25ms. Oznacza to, że każda ramka składa się z 1102 wartości.
 Pojawia się jednak problem związany z wartościami brzegowymi. Dzieląc sygnał na przystające do siebie, lecz nie zachodzące na siebie ramki istnieje duże ryzyko nie wykrycia pewnych cech, które mogą znajdować się pomiędzy dwoma kolejnymi ramkami. 
 Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia konturów częstotliwości podstawowej. Jeżeli relatywnie krótki kontur zaczynałby się w jednej ramce i kończył w drugiej, mógłby nie zostać wykryty.
-Rozwiązaniem jest nakładanie ramek na siebie (overlapping).Określona część każdej ramki, zawarta jest również w ramce kolejnej. Najczęściej jest to 20-50\% segmentu.
+Rozwiązaniem jest nakładanie ramek na siebie \textit{ang.overlapping}.Określona część każdej ramki, zawarta jest również w ramce kolejnej. Najczęściej jest to 20-50\% długości segmentu.
 \begin{figure}[h]
 \includegraphics[scale=0.7]{overlapping.png}
-\caption{Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego overlappingu. Opracowanie własne}
+\caption{Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego zakładkowania. Opracowanie własne}
 \end{figure}
 \FloatBarrier
 Do ekstrakcji cech niskopoziomowych 30 procentowe nakładanie się ramek jest wystarczające. Jednak algorytm YIN, wykorzystany w projekcie do estymacji F0, wymaga znacznie większego zachodzenia fragmentów na siebie. W tym przypadku 90\% danej ramki znajduje się również w ramce kolejnej.
@@ -405,7 +426,7 @@ void ExtractionHelper::calcF0(int numberOfFrames)
        }
        Yin::YinOutput f0_struct=m_yin.process(shifted_frame);
        if (f0_struct.f0 <F0_MAX && f0_struct.f0 >F0_MIN)
-           f0.emplace_back(f0_struct.f0);
+           f0.emplace_back(f0struct.f0);
        else
            f0.emplace_back(0);
        delete shifted_frame;
@@ -413,7 +434,7 @@ void ExtractionHelper::calcF0(int numberOfFrames)
 
 }
 \end{lstlisting}
-W funkcji wykorzystywana jest klasa Yin, pochodząca z ogólnodostępnej implementacji algorytmu YIN. Konstruktor obiektu tej klasy jako argumenty przyjmuje długość pojedynczej ramki oraz częstotliwośc próbkowania. W tym przypadku wartości te wynoszą kolejno 1102 i 44100. 
+W funkcji wykorzystywana jest klasa Yin, pochodząca z ogólnodostępnej implementacji algorytmu YIN. Konstruktor obiektu tej klasy jako argumenty przyjmuje długość pojedynczej ramki oraz częstotliwośc próbkowania.
 W ciele funkcji calcF0 obiekt ten będzie wykorzystywany do estymacji konturów F0 dla pojedynczych ramek. 
 Z racji zastosowania wysokiego overlappingu, proces dzielenia sygnału na fragmenty nie wygląda jak typowe ramkowanie. Okno sygnału przeznaczone do estymacji będzie przesuwane jedynie o 2,5ms.
 W tym celu zadeklarowane zostały dwie zmienne, frameStartIndexAfterShifting przechowuje początkowy indeks obecnie przetwarzanej ramki, a zmienna shift przechowuje wartość pojedynczego przesunięcia.
@@ -610,11 +631,9 @@ void MainWindow::processPraatFile(QString filepath)
 {
     praatFilesNumber++;
     QFile file(filepath);
-    if(!file.open(QIODevice::ReadOnly)) {
+    if(!file.open(QIODevice::ReadOnly)) 
         QMessageBox::information(0, "error", file.errorString());
-    }
 
-    QTextStream in(&file);
     std::vector<double> f0;
     while(!in.atEnd()) {
         QString line = in.readLine();
@@ -625,7 +644,7 @@ void MainWindow::processPraatFile(QString filepath)
             value = 0.0;
         else
             value = line.toDouble();
-        f0.emplace_back(value);
+        f0.emplaceback(value);
       }
 
     file.close();
@@ -640,17 +659,21 @@ Zadaniem przedstawionej funkcji jest wczytanie do programu wartości częstotliw
 \section{Analiza wykrytych segmentów}
 Po zakończeniu implementacji segmentacji konturów oraz obliczania współczynników regresji liniowej, kolejnym etapem pracy była analiza wykrytych segmentów. Celem tej analizy było wykrycie wszelkiego rodzaju cech, które powtarzałyby się w zdaniach tego samego typu, a więc mogły by być użyteczne w procesie klasyfikacji zdań. 
 Analizowane były takie własciwosci przebiegu intonacji jak:
-\newline-gwałtowne wzrosty/spadki częstotliwosci podstawowej w całym przebiegu 
-\newline-ogólna tendencja zmian konturu
-\newline-ilosc oraz długosć poszczególnych segmentów
-\newline Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
-By ułatwić wykrywanie położenia tych zmian, przebiegi intonacji zostały podzielone na 3 częsci, co zostało opisane w poprzednim rozdziale.
+\begin{itemize}
+\item{gwałtowne wzrosty/spadki częstotliwosci podstawowej w całym przebiegu }
+\item{ogólna tendencja zmian konturu}
+\item{ilosc oraz długosć poszczególnych segmentów}
+\end{itemize}
+
+Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
+
 \subsection{Pytania rozstrzygnięcia}
-Najłatwiejszym zadanie okazało się rozróżnianie pytań rozstrzygnięcia. Ten rodzaj wypowiedzi cechuje się silną antykadencją zlokalizowaną w końcowej częsci zdania.
+W pierwszej kolejności nagrania były analizowane pod kątem rozpoznania ich jako pytania rozstrzygnięcia. Ten rodzaj wypowiedzi cechuje się silną antykadencją zlokalizowaną w końcowej częsci zdania.
+Jest to najbardziej charakterystyczny rodzaj zdania, dlatego program zaczyna klasyfikacje od niego.
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{pytanie_rozstrzygniecia.png}
+\includegraphics[scale=0.6]{pytanie_rozstrzygniecia.png}
 \caption{Pytanie rozstrzygnięcia zadane przez mężczyznę}
 \end{figure}
 \FloatBarrier
@@ -658,7 +681,15 @@ Pytanie przedstawione na rysunku 10 brzmi 'Faktycznie jest gdzies w Tobie taka p
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{pytanie_rozstrzygniecia_2_emocje.png}
+\includegraphics[scale=1.0]{conclusive.png}
+\caption{Schemat rozpoznawania pytań rozstrzygnięcia}
+\end{figure}
+\FloatBarrier
+Na rysunku przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nastąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi. Pod uwagę brane są trzy ostatnie kontury. Porównywane jest położenie  (\textit{ang.intercept}), oraz sprawdzane jest nachylenie (\textit{ang.slope}) przypisanej do sąsiadujących segmentów linii regresji. Jeżeli róznica w położeniu segmentów jest znacząca, a do tego przynajmniej jeden z nich nie jest gwałtownie opadający, wypowiedź zostaje rozpoznana jako pytanie rozstrzygnięcia.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{pytanie_rozstrzygniecia_2_emocje.png}
 \caption{Pytanie rozstrzygnięcia z nacechowaniem emocjonalnym}, wypowiedziane przez mężczyznę
 \end{figure}
 \FloatBarrier

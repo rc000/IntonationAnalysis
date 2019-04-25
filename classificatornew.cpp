@@ -9,8 +9,6 @@ QString ClassificatorNew::classification()
     segments.size() > 4 ? loopEnd = segments.size()-4 : loopEnd = 0;
     for( int i = segments.size()-1; i>loopEnd;i--)
     {
-        qDebug()<<i << " "<<firstValue<<" "<<secondValue;
-
         if (firstValue == 0.0)
         {
             if (segments.at(i).getSegmentLength() > 2 )//&& segments.at(i).getCoefA() > 0.0)
@@ -28,7 +26,7 @@ QString ClassificatorNew::classification()
 
         }
         double difference = firstValue - secondValue;
-        qDebug()<<i << " "<<difference;
+        qDebug()<<i << " diff "<<difference;
 
         if(difference > 20 && (segments.at(i).getCoefA() > -0.3 || segments.at(i-1).getCoefA() > -0.3))
         {
@@ -42,6 +40,13 @@ QString ClassificatorNew::classification()
                     break;
                 }
             }
+            for( int j = i-1;j > segments.size()/2;j--)
+            {
+                if (firstValue < (segments.at(j).getCenterOfRegressionLine() + 10.0))
+                    biggerThanFewPrevious = false;
+            }
+            if (segments.at(i).getSegmentLength() < 10 && firstValue > (secondValue + 100.0))
+                biggerThanFewPrevious = false;
             if(biggerThanFewPrevious)
                 return "pytanie rozstrzygniecia? ";
         }
@@ -49,6 +54,58 @@ QString ClassificatorNew::classification()
         secondValue = 0.0;
 
     }
+    bool endRising = true;
+    int indexPreviousSegment = -1;
+    int firstValidFromEnd = 0;
+    for (int i = segments.size()-1; i >=0;i--)
+    {
+        if(segments.at(i).getSegmentLength() > 5)
+        {
+            firstValidFromEnd = i;
+            break;
+        }
+    }
+    if (segments.at(firstValidFromEnd).getSegmentLength() > 50)
+        firstValidFromEnd = 0;
+    qDebug()<<"FIRSTVALIDFROMEND "<<firstValidFromEnd;
+    for (int i = firstValidFromEnd;i > firstValidFromEnd -3;i--)
+    {
+        if(i==0) break;
+        if (segments.at(i).getSegmentLength() < 5)
+            continue;
+        if (segments.at(i).getCenterOfRegressionLine() < 200.0)
+        {
+            endRising = false;
+            break;
+        }
+        indexPreviousSegment = i-1;
+        while(true)
+        {
+            if(segments.at(indexPreviousSegment).getSegmentLength() > 5)
+                break;
+            if (indexPreviousSegment == 0)
+            {
+                indexPreviousSegment = -1;
+                break;
+            }
+            indexPreviousSegment--;
+        }
+
+        if (indexPreviousSegment == -1)
+            break;
+        if (segments.at(indexPreviousSegment).getCenterOfRegressionLine() < 200.0)
+            endRising = false;
+        if((segments.at(i).getCenterOfRegressionLine() < (segments.at(indexPreviousSegment).getCenterOfRegressionLine() -5.0))
+                && segments.at(indexPreviousSegment).getCenterOfRegressionLine() > segments.at(firstValidFromEnd).getCenterOfRegressionLine())
+        {
+            qDebug()<<"MNIEJSZE "<<segments.at(i).getCenterOfRegressionLine()<<" " <<segments.at(indexPreviousSegment).getCenterOfRegressionLine();
+            endRising = false;
+            break;
+        }
+        if (i == 1) break;
+    }
+    if (endRising && indexPreviousSegment != -1)
+        return "pytanie rozstrzygnięcia end";
     firstValue = 0.0;
     secondValue = 0.0;
     for(int i = 0;i<segments.size()/2;i++)
@@ -126,17 +183,22 @@ QString ClassificatorNew::classification()
             indexHighestSegment = i;
         }
     }
-    if (highestSegmentFirstHalf.getCoefA() > 0.6 && highestSegmentFirstHalf.getSegmentLength()>20)
+    if ((highestSegmentFirstHalf.getCoefA() > 0.6 && highestSegmentFirstHalf.getSegmentLength()>20)
+            || (highestSegmentFirstHalf.getCoefA() > 0.6 && highestSegmentFirstHalf.getCoefA() < 3.0
+            && highestSegmentFirstHalf.getSegmentLength() > 10))
         return "rozkaz1";
     else if (highestSegmentFirstHalf.getCoefA() > 0.3 && highestSegmentFirstHalf.getSegmentLength()>60)
         return "rozkaz2";
-    if (indexHighestSegment > 0 && segments.at(indexHighestSegment-1).getCoefA() < 0.1 && segments.at(indexHighestSegment-1).getSegmentLength()>5.0)
+    if (indexHighestSegment > 0 && segments.at(indexHighestSegment-1).getCoefA() < 0.1
+            && segments.at(indexHighestSegment-1).getSegmentLength()>5.0
+            && segments.at(indexHighestSegment).getRange() > 5.0
+            && std::abs(segments.at(indexHighestSegment).getCoefA())<3.0)
     {
         if (highestSegmentFirstHalf.getCenterOfRegressionLine() > (segments.at(indexHighestSegment-1).getEndRegressionLine()+20.0))
             return "rozkaz3";
     }
 
-    if(highestSegmentFirstHalf.getSegmentLength() > 20.0 && highestSegmentFirstHalf.getCoefA() < -0.5
+    if(highestSegmentFirstHalf.getSegmentLength() > 10.0 && highestSegmentFirstHalf.getCoefA() < -0.5
             && segments.at(indexHighestSegment+1).getCoefA()<-0.2
             && highestSegmentFirstHalf.getCenterOfRegressionLine() > (segments.at(indexHighestSegment+1).getCenterOfRegressionLine() + 10.0))
     {
@@ -156,11 +218,39 @@ QString ClassificatorNew::classification()
         }
 
     }
-    double spaceBetweenHighestAndNext = segments.at(indexHighestSegment+1).getStartIndex() - highestSegmentFirstHalf.getEndIndex();
-    qDebug()<<"startIndex "<<segments.at(indexHighestSegment+1).getStartIndex()<<" end "<<highestSegmentFirstHalf.getEndIndex();
-    if (spaceBetweenHighestAndNext > highestSegmentFirstHalf.getSegmentLength())
+    int indexNextValidateAfterHighest = 0;
+    for (int i = indexHighestSegment+1; i < segments.size(); i++)
+    {
+        if (segments.at(i).getSegmentLength() > 5)
+        {
+            indexNextValidateAfterHighest = i;
+            break;
+        }
+    }
+    double spaceBetweenHighestAndNext = segments.at(indexNextValidateAfterHighest).getStartIndex() - highestSegmentFirstHalf.getEndIndex();
+    qDebug()<<"startIndex "<<segments.at(indexNextValidateAfterHighest).getStartIndex()<<" end "<<highestSegmentFirstHalf.getEndIndex();
+    if ((spaceBetweenHighestAndNext > highestSegmentFirstHalf.getSegmentLength() && highestSegmentFirstHalf.getCoefA() > -0.5
+            && highestSegmentFirstHalf.getSegmentLength() > 10))
         return "rozkazz5";
-    return " ";
+
+    int indexSegmentBeforeHighest = -1;
+    for (int i = indexHighestSegment-1; i >=0; i--)
+    {
+        if (segments.at(i).getSegmentLength() > 5)
+        {
+           indexSegmentBeforeHighest = i;
+           break;
+        }
+    }
+    if (indexSegmentBeforeHighest == -1)
+        return "zdanie twierdzace";
+
+    double spaceBetweenHighestAndPrevious = highestSegmentFirstHalf.getStartIndex() - segments.at(indexSegmentBeforeHighest).getEndIndex();
+    qDebug()<<"startIndex "<<highestSegmentFirstHalf.getStartIndex()<<" end "<<segments.at(indexSegmentBeforeHighest).getEndIndex();
+    /*if ((spaceBetweenHighestAndPrevious > highestSegmentFirstHalf.getSegmentLength() && segments.at(indexSegmentBeforeHighest).getCoefA() > -0.5
+        && highestSegmentFirstHalf.getSegmentLength() > 10))
+        return "rozkazz6";*/
+    return "zdanie twierdzace";
   /*  double averageFirstHalf = 0.0;
     int counter = 0;
     for (int i = 0; i< segments.size()/2;i++)

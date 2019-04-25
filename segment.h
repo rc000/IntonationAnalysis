@@ -74,7 +74,7 @@ public:
     void setCenterRegressionLine(double center){this->centerRegressionLine = center;}
     void setEndRegressionLine(double end){this->endRegressionLine = end;}
     double getEndRegressionLine(){return endRegressionLine;}
-
+    double getRange() { return getMax() - getMin();}
     void setValue(int index, double value){this->values.at(index) = value;}
 
     void setImp(bool imp){this->imperative = imp;}

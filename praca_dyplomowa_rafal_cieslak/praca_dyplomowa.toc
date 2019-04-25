@@ -11,15 +11,15 @@
 \contentsline {subsubsection}{\numberline {1.2.1}Definicja tonu podstawowego}{9}% 
 \contentsline {subsubsection}{\numberline {1.2.2}Formanty}{10}% 
 \contentsline {subsubsection}{\numberline {1.2.3}Przegl\IeC {\k a}d metod estymacji}{10}% 
-\contentsline {subsubsection}{\numberline {1.2.4}Definicja algorytmu YIN}{11}% 
+\contentsline {subsubsection}{\numberline {1.2.4}Algorytm YIN}{10}% 
 \contentsline {subsection}{\numberline {1.3}Prozodia}{11}% 
 \contentsline {subsubsection}{\numberline {1.3.1}Intonacja}{11}% 
-\contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{12}% 
-\contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{13}% 
+\contentsline {subsubsection}{\numberline {1.3.2}Funkcje intonacji}{11}% 
+\contentsline {subsection}{\numberline {1.4}Analiza dotychczasowych badan}{12}% 
 \contentsline {section}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{16}% 
 \contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{16}% 
 \contentsline {subsection}{\numberline {2.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{16}% 
-\contentsline {subsection}{\numberline {2.3}Wczytanie pr\IeC {\'o}bki}{17}% 
+\contentsline {subsection}{\numberline {2.3}Wczytanie nagrania}{17}% 
 \contentsline {subsection}{\numberline {2.4}Ekstrakcja tonu podstawowego}{19}% 
 \contentsline {subsubsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{19}% 
 \contentsline {subsection}{\numberline {2.5}Wykrywanie poszczeg\IeC {\'o}lnych segment\IeC {\'o}w}{22}% 
@@ -27,9 +27,9 @@
 \contentsline {subsubsection}{\numberline {2.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{29}% 
 \contentsline {subsection}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci uzyskanych za pomoc\IeC {\k a} programu PRAAT}{30}% 
 \contentsline {section}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{31}% 
-\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{32}% 
-\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{34}% 
-\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{35}% 
-\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{38}% 
-\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{40}% 
-\contentsline {section}{\numberline {5}Wnioski}{41}% 
+\contentsline {subsection}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{31}% 
+\contentsline {subsection}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{35}% 
+\contentsline {subsection}{\numberline {3.3}Zdania twierdz\IeC {\k a}ce}{36}% 
+\contentsline {subsection}{\numberline {3.4}Zdania rozkazuj\IeC {\k a}ce}{39}% 
+\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{41}% 
+\contentsline {section}{\numberline {5}Wnioski}{42}% 
