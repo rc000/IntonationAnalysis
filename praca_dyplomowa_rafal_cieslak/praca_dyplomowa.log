@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  26 APR 2019 01:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  26 APR 2019 09:31
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -744,119 +744,119 @@ File: pytanie_uzupelnienia_marynarz.png Graphic file (type png)
 <use pytanie_uzupelnienia_marynarz.png>
 Package pdftex.def Info: pytanie_uzupelnienia_marynarz.png  used on input line 
 719.
-(pdftex.def)             Requested size: 484.5741pt x 186.09668pt.
-
-Overfull \hbox (31.6062pt too wide) in paragraph at lines 719--720
- [][] 
- []
+(pdftex.def)             Requested size: 444.19086pt x 170.58783pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [36 <./pytanie_rozstrzygniecia_3_kobieta.png>]
-<pytanie_dopelnienia_kobieta.png, id=144, 681.14474pt x 283.65974pt>
-File: pytanie_dopelnienia_kobieta.png Graphic file (type png)
-<use pytanie_dopelnienia_kobieta.png>
-Package pdftex.def Info: pytanie_dopelnienia_kobieta.png  used on input line 72
-8.
-(pdftex.def)             Requested size: 476.79807pt x 198.56046pt.
+<pytanie_dopelnienia_2.png, id=144, 821.469pt x 329.43076pt>
+File: pytanie_dopelnienia_2.png Graphic file (type png)
+<use pytanie_dopelnienia_2.png>
+Package pdftex.def Info: pytanie_dopelnienia_2.png  used on input line 728.
+(pdftex.def)             Requested size: 451.80934pt x 181.18747pt.
+<completeness.png, id=145, 384.2355pt x 488.42474pt>
+File: completeness.png Graphic file (type png)
+<use completeness.png>
+Package pdftex.def Info: completeness.png  used on input line 736.
+(pdftex.def)             Requested size: 326.60172pt x 415.16298pt.
 
-Overfull \hbox (23.83017pt too wide) in paragraph at lines 728--729
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[37 <./pytanie_uzupelnienia_marynarz.png> <./pytanie_dopelnienia_2.png>]
+[38 <./completeness.png>]
+<rozkaz_dom.png, id=154, 596.2275pt x 274.626pt>
+File: rozkaz_dom.png Graphic file (type png)
+<use rozkaz_dom.png>
+Package pdftex.def Info: rozkaz_dom.png  used on input line 750.
+(pdftex.def)             Requested size: 417.3564pt x 192.23688pt.
+<rozkaz_rece_kobieta.png, id=155, 685.96275pt x 288.47775pt>
+File: rozkaz_rece_kobieta.png Graphic file (type png)
+<use rozkaz_rece_kobieta.png>
+Package pdftex.def Info: rozkaz_rece_kobieta.png  used on input line 758.
+(pdftex.def)             Requested size: 480.17065pt x 201.93304pt.
+
+Overfull \hbox (27.20276pt too wide) in paragraph at lines 758--759
  [][] 
  []
 
-[37 <./pytanie_uzupelnienia_marynarz.png> <./pytanie_dopelnienia_kobieta.png>]
-<twierdzace_walczyc.png, id=149, 627.5445pt x 307.1475pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[39 <./rozkaz_dom.png>]
+<rozkaz_mezczyzna_telewizor.png, id=159, 673.91776pt x 284.86424pt>
+File: rozkaz_mezczyzna_telewizor.png Graphic file (type png)
+<use rozkaz_mezczyzna_telewizor.png>
+Package pdftex.def Info: rozkaz_mezczyzna_telewizor.png  used on input line 767
+.
+(pdftex.def)             Requested size: 471.73921pt x 199.4036pt.
+
+Overfull \hbox (18.77132pt too wide) in paragraph at lines 767--768
+ [][] 
+ []
+
+[40 <./rozkaz_rece_kobieta.png> <./rozkaz_mezczyzna_telewizor.png>]
+<twierdzace_walczyc.png, id=163, 627.5445pt x 307.1475pt>
 File: twierdzace_walczyc.png Graphic file (type png)
 <use twierdzace_walczyc.png>
-Package pdftex.def Info: twierdzace_walczyc.png  used on input line 738.
+Package pdftex.def Info: twierdzace_walczyc.png  used on input line 778.
 (pdftex.def)             Requested size: 439.27814pt x 215.00177pt.
-<twierdzace_coraz.png, id=150, 627.5445pt x 290.2845pt>
+<twierdzace_coraz.png, id=164, 627.5445pt x 290.2845pt>
 File: twierdzace_coraz.png Graphic file (type png)
 <use twierdzace_coraz.png>
-Package pdftex.def Info: twierdzace_coraz.png  used on input line 746.
+Package pdftex.def Info: twierdzace_coraz.png  used on input line 786.
 (pdftex.def)             Requested size: 439.27814pt x 203.19775pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[38 <./twierdzace_walczyc.png>]
-<twierdzace_narazac.png, id=154, 586.5915pt x 296.90926pt>
+[41 <./twierdzace_walczyc.png>]
+<twierdzace_narazac.png, id=168, 586.5915pt x 296.90926pt>
 File: twierdzace_narazac.png Graphic file (type png)
 <use twierdzace_narazac.png>
-Package pdftex.def Info: twierdzace_narazac.png  used on input line 754.
+Package pdftex.def Info: twierdzace_narazac.png  used on input line 794.
 (pdftex.def)             Requested size: 410.61125pt x 207.83505pt.
- [39 <./twierdzace_coraz.png> <./twierdzace_narazac.png>]
-<rozkaz_dom.png, id=158, 596.2275pt x 274.626pt>
-File: rozkaz_dom.png Graphic file (type png)
-<use rozkaz_dom.png>
-Package pdftex.def Info: rozkaz_dom.png  used on input line 765.
-(pdftex.def)             Requested size: 417.3564pt x 192.23688pt.
-<rozkaz_rece_kobieta.png, id=159, 685.96275pt x 288.47775pt>
-File: rozkaz_rece_kobieta.png Graphic file (type png)
-<use rozkaz_rece_kobieta.png>
-Package pdftex.def Info: rozkaz_rece_kobieta.png  used on input line 773.
-(pdftex.def)             Requested size: 480.17065pt x 201.93304pt.
-
-Overfull \hbox (27.20276pt too wide) in paragraph at lines 773--774
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[40 <./rozkaz_dom.png>]
-<rozkaz_mezczyzna_telewizor.png, id=163, 673.91776pt x 284.86424pt>
-File: rozkaz_mezczyzna_telewizor.png Graphic file (type png)
-<use rozkaz_mezczyzna_telewizor.png>
-Package pdftex.def Info: rozkaz_mezczyzna_telewizor.png  used on input line 782
-.
-(pdftex.def)             Requested size: 471.73921pt x 199.4036pt.
-
-Overfull \hbox (18.77132pt too wide) in paragraph at lines 782--783
- [][] 
- []
-
-[41 <./rozkaz_rece_kobieta.png> <./rozkaz_mezczyzna_telewizor.png>] [42]
-Underfull \hbox (badness 10000) in paragraph at lines 792--798
+ [42 <./twierdzace_coraz.png> <./twierdzace_narazac.png>] [43]
+Underfull \hbox (badness 10000) in paragraph at lines 804--810
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 792--798
+Underfull \hbox (badness 10000) in paragraph at lines 804--810
 
  []
 
-[43]
-Overfull \hbox (32.92845pt too wide) in paragraph at lines 801--803
+[44]
+Overfull \hbox (32.92845pt too wide) in paragraph at lines 813--815
 []\T1/lmr/m/n/12 Terapia mowy [On-line] [Do-st¦p 05.02.2019] http://terapiamowy
 .com/index.php/niedowlad-
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 804--806
+Underfull \hbox (badness 2189) in paragraph at lines 816--818
 []\T1/lmr/m/n/12 Three parts of spe-ech [On-line] [Do-st¦p 10.02.2019] https://
 uiowa.edu/voice-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 823--824
+Underfull \hbox (badness 10000) in paragraph at lines 835--836
 []\T1/lmr/m/n/12 Definition of pho-neme, https://www.britannica.com/topic/phone
 me, [On-
  []
 
 
-Overfull \hbox (268.50426pt too wide) in paragraph at lines 833--834
+Overfull \hbox (268.50426pt too wide) in paragraph at lines 845--846
 []\T1/lmr/m/n/12 What is For-mant? https://ec-concord.ied.edu.hk/phonetics_and_
 phonology/wordpress/learning_website/chapter_2_vowels_new.htm,
  []
 
-[44]
+[45]
 
 Package caption Warning: Unused \captionsetup[mycapequ] on input line 46.
 See the caption package documentation for explanation.
 
-[45] (praca_dyplomowa.aux)
+[46] (praca_dyplomowa.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -865,10 +865,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7813 strings out of 492946
- 113455 string characters out of 3126266
+ 7818 strings out of 492946
+ 113524 string characters out of 3126266
  383862 words of memory out of 3000000
- 11551 multiletter control sequences out of 15000+200000
+ 11555 multiletter control sequences out of 15000+200000
  44842 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,58p,1964b,1694s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -883,9 +883,9 @@ e1/public/lm/lmri12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/lm/lmtt10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on praca_dyplomowa.pdf (46 pages, 719428 bytes).
+Output written on praca_dyplomowa.pdf (47 pages, 757803 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
+ 215 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
 
