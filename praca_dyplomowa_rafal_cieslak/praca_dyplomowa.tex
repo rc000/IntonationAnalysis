@@ -617,7 +617,30 @@ Analizowane były takie własciwosci przebiegu intonacji jak:
 \item{ilosc oraz długosć poszczególnych segmentów}
 \end{itemize}
 
-Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
+Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu. 
+W toku pracy, bazując na dotychczasowych badaniach oraz własnych obserwacjach wyróżniono cechy będące powiązane z poszczególnymi rodzajami zdań. Następnie kontury były analizowane pod kątem występowania tych cech.
+
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{sztuczny_kontur.png}
+\caption{Przedstawienie analizowanych cech przebiegu intonacji}
+\end{figure}
+\FloatBarrier
+Rysunek przedstawia kontur z zaznaczonymi cechami, które są wyszukiwane przez program.
+\begin{itemize}
+\item{1-4. Porównywane jest położenie segmentów z drugiej połowy zbioru segmentów. Program szuka nagłych spadków między nimi. Jeżeli takowe nie występują, program sprawdza czy tendencja tej części przebiegu intonacji jest rosnąca. Dodatkowym warunkiem jest położenie segmentów powyżej granicy 200Hz. Cechy te wskazywałyby na pytanie rozstrzygnięcia.}
+\item{5-17. Analiza segmentów zlokalizowanych w pierwszej połowie zbioru służy wyróżnieniu pytań dopełnienia, zdań rozkazujących oraz twierdzących. Oparta jest na analizie właściwości segmentu posiadającego największą średnią wartość oraz właściwościach segmentów sąsiadujących.
+\begin{itemize}
+\item{5. Położenie początku najwyżej zlokalizowanego segmentu. Wartości przekraczające 200Hz są jednym z czynników mogących wskazywać na pytanie dopełnienia.}
+\item{6. Nachylenie (\textit{ang.slope}) najwyżej zlokalizowanego segmentu. Wartość w zestawieniu z innymi cechami służy rozróżnieniu pytań dopełnienia oraz zdań rozkazujących.}
+\item{7. Długość najwyżej zlokalizowanego segmentu. Stosunkowo długi segment może wskazywać na zdanie rozkazujące, jako ze często w tych zdaniach kładziony jest silny akcent na czasownik w trybie rozkazującym.}
+\item{8 -10, 17. Cyfrą 8 oznaczone zostało położenie końca najwyzej zlokalizowanego segmentu. Cyfrą 10 oznaczone zostało położenie początku następnego segmentu. Wartości te służą do obliczenia przeskoku między nimi, którego wartość została oznaczona cyfrą 9. Gwałtowny przeskok jest cechą wskazującą na pytanie dopełnienia. Cyfrą 17 oznaczono przerwę między najwyższym segmentem oraz segmentem następnym. Długa przerwa może wskazywać na zdanie rozkazujące. }
+\item{11-12. Pozostałe cechy segmentu występującego po segmencie zlokalizowanym najwyżej. Cyfrą 11 oznaczono nachylenie segmentu, cyfrą 12 jego długość. Wartości te, w połączeniu z innymi wpływają na rozróżnianie pytań dopełnienia oraz zdań rozkazujących.}
+\item{13-16. Cechy związane z segmentem występującym przed segmentem zlokalizowanym najwyżej. Cyfrą 13 oznaczono przeskok między końcem tego segmentu (14), a początkiem najwyższego segmentu (5). Cyfrą 15 jego nachylenie, a cyfrą 16 długość. Wartości te, w połączeniu z innymi wpływają na odróżnianie zdań rozkazujących od zdań twierdzących. O ile w przypadku twierdzeń najczęściej segment ten nie różni się znacznie od najwyższego segmentu, to w zdaniach rozkazujących często występuje istotny przeskok między wartościami obu segmentów. W przypadku rozkazów często segment ten też gwałtownie rośnie, a więc jest rosnący. }
+\end{itemize}
+}
+\end{itemize}
 
 \section{Pytania rozstrzygnięcia}
 W pierwszej kolejności nagrania były analizowane pod kątem rozpoznania ich jako pytania rozstrzygnięcia. Ten rodzaj wypowiedzi cechuje się silną antykadencją zlokalizowaną w końcowej częsci zdania.
