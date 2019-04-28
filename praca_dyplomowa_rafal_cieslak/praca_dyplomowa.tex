@@ -98,6 +98,7 @@
 \listoffigures
 
 
+
 \newpage
 \begin{abstract}
    Niniejsza praca inżynierska dotyczy analizy przebiegu intonacji w zdaniach wypowiedzianych w języku polskim. Omówione zostały zagadnienia związane z wytwarzaniem mowy, częstotliwością podstawową oraz funkcjami intonacji. Celem pracy było zaobserwowanie charakterystycznych cech, towarzyszących każdemu z rodzajów wypowiedzi. W ramach pracy sporządzono bazę 90 nagrań, których intonacja była poddawana analizie wizualnej. Na podstawie tych obserwacji zaimplementowany został program, dokonujący klasyfikacji wypowiedzi. Do esktrakcji intonacji użyty został algorytm YIN. W ramach pracy porównano również skuteczność zaproponowanej metody klasyfikacji dla wartości intonacji uzyskanych za pomocą programu PRAAT.
@@ -838,9 +839,11 @@ Przykład przedstawiony na rysunku 32, przedstawia przebieg intonacji zdania twi
 Jednym z założeń pracy było porównanie wyników uzyskanych przez proponowaną metodę rozpoznawania, dla konturów wykrytych za pomocą dwóch różnych metod ekstrakcji F0. W tym celu dla każdego z nagrań znadujących sie w bazie uczącej przygotowano plik z wartościami F0 uzyskanymi przez PRAAT-a. Wartości te następnie są wczytywane do programu będącego efektem tej pracy, dzielone na segmenty oraz analizowane.
 Tendencje przebiegów intonacji uzyskane za pomocą PRAAT-a sa takie same jak te uzyskane z użyciem algorytmu YIN. Różnice moga być obserwowane jedynie w długościach poszczególnych segmentów, na co wpływ ma zastosowany sposób dzielenia intonacji na segmenty.
 
-\subsection{Poprawność klasyfikacji}
 
 Poprawność klasyfikacji dla intonacji uzyskanej za pomocą PRAAT-a jest nieznacznie gorsza od tej uzyskanej dla segmentów opartych na algorytmie YIN. Większa ilość błędnych rozpoznań została zaobserwowana dla zdań rozkazujących. Warunki rozpoznania tych zdań są oparte w istotnym stopniu na wartościach nachylenia segmentów oraz odległościach między nimi. Wartości progowe były ustalone metodą obserwacyjną. Kontury uzyskane za pomocą PRAAT-a zachowują podobną tendencję, lecz inna metoda ekstrakcji powoduje, że w poszczególnych przypadkach parametry te istotnie się różnią.
+
+\subsection{Pytania rozstrzygnięcia oraz dopełnienia}
+Metoda rozpoznawania pytań sprawdza się równie dobrze, bez względu na źródło pochodzenia wartości F0.
 
 \begin{figure}[h]
 \centering
@@ -848,7 +851,7 @@ Poprawność klasyfikacji dla intonacji uzyskanej za pomocą PRAAT-a jest niezna
 \caption{Intonacja pytania przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
 \end{figure}
 \FloatBarrier
-
+Rosnąca tendencja intonacji została wykryta również gdy uzyskane segmenty oparte były na wartościach F0 pochodzących z PRAAT-a.
 
 \begin{figure}[h]
 \centering
@@ -857,15 +860,45 @@ Poprawność klasyfikacji dla intonacji uzyskanej za pomocą PRAAT-a jest niezna
 \end{figure}
 \FloatBarrier
 
+W przypadku pytań dopełnienia, gwałtowne spadki między najwyżej zlokalizowanym segmentem oraz następnym segmentem są wykrywane bez względu na sposób pochodzenia wartości F0.
+
+\subsection{Zdania rozkazujące oraz zdania twierdzące}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{rozkaz_1_kob_25.png}
+\caption{Intonacja zdania rozkazującego przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\end{figure}
+\FloatBarrier
+
+Silny nacisk położony na czasownik w trybie rozkazującym jest również odzwierciedlony w przebiegu intonacji uzyskanej za pomocą PRAAT-a. Zdanie zostało poprawnie rozpoznane przez program.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{tw_1_praat.png}
+\caption{Intonacja zdania twierdzącego przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\end{figure}
+\FloatBarrier
+Przykład zdania twierdzącego również pokazuje podobieństwo tendencji przebiegów intonacji uzyskanych w różny sposób. Stała tendencja została zachowana.
+\subsection{Błędne rozpoznania}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{rozkaz_1_praat_zle.png}
+\caption{Intonacja zdania rozkazującego przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\end{figure}
+\FloatBarrier
+Zdanie rozkazujące, którego intonacja uzyskana za pomocą PRAAT-a została przedstawiona na rysunku ... zostało błędnie sklasyfikowane jako zdanie twierdzące. Intonacja tego samego zdania, lecz uzyskana za pomocą YIN, została przedstawiona na rysunku ... i w tym przypadku zostało sklasyfikowane poprawnie jako zdanie rozkazujące. Przyczyn błędnego rozpoznania należy szukać w założeniach podejścia opartego na długościach segmentów oraz odległościach między nimi. W przypafku wartości uzyskiwanych za pomocą PRAAT-a zarówno segmenty jak i przerwy między nimi są stosunkowo krótsze, powodując błędy w rozpoznawaniu.
+\chapter{Wnioski}
+Uzyskane rezultaty można rozpatrywać dwustopniowo. Program wykorzystując algorytm YIN do esktrakcji intonacji uzyskuje bardzo dobrą skuteczność w rozpoznawaniu obu rodzajów pytań. Zaobserwowane zmiany w intonacji towarzyszącej pytaniom są wystarczające dla poprawnego rozpoznania w zdecydowanej większości przypadków. Potwierdza to dotychczasowe badania wykonane w tym zakresie. 
+Trudniejszym zadaniem okazało się rozróżnianie zdań rozkazujących oraz twierdzących. Pewnym utrudnieniem była ubogość dotychczasowych badań wykonanych dla zdań rozkazujących. W toku pracy udało sie jednak zaobserwować wiele cech rózniących oba rodzaje zdań, których zastosowanie pozwoliło uzyskać zadowalające wyniki.
+
+Opracowaną metodę opartą na zaoberwowanych cechach przetestowano również na intonacji zdań uzyskanej za pomocą innego algorytmu. Był to algorytm oparty na autokoleracji, używany przez program PRAAT.
+W przypadku rozpoznawania pytań, nie zaobserwowano różnic. Rozpoznawania przebiega prawidłowo w takim samym stopniu.
+Rozpoznawanie zdań rozkazujących oraz twierdzących wskazało jednak wady w podejściu opartym na długościach segmentów oraz odległościach między nimi. Uzyskane rezultaty są nieznacznie, ale jednak gorsze od tych uzyskanych bazując na ekstrakcji opartej na algorytmie YIN.
+
+Porównanie wyników opartych na analizie intonacji uzyskanej za pomocą różnych algorytmów pokazało możliwe drogi usprawnienia metody rozpoznawania. Podejście oparte na ustaleniu wartości progowych dla długości segmentów oraz odległości między nimi okazało się dość wadliwe. Pierwszym krokiem w celu poprawy uzyskiwanych wyników powinno być zwiększenie skalowalności tego rozwiązania. Nowe podejście nie powinno używać stałych jako wartości progowych.
+Kolejnym krokiem udoskonalenia metody powinno być zwiększenie bazy nagrań. Dotyczy to zwłaszcza zdań rozkazujących. Większa baza nagrań umożliwiłaby zwiększenie liczby cech odróżniających te zdania od zdań twierdzących.
 \newpage
-\section{Wnioski}
-Uzyskane rezultaty można rozpatrywać dwustopniowo. Program uzyskuje zadowalającą skuteczność w rozpoznawaniu obu rodzajów pytań. Zaobserwowane zmiany w intonacji towarzyszącej pytaniom są wystarczające dla poprawnego rozpoznania w zdecydowanej większości przypadków. Potwierdza to dotychczasowe badania wykonane w tym zakresie. 
-\newline
-\newline Poprawność klasyfikacji proponowaną metodą znacznie spada gdy rozróżnianiu poddawane są zdania twierdzące oraz rozkazujące. Oba rodzaje wypowiedzi mogą cechować się intonacją opadającą oraz niewielkimi róznicami między kolejnymi segmentami. Brak wyraźnych różnic między tymi rodzajami sprawia, że zadanie klasyfikacji jest utrudnione. Niemniej jednak, zaobserwowano kilka cech odróżniających je od siebie. Efekty jednak nie są tak skuteczne jak w przypadku pytań.
-\newline
-\newline
-W celu kontynuacji badań, jako pierwszy krok należałoby rozważyć zwiększenie bazych nagrań zdań rozkazujących, aby zwiększyć ilość cech mogących odróżniać je od zdań twierdzących.
-\newpage
+
 \begin{thebibliography}{99}
 \bibitem{krtan}
 Terapia mowy [Online] [Dostęp 05.02.2019]
