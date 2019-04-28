@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  28 APR 2019 23:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.2.17)  29 APR 2019 00:58
 entering extended mode
 **./praca_dyplomowa.tex
 (praca_dyplomowa.tex
@@ -627,63 +627,53 @@ Overfull \hbox (27.26181pt too wide) in paragraph at lines 447--448
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18] [19 <./contourDetector.png>] [20] [21]
+[18] [19 <./contourDetector.png>] [20]
 Overfull \hbox (2.33704pt too wide) in paragraph at lines 519--520
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-<usuniety_kontur.png, id=100, 536.60475pt x 272.81924pt>
+[21]
+<usuniety_kontur.png, id=100, 794.97pt x 342.078pt>
 File: usuniety_kontur.png Graphic file (type png)
 <use usuniety_kontur.png>
 Package pdftex.def Info: usuniety_kontur.png  used on input line 539.
-(pdftex.def)             Requested size: 536.60342pt x 272.81857pt.
+(pdftex.def)             Requested size: 476.98569pt x 205.24837pt.
 
-Overfull \hbox (83.63553pt too wide) in paragraph at lines 539--540
+Overfull \hbox (24.01779pt too wide) in paragraph at lines 539--540
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[22]
-<regresja.png, id=104, 357.13425pt x 338.4645pt>
+<regresja.png, id=102, 701.62125pt x 617.30624pt>
 File: regresja.png Graphic file (type png)
 <use regresja.png>
 Package pdftex.def Info: regresja.png  used on input line 554.
-(pdftex.def)             Requested size: 249.99226pt x 236.92352pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[23 <./usuniety_kontur.png>]
+(pdftex.def)             Requested size: 420.97598pt x 370.3866pt.
+[22 <./usuniety_kontur.png>]
 Overfull \hbox (9.22783pt too wide) in paragraph at lines 558--558
 []\T1/lmr/bx/n/17.28 Wczytywanie war-to-±ci uzy-ska-nych za po-moc¡ pro-
  []
 
-[24 <./regresja.png>]
+[23 <./regresja.png>]
 Overfull \hbox (64.42407pt too wide) in paragraph at lines 592--593
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[25] [26]
+[24] [25]
 Rozdzia\l  3.
-<sztuczny_kontur.png, id=118, 708.84825pt x 335.45325pt>
+<sztuczny_kontur.png, id=117, 708.84825pt x 335.45325pt>
 File: sztuczny_kontur.png Graphic file (type png)
 <use sztuczny_kontur.png>
-Package pdftex.def Info: sztuczny_kontur.png  used on input line 626.
+Package pdftex.def Info: sztuczny_kontur.png  used on input line 622.
 (pdftex.def)             Requested size: 496.1904pt x 234.81566pt.
 
-Overfull \hbox (43.2225pt too wide) in paragraph at lines 626--627
+Overfull \hbox (43.2225pt too wide) in paragraph at lines 622--623
  [][] 
  []
 
+[26
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[27
-
-] [28 <./sztuczny_kontur.png>]
-<pytanie_rozstrzygniecia.png, id=127, 766.062pt x 398.08725pt>
+ <./sztuczny_kontur.png>] [27]
+<pytanie_rozstrzygniecia.png, id=125, 766.062pt x 398.08725pt>
 File: pytanie_rozstrzygniecia.png Graphic file (type png)
 <use pytanie_rozstrzygniecia.png>
 Package pdftex.def Info: pytanie_rozstrzygniecia.png  used on input line 651.
@@ -693,21 +683,14 @@ Overfull \hbox (6.67285pt too wide) in paragraph at lines 651--652
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[29]
-<conclusive.png, id=131, 336.65775pt x 417.35925pt>
+[28 <./pytanie_rozstrzygniecia.png>]
+<conclusive.png, id=129, 336.65775pt x 417.35925pt>
 File: conclusive.png Graphic file (type png)
 <use conclusive.png>
 Package pdftex.def Info: conclusive.png  used on input line 659.
 (pdftex.def)             Requested size: 336.6569pt x 417.35822pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[30 <./pytanie_rozstrzygniecia.png>]
-<pytanie_rozstrzygniecia_2_emocje.png, id=135, 773.289pt x 298.11375pt>
+ [29 <./conclusive.png>]
+<pytanie_rozstrzygniecia_2_emocje.png, id=133, 773.289pt x 298.11375pt>
 File: pytanie_rozstrzygniecia_2_emocje.png Graphic file (type png)
 <use pytanie_rozstrzygniecia_2_emocje.png>
 Package pdftex.def Info: pytanie_rozstrzygniecia_2_emocje.png  used on input li
@@ -718,289 +701,284 @@ Overfull \hbox (11.0091pt too wide) in paragraph at lines 667--668
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[31 <./conclusive.png>]
-<conclusive2.png, id=140, 445.06274pt x 471.56175pt>
+<conclusive2.png, id=134, 445.06274pt x 471.56175pt>
 File: conclusive2.png Graphic file (type png)
 <use conclusive2.png>
-Package pdftex.def Info: conclusive2.png  used on input line 675.
+Package pdftex.def Info: conclusive2.png  used on input line 676.
 (pdftex.def)             Requested size: 400.55275pt x 424.40164pt.
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[32 <./pytanie_rozstrzygniecia_2_emocje.png>]
-<pytanie_rozstrzygniecia_3_kobieta.png, id=144, 775.698pt x 294.50024pt>
+[30 <./pytanie_rozstrzygniecia_2_emocje.png>]
+<pytanie_rozstrzygniecia_3_kobieta.png, id=138, 775.698pt x 294.50024pt>
 File: pytanie_rozstrzygniecia_3_kobieta.png Graphic file (type png)
 <use pytanie_rozstrzygniecia_3_kobieta.png>
 Package pdftex.def Info: pytanie_rozstrzygniecia_3_kobieta.png  used on input l
-ine 684.
+ine 685.
 (pdftex.def)             Requested size: 504.19772pt x 191.42288pt.
 
-Overfull \hbox (51.22983pt too wide) in paragraph at lines 684--685
+Overfull \hbox (51.22983pt too wide) in paragraph at lines 685--686
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33 <./conclusive2.png>]
-<pytanie_uzupelnienia_marynarz.png, id=149, 807.61725pt x 310.15875pt>
+[31 <./conclusive2.png>]
+<pytanie_uzupelnienia_marynarz.png, id=144, 807.61725pt x 310.15875pt>
 File: pytanie_uzupelnienia_marynarz.png Graphic file (type png)
 <use pytanie_uzupelnienia_marynarz.png>
 Package pdftex.def Info: pytanie_uzupelnienia_marynarz.png  used on input line 
-694.
+695.
 (pdftex.def)             Requested size: 444.19086pt x 170.58783pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[34 <./pytanie_rozstrzygniecia_3_kobieta.png>]
-<pytanie_dopelnienia_2.png, id=153, 821.469pt x 329.43076pt>
+[32 <./pytanie_rozstrzygniecia_3_kobieta.png>]
+<pytanie_dopelnienia_2.png, id=148, 821.469pt x 329.43076pt>
 File: pytanie_dopelnienia_2.png Graphic file (type png)
 <use pytanie_dopelnienia_2.png>
-Package pdftex.def Info: pytanie_dopelnienia_2.png  used on input line 703.
+Package pdftex.def Info: pytanie_dopelnienia_2.png  used on input line 704.
 (pdftex.def)             Requested size: 451.80934pt x 181.18747pt.
-<completeness.png, id=154, 384.2355pt x 488.42474pt>
+<completeness.png, id=149, 384.2355pt x 488.42474pt>
 File: completeness.png Graphic file (type png)
 <use completeness.png>
-Package pdftex.def Info: completeness.png  used on input line 711.
+Package pdftex.def Info: completeness.png  used on input line 712.
 (pdftex.def)             Requested size: 326.60172pt x 415.16298pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[35 <./pytanie_uzupelnienia_marynarz.png> <./pytanie_dopelnienia_2.png>]
-[36 <./completeness.png>]
-<HighestDetection.png, id=163, 350.5095pt x 356.532pt>
+[33 <./pytanie_uzupelnienia_marynarz.png> <./pytanie_dopelnienia_2.png>]
+[34 <./completeness.png>]
+<HighestDetection.png, id=158, 350.5095pt x 356.532pt>
 File: HighestDetection.png Graphic file (type png)
 <use HighestDetection.png>
-Package pdftex.def Info: HighestDetection.png  used on input line 725.
+Package pdftex.def Info: HighestDetection.png  used on input line 726.
 (pdftex.def)             Requested size: 315.45564pt x 320.87582pt.
-<rozkaz_1_kobieta.png, id=164, 809.424pt x 314.3745pt>
+<rozkaz_1_kobieta.png, id=159, 809.424pt x 314.3745pt>
 File: rozkaz_1_kobieta.png Graphic file (type png)
 <use rozkaz_1_kobieta.png>
-Package pdftex.def Info: rozkaz_1_kobieta.png  used on input line 733.
+Package pdftex.def Info: rozkaz_1_kobieta.png  used on input line 734.
 (pdftex.def)             Requested size: 485.65814pt x 188.62614pt.
 
-Overfull \hbox (32.69025pt too wide) in paragraph at lines 733--734
+Overfull \hbox (32.69025pt too wide) in paragraph at lines 734--735
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[37 <./HighestDetection.png>]
-<Imperative1.png, id=170, 434.8245pt x 220.4235pt>
+[35 <./HighestDetection.png>]
+<Imperative1.png, id=164, 434.8245pt x 220.4235pt>
 File: Imperative1.png Graphic file (type png)
 <use Imperative1.png>
-Package pdftex.def Info: Imperative1.png  used on input line 743.
+Package pdftex.def Info: Imperative1.png  used on input line 744.
 (pdftex.def)             Requested size: 391.33841pt x 198.3793pt.
- [38 <./rozkaz_1_kobieta.png> <./Imperative1.png>]
-<rozkaz_dom.png, id=175, 805.20825pt x 308.95425pt>
+ [36 <./rozkaz_1_kobieta.png> <./Imperative1.png>]
+<rozkaz_dom.png, id=169, 805.20825pt x 308.95425pt>
 File: rozkaz_dom.png Graphic file (type png)
 <use rozkaz_dom.png>
-Package pdftex.def Info: rozkaz_dom.png  used on input line 753.
+Package pdftex.def Info: rozkaz_dom.png  used on input line 754.
 (pdftex.def)             Requested size: 483.12868pt x 185.37398pt.
 
-Overfull \hbox (30.16078pt too wide) in paragraph at lines 753--754
+Overfull \hbox (30.16078pt too wide) in paragraph at lines 754--755
  [][] 
  []
 
-<Imperative2.png, id=176, 341.47575pt x 181.27725pt>
+<Imperative2.png, id=170, 341.47575pt x 181.27725pt>
 File: Imperative2.png Graphic file (type png)
 <use Imperative2.png>
-Package pdftex.def Info: Imperative2.png  used on input line 762.
+Package pdftex.def Info: Imperative2.png  used on input line 763.
 (pdftex.def)             Requested size: 307.32533pt x 163.14801pt.
-<rozkaz_3.png, id=177, 807.61725pt x 314.97675pt>
+[37 <./rozkaz_dom.png> <./Imperative2.png>]
+<rozkaz_3.png, id=176, 807.61725pt x 314.97675pt>
 File: rozkaz_3.png Graphic file (type png)
 <use rozkaz_3.png>
-Package pdftex.def Info: rozkaz_3.png  used on input line 770.
+Package pdftex.def Info: rozkaz_3.png  used on input line 771.
 (pdftex.def)             Requested size: 484.5741pt x 188.98749pt.
 
-Overfull \hbox (31.6062pt too wide) in paragraph at lines 770--771
+Overfull \hbox (31.6062pt too wide) in paragraph at lines 771--772
  [][] 
  []
 
-[39 <./rozkaz_dom.png> <./Imperative2.png>]
-<Imperative3.png, id=182, 415.5525pt x 251.7405pt>
+<Imperative3.png, id=177, 415.5525pt x 251.7405pt>
 File: Imperative3.png Graphic file (type png)
 <use Imperative3.png>
-Package pdftex.def Info: Imperative3.png  used on input line 779.
+Package pdftex.def Info: Imperative3.png  used on input line 780.
 (pdftex.def)             Requested size: 353.22128pt x 213.98042pt.
- [40 <./rozkaz_3.png> <./Imperative3.png>]
-<rozkaz_4.png, id=188, 807.015pt x 308.95425pt>
+[38 <./rozkaz_3.png> <./Imperative3.png>]
+<rozkaz_4.png, id=183, 807.015pt x 308.95425pt>
 File: rozkaz_4.png Graphic file (type png)
 <use rozkaz_4.png>
-Package pdftex.def Info: rozkaz_4.png  used on input line 787.
+Package pdftex.def Info: rozkaz_4.png  used on input line 788.
 (pdftex.def)             Requested size: 484.21274pt x 185.37398pt.
 
-Overfull \hbox (31.24484pt too wide) in paragraph at lines 787--788
+Overfull \hbox (31.24484pt too wide) in paragraph at lines 788--789
  [][] 
  []
 
-<Imperative4.png, id=189, 438.438pt x 255.354pt>
+<Imperative4.png, id=184, 438.438pt x 255.354pt>
 File: Imperative4.png Graphic file (type png)
 <use Imperative4.png>
-Package pdftex.def Info: Imperative4.png  used on input line 797.
+Package pdftex.def Info: Imperative4.png  used on input line 798.
 (pdftex.def)             Requested size: 394.59055pt x 229.81647pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[41 <./rozkaz_4.png>]
-<rozkaz_5_kobieta.png, id=194, 807.015pt x 311.36325pt>
+[39 <./rozkaz_4.png>]
+<rozkaz_5_kobieta.png, id=189, 807.015pt x 311.36325pt>
 File: rozkaz_5_kobieta.png Graphic file (type png)
 <use rozkaz_5_kobieta.png>
-Package pdftex.def Info: rozkaz_5_kobieta.png  used on input line 804.
+Package pdftex.def Info: rozkaz_5_kobieta.png  used on input line 805.
 (pdftex.def)             Requested size: 484.21274pt x 186.81938pt.
 
-Overfull \hbox (31.24484pt too wide) in paragraph at lines 804--805
+Overfull \hbox (31.24484pt too wide) in paragraph at lines 805--806
  [][] 
  []
 
-<rozkaz_6.png, id=195, 807.61725pt x 315.579pt>
+<rozkaz_6.png, id=190, 807.61725pt x 315.579pt>
 File: rozkaz_6.png Graphic file (type png)
 <use rozkaz_6.png>
-Package pdftex.def Info: rozkaz_6.png  used on input line 813.
+Package pdftex.def Info: rozkaz_6.png  used on input line 814.
 (pdftex.def)             Requested size: 484.5741pt x 189.34885pt.
 
-Overfull \hbox (31.6062pt too wide) in paragraph at lines 813--814
+Overfull \hbox (31.6062pt too wide) in paragraph at lines 814--815
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[42 <./Imperative4.png> <./rozkaz_5_kobieta.png>]
-<Imperative5.png, id=201, 446.8695pt x 265.59225pt>
+[40 <./Imperative4.png> <./rozkaz_5_kobieta.png>]
+<Imperative5.png, id=196, 446.8695pt x 265.59225pt>
 File: Imperative5.png Graphic file (type png)
 <use Imperative5.png>
-Package pdftex.def Info: Imperative5.png  used on input line 821.
+Package pdftex.def Info: Imperative5.png  used on input line 822.
 (pdftex.def)             Requested size: 402.17883pt x 239.03079pt.
- [43 <./rozkaz_6.png> <./Imperative5.png>]
-<twierdzenie_1_kobieta.png, id=208, 763.05075pt x 308.352pt>
+ [41 <./rozkaz_6.png> <./Imperative5.png>]
+<twierdzenie_1_kobieta.png, id=202, 763.05075pt x 308.352pt>
 File: twierdzenie_1_kobieta.png Graphic file (type png)
 <use twierdzenie_1_kobieta.png>
-Package pdftex.def Info: twierdzenie_1_kobieta.png  used on input line 835.
+Package pdftex.def Info: twierdzenie_1_kobieta.png  used on input line 836.
 (pdftex.def)             Requested size: 457.83398pt x 185.01262pt.
 
-Overfull \hbox (4.86609pt too wide) in paragraph at lines 835--836
+Overfull \hbox (4.86609pt too wide) in paragraph at lines 836--837
  [][] 
  []
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 843.
+               Default added (so using `tbp') on input line 844.
 
-<twierdzenie_2_mezczyzna.png, id=209, 758.835pt x 310.761pt>
+<twierdzenie_2_mezczyzna.png, id=203, 758.835pt x 310.761pt>
 File: twierdzenie_2_mezczyzna.png Graphic file (type png)
 <use twierdzenie_2_mezczyzna.png>
-Package pdftex.def Info: twierdzenie_2_mezczyzna.png  used on input line 845.
+Package pdftex.def Info: twierdzenie_2_mezczyzna.png  used on input line 846.
 (pdftex.def)             Requested size: 455.30452pt x 186.45804pt.
 
-Overfull \hbox (2.33662pt too wide) in paragraph at lines 845--846
+Overfull \hbox (2.33662pt too wide) in paragraph at lines 846--847
  [][] 
  []
 
-[44 <./twierdzenie_1_kobieta.png>]
-<twierdzenie_3_kobieta.png, id=213, 713.064pt x 299.31825pt>
+[42 <./twierdzenie_1_kobieta.png>]
+<twierdzenie_3_kobieta.png, id=207, 713.064pt x 299.31825pt>
 File: twierdzenie_3_kobieta.png Graphic file (type png)
 <use twierdzenie_3_kobieta.png>
-Package pdftex.def Info: twierdzenie_3_kobieta.png  used on input line 854.
+Package pdftex.def Info: twierdzenie_3_kobieta.png  used on input line 855.
 (pdftex.def)             Requested size: 499.14139pt x 209.52135pt.
 
-Overfull \hbox (46.1735pt too wide) in paragraph at lines 854--855
+Overfull \hbox (46.1735pt too wide) in paragraph at lines 855--856
  [][] 
  []
 
-[45 <./twierdzenie_2_mezczyzna.png> <./twierdzenie_3_kobieta.png>]
-<pytanie_rozstrzygniecia_2_emocje_praat.png, id=217, 721.4955pt x 308.352pt>
+[43 <./twierdzenie_2_mezczyzna.png> <./twierdzenie_3_kobieta.png>]
+<pytanie_rozstrzygniecia_2_emocje_praat.png, id=212, 721.4955pt x 308.352pt>
 File: pytanie_rozstrzygniecia_2_emocje_praat.png Graphic file (type png)
 <use pytanie_rozstrzygniecia_2_emocje_praat.png>
 Package pdftex.def Info: pytanie_rozstrzygniecia_2_emocje_praat.png  used on in
-put line 873.
+put line 874.
 (pdftex.def)             Requested size: 505.0434pt x 215.84492pt.
 
-Overfull \hbox (52.0755pt too wide) in paragraph at lines 873--874
+Overfull \hbox (52.0755pt too wide) in paragraph at lines 874--875
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[46]
-<pytanie_dopelnienia_praat_2.png, id=221, 613.69275pt x 299.31825pt>
+[44]
+<pytanie_dopelnienia_praat_2.png, id=216, 613.69275pt x 299.31825pt>
 File: pytanie_dopelnienia_praat_2.png Graphic file (type png)
 <use pytanie_dopelnienia_praat_2.png>
 Package pdftex.def Info: pytanie_dopelnienia_praat_2.png  used on input line 88
-1.
+2.
 (pdftex.def)             Requested size: 429.582pt x 209.52135pt.
-<rozkaz_1_kob_25.png, id=222, 721.4955pt x 310.761pt>
+<rozkaz_1_kob_25.png, id=217, 721.4955pt x 310.761pt>
 File: rozkaz_1_kob_25.png Graphic file (type png)
 <use rozkaz_1_kob_25.png>
-Package pdftex.def Info: rozkaz_1_kob_25.png  used on input line 891.
+Package pdftex.def Info: rozkaz_1_kob_25.png  used on input line 892.
 (pdftex.def)             Requested size: 505.0434pt x 217.5312pt.
 
-Overfull \hbox (52.0755pt too wide) in paragraph at lines 891--892
+Overfull \hbox (52.0755pt too wide) in paragraph at lines 892--893
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[47 <./pytanie_rozstrzygniecia_2_emocje_praat.png> <./pytanie_dopelnienia_praat
+[45 <./pytanie_rozstrzygniecia_2_emocje_praat.png> <./pytanie_dopelnienia_praat
 _2.png>]
-<tw_1_praat.png, id=226, 711.8595pt x 296.307pt>
+<tw_1_praat.png, id=221, 711.8595pt x 296.307pt>
 File: tw_1_praat.png Graphic file (type png)
 <use tw_1_praat.png>
-Package pdftex.def Info: tw_1_praat.png  used on input line 900.
+Package pdftex.def Info: tw_1_praat.png  used on input line 901.
 (pdftex.def)             Requested size: 498.29825pt x 207.41348pt.
 
-Overfull \hbox (45.33035pt too wide) in paragraph at lines 900--901
+Overfull \hbox (45.33035pt too wide) in paragraph at lines 901--902
  [][] 
  []
 
-<rozkaz_1_praat_zle.png, id=227, 814.242pt x 311.36325pt>
+<rozkaz_1_praat_zle.png, id=222, 814.242pt x 311.36325pt>
 File: rozkaz_1_praat_zle.png Graphic file (type png)
 <use rozkaz_1_praat_zle.png>
-Package pdftex.def Info: rozkaz_1_praat_zle.png  used on input line 908.
+Package pdftex.def Info: rozkaz_1_praat_zle.png  used on input line 909.
 (pdftex.def)             Requested size: 569.96552pt x 217.95279pt.
 
-Overfull \hbox (116.99762pt too wide) in paragraph at lines 908--909
+Overfull \hbox (116.99762pt too wide) in paragraph at lines 909--910
  [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[48 <./rozkaz_1_kob_25.png> <./tw_1_praat.png>] [49 <./rozkaz_1_praat_zle.png>]
+[46 <./rozkaz_1_kob_25.png> <./tw_1_praat.png>] [47 <./rozkaz_1_praat_zle.png>]
 Rozdzia\l  4.
-[50
+[48
 
-]
-Overfull \hbox (32.92845pt too wide) in paragraph at lines 927--929
+] [49]
+Overfull \hbox (32.92845pt too wide) in paragraph at lines 928--930
 []\T1/lmr/m/n/12 Terapia mowy [On-line] [Do-st¦p 05.02.2019] http://terapiamowy
 .com/index.php/niedowlad-
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 930--932
+Underfull \hbox (badness 2189) in paragraph at lines 931--933
 []\T1/lmr/m/n/12 Three parts of spe-ech [On-line] [Do-st¦p 10.02.2019] https://
 uiowa.edu/voice-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 949--950
+Underfull \hbox (badness 10000) in paragraph at lines 950--951
 []\T1/lmr/m/n/12 Definition of pho-neme, https://www.britannica.com/topic/phone
 me, [On-
  []
 
-[51
+[50
 
 ]
-Overfull \hbox (268.50426pt too wide) in paragraph at lines 959--960
+Overfull \hbox (268.50426pt too wide) in paragraph at lines 960--961
 []\T1/lmr/m/n/12 What is For-mant? https://ec-concord.ied.edu.hk/phonetics_and_
 phonology/wordpress/learning_website/chapter_2_vowels_new.htm,
  []
@@ -1009,7 +987,7 @@ phonology/wordpress/learning_website/chapter_2_vowels_new.htm,
 Package caption Warning: Unused \captionsetup[mycapequ] on input line 46.
 See the caption package documentation for explanation.
 
-[52] (praca_dyplomowa.aux)
+[51] (praca_dyplomowa.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1024,7 +1002,7 @@ Here is how much of TeX's memory you used:
  11567 multiletter control sequences out of 15000+200000
  50855 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,58p,1964b,1687s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,8n,58p,1964b,1688s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.en
 c}{C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-maths
 y.enc}<C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/l
@@ -1036,9 +1014,9 @@ e1/public/lm/lmri12.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/public/lm/lmsy10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/lm/lmtt10.pfb><C:/Users/Rafal/AppData/Local/Programs/MiKTeX 2
 .9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on praca_dyplomowa.pdf (58 pages, 1066149 bytes).
+Output written on praca_dyplomowa.pdf (57 pages, 1101667 bytes).
 PDF statistics:
- 274 PDF objects out of 1000 (max. 8388607)
+ 272 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

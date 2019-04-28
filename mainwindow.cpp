@@ -95,7 +95,7 @@ void MainWindow::cellClicked(int nRow, int nCol)
 seriesRegresionLines = segmentsDetector.getSeriesRegresionLines();
 qDebug()<<"before adding seriessegments";
 seriesSegments->setMarkerShape(QScatterSeries::MarkerShapeCircle);
-seriesSegments->setMarkerSize(8.0);
+seriesSegments->setMarkerSize(10.0);
 chart->addSeries(seriesSegments);
 
 chart->legend()->hide();

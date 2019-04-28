@@ -385,7 +385,7 @@ Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia kontu
 Rozwiązaniem jest nakładanie ramek na siebie \textit{ang.overlapping}.Określona część każdej ramki, zawarta jest również w ramce kolejnej. Najczęściej jest to 20-50\% długości segmentu.
 \begin{figure}[h]
 \includegraphics[scale=0.7]{overlapping.png}
-\caption{Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego zakładkowania. Opracowanie własne}
+\caption{Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego zakładkowania.}
 \end{figure}
 \FloatBarrier
 Do ekstrakcji cech niskopoziomowych 30 procentowe nakładanie się ramek jest wystarczające. Jednak algorytm YIN, wykorzystany w projekcie do estymacji F0, wymaga znacznie większego zachodzenia fragmentów na siebie. W tym przypadku 90\% danej ramki znajduje się również w ramce kolejnej.
@@ -441,13 +441,13 @@ Po zakończeniu estymacji wartości F0 dla danej ramki, wartość ta jest dodawa
 \section{Wykrywanie poszczególnych segmentów}
 Wszystkie wyestymowane wartości częstotliwości podstawowej na tą chwilę przechowywane są w jednym wektorze. Aby umożliwić analizę przebiegu intonacji, konieczne jest wydzielenie poszczególnych segmentów. Segmentacji można dokonać analizując wartości pod kątem wartości odstających.
  Do tego celu zostały stworzone dwie klasy.
- \FloatBarrier
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.9]{contourDetector.png}
 \caption{Klasy stworzone do wykrycia poszczególnych segmentów intonacyjnych, na podstawie wszystkich wartości F0}
 \end{figure}
-\FloatBarrier
+
 Dla każdej ze zmiennych istnieją funkcje typu get i set, odpowiednio zwracające wartość zmiennej oraz przypisujące dana wartość. Zostały one pominięte w celu zwiększenia czytelności diagramów.
 Główna funkcjonalność zawarta jest w funkcji findContours() w klasie ContoursDetector. Wykryte kontury będą umieszczane jako obiekty typu Contour, w wektorze contoursVector. W wektorze tym będą również umieszczane fragmenty z wartościami zerowymi, dla których nie wykryto występowania intonacji. Będą one pomijane w dalszej analizie, dodawane są w celu ułatwienia przejrzystego wyświetlania konturów na wykresie, w miejscu w którym rzeczywiście się znajdują.
 
@@ -536,11 +536,11 @@ Podjęto decyzję o usuwaniu ze zbioru takie segmenty, których wartości są ba
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1.0]{usuniety_kontur.png}
+\includegraphics[scale=0.6]{usuniety_kontur.png}
 \caption{Przykład usuniętego segmentu.}
 \end{figure}
 \FloatBarrier
-Na rysunku 14 przedstawiony został przykład usuniętego segmentu. Jest to segment, którego wartości oscylują około 345 jednostek. Jest to liczba ponad dwukrotnie większa od innych, do tego fragment ten jest bardzo krótki.
+Na rysunku 2.5 przedstawiony został przykład usuniętego segmentu. Jest to segment, którego wartości oscylują około 345 jednostek. Jest to liczba ponad dwukrotnie większa od innych, do tego fragment ten jest bardzo krótki.
 Słuchając nagrania, nie sposób było uzasadnić jego występowanie w tym miejscu, dlatego został uznany za błąd estymacji i usunięty ze zbioru. 
 
 
@@ -551,7 +551,7 @@ Kod tej funkcji nie został umieszczony w pracy, z uwagi na jego obszerność or
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{regresja.png}
+\includegraphics[scale=0.6]{regresja.png}
 \caption{Fragment przebiegu intonacji przed i po nałożeniu linii regresji}
 \end{figure}
 \FloatBarrier
@@ -577,7 +577,7 @@ Time\_s &
 
 
 
-Wartości estymowane są co 10 milisekund. Brak wykrytej wartości w danym momencie, oznaczany jest przez PRAATa jako ''--undefined--''.
+Wartości estymowane są co 10 milisekund. Brak wykrytej wartości w danym momencie, oznaczany jest przez PRAAT-a jako ''--undefined--''.
 \begin{lstlisting}[caption={Funkcja wczytująca do programu wartości F0 z pliku tekstowego},label={lst:label},language=C++]
 void MainWindow::processPraatFile(QString filepath)
 {
@@ -617,17 +617,17 @@ Analizowane były takie własciwosci przebiegu intonacji jak:
 \item{ilosc oraz długosć poszczególnych segmentów}
 \end{itemize}
 
-Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu. 
-W toku pracy, bazując na dotychczasowych badaniach oraz własnych obserwacjach wyróżniono cechy będące powiązane z poszczególnymi rodzajami zdań. Następnie kontury były analizowane pod kątem występowania tych cech.
-
- \FloatBarrier
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{sztuczny_kontur.png}
 \caption{Przedstawienie analizowanych cech przebiegu intonacji}
 \end{figure}
-\FloatBarrier
-Rysunek przedstawia kontur z zaznaczonymi cechami, które są wyszukiwane przez program.
+Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartości F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu. 
+W toku pracy, bazując na dotychczasowych badaniach oraz własnych obserwacjach wyróżniono cechy będące powiązane z poszczególnymi rodzajami zdań. Następnie kontury były analizowane pod kątem występowania tych cech.
+
+
+
+Rysunek 3.1 przedstawia kontur z zaznaczonymi cechami, które są wyszukiwane przez program.
 \begin{itemize}
 \item{1-4. Porównywane jest położenie segmentów z drugiej połowy zbioru segmentów. Program szuka nagłych spadków między nimi. Jeżeli takowe nie występują, program sprawdza czy tendencja tej części przebiegu intonacji jest rosnąca. Dodatkowym warunkiem jest położenie segmentów powyżej granicy 200Hz. Cechy te wskazywałyby na pytanie rozstrzygnięcia.}
 \item{5-17. Analiza segmentów zlokalizowanych w pierwszej połowie zbioru służy wyróżnieniu pytań dopełnienia, zdań rozkazujących oraz twierdzących. Oparta jest na analizie właściwości segmentu posiadającego największą średnią wartość oraz właściwościach segmentów sąsiadujących.
@@ -652,7 +652,7 @@ Jest to najbardziej charakterystyczny rodzaj zdania, dlatego program zaczyna kla
 \caption{Pytanie rozstrzygnięcia zadane przez mężczyznę}
 \end{figure}
 \FloatBarrier
-Pytanie przedstawione na rysunku 10 brzmi 'Faktycznie jest gdzies w Tobie taka pasja?'. Jest ono wypowiedziane przez mężczyznę. Nie ma w tej wypowiedzi żadnego słowa, które wyraźnie wskazywałoby na to, że jest to pytanie, a nie stwierdzenie. Jednak, dzięki nadaniu wypowiedzi odpowiedniej intonacji, możliwe jest rozpoznanie jej jako pytanie - zarówno przez program, jak i przez człowieka. W przedstawionym przykładzie, wzrost intonacji na końcu nagrania jest bardzo wyraźny, znacznie przekracza zakres typowych częstotliwosci F0 uzyskiwanych w głosie męskim. Dla pytań rozstrzygnięcia dosć charakterystyczne jest to, że ogólna tendencja intonacji wcale nie musi być rosnąca, zazwyczaj ten wzrost następuje gwałtowanie, dla jednego lub kilku końcowych segmentów. W danym przykładzie, przed wystąpieniem akcentu intonacyjnego w ostatnim słowie, intonacja utrzymywała się na stałym poziomie. Nie może jednak być to uznane za regułę, co udowodni kolejny przykład.
+Pytanie przedstawione na rysunku 3.2 brzmi 'Faktycznie jest gdzies w Tobie taka pasja?'. Jest ono wypowiedziane przez mężczyznę. Nie ma w tej wypowiedzi żadnego słowa, które wyraźnie wskazywałoby na to, że jest to pytanie, a nie stwierdzenie. Jednak, dzięki nadaniu wypowiedzi odpowiedniej intonacji, możliwe jest rozpoznanie jej jako pytanie - zarówno przez program, jak i przez człowieka. W przedstawionym przykładzie, wzrost intonacji na końcu nagrania jest bardzo wyraźny, znacznie przekracza zakres typowych częstotliwosci F0 uzyskiwanych w głosie męskim. Dla pytań rozstrzygnięcia dosć charakterystyczne jest to, że ogólna tendencja intonacji wcale nie musi być rosnąca, zazwyczaj ten wzrost następuje gwałtowanie, dla jednego lub kilku końcowych segmentów. W danym przykładzie, przed wystąpieniem akcentu intonacyjnego w ostatnim słowie, intonacja utrzymywała się na stałym poziomie. Nie może jednak być to uznane za regułę, co udowodni kolejny przykład.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -660,24 +660,25 @@ Pytanie przedstawione na rysunku 10 brzmi 'Faktycznie jest gdzies w Tobie taka p
 \caption{Schemat rozpoznawania pytań rozstrzygnięcia}
 \end{figure}
 \FloatBarrier
-Na rysunku 11 przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nastąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi. Pod uwagę brane są trzy ostatnie kontury. Porównywane jest położenie  (\textit{ang.intercept}), oraz sprawdzane jest nachylenie (\textit{ang.slope}) przypisanej do sąsiadujących segmentów linii regresji. Jeżeli róznica w położeniu segmentów jest znacząca, a do tego przynajmniej jeden z nich nie jest gwałtownie opadający, wypowiedź zostaje rozpoznana jako pytanie rozstrzygnięcia.
- \FloatBarrier
+Na rysunku 3.3 przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nastąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi. Pod uwagę brane są trzy ostatnie kontury. Porównywane jest położenie  (\textit{ang.intercept}), oraz sprawdzane jest nachylenie (\textit{ang.slope}) przypisanej do sąsiadujących segmentów linii regresji. Jeżeli róznica w położeniu segmentów jest znacząca, a do tego przynajmniej jeden z nich nie jest gwałtownie opadający, wypowiedź zostaje rozpoznana jako pytanie rozstrzygnięcia.
+  
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{pytanie_rozstrzygniecia_2_emocje.png}
 \caption{Pytanie rozstrzygnięcia z nacechowaniem emocjonalnym}, wypowiedziane przez mężczyznę
 \end{figure}
-\FloatBarrier
-Pytanie, którego intonacja została przedstawiona na rysunku 12, brzmi ''Może o to, że jest to rażąco niesprawiedliwe?'' Zostało wypowiedziane przez mężczyzne. Nosi ono również znamiona pytania retorycznego.  W tej wypowiedzi nie ma gwałtowanego wzrostu intonacji na samym końcu nagrania, zamiast tego intonacja zauważalnie rosnie w trakcie całej wypowiedzi. Mimo, że jest to nagranie głosu męskiego, wyestymowane wartosci F0 znacznie wykraczają poza zakres typowy dla mężczyzn. Spowodowane jest to dużym zabarwieniem emocjonalnym wypowiedzi.
+ 
+
+Pytanie, którego intonacja została przedstawiona na rysunku 3.4, brzmi ''Może o to, że jest to rażąco niesprawiedliwe?'' Zostało wypowiedziane przez mężczyzne. Nosi ono również znamiona pytania retorycznego.  W tej wypowiedzi nie ma gwałtowanego wzrostu intonacji na samym końcu nagrania, zamiast tego intonacja zauważalnie rosnie w trakcie całej wypowiedzi. Mimo, że jest to nagranie głosu męskiego, wyestymowane wartosci F0 znacznie wykraczają poza zakres typowy dla mężczyzn. Spowodowane jest to dużym zabarwieniem emocjonalnym wypowiedzi.
  \FloatBarrier
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.9]{conclusive2.png}
 \caption{Schemat rozpoznawania pytań rozstrzygnięcia z tendencją rosnącą}
 \end{figure}
-\FloatBarrier
-Na rysunku 13 przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nie wystąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi lecz ogólna tendencja intonacji była rosnąca.
-Ponownie pod uwagę brane są ostatnie trzy kontury. Jako ,że zaobserwowane zostało występowanie wysokich wartości F0 w przypadku tego rodzaju pytań, jako pierwsze sprawdzane jest położenie segmentów. Jeżeli uzyskane wartość dla któregoś z sąsiadujących segmentów jest mniejsza od 200, wypowiedź na pewno nie jest pytaniem rozstrzygnięcia. Jeżeli warunek jest spełniony, program porównuje połozenie badanych segmentów. Jeżeli segment znajdujący się bliżej początku jest położony wyżej od porównywanego z nim segmentu oraz dodatkowo leży wyżej również od ostatniego segmentu, intonacja nie może być postrzegana jako rosnąca, a zatem wypowiedź nie jest pytaniem rozstrzygnięcia. Tym sposobem zostało rozpoznane pytanie przedstawione na rysunku 12.
+ \FloatBarrier
+Na rysunku 3.5 przedstawiony został algorytm rozpoznawania pytań rozstrzygnięcia, w przebiegu których nie wystąpił gwałtowny wzrost wartości F0 w ostatniej fazie wypowiedzi lecz ogólna tendencja intonacji była rosnąca.
+Ponownie pod uwagę brane są ostatnie trzy kontury. Jako ,że zaobserwowane zostało występowanie wysokich wartości F0 w przypadku tego rodzaju pytań, jako pierwsze sprawdzane jest położenie segmentów. Jeżeli uzyskane wartość dla któregoś z sąsiadujących segmentów jest mniejsza od 200, wypowiedź na pewno nie jest pytaniem rozstrzygnięcia. Jeżeli warunek jest spełniony, program porównuje połozenie badanych segmentów. Jeżeli segment znajdujący się bliżej początku jest położony wyżej od porównywanego z nim segmentu oraz dodatkowo leży wyżej również od ostatniego segmentu, intonacja nie może być postrzegana jako rosnąca, a zatem wypowiedź nie jest pytaniem rozstrzygnięcia. Tym sposobem zostało rozpoznane pytanie przedstawione na rysunku 3.4.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -685,7 +686,7 @@ Ponownie pod uwagę brane są ostatnie trzy kontury. Jako ,że zaobserwowane zos
 \caption{Pytanie rozstrzygnięcia zadane przez kobietę}
 \end{figure}
 \FloatBarrier
-Ostatnie z przedstawionych pytań rozstrzygnięcia zostało wypowiedziane przez kobietę. Brzmi ono ''A czy Tobie marzy się kariera zagraniczna?''.  Przebieg intonacji jest zbliżony do przykładu przedstawionego na rysunku 10, tutaj również tendencja intonacji nie jest rosnąca, lecz następuje silny skok intonacji na końcu wypowiedzi.
+Ostatnie z przedstawionych pytań rozstrzygnięcia zostało wypowiedziane przez kobietę. Brzmi ono ''A czy Tobie marzy się kariera zagraniczna?''.  Przebieg intonacji jest zbliżony do przykładu przedstawionego na rysunku 3.2, tutaj również tendencja intonacji nie jest rosnąca, lecz następuje silny skok intonacji na końcu wypowiedzi.
 \section{Pytania dopełnienia}
 Intonacja nadawana pytaniom dopełnienia całkowicie różni się od opisanej dla pytań rozstrzygnięcia. W tym przypadku zaobserwowany został brak jakiekolwiek wzrostu intonacji w końcowej częsci wypowiedzi, oraz cały przebieg intonacji jest najczęsciej opadający. Tresc tych wypowiedzi jawnie wskazuje, że jest to pytanie, ponieważ na ich początku zawarty jest zaimek pytajny. Przykłady takich zaimków to ''kto, dlaczego, który, czemu, jak, co''. Charakterystyczny dla tego rodzaju pytań jest wysoko zaintonowany początek wypowiedzi,  po którym następuje znaczny spadek estymowanych wartosci.
  \FloatBarrier
@@ -695,7 +696,7 @@ Intonacja nadawana pytaniom dopełnienia całkowicie różni się od opisanej dl
 \caption{Pytanie dopełnienia zadane przez mężczyznę}
 \end{figure}
 \FloatBarrier
-Pytanie, którego intonacja została przedstawiona na rysunku 13, zostało wypowiedziane przez mężczyznę. Jego tresć to ''Jak zostać marynarzem?''. Na pierwszy rzut oka zauważalny jest pierwszy segment, którego wartosci górują nad resztą wykresu. W wypowiedzianym pytaniu, duży nacisk intonacyjny został nałożony na zaimek pytajny, po czym nastąpił znaczny spadek wartosci F0. Cała intonacja jest wyraźnie opadająca. Jako, że zaimek występujący w tym zdaniu składa sie jedynie z trzech liter, odpowiadający mu segment również jest krótki. Istotne jest również to, że wartosci kolejnych segmentów są mniejsze aż o 80-140Hz w porównaniu do segmentu położonego najwyżej.
+Pytanie, którego intonacja została przedstawiona na rysunku 3.7, zostało wypowiedziane przez mężczyznę. Jego tresć to ''Jak zostać marynarzem?''. Na pierwszy rzut oka zauważalny jest pierwszy segment, którego wartosci górują nad resztą wykresu. W wypowiedzianym pytaniu, duży nacisk intonacyjny został nałożony na zaimek pytajny, po czym nastąpił znaczny spadek wartosci F0. Cała intonacja jest wyraźnie opadająca. Jako, że zaimek występujący w tym zdaniu składa sie jedynie z trzech liter, odpowiadający mu segment również jest krótki. Istotne jest również to, że wartosci kolejnych segmentów są mniejsze aż o 80-140Hz w porównaniu do segmentu położonego najwyżej.
 
  \FloatBarrier
 \begin{figure}[h]
@@ -704,7 +705,7 @@ Pytanie, którego intonacja została przedstawiona na rysunku 13, zostało wypow
 \caption{Pytanie dopełnienia zadane przez mężczyznę}
 \end{figure}
 \FloatBarrier
-Treść pytania przedstawionego na rysunku 16 brzmi ''Czego Cię to nauczyło?''. Również zostało wypowiedziane przez mężczyznę. W tym pytaniu także najwyżej położony segment jest znacznie większy od pozostałych. Nacisk położony na zaimek pytajny jest wyraźnie widoczny.
+Treść pytania przedstawionego na rysunku 3.8 brzmi ''Czego Cię to nauczyło?''. Również zostało wypowiedziane przez mężczyznę. W tym pytaniu także najwyżej położony segment jest znacznie większy od pozostałych. Nacisk położony na zaimek pytajny jest wyraźnie widoczny.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -712,7 +713,7 @@ Treść pytania przedstawionego na rysunku 16 brzmi ''Czego Cię to nauczyło?''
 \caption{Schemat rozpoznawania pytań dopełnienia}
 \end{figure}
 \FloatBarrier
-Rysunek 17 przedstawia schemat rozpoznawania pytań dopełnienia. Ten rodzaj wypowiedzi charakteryzuje się wysokimi wartościami intonacji na początku wypowiedzi, zazwyczaj towarzyszy im późniejszy znaczny spadek wartości.
+Rysunek 3.9 przedstawia schemat rozpoznawania pytań dopełnienia. Ten rodzaj wypowiedzi charakteryzuje się wysokimi wartościami intonacji na początku wypowiedzi, zazwyczaj towarzyszy im późniejszy znaczny spadek wartości.
 Pod uwagę brana jest pierwsza połowa zbioru segmentów. Najpierw program sprawdza czy dany segment jest położony wystarczająco wysoko. W przeciwnym razie segment ten zostaje ominięty. Następnie obliczona zostaje różnica w położeniu między sąsiadującymi segmentami.
 Aby zdanie zostało sklasyfikowane jako pytanie dopełnienia, różnica między nimi musi być większa niż wartość położenia niżej znajdującego się segmentu, podzielona na trzy. Zauważono, że z racji dużych różnic między wartościami F0 uzyskiwanymi dla kobiet i mężczyzn, takie porównanie jest wydajniejsze niż porównywanie ze stałą wartością. Dodatkowymi warunkiem klasyfikacji jest brak rosnącej tendencji niżej położonego segmentu.
 
@@ -735,8 +736,8 @@ Aby dany segment został uznany za najwyżej zlokalizowany, oprócz położenia 
 \end{figure}
 \FloatBarrier
 
-Zdanie przedstawione na rysunku 19 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wyłącz w końcu ten telewizor''. Najwyżej położony segment odpowiada czasownikowi oraz gwałtownie rośnie będąc jednocześnie najdłuższym segmentem w zbiorze. Są to cechy wskazujące na zdanie rozkazujące. 
-Zostało wykryte przez fragment algorytmu, który został przedstawiony na rysunku 20.
+Zdanie przedstawione na rysunku 3.11 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wyłącz w końcu ten telewizor''. Najwyżej położony segment odpowiada czasownikowi oraz gwałtownie rośnie będąc jednocześnie najdłuższym segmentem w zbiorze. Są to cechy wskazujące na zdanie rozkazujące. 
+Zostało wykryte przez fragment algorytmu, który został przedstawiony na rysunku 3.12.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -744,7 +745,7 @@ Zostało wykryte przez fragment algorytmu, który został przedstawiony na rysun
 \caption{Schemat wykrywania zdania rozkazującego zawierającego pierwszą grupę cech}
 \end{figure}
 \FloatBarrier
-W tym fragmencie algorytmu, program podejmuje próbę rozpoznania zdania jako rozkazującego, bazując na nachyleniu oraz długości najwyżej położonego segmentu.
+We fragmencie algorytmu przedstawionym na rysunku 3.12, program podejmuje próbę rozpoznania zdania jako rozkazującego, bazując na nachyleniu oraz długości najwyżej położonego segmentu.
 Jeżeli długość danego segmentu jest większa niż 20 jednostek i jednocześnie segment jest silnie rosnący, właściwości te wskazują na zdanie rozkazujące. Jeżeli jednak jest krótszy, wciąz może wskazywać na zdanie rozkazujące, jeżeli nie jest ostro rosnący. Ta cecha jest odrzucana przez program, ponieważ zaobserwowano jej związek ze zdaniami twierdzącymi. Jeśli zdanie nie spełnia żadnego z tych warunków, jest poddawane dalszej analizie.
 
  \FloatBarrier
@@ -754,7 +755,7 @@ Jeżeli długość danego segmentu jest większa niż 20 jednostek i jednocześn
 \caption{Zdanie rozkazujące wypowiedziane przez mężczyznę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 21 zostało wypowiedziane przez mężczyznę, a jego treść brzmi ''Nie próbujcie tego w domu''. Wyraźny akcent w tej wypowiedzi jest położony na drugie słowo, sylaby w czasowniku są wręcz przeciagnięte, a więc wykorzystany został również iloczas. Na skutek tego omawiany segment poza największymi wartościami, odznacza się również długością. Kolejną zauważalną cechą jest jego gwaltowny wzrost, zakończony krótkim spadkiem. 
+Zdanie przedstawione na rysunku 3.13 zostało wypowiedziane przez mężczyznę, a jego treść brzmi ''Nie próbujcie tego w domu''. Wyraźny akcent w tej wypowiedzi jest położony na drugie słowo, sylaby w czasowniku są wręcz przeciagnięte, a więc wykorzystany został również iloczas. Na skutek tego omawiany segment poza największymi wartościami, odznacza się również długością. Kolejną zauważalną cechą jest jego gwaltowny wzrost, zakończony krótkim spadkiem. 
 
  \FloatBarrier
 \begin{figure}[h]
@@ -763,7 +764,7 @@ Zdanie przedstawione na rysunku 21 zostało wypowiedziane przez mężczyznę, a 
 \caption{Schemat wykrywania zdania rozkazującego zawierającego drugą grupę cech}
 \end{figure}
 \FloatBarrier
-Zdanie może zostać rozpoznane jako rozkazujące, również gdy jego nachylenie jest słabo rosnące, ale za to jest to znacząco długi segment. Długość segmentu odzwierciedla nacisk położony na czasownik. Przykład przedstawiony na rysunku 21 został zidentykowany w ten sposób. Badany segment odpowiada naciskowi nałożonemu na słowo ''próbujcie''.
+Zdanie może zostać rozpoznane jako rozkazujące, również gdy jego nachylenie jest słabo rosnące, ale za to jest to znacząco długi segment. Długość segmentu odzwierciedla nacisk położony na czasownik. Przykład przedstawiony na rysunku 3.13 został zidentykowany w ten sposób. Badany segment odpowiada naciskowi nałożonemu na słowo ''próbujcie''.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -771,7 +772,7 @@ Zdanie może zostać rozpoznane jako rozkazujące, również gdy jego nachylenie
 \caption{Zdanie rozkazujące wypowiedziane przez kobietę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 23 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wynieś śmieci jak wrócisz''. Akcent intonacyjny ponownie nałożony jest na czasownik w trybie rozkazującym, lecz tym razem jedynie na jego drugą oraz trzecią sylabę. Po pierwszej zauważalna jest krótka pauza.
+Zdanie przedstawione na rysunku 3.15 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wynieś śmieci jak wrócisz''. Akcent intonacyjny ponownie nałożony jest na czasownik w trybie rozkazującym, lecz tym razem jedynie na jego drugą oraz trzecią sylabę. Po pierwszej zauważalna jest krótka pauza.
 W tym przypadku najistotniejszy segment jest opadający, co pokazuje, że nie zawsze jest rosnący jak w poprzednich przykładach i nie może być ta właściwość traktowana jako powszechna cecha.
  \FloatBarrier
 \begin{figure}[h]
@@ -780,7 +781,7 @@ W tym przypadku najistotniejszy segment jest opadający, co pokazuje, że nie za
 \caption{Schemat wykrywania zdania rozkazującego zawierającego trzecią grupę cech}
 \end{figure}
 \FloatBarrier
-Rysunek 24 przedstawia warunki, po których spełnieniu zdanie z rysunku 23 zostało sklasyfikowane jako zdanie rozkazujące. Ta gałąź algorytmu sprawdza czy segment poprzedzający najwyżej zlokalizowany segment jest opadający. Jeżeli warunek jest spełniony, sprawdzana jest różnica między położeniem najwyższego segmentu z położeniem końca segmentu poprzedzającego. Duży przeskok w takim przypadku wskazuje na zdanie rozkazujące. Jeżeli dane warunki nie zostaną spełnione, program kontynuuje analizę zdania.
+Rysunek 3.16 przedstawia warunki, po których spełnieniu zdanie z rysunku 3.15 zostało sklasyfikowane jako zdanie rozkazujące. Ta gałąź algorytmu sprawdza czy segment poprzedzający najwyżej zlokalizowany segment jest opadający. Jeżeli warunek jest spełniony, sprawdzana jest różnica między położeniem najwyższego segmentu z położeniem końca segmentu poprzedzającego. Duży przeskok w takim przypadku wskazuje na zdanie rozkazujące. Jeżeli dane warunki nie zostaną spełnione, program kontynuuje analizę zdania.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -790,7 +791,7 @@ Rysunek 24 przedstawia warunki, po których spełnieniu zdanie z rysunku 23 zost
 \FloatBarrier
 Intonacja tego zdania przypomina przebieg intonacji występujący przy pytaniach dopełnienia. Jednak w tym przypadku różnica między najwyżej położonym segmentem, a następnym segmentem nie była wystarczająco duża, aby rozpoznać je jako pytanie. Kluczowe dla rozpoznania tego zdania jako zdania rozkazującego jest nachylenie obu segmentów. Jeżeli oba są dłuższe niż 10 jednostek oraz są to segmenty opadające, zdanie zostaje rozpoznane jako zdanie rozkazujące.
 
-Warunek, po którego spełnienie te zdanie zostało sklasyfikowane jako rozkazujące, przedstawiony jest na rysunku 26.
+Warunek, po którego spełnienie te zdanie zostało sklasyfikowane jako rozkazujące, przedstawiony jest na rysunku 3.18.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -805,7 +806,7 @@ Warunek, po którego spełnienie te zdanie zostało sklasyfikowane jako rozkazuj
 \caption{Zdanie rozkazujące wypowiedziane przez kobietę}
 \end{figure}
 \FloatBarrier
-Treść rozkazu przedstawionego na rysunku 27 brzmi ''Zanieś zakupy do domu''. Zdanie zostało wypowiedziane przez kobietę. Charakterystyczna jest obecność dość długiej przerwy zaraz po najbardziej znaczącym segmencie.
+Treść rozkazu przedstawionego na rysunku 3.19 brzmi ''Zanieś zakupy do domu''. Zdanie zostało wypowiedziane przez kobietę. Charakterystyczna jest obecność dość długiej przerwy zaraz po najbardziej znaczącym segmencie.
 
  \FloatBarrier
 \begin{figure}[h]
@@ -814,7 +815,7 @@ Treść rozkazu przedstawionego na rysunku 27 brzmi ''Zanieś zakupy do domu''. 
 \caption{Zdanie rozkazujące wypowiedziane przez mężczynę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 28 brzmi ''Skończ najpierw sprzątać swój pokój''. Zauważalne są te same cechy co w zdaniu poprzednim. Bazując na tych obserwacjach opracowany został ostatni warunek rozpoznania zdania rozkazującego, przedstawiony na rysunku 29. Zdanie zostaje uznane za rozkazujące, jeśli najwyżej położony segment jest wystarczająco długi, nie opada stromo, oraz przerwa między nim, a kolejnym segmentem jest większa niż długość najwyższego segmentu.
+Zdanie przedstawione na rysunku 3.20 brzmi ''Skończ najpierw sprzątać swój pokój''. Zauważalne są te same cechy co w zdaniu poprzednim. Bazując na tych obserwacjach opracowany został ostatni warunek rozpoznania zdania rozkazującego, przedstawiony na rysunku 3.21. Zdanie zostaje uznane za rozkazujące, jeśli najwyżej położony segment jest wystarczająco długi, nie opada stromo, oraz przerwa między nim, a kolejnym segmentem jest większa niż długość najwyższego segmentu.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -823,7 +824,7 @@ Zdanie przedstawione na rysunku 28 brzmi ''Skończ najpierw sprzątać swój pok
 \end{figure}
 \FloatBarrier
 
-\subsection{Zdania twierdzące}
+\section{Zdania twierdzące}
 Podczas obserwacji intonacji zdań twierdzących zauważono stałą lub delikatnie opadającą tendencję. Nie występują w nich nagłe wzrosty lub spadki wartości F0 na początku wypowiedzi. Brak w nich również gwałtwnych wzrostów lub wysokich wartości na końcu zdania, tak charakterystycznych dla pytań rozstrzygnięcia.
 W przypadku opadającego przebiegu intonacji, spadek wartosci ma łagodny charakter. Wpływ na to ma fakt, że zdania te są zazwyczaj wypowiadane bez zabarwienia emocjonalnego, ich główną funkcją jest przekazanie informacji.W porównaniu do wcześniej analizowanych rodzajów zdań, w przypadku zdań twierdzących intonacja ma najmniejszy wpływ na postrzeganie tych zdań przez człowieka.
 
@@ -836,7 +837,7 @@ W przypadku opadającego przebiegu intonacji, spadek wartosci ma łagodny charak
 \caption{Zdanie twierdzące wypowiedziane przez kobietę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 30 przedstawia zdanie twierdzące, którego intonacja przedstawia stałą tendencję. Zostało wypowiedziane przez kobietę, a jego treść brzmi ''Zawsze byli bardzo wspierający''. Średnie wartości kolejnych segmentów są bardzo do siebie zbliżone. Najwyżej zlokalizowany segment jest delikatnie opadający, dodatkowo brak większej przerwy między nim, a następnym segmentem.
+Zdanie przedstawione na rysunku 3.22 przedstawia zdanie twierdzące, którego intonacja przedstawia stałą tendencję. Zostało wypowiedziane przez kobietę, a jego treść brzmi ''Zawsze byli bardzo wspierający''. Średnie wartości kolejnych segmentów są bardzo do siebie zbliżone. Najwyżej zlokalizowany segment jest delikatnie opadający, dodatkowo brak większej przerwy między nim, a następnym segmentem.
 
 
  \FloatBarrier
@@ -847,7 +848,7 @@ Zdanie przedstawione na rysunku 30 przedstawia zdanie twierdzące, którego into
 \end{figure}
 \FloatBarrier
 
-Zdanie przedstawione na rysunku 31 zostało wypowiedziane przez mężczyznę, a jego tresć brzmi ''W zeszłym roku ten las wycięto''. Największe wartosci intonacji zostały zauważone dla słów ''W zeszłym'' lecz spadek wartosci dla segmentów odpowiadających kolejnym słowom jest dosć łagodny. Dopiero ostatnie słowo ma wyraźnie niższą intonację. Główną cechą zdań twierdzących pozwalających rozróżnić ten rodzaj wypowiedzi od pytań dopełnienia jest niewielka różnica między wartosciami najwyższego segmentu, a otoczającymi segmentami. W przypadku pytań dopełnienia ta różnica potrafiła wynosić nawet 100Hz i znacznie wykraczać poza typowy zakres częstotliwosci. Ten przebieg intonacji jest wręcz idealnym przykładem zdania twierdzacego, średnie wartosci każdego segmentu są mniejszego od segmentu poprzedniego, przy tym nie wystepuja gwałtownego spadki między nimi oraz wszystkie segmenty są opadające.
+Zdanie przedstawione na rysunku 3.23 zostało wypowiedziane przez mężczyznę, a jego tresć brzmi ''W zeszłym roku ten las wycięto''. Największe wartosci intonacji zostały zauważone dla słów ''W zeszłym'' lecz spadek wartosci dla segmentów odpowiadających kolejnym słowom jest dosć łagodny. Dopiero ostatnie słowo ma wyraźnie niższą intonację. Główną cechą zdań twierdzących pozwalających rozróżnić ten rodzaj wypowiedzi od pytań dopełnienia jest niewielka różnica między wartosciami najwyższego segmentu, a otoczającymi segmentami. W przypadku pytań dopełnienia ta różnica potrafiła wynosić nawet 100Hz i znacznie wykraczać poza typowy zakres częstotliwosci. Ten przebieg intonacji jest wręcz idealnym przykładem zdania twierdzacego, średnie wartosci każdego segmentu są mniejszego od segmentu poprzedniego, przy tym nie wystepuja gwałtownego spadki między nimi oraz wszystkie segmenty są opadające.
 
 \begin{figure}[h]
 \centering
@@ -855,7 +856,7 @@ Zdanie przedstawione na rysunku 31 zostało wypowiedziane przez mężczyznę, a 
 \caption{Zdanie twierdzące wypowiedziane przez kobietę}
 \end{figure}
 \FloatBarrier
-Przykład przedstawiony na rysunku 32, przedstawia przebieg intonacji zdania twierdzącego, wypowiedzianego przez kobietę, którego tresć brzmi ''Więc to też naraża ich na niebezpieczeństwo''. W tym przykładzie przebieg intonacji również ma wyraźnie stałą tendencję. Nie sposób tutaj mówić o znaczącej różnicy między średnią wartością segmentu zlokalizowanego najwyżej, a otaczającymi go segmentami. Stała tendencja przebiegu intonacji jest jedną z cech wyraźnie wskazujących, że dana wypowiedź jest zdaniem twierdzącym.
+Przykład przedstawiony na rysunku 3.24, przedstawia przebieg intonacji zdania twierdzącego, wypowiedzianego przez kobietę, którego tresć brzmi ''Więc to też naraża ich na niebezpieczeństwo''. W tym przykładzie przebieg intonacji również ma wyraźnie stałą tendencję. Nie sposób tutaj mówić o znaczącej różnicy między średnią wartością segmentu zlokalizowanego najwyżej, a otaczającymi go segmentami. Stała tendencja przebiegu intonacji jest jedną z cech wyraźnie wskazujących, że dana wypowiedź jest zdaniem twierdzącym.
 
  
 \section{Porównanie wyników otrzymanych z wykorzystaniem YIN i Praata}
@@ -871,7 +872,7 @@ Metoda rozpoznawania pytań sprawdza się równie dobrze, bez względu na źród
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{pytanie_rozstrzygniecia_2_emocje_praat.png}
-\caption{Intonacja pytania przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\caption{Intonacja uzyskana za pomocą PRAAT-a dla pytania, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.4.}
 \end{figure}
 \FloatBarrier
 Rosnąca tendencja intonacji została wykryta również gdy uzyskane segmenty oparte były na wartościach F0 pochodzących z PRAAT-a.
@@ -879,7 +880,7 @@ Rosnąca tendencja intonacji została wykryta również gdy uzyskane segmenty op
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{pytanie_dopelnienia_praat_2.png}
-\caption{Intonacja pytania przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\caption{Intonacja uzyskana za pomocą PRAAT-a dla pytania, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.8.}
 \end{figure}
 \FloatBarrier
 
@@ -889,7 +890,7 @@ W przypadku pytań dopełnienia, gwałtowne spadki między najwyżej zlokalizowa
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{rozkaz_1_kob_25.png}
-\caption{Intonacja zdania rozkazującego przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\caption{Intonacja uzyskana za pomocą PRAAT-a dla zdania rozkazującego, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.11.}
 \end{figure}
 \FloatBarrier
 
@@ -898,7 +899,7 @@ Silny nacisk położony na czasownik w trybie rozkazującym jest również odzwi
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{tw_1_praat.png}
-\caption{Intonacja zdania twierdzącego przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\caption{Intonacja uzyskana za pomocą PRAAT-a dla zdania twierdzącego, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.22.}
 \end{figure}
 \FloatBarrier
 Przykład zdania twierdzącego również pokazuje podobieństwo tendencji przebiegów intonacji uzyskanych w różny sposób. Stała tendencja została zachowana.
@@ -906,10 +907,10 @@ Przykład zdania twierdzącego również pokazuje podobieństwo tendencji przebi
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{rozkaz_1_praat_zle.png}
-\caption{Intonacja zdania rozkazującego przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\caption{Intonacja uzyskana za pomocą PRAAT-a dla zdania rozkazującego, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.20.}
 \end{figure}
 \FloatBarrier
-Zdanie rozkazujące, którego intonacja uzyskana za pomocą PRAAT-a została przedstawiona na rysunku ... zostało błędnie sklasyfikowane jako zdanie twierdzące. Intonacja tego samego zdania, lecz uzyskana za pomocą YIN, została przedstawiona na rysunku ... i w tym przypadku zostało sklasyfikowane poprawnie jako zdanie rozkazujące. Przyczyn błędnego rozpoznania należy szukać w założeniach podejścia opartego na długościach segmentów oraz odległościach między nimi. W przypafku wartości uzyskiwanych za pomocą PRAAT-a zarówno segmenty jak i przerwy między nimi są stosunkowo krótsze, powodując błędy w rozpoznawaniu.
+Zdanie rozkazujące, którego intonacja uzyskana za pomocą PRAAT-a została przedstawiona na rysunku 3.29 zostało błędnie sklasyfikowane jako zdanie twierdzące. Intonacja tego samego zdania, lecz uzyskana za pomocą YIN, została przedstawiona na rysunku 3.20 i w tym przypadku zostało sklasyfikowane poprawnie jako zdanie rozkazujące. Przyczyn błędnego rozpoznania należy szukać w założeniach podejścia opartego na długościach segmentów oraz odległościach między nimi. W przypafku wartości uzyskiwanych za pomocą PRAAT-a zarówno segmenty jak i przerwy między nimi są stosunkowo krótsze, powodując błędy w rozpoznawaniu.
 \chapter{Wnioski}
 Uzyskane rezultaty można rozpatrywać dwustopniowo. Program wykorzystując algorytm YIN do esktrakcji intonacji uzyskuje bardzo dobrą skuteczność w rozpoznawaniu obu rodzajów pytań. Zaobserwowane zmiany w intonacji towarzyszącej pytaniom są wystarczające dla poprawnego rozpoznania w zdecydowanej większości przypadków. Potwierdza to dotychczasowe badania wykonane w tym zakresie. 
 Trudniejszym zadaniem okazało się rozróżnianie zdań rozkazujących oraz twierdzących. Pewnym utrudnieniem była ubogość dotychczasowych badań wykonanych dla zdań rozkazujących. W toku pracy udało sie jednak zaobserwować wiele cech rózniących oba rodzaje zdań, których zastosowanie pozwoliło uzyskać zadowalające wyniki.
@@ -919,7 +920,7 @@ W przypadku rozpoznawania pytań, nie zaobserwowano różnic. Rozpoznawania prze
 Rozpoznawanie zdań rozkazujących oraz twierdzących wskazało jednak wady w podejściu opartym na długościach segmentów oraz odległościach między nimi. Uzyskane rezultaty są nieznacznie, ale jednak gorsze od tych uzyskanych bazując na ekstrakcji opartej na algorytmie YIN.
 
 Porównanie wyników opartych na analizie intonacji uzyskanej za pomocą różnych algorytmów pokazało możliwe drogi usprawnienia metody rozpoznawania. Podejście oparte na ustaleniu wartości progowych dla długości segmentów oraz odległości między nimi okazało się dość wadliwe. Pierwszym krokiem w celu poprawy uzyskiwanych wyników powinno być zwiększenie skalowalności tego rozwiązania. Nowe podejście nie powinno używać stałych jako wartości progowych.
-Kolejnym krokiem udoskonalenia metody powinno być zwiększenie bazy nagrań. Dotyczy to zwłaszcza zdań rozkazujących. Większa baza nagrań umożliwiłaby zwiększenie liczby cech odróżniających te zdania od zdań twierdzących.
+Kolejnym krokiem udoskonalenia metody powinno być zwiększenie bazy nagrań. Dotyczy to zwłaszcza zdań rozkazujących. Większa baza nagrań umożliwiłaby zwiększenie liczby cech odróżniających te zdania od zdań twierdzących. Następnie powinno zostać zastosowane uczenie maszynowe, oparte na zaobserwowanych cechach.
 \newpage
 
 \begin{thebibliography}{99}
