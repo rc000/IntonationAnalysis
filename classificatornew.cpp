@@ -231,7 +231,7 @@ QString ClassificatorNew::classification()
         }
     }
     double spaceBetweenHighestAndNext = segments.at(indexNextValidateAfterHighest).getStartIndex() - highestSegmentFirstHalf.getEndIndex();
-    qDebug()<<"startIndex "<<segments.at(indexNextValidateAfterHighest).getStartIndex()<<" end "<<highestSegmentFirstHalf.getEndIndex();
+    qDebug()<<"startIndex "<<segments.at(indexNextValidateAfterHighest).getStartIndex()<<" end "<<highestSegmentFirstHalf.getEndIndex()<<" "<< spaceBetweenHighestAndNext;
     if ((spaceBetweenHighestAndNext > highestSegmentFirstHalf.getSegmentLength() && highestSegmentFirstHalf.getCoefA() > -0.5
             && highestSegmentFirstHalf.getSegmentLength() > 10))
         return "rozkazz5";
@@ -250,9 +250,7 @@ QString ClassificatorNew::classification()
 
     double spaceBetweenHighestAndPrevious = highestSegmentFirstHalf.getStartIndex() - segments.at(indexSegmentBeforeHighest).getEndIndex();
     qDebug()<<"startIndex "<<highestSegmentFirstHalf.getStartIndex()<<" end "<<segments.at(indexSegmentBeforeHighest).getEndIndex();
-    /*if ((spaceBetweenHighestAndPrevious > highestSegmentFirstHalf.getSegmentLength() && segments.at(indexSegmentBeforeHighest).getCoefA() > -0.5
-        && highestSegmentFirstHalf.getSegmentLength() > 10))
-        return "rozkazz6";*/
+
     return "zdanie twierdzace";
   /*  double averageFirstHalf = 0.0;
     int counter = 0;

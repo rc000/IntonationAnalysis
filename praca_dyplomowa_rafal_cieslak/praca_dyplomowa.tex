@@ -1,4 +1,4 @@
-\documentclass[a4paper,12 pt]{article}
+\documentclass[a4paper,12 pt]{report}
 
 \usepackage[T1]{fontenc}
 \usepackage[polish]{babel}
@@ -114,30 +114,26 @@
 \section*{Wstęp}
 \addcontentsline{toc}{section}{Wstęp}
 Mowa jest najpowszechniejszym sposobem komunikacji międzyludzkiej. Używając jej na codzień, nie zdajemy sobie sprawy jak bardzo złożonym jest procesem. Wydaje się być czymś normalnym i oczywistym. Mimo tego, że otacza nas cały czas, nauka wciąż nie poznała dokładnie wszystkich mechanizmów stojących za jej wytwarzaniem i rozumieniem. Złożoności dodaje fakt, że w mowie nie chodzi tylko o wypowiedziane słowa. Dla naszego odbierania mowy ważna jest również cała otoczka - ton głosu, jego barwa, akcentowanie i wiele więcej cech, których postrzeganie jest subiektywne. Dawno zostało zauważone, że cechy te mogą istotnie wpływać na nasze życie. Ludzie podświadomie wybierają towarzystwo osób, których głos jest dobrze przez nich postrzegany. Bez tych otaczających wypowiadane słowa cech, nasza mowa brzmiałaby podobnie do uzyskiwanej za pomocą syntezatorów.
-\newline
-Jedną z takich cech jest intonacja. Przy tym jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Nie niesie ze sobą żadnej semantycznej treści, dotyczy tego w jaki sposób coś mówimy, a nie co mówimy. Nie zdajemy sobie na codzień z tego sprawy ale bez niej bardzo trudne byłoby zrozumienie języka mówionego i przekazywanych za jego pomocą myśli. Wpływa na nasze postrzeganie zdań wypowiedzianych przez naszego rozmówcę. Dzięki niej momentalnie wiemy czy osoba, z którą rozmawiamy zadała nam pytanie czy nakazała nam wykonanie jakiejś czynności. Nie potrzebujemy do tego znaków przestankowych, używanych w języku pisanym.
-\newline
-Celem pracy jest zrozumienie jak bardzo wpływa na ten proces i odpowiedź na pytanie czy analizowanie samej intonacji jest wystarczające do stwierdzenia do jakiej kategorii można zakwalifikować daną wypowiedź. W tym celu podjęta została próba wykrycia charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program.
-\newline
-Jako, że analiza będzie się opierać w głównej mierze na próbach zauważenia charakterystycznych róznic między róznymi wypowiedziami, metodą badawczą zastosowaną w tej pracy będzie metoda obserwacyjna.
-\newpage
-Praca została podzielona na trzy główne rozdziały:
-\begin{itemize}
-\item{W rozdziale pierwszym przedstawione zostały istotne zagadnienia teoretyczne związane z produkcją mowy, wytwarzaniem częstotliwości podstawowej,
-oraz przybliżone zostały funkcje intonacji}
-\item{W rozdziale drugim omówiony został sposób implementacji wykrywania poszczególnych segmentów w przebiegu całej intonacji}
-\item{W rozdziale trzecim przedstawione zostały rezultaty analizy charakterystycznych cech dla poszczególnych rodzajów wypowiedzi.}
-\end{itemize}
-\newpage
-\section{Wprowadzenie teoretyczne}
 
-\subsection{Sygnał mowy}
+Jedną z takich cech jest intonacja. Przy tym jest jednym ze słabiej poznanych zagadnień związanych z wytwarzaniem oraz percepcją mowy. Nie niesie ze sobą żadnej semantycznej treści, dotyczy tego w jaki sposób coś mówimy, a nie co mówimy. Nie zdajemy sobie na codzień z tego sprawy ale bez niej bardzo trudne byłoby zrozumienie języka mówionego i przekazywanych za jego pomocą myśli. Wpływa na nasze postrzeganie zdań wypowiedzianych przez naszego rozmówcę. Dzięki niej momentalnie wiemy czy osoba, z którą rozmawiamy zadała nam pytanie czy nakazała nam wykonanie jakiejś czynności. Nie potrzebujemy do tego znaków przestankowych, używanych w języku pisanym.
+
+Celem pracy jest zrozumienie jak bardzo wpływa na ten proces i odpowiedź na pytanie czy analizowanie samej intonacji jest wystarczające do stwierdzenia do jakiej kategorii można zakwalifikować daną wypowiedź. W tym celu podjęta została próba wykrycia charakterystycznych cech intonacji, związanych z różnymi typami wypowiedzi, których zastosowanie umożliwi automatyczne klasyfikowanie zdań przez program.
+
+Jako, że analiza będzie się opierać w głównej mierze na próbach zauważenia charakterystycznych róznic między róznymi wypowiedziami, metodą badawczą zastosowaną w tej pracy będzie metoda obserwacyjna.
+
+Praca została podzielona na trzy główne rozdziały.
+W rozdziale pierwszym przedstawione zostały istotne zagadnienia teoretyczne związane z produkcją mowy, wytwarzaniem częstotliwości podstawowej,
+oraz przybliżone zostały funkcje intonacji. W rozdziale drugim omówiony został sposób implementacji wykrywania poszczególnych segmentów w przebiegu całej intonacji. W rozdziale trzecim przedstawione zostały rezultaty analizy charakterystycznych cech dla poszczególnych rodzajów wypowiedzi.
+\newpage
+\chapter{Wprowadzenie teoretyczne}
+
+\section{Sygnał mowy}
 Mową okreslamy komunikowanie się między sobą ludzi, za pomocą ukształtowanego zbioru dźwięków i reguł, zwanego językiem. Każdy język używa własnych fonetycznych kombinacji zbioru spółgłosek i samogłosek, które tworzą słowa mające semantyczne znaczenie. W czasie mówienia, osoba mówiąca poza samym wypowiadaniem słów, nadaje wypowiedzi znaczenie również za pomocą dodatkowych aspektów, takich jak intonacja, tempo mówienia czy stopień głosnosci.
 Sama produkcja mowy jest wielokrokowym procesem zamiany myśli w ustną wypowiedź, która może być zarejestrowana jako sygnał mowy.
 
 
  
-\subsubsection{Powstawanie mowy}
+\subsection{Powstawanie mowy}
 
 Sygnal mowy ludzkiej jest sygnałem akustycznym powstającym podczas przepływu powietrza poprzez aparat mowy, który jest definiowany jako 3 osobne grupy narządów~\cite{speech}.
 
@@ -164,13 +160,13 @@ Fakt, że wiele różnych narządów bierze udział w tworzeniu mowy powoduje, �
 
 
 
-\subsubsection{Reprezentacja mowy}
+\subsection{Reprezentacja mowy}
 W procesie rozwoju technologii związanych z  przetwarzaniem mowy, konieczne bylo ustalenie sposobu przedstawienia wypowiedzi za pomocą symboli reprezentujacych wyprodukowany sygnal. Litery, używane w tym celu w języku pisanym, są niewystarczające, ponieważ w różnych wyrazach mogą być wymawiane na rózne sposoby.  Często produkowany dźwięk dla danej litery różni się w zależnosci od otaczających ją liter. Dla języka polskiego charakterystyczne jest występowanie tak zwanych dwuznaków, na przykład ''rz,sz,ch''. Dźwięk produkowany dla tych znaków jest calkowicie odmienny od dźwięków reprezentujących każdą z liter osobno. 
 Jednym ze sposobów reprezentowanie dźwięków powszechnie występujących w danym języku są fonemy. Są to najmniejsze elementy języka mówionego, pozwalające na rozróżnienie poszczególnych słów~\cite{phonem}. Często po zamienieniu jednego z fonemów składowych na inny, znaczenie słowa może ulec zmianie. W lingwistyce istnieją rózne sposoby definiowania czym są fonemy oraz w jaki sposób dany język powinien być przez nie reprezentowany. Najczęsciej jednak fonem jest rozumiany jako często powtarzający się w danym języku zbiór głosek. W języku polskim, w zależnosci od sposobu definiowania, liczba fonemów waha sie od 31 do 42~\cite{liczba_fonem}.
-\subsubsection{Rozumienie mowy}
+\subsection{Rozumienie mowy}
 Rozumieniem mowy nazywany jest proces, w trakcie którego wypowiedziana mowa jest słyszana, interpretowana oraz rozumiana przez człowieka. Badania nad postrzeganiem mowy są scisle związane
 z lingwistyką oraz psychologią poznawczą i próbują odpowiedzieć na pytanie w jaki sposób ludzie rozpoznają dźwięki mowy i na ich podstawie rozumieją mówiony język. Rezultaty tych poszukiwań mają swoje zastosowania w tworzeniu systemów komputerowych służących rozpoznawaniu mowy. Rozumienie mowy w danym języku jest scisle związane z rozpoznawaniem przez mózg fonemów charakterystycznych dla tego języka. Z tego powodu często ludzie uczący się obcego języka znacznie łatwiej przyswajają język w formie pisanej niż mówionej.
-\subsubsection{Rejestrowanie sygnału mowy}
+\subsection{Rejestrowanie sygnału mowy}
 
 Dźwięk opuszczający aparat mowy może zostać zarejestrowany przez mikrofon w celu poddania szczegółowej analizie. Aby możliwe było przetwarzanie sygnału przez program komputerowy, konieczne jest przetworzenie sygnału z postaci analogowej do cyfrowej. W tym celu pobiera się próbki sygnału. Wartość określającą ilość próbek w jednostce czasu nazywamy częstotliwością próbkowania. Najczęściej spotykana wartość to 44,1 kHz. Oznacza to, że podczas sekundy pobierane jest 44100 wartości sygnału ciągłego. Liczba ta została przyjęta jako standard przy nagrywaniu audio na płytach CD. Tak pobrane próbki, po poddaniu procesowi kwantyzacji, tworzą sygnał cyfrowy.
 Sygnał dźwiękowy może być nagrywany w wersji monofonicznej lub stereofonicznej. Oznacza to użycie jednego lub dwóch (lewy,prawy) kanałów. Nagrania rejestrowane tymi sposobami różnią się od siebie diametralnie, zarówno w kontekście subiektywnych odczuć słuchacza, jak i podczas przetwarzania sygnału. Kanały w wersji stereofonicznej mogą róźnić się od siebie wartościami próbek, zwłaszcza w widmie sygnału.
@@ -179,34 +175,34 @@ Sygnał dźwiękowy może być nagrywany w wersji monofonicznej lub stereofonicz
 
 
 
-\subsection{Ton podstawowy}
+\section{Ton podstawowy}
 
-\subsubsection{Definicja tonu podstawowego}
+\subsection{Definicja tonu podstawowego}
 W literaturze własnosć bywa również nazywana częstotliwoscią podstawową lub po prostu oznaczana jest jako F0. Pod tym pojęciem rozumiane są wibracje strun głosowych, towarzyszące powstawaniu głosek dźwięcznych. Powstałe w ten sposób częstotliwosci mieszczą się w zakresie 85-180Hz dla mężczyzn oraz w zakresie 165-255Hz dla kobiet. Wartosci te mogą być wyższe gdy osoba mówiąca znajduje się pod wpływem silnych emocji. Poza płcią oraz stanem emocjalnym, zależne są również od wieku, budowy i kształtu strun głosowych ogólnego stanu zdrowia oraz rodzaju wypowiedzi. Badania nad częstotliwoscią podstawową produkowaną przez męzczyzn pokazały, że jej srednie wartosci spadają po osięgnięciu 35 roku życia, by ponownie ulec wzrostowi po przekroczeniu 55 roku życia ~\cite{Hollien_Ship}. W przypadku kobiet, wartosci F0 zaczynaja spadać w okresie menopauzy, osiagając finalne wartosci okolo 70 roku zycia~\cite{Pegoraro-Krook}. Badania nad wpływem palenia papierosów na wartosci F0 pokazały, że wieloletnie palenie również doprowadza do obniżenia tych wartosci, jako że nawyk ten wpływa negatywnie na krtań~\cite{Gilbert}.
 Przebieg częstotliwości podstawowej w dużym stopniu odzwierciedla intonację wypowiedzi. Gdyby ten przebieg był stały, mowa byłaby odbierana jako monotonna lub brzmiąca maszynowo.  Pełni istotną funkcję w językach tonalnych, w których wielu słów jest zapisywanych tak samo, a jedynie nadawany im ton pozwala rozróżnić ich znaczenie. Z tego powodu też poprawna estymacja F0 jest konieczna w systemach rozpoznawania mowy dla języków tonalnych.
 Dla idealnie okresowego sygnału, częstotliwość podstawowa byłaby po prostu odwrotnością okresu. Okresem nazywamy czas pomiędzy kompletnym cyklem otwarcia i zamknięcia głosni. Jednak sygnał mowy jest sygnałem bardzo dynamicznym, co sprawia, że estymacja F0 przestaje być zadaniem trywialnym. Dodatkowo transformacja sygnału analogowego do postaci dyskretnej, wiążąca się zawsze z utratą danych oraz towarzyszący nagranemu głosowi szum wpływają negatywnie na dokładność estymacji. 
-\subsubsection{Formanty}
+\subsection{Formanty}
 Częstotliwosć podstawowa powiązana jest w największej mierze z intonacją. Jednak w badaniach związanych z technologią przetwarzania mowy, wyznaczane z sygnału mowy sa również inne częstotliwosci, związane z rezonansem innych częsci traktu głosowego. Nie są one bezposrednio związane z intonacją, lecz wiedza na ich temat jest istotna dla każdych badań związanych z sygnałami mowy. Są to formanty. Pod tym pojęciem rozumiane sa skupiska energii akustycznej, zgromadzone wokół konkretnej częstotliwosci w sygnale mowy.~\cite{formant} Istnieje kilka formantów, lecz zazwyczaj wyznaczane sa cztery - F1, F2, F3, F4. Każdy z nich występuje na innej częstotliwosci. W dużym przybliżeniu można stwierdzić, że F1 występuje w okolicach 500 Hz, a kolejne formanty są zlokalizowane na częstotliwosciach będących kolejnymi nieparzystymi wielokrotnosciami pierwszego formantu. Wartości te są jednak bardzo indywidualne, zależą od płci, używanego języka oraz różnic w budowie traktu głosowego.
-\subsubsection{Przegląd metod estymacji}
+\subsection{Przegląd metod estymacji}
 Prowadzone badania nad częstotliwością podstawową doprowadziły do opracowania wielu algorytmów estymacji o różnej skuteczności, zarówno w dziedzinie czasowej jak i widmowej.
 Jedną z najpopularniejszych metod czasowych jest algorytm YIN. Jest on zmodyfikowaną wersję funkcję autokoleracji. Algorytm został wzbogacony o kilka kroków, mających na celu obniżenie stopy błędów. Został on użyty w implementancji programu będącego rezultatem tej pracy.
 YAAPT, którego rozwinięcie brzmi `Yet Another Algorithm of Pitch Tracking'  cechuje się również bardzo dobrymi wynikami estymacji. Jest to metoda hybrydowa, łącząca w sobie zalety i wady metod czasowych oraz widmowych.
  
-\subsubsection{Algorytm YIN}
+\subsection{Algorytm YIN}
 
 W podstawowej wersji bazuje na analizie funkcji autokorelacji w dziedzinie czasu. Jego autorami są Hideki Kawahara oraz Alain de Cheveigne, którzy zaprezentowali te podejście w 2002 roku.~\cite{YIN} Algorytm ten posiada kilka własności, dających mu przewagę nad konkurencyjnymi metodami. Nie posiada górnego limitu frekwencji, dla których działa poprawnie, dzięki czemu wyniki nie są zakłamywane dla wysokich głosów. Ta cecha jest również znacząca w użyciu algorytmu do analizy muzyki. 
 
-\subsection{Prozodia}
+\section{Prozodia}
 Słowo prozodia pochodzi ze starożytnej Greki, w języku tym oznaczało piesń spiewaną przy akompaniamencie muzyki instrumentalnej~\cite{pros}. Współcześnie, terminem tym nazywane są te własciwosci mowy, które nie mogą byc wyznaczone na podstawie wykrytych fonemów, a więc nie przenoszą informacji o wypowiedzianych słowach, lecz mogą wpływać na znaczenie całej wypowiedzi. Jako przykłady takich własciwosci może być postrzegane kontrolowane zmienianie wysokosci głosów, przeciąganie sylab lub celowane zmienianie głosnosci poszczególnych fragmentów wypowiedzi.
 Z fonetycznego punktu widzenia, mowa ludzka nie może charakteryzowana jedynie jako zbiór fonemów, sylab czy słów, przenoszących znaczenie semantyczne danej wypowiedzi. W normalnej mowie słyszymy, że niektóre sylaby są celowe wydłużane lub skracane, niektóre słowa są nacechowane większą siłą głosu oraz zauważamy zmieniającą się wysokosć głosu.
 Prozodyczne własciwosci mowy nie są odzwierciedlone w ortografii lub transkrypcji fonetycznej żadnego języka.
-\subsubsection{Intonacja}
+\subsection{Intonacja}
 Intonacja jest zmianą tonu podstawowego, nie wpływającą na rozpoznawanie słów. Jest jedną z trzech głównych brzmieniowych właściwości mowy, obok akcentu i iloczasu. Najczęściej jest dodawana podczas wypowiedzi w celu oddania emocji. W wielu językach, w tym także w polskim, nadawanie wypowiedzi określonej intonacji może determinować jej typ. W pewnych sytuacjach modulacja intonacyjna może być jedyną informacją pozwalającą rozmówcy zrozumiec czy wypowiedź była twierdzeniem czy pytaniem. 
 Przykład takiego zdania:
 \newline Musisz jutro wcześnie wstać.
 \newline Musisz jutro wcześnie wstać?
 \newline Jako, że taki szyk zarówno zdania jak i pytania jest całkowicie poprawny w języku polskim, bez nadania wypowiedzi odpowiedniej intonacji odbiorca nie jest w stanie zrozumieć intencji osoby mówiącej.
-\subsubsection{Funkcje intonacji}
+\subsection{Funkcje intonacji}
 Intonacja jest używana we wszystkich wokalnych językach, spełniając różne funkcje. 
 Przedstawiona poniżej lista funkcji jest rezultatem badań nowozelandzkiego lingwisty Scotta Thornbury~\cite{TS}.
 
@@ -307,17 +303,17 @@ Przyklady podane do każdej z kategorii mają na celu pokazać, że taki podzia�
 \newline
 Podsumowując, łatwo zauważyć, że wiele badań zostało już przeprowadzonych, głównie w celu rozróżniania poszczególnych rodzajów pytań i zdań twierdzących. Brakuje jednak takich badań dla zdań rozkazujących.
 \newpage
-\section{Implementacja detekcji konturów częstotliwości podstawowej}
+\chapter{Implementacja detekcji konturów częstotliwości podstawowej}
 
 
 
-\subsection{Język programowania oraz środowisko}
-Pierwszym rozważanym zagadnieniem był wybór języka programowania oraz środowiska. Należało wziąć pod uwagę zawartość bibliotek związanych z przetwarzeniem dźwięku, oferowanych przez poszczególne języki.
+\section{Język programowania oraz środowisko}
+Pierwszy rozważanym zagadnieniem był wybór języka programowania oraz środowiska. Należało wziąć pod uwagę zawartość bibliotek związanych z przetwarzeniem dźwięku, oferowanych przez poszczególne języki.
 Mimo rozpatrywania możlwości wielu języków, główny wybór zawarty był między Javą oraz C++. Dla obu języków dostępna jest mnogość gotowych funkcji wspierających pracę z dźwiękiem. Jako, że projekt zakładał stworzenie graficznego interfejsu użytkownika, 
 konieczny był również wybór odpowiedniego środowiska, umożliwiającego stworzenie takiej aplikacji. Dla języka Java jako środowisko spełniające takie wymagania postrzegany był Eclipse wraz z frameworkiem JavaFx. Nie posiadają one wbudowanych pomocy do pracy z próbkami dźwięku, lecz dla Javy stworzone zostało
 Java Sound API. API te zawiera podstawowe funkcjonalności, jest pomocne przy wczytywaniu plików WAVE. W celu korzystania z tego rozszerzenia, należy je po prostu zaimportować. Dla  C++ sytuacja wygląda zgoła inaczej. Pracując z tym językiem, można korzystać z możliwości obszernego frameworka - Qt. Oferuje on wiele węwnetrznych klas ułatwiających pracę z dźwiękiem. Działają one niskopoziomowo, wszelkie zadania wykonywane są dużo szybciej niż w przypadku Javy.  System sygnałów i slotów, charakterystyczny dla Qt, jest bardzo wygodny przy wczytywaniu kolejnych próbek dźwieków. Umożliwia to aktualizowanie wykresów przedstawiających odczytane lub obliczone wartości na bieżąco. Dodatkowo, tworzenie graficznego interfejsu użytkownika w tym środowisku jest bardziej intuincyjne. Biorąc pod uwagę argumenty, wybór padł na język C++ z wykorzystaniem frameworka Qt.
 
-\subsection{Opis możliwości aplikacji}
+\section{Opis możliwości aplikacji}
 W pierwotnym założeniu aplikacja miała umożliwiać nagrywanie wypowiedzi, która następnie miała zostać poddana rozpoznaniu. Jednak w trakcie implentacji nie sposób było nie zauważyć, że znacznie lepsze wyniki rozpoznania są uzyskiwane, gdy do programu zostanie wczytana wypowiedź nagrana zewnętrznym programem, oraz poddana w nim obróbce wstępnej. Spowodowało to porzucenie tej funkcjonalności, jako że nie jest ona konieczna do osiągnięcia zakładanego celu, jakim jest poprawne rozpoznawanie rodzaju wypowiedzi.
 
 Aplikacja umożliwa wczytanie pojedynczego nagrania lub całego katalogu z nagraniami. Program wyświetla nazwę wczytanego pliku, oraz rodzaj zdania do jakiego dana wypowiedź została sklasyfikowana. Po kliknięciu w tabeli na wybrany wiersz, a następnie po kliknięciu na jeden z dowolnych przycisków w dolnym pasku, program wyświetli na wykresie odpowiednio przebieg wartości próbki w dziedzinie czasu (waveform) lub przebieg wyestymowanej częstotliwości podstawowej. Aplikacja umożliwia też wczytanie plików tekstowych wygenerowanych w programie PRAAT.
@@ -327,7 +323,7 @@ Aplikacja umożliwa wczytanie pojedynczego nagrania lub całego katalogu z nagra
 \caption{Interfejs graficzny aplikacji}
 \end{figure}
 \FloatBarrier
-\subsection{Wczytanie nagrania}
+\section{Wczytanie nagrania}
 Pierwszym krokiem na drodze do rozpoznania rodzaju zdania, jest wczytanie calego nagrania przez program. Wykonuje sie to z wykorzystaniem mozliwosci oferowanych przez Qt. Framework oferuje do tego klase QAudioDecoder. 
 Nagranie jest wczytywane w 100 milisekundowych fragmentach. Jako że częstotliwość próbkowania wynosi 44100Hz, na jeden fragment przypada 4410 wartości. Każda częśc jest odczytana jako obiekt klasy QAudioBuffer. Wektor typu QAudioBuffer zawiera cale wczytane nagranie.
 \begin{lstlisting}[caption={Połączenie sygnałów niosących informacje o starcie lub zakończeniu wczytywania nagrania, ze slotami},label={lst:label},language=C++]
@@ -373,7 +369,7 @@ void MainWindow::putValuesIntoVector()
 \end{lstlisting}
 W powyższej funkcji, najpierw pobierana jest liczba próbek przypadających na jedną sekundę, oraz na 25 milisekundową ramkę. Następnie wartości kolejno z każdego obiektu typu QAudioBuffer, znajdującego się w wektorze audioBuffers, są dodawane do wektora wholeBuffer.
 
-\subsection{Ekstrakcja tonu podstawowego}
+\section{Ekstrakcja tonu podstawowego}
 W pierwotnym założeniu program, poza estymacją częstotliwości podstawowej miał również dokonywać ekstrakcji niskopoziomowych cech.
 W toku implementacji zostały one jednak pominięte, z powodu posiadania małego wpływu na cel pracy. 
 Pierwszym zagadnieniem, które było rozważone, jest długość fragmentów sygnału, na które powinien być podzielony.
@@ -381,7 +377,7 @@ Sygnały mowy nie są sygnalami stacjonarnymi, co oznacza, że ich częstotliwo�
 W przetwarzaniu mowy korzystne jest dzielenie sygnału na części, celem uzyskania fragmentów sygnału bliskich byciu stacjonarnymi.
 Głośnia, odpowiedzialna za zmiany częstotliwości głosu, nie zamyka i nie otwiera się natychmiastowo, co oznacza, że w małych odstępach czasu wartości częstotliwości są do siebie zbliżone.
 Odpowiednio dzieląc sygnał możliwe jest uzyskanie krótszych  quasi-stacjonarnych fragmentów. Proces ten nazywa się ramkowaniem.
-\subsubsection{Ramkowanie oraz ekstracja wartości F0}
+\subsection{Ramkowanie oraz ekstracja wartości F0}
 Sygnał najczęśniej dzielony jest na ramki o długości 20-50ms. W tym projekcie ustalona długość ramki wynosi 25ms. Oznacza to, że każda ramka składa się z 1102 wartości.
 Pojawia się jednak problem związany z wartościami brzegowymi. Dzieląc sygnał na przystające do siebie, lecz nie zachodzące na siebie ramki istnieje duże ryzyko nie wykrycia pewnych cech, które mogą znajdować się pomiędzy dwoma kolejnymi ramkami. 
 Taka sytuacja mogłaby wystąpić podczas analizy sygnału w celu wykrycia konturów częstotliwości podstawowej. Jeżeli relatywnie krótki kontur zaczynałby się w jednej ramce i kończył w drugiej, mógłby nie zostać wykryty.
@@ -441,7 +437,7 @@ W tym celu zadeklarowane zostały dwie zmienne, frameStartIndexAfterShifting prz
 Warunkiem kończącym działanie głównej pętli funkcji jest przekroczenie przez początkowy indeks ramki rozmiaru całego sygnału. Oznacza to, że końcowa ramka może być dowolnie mała.
 W wewnętrznej pętli wartości rozpatrywanej ramki są przypisywane do dynamicznie zadeklarowanej tablicy. Jeżeli indeks tej pętli przekroczy rozmiar całego sygnału, reszta pól tablicy wypełniona jest zerami. Powodem tego jest wymaganie implementacji algorytmu YIN, aby wszystkie ramki miały jednakowy rozmiar.
 Po zakończeniu estymacji wartości F0 dla danej ramki, wartość ta jest dodawana do wektoru jeżeli mieści się w zdefiniowanym zakresie. Musi być większa niż 60 i mniejsza niż 450. W przeciwnym razie do wektoru zostanie dodana wartość zerowa. Po obliczeniach zadeklarowana dla ramki pamięć zostaje zwolniona.
-\subsection{Wykrywanie poszczególnych segmentów}
+\section{Wykrywanie poszczególnych segmentów}
 Wszystkie wyestymowane wartości częstotliwości podstawowej na tą chwilę przechowywane są w jednym wektorze. Aby umożliwić analizę przebiegu intonacji, konieczne jest wydzielenie poszczególnych segmentów. Segmentacji można dokonać analizując wartości pod kątem wartości odstających.
  Do tego celu zostały stworzone dwie klasy.
  \FloatBarrier
@@ -485,7 +481,7 @@ void ContoursDetector::findContours()
     
 \end{lstlisting}
 Początkowy indeks pierwszego segmentu jest ustawiony jako 1. Główna pętla przebiega po wszystkich wyestymowanych wartościach tonu podstawowego. Oprócz poszukiwania segmentów, wartości są również sprawdzane pod kątem wykrycia wartości maksymalnej i minimalnej. Funkcja uznaje wykrywanie danegosegmentu za zakończone, gdy aktualnie rozpatrywana wartość rózni się od poprzedniej o 15 jednostek. Metodą obserwacji ustalono taki przeskok za wystarczający do stwierdzenia, że dana wartość należy już do nowego segmentu. Poprzedzający indeks jest uznawany za koniec danego segmentu. Aktualny licznik pętli zostaje przekazany do funkcji foundNewContour. Z uwagi na obszerność tej funkcji, będzie ona omawiana fragmentami.
-\subsubsection{Analiza wstępna wykrytego fragmentu}
+\subsection{Analiza wstępna wykrytego fragmentu}
 \begin{lstlisting}[caption={Funkcja zajmująca się analizą wstępną wykrytego segmentu},label={lst:label},language=C++]
 void ContoursDetector::foundNewContour()
 {
@@ -494,15 +490,9 @@ void ContoursDetector::foundNewContour()
         currentContour.clear();
         return;
     }
-    
-    if (lastIndexOfFirstPart == 0)
-    {
-        firstValueIndex = currentContour.getStartIndex();
-        double occurenceRange = lastValueIndex-firstValueIndex;
-        lastIndexOfFirstPart = currentContour.getStartIndex()
-					+occurenceRange/4;
-        lastIndexOfCenterPart = lastValueIndex - occurenceRange/4;
-    }
+    ContoursVector.push_back(currentContour);
+    currentContour.clear();
+}    
                 
 \end{lstlisting}
 Najpierw segment jest poddawany walidacji. Sprawdzane jest, czy nie występują w nim wartości zerowe oraz czy jego długość jest większa niż 1. Przyjęta implementacja segmentacji traktuje wartości zerowe jako przerwy między fragmentami i nie powinny one być dodawane do wektoru przechowującego wykryte segmenty. Do określania czy dany obiekt jest przerwą między segmentami, wystarczy sprawdzić jego pierwszą wartość.
@@ -515,36 +505,7 @@ Metodą obserwacji zauważono, że te składające się tylko z jednej wartości
         return true;
     }
 \end{lstlisting}
-Póżniejsza analiza segmentów w celu wykrycia rodzaju danego zdania, oparta jest w dużej mierze na położeniu danego fragmentu w przestrzeni przebiegu całej intonacji. Przebieg intonacji zawiera wartości od pierwszego poprawnego segmentu do ostatniego. Wykres jest dzielony na 3 części. Na część początkową oraz końcową przypada po 25\% całości, podczas gdy część środkowa zawiera pozostałą połowę.
-W celu przydzielenia segmentom odpowiedniej lokalizacji, używane są zmienne typu całkowitego, lastIndexOfFirstPart oraz lastIndexOfCenterPart. Wyznaczają one końce początkowej oraz środkowej części.
-\begin{lstlisting}[caption={Dalsza część funkcji foundNewContour},label={lst:label},language=C++]
-     if (ContoursVector.size()>0)
-    {
-        if ((currentContour.getFirstValue()
-        	-ContoursVector.back().getLastValue())
-                >(currentContour.getFirstValue()/6))
-        {
-            currentContour.setStartState(GROWTH);
-        }
-        else if ((ContoursVector.back().getLastValue() 
-        	- currentContour.getFirstValue())
-                 >(ContoursVector.back().getLastValue()/4))
-        {
-            currentContour.setStartState(DROP);
-        }
-    }
-    ContoursVector.push_back(currentContour);
-    currentContour.clear();
-}
-\end{lstlisting}
-W dalszej części kodu funkcji foundNewContour, dokonywana jest analiza położenia danego konturu względem poprzednika. Jeżeli początkowa wartość analizowanego konturu jest znacząco mniejsza lub większa od ostatniej wartości konturu poprzedzającego, zapisywana jest informacja o gwałtownym przeskoku w przebiegu intonacji.
- \FloatBarrier
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.7]{przeskok.png}
-\caption{Przykładowy przeskok(wzrost) między pierwszym i drugim konturem, zlokalizowanymi w początkowej części}
-\end{figure}
-\FloatBarrier
+
 Następnie kontur zostaje dodany do wektoru,  zmienna currentContour zostaje wyczyszczona w celu poszukiwania kolejnego konturu. Na tym funkcja foundNewContour kończy swoje działanie.
 
 \begin{lstlisting}[caption={Dalsza część głównej funkcji findContours},label={lst:label},language=C++]
@@ -556,14 +517,13 @@ Następnie kontur zostaje dodany do wektoru,  zmienna currentContour zostaje wyc
         ContoursVector.at(i).getCenterOfRegressionLine();
         averageWithoutCurrentContour /= (ContoursVector.size()-1);
         if((ContoursVector.at(i).getCenterValue() 
-        	> (averageWithoutCurrentContour*1.6))
+        	> (averageWithoutCurrentContour*1.5))
                 && (ContoursVector.at(i).getContourLength()<10))
         {
             ContoursVector.erase(ContoursVector.begin()+i);
         }
         else
         {
-            setContourLocation(i);
             i++;
         }
     }
@@ -575,35 +535,18 @@ Podjęto decyzję o usuwaniu ze zbioru takie segmenty, których wartości są ba
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{usuniety_kontur.png}
+\includegraphics[scale=1.0]{usuniety_kontur.png}
 \caption{Przykład usuniętego segmentu.}
 \end{figure}
 \FloatBarrier
 Na rysunku 14 przedstawiony został przykład usuniętego segmentu. Jest to segment, którego wartości oscylują około 345 jednostek. Jest to liczba ponad dwukrotnie większa od innych, do tego fragment ten jest bardzo krótki.
 Słuchając nagrania, nie sposób było uzasadnić jego występowanie w tym miejscu, dlatego został uznany za błąd estymacji i usunięty ze zbioru. 
-Jeżeli warunek usunięcia segmentu nie jest spełniony, wywoływana jest funkcja określająca jego położenie w przebiegu intonacji. Jak zostało już wspomniane, przebieg intonacji jest podzielony na 3 części. W zależności od położenia środka segmentu, zostaje mu przypisane odpowiednie makro, zawierające informację o jego lokalizacji.
-\begin{lstlisting}
-void ContoursDetector::setContourLocation(int i)
-{
-    if (ContoursVector.at(i).getCenter() < lastIndexOfFirstPart)
-        ContoursVector.at(i).setLocation(BEGINNING);
-    else if (ContoursVector.at(i).getCenter() < lastIndexOfCenterPart)
-        ContoursVector.at(i).setLocation(CENTER);
-    else
-        ContoursVector.at(i).setLocation(END);
-}
-\end{lstlisting}
- \FloatBarrier
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.7]{podzial_wykresu.png}
-\caption{Przykład podziału przebiegu intonacji na 3 części}
-\end{figure}
-\FloatBarrier
 
-\subsubsection{Współczynniki regresji liniowej}
+
+
+\subsection{Współczynniki regresji liniowej}
 Dla każdego wykrytego segmentu obliczane są współczynniki regresji liniowej. W tym celu została zaimplementowana metoda najmniejszych kwadratów.
-Kod tej funkcji nie został umieszczony w pracy, z uwagi na jego obszerność oraz fakt, ze jest to  implementacja gotowego wzoru. Wewnątrz funkcji, każdemu fragmentowi zostają przypisane wartości obliczonych współczynników A i B oraz obiekt typu QLineSeries. Obiekt ten, bazując na obliczonych współczynnikach, słuzy do zobrazowania na wykresie przebiegu linii regresji dla danego segmentu.
+Kod tej funkcji nie został umieszczony w pracy, z uwagi na jego obszerność oraz fakt, ze jest to implementacja  znanego algorytmu. Wewnątrz funkcji, każdemu fragmentowi zostają przypisane wartości obliczonych współczynników A i B oraz obiekt typu QLineSeries. Obiekt ten, bazując na obliczonych współczynnikach, słuzy do zobrazowania na wykresie przebiegu linii regresji dla danego segmentu.
  \FloatBarrier
 \begin{figure}[h]
 \centering
@@ -611,20 +554,28 @@ Kod tej funkcji nie został umieszczony w pracy, z uwagi na jego obszerność or
 \caption{Fragment przebiegu intonacji przed i po nałożeniu linii regresji}
 \end{figure}
 \FloatBarrier
-\subsection{Wczytywanie wartości  uzyskanych za pomocą programu PRAAT}
-PRAAT umożliwia ekstrakcję wartości całego przebiegu intonacji do pliku tekstowego, w następującej formie:
-\begin{lstlisting}
-Time_s   F0_Hz
-0.050828   --undefined--
-0.060828   --undefined--
-0.070828   --undefined--
-0.080828   --undefined--
-0.090828   --undefined--
-0.100828   230.627376
-0.110828   223.764249
-0.120828   225.470779
-0.130828   229.259109
-\end{lstlisting}
+\section{Wczytywanie wartości  uzyskanych za pomocą programu PRAAT}
+PRAAT jest programem służącym do analizy, przetwarzania oraz syntezy mowy. Został stworzony dla środowiska naukowego i jest powszechnie używany w badaniach poświęconych mowie. W zakresie jego możliwości znajduje się również ekstrakcja częstotliwości podstawowej. Wartości te następnie moga być zapisane do pliku tekstowego w następującej formie:
+
+\begin{tabular}{c r @{} l}
+Time\_s &
+\multicolumn{2}{c}{F0\_Hz}\\ \hline
+0.023469 & --undefined-- \\
+0.033469 & --undefined-- \\
+0.033469 & 327.395121 \\
+0.023469 &  --undefined-- \\
+0.033469 &  --undefined-- \\
+0.043469 &  --undefined-- \\
+0.053469 &  --undefined-- \\
+0.063469 &  --undefined-- \\
+0.073469 &  327.395121 \\
+0.083469 &  322.101395 \\
+0.093469 &  314.760925 \\
+0.103469 &  311.135612 \\
+\end{tabular}
+
+
+
 Wartości estymowane są co 10 milisekund. Brak wykrytej wartości w danym momencie, oznaczany jest przez PRAATa jako ''--undefined--''.
 \begin{lstlisting}[caption={Funkcja wczytująca do programu wartości F0 z pliku tekstowego},label={lst:label},language=C++]
 void MainWindow::processPraatFile(QString filepath)
@@ -656,7 +607,7 @@ void MainWindow::processPraatFile(QString filepath)
   }
 \end{lstlisting}
 Zadaniem przedstawionej funkcji jest wczytanie do programu wartości częstotliwości podstawowej uzyskanych za pomocą PRAATa, przechowywanych w pliku tekstowym. Funkcja najpierw sprawdza czy dany plik istnieje i czy da się go otworzyć. Następnie wczytywane są kolejno wszystkie linie tego pliku. Z wczytanej linii uzyskiwany jest podzbiór znaków, jako, że wartości F0 zaczynają się w 11 kolumnie każdej z linii. Jak zostało już wspomniane, pauzy w przebiegu intonacji oznaczone są jako ''--undefined--'', więc pierwszy znak tego podzbioru porównywany jest ze znakiem ''-''. Jeżeli porównanie zwróci wartość prawdziwą, do wektoru przechowującego wczytane wartości, wczytane zostanie zero. W przeciwnym razie wczytany podzbiór jest konwertowany do wartości typu zmiennoprzecinkowego o podwójnej precyzji, a nastepnie dodany do wektoru. Gdy wszystkie wartości zostaną wczytane, plik jest zamykany, a wektor wczytanych wartości poddawany jest segmentacji oraz analizie.
-\section{Analiza wykrytych segmentów}
+\chapter{Analiza wykrytych segmentów}
 Po zakończeniu implementacji segmentacji konturów oraz obliczania współczynników regresji liniowej, kolejnym etapem pracy była analiza wykrytych segmentów. Celem tej analizy było wykrycie wszelkiego rodzaju cech, które powtarzałyby się w zdaniach tego samego typu, a więc mogły by być użyteczne w procesie klasyfikacji zdań. 
 Analizowane były takie własciwosci przebiegu intonacji jak:
 \begin{itemize}
@@ -667,7 +618,7 @@ Analizowane były takie własciwosci przebiegu intonacji jak:
 
 Szybko została zauważona istotna własciwosć konturów. Dla niektórych zdań wartosci F0 były bardzo wysokie na początku nagrania, dla innych z kolei gwałtowny wzrost nastąpywał na samym końcu.
 
-\subsection{Pytania rozstrzygnięcia}
+\section{Pytania rozstrzygnięcia}
 W pierwszej kolejności nagrania były analizowane pod kątem rozpoznania ich jako pytania rozstrzygnięcia. Ten rodzaj wypowiedzi cechuje się silną antykadencją zlokalizowaną w końcowej częsci zdania.
 Jest to najbardziej charakterystyczny rodzaj zdania, dlatego program zaczyna klasyfikacje od niego.
  \FloatBarrier
@@ -711,7 +662,7 @@ Ponownie pod uwagę brane są ostatnie trzy kontury. Jako ,że zaobserwowane zos
 \end{figure}
 \FloatBarrier
 Ostatnie z przedstawionych pytań rozstrzygnięcia zostało wypowiedziane przez kobietę. Brzmi ono ''A czy Tobie marzy się kariera zagraniczna?''.  Przebieg intonacji jest zbliżony do przykładu przedstawionego na rysunku 10, tutaj również tendencja intonacji nie jest rosnąca, lecz następuje silny skok intonacji na końcu wypowiedzi.
-\subsection{Pytania dopełnienia}
+\section{Pytania dopełnienia}
 Intonacja nadawana pytaniom dopełnienia całkowicie różni się od opisanej dla pytań rozstrzygnięcia. W tym przypadku zaobserwowany został brak jakiekolwiek wzrostu intonacji w końcowej częsci wypowiedzi, oraz cały przebieg intonacji jest najczęsciej opadający. Tresc tych wypowiedzi jawnie wskazuje, że jest to pytanie, ponieważ na ich początku zawarty jest zaimek pytajny. Przykłady takich zaimków to ''kto, dlaczego, który, czemu, jak, co''. Charakterystyczny dla tego rodzaju pytań jest wysoko zaintonowany początek wypowiedzi,  po którym następuje znaczny spadek estymowanych wartosci.
  \FloatBarrier
 \begin{figure}[h]
@@ -741,64 +692,171 @@ Rysunek 17 przedstawia schemat rozpoznawania pytań dopełnienia. Ten rodzaj wyp
 Pod uwagę brana jest pierwsza połowa zbioru segmentów. Najpierw program sprawdza czy dany segment jest położony wystarczająco wysoko. W przeciwnym razie segment ten zostaje ominięty. Następnie obliczona zostaje różnica w położeniu między sąsiadującymi segmentami.
 Aby zdanie zostało sklasyfikowane jako pytanie dopełnienia, różnica między nimi musi być większa niż wartość położenia niżej znajdującego się segmentu, podzielona na trzy. Zauważono, że z racji dużych różnic między wartościami F0 uzyskiwanymi dla kobiet i mężczyzn, takie porównanie jest wydajniejsze niż porównywanie ze stałą wartością. Dodatkowymi warunkiem klasyfikacji jest brak rosnącej tendencji niżej położonego segmentu.
 
-\subsection{Zdania rozkazujące}
-Dla zdań twierdzących oraz pytań dopełnienia charakterystyczna jest obecnosć krótkich segmentów o wysokich wartosciach zlokalizowanych na początku przebiegu intonacji. W przypadku pytań rozstrzygnięcia, taki charakterystyczny segment obecny był na końcu wypowiedzi. W zdaniach nakazujących komus wykonanie jakiej czynnosci, kładziony jest silny akcent na czasownik. W skutek tego, najczęsciej segmenty o największych wartosciach F0 zlokalizowane są w centralnej częsci przebiegu intonacji, lub zaczynają się w początkowej częsci, kończąc w srodkowej. Z racji nałożonego na nie akcentu, dosć często są najdłuższymi segmentami w danej wypowiedzi. W tym przypadku funkcja gramatyczna intonacji przeplata się z funkcją podkreślającą znaczenie danego słowa.
-
+\section{Zdania rozkazujące}
+Dla pytań dopełnienia charakterystyczna jest obecnosć krótkich segmentów o wysokich wartosciach zlokalizowanych na początku przebiegu intonacji. W przypadku pytań rozstrzygnięcia, taki charakterystyczny segment obecny był na końcu wypowiedzi. W zdaniach nakazujących komus wykonanie jakiej czynnosci, kładziony jest silny akcent na czasownik. W skutek tego, najczęsciej segmenty o największych wartosciach F0 zlokalizowane są w centralnej częsci przebiegu intonacji, lub zaczynają się w początkowej częsci, kończąc w srodkowej. Z racji nałożonego na nie akcentu, dosć często są najdłuższymi segmentami w danej wypowiedzi. W tym przypadku funkcja gramatyczna intonacji przeplata się z funkcją podkreślającą znaczenie danego słowa. Zaprezentowane zostanie 5 różnych grup cech wskazujących na ten rodzaj zdania.
+Pierwszym krokiem jest znalezienie najwyżej położonego segmentu w pierwszej połowie zbioru.
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{rozkaz_dom.png}
-\caption{Zdanie rozkazujące wypowiedziane przez mężczyznę}
+\includegraphics[scale=0.9]{HighestDetection.png}
+\caption{Schemat wykrywania najwyżej położonego segmentu}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 18 zostało wypowiedziane przez mężczyznę, a jego treść brzmi ''Nie próbujcie tego w domu''. Wyraźny akcent w tej wypowiedzi jest położony na drugie słowo, sylaby w czasowniku są wręcz przeciagnięte, a więc wykorzystany został również iloczas. Na skutek tego omawiany segment poza największymi wartościami, odznacza się również długością. Jest położony w większości w centralnej części przebiegu intonacji. Kolejną zauważalną cechą jest jego gwaltowny wzrost, zakończony krótkim spadkiem. 
+Aby dany segment został uznany za najwyżej zlokalizowany, oprócz położenia musi spełniać jeszcze jeden warunek. Nie może być to segment silnie, wręcz pionowo, opadający.
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{rozkaz_rece_kobieta.png}
+\includegraphics[scale=0.6]{rozkaz_1_kobieta.png}
 \caption{Zdanie rozkazujące wypowiedziane przez kobietę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 19 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wyciągnij ręce z kieszeni''. Akcent intonacyjny ponownie nałożony jest na czasownik w trybie rozkazującym, lecz tym razem jedynie na jego drugą oraz trzecią sylabę. Po pierwszej zauważalna jest krótka pauza.
-W tym przypadku najistotniejszy segment jest opadający, co pokazuje, że nie zawsze jest rosnący jak w poprzednim przykładzie i nie może być ta właściwość traktowana jako powszechna cecha.
+
+Zdanie przedstawione na rysunku 19 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wyłącz w końcu ten telewizor''. Najwyżej położony segment odpowiada czasownikowi oraz gwałtownie rośnie będąc jednocześnie najdłuższym segmentem w zbiorze. Są to cechy wskazujące na zdanie rozkazujące. 
+Zostało wykryte przez fragment algorytmu, który został przedstawiony na rysunku 20.
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{rozkaz_mezczyzna_telewizor.png}
+\includegraphics[scale=0.9]{Imperative1.png}
+\caption{Schemat wykrywania zdania rozkazującego zawierającego pierwszą grupę cech}
+\end{figure}
+\FloatBarrier
+W tym fragmencie algorytmu, program podejmuje próbę rozpoznania zdania jako rozkazującego, bazując na nachyleniu oraz długości najwyżej położonego segmentu.
+Jeżeli długość danego segmentu jest większa niż 20 jednostek i jednocześnie segment jest silnie rosnący, właściwości te wskazują na zdanie rozkazujące. Jeżeli jednak jest krótszy, wciąz może wskazywać na zdanie rozkazujące, jeżeli nie jest ostro rosnący. Ta cecha jest odrzucana przez program, ponieważ zaobserwowano jej związek ze zdaniami twierdzącymi. Jeśli zdanie nie spełnia żadnego z tych warunków, jest poddawane dalszej analizie.
+
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{rozkaz_dom.png}
 \caption{Zdanie rozkazujące wypowiedziane przez mężczyznę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 20 zostało wypowiedziane przez mężczyznę, brzmi ''Wyłącz w końcu ten telewizor''.
-W tym przypadku segment zawierający największe wartości w całości zlokalizowany jest w początkowej części przebiegu. Jako, że jego wartości nie są znacząco większe od wartości segmentów zlokalizowanych w części centralnej, wypowiedź ta mogłaby zostać sklasyfikowana jako zdanie twierdzące. Decydująca w przypadku tej wypowiedzi była długość najistotniejszego segmentu oraz zakres jego wartości. Proporcjonalnie do całego konturu, są one znacznie większe niż odpowiedniki zaobserwowane podczas analizy zdań twierdzących.
-\subsection{Zdania twierdzące}
-Badając nagrania zawierającę ten typ wypowiedzi, zaobserwowany został opadający lub stały przebieg intonacji. W niektórych przypadkach występował również wzrost intonacji w początkowej częsci wypowiedzi, po którym następował delikatny spadek. Charakterystyczny dla tego rodzaju zdań był brak gwałtownych spadków wartosci F0 między kolejnymi segmentami. W przypadku opadającego przebieg intonacji, spadek wartosci ma łagodny charakter.
+Zdanie przedstawione na rysunku 21 zostało wypowiedziane przez mężczyznę, a jego treść brzmi ''Nie próbujcie tego w domu''. Wyraźny akcent w tej wypowiedzi jest położony na drugie słowo, sylaby w czasowniku są wręcz przeciagnięte, a więc wykorzystany został również iloczas. Na skutek tego omawiany segment poza największymi wartościami, odznacza się również długością. Kolejną zauważalną cechą jest jego gwaltowny wzrost, zakończony krótkim spadkiem. 
+
  \FloatBarrier
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{twierdzace_walczyc.png}
+\includegraphics[scale=0.9]{Imperative2.png}
+\caption{Schemat wykrywania zdania rozkazującego zawierającego drugą grupę cech}
+\end{figure}
+\FloatBarrier
+Zdanie może zostać rozpoznane jako rozkazujące, również gdy jego nachylenie jest słabo rosnące, ale za to jest to znacząco długi segment. Długość segmentu odzwierciedla nacisk położony na czasownik. Przykład przedstawiony na rysunku 21 został zidentykowany w ten sposób. Badany segment odpowiada naciskowi nałożonemu na słowo ''próbujcie''.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{rozkaz_3.png}
+\caption{Zdanie rozkazujące wypowiedziane przez kobietę}
+\end{figure}
+\FloatBarrier
+Zdanie przedstawione na rysunku 23 zostało wypowiedziane przez kobietę, a jego treść brzmi ''Wynieś śmieci jak wrócisz''. Akcent intonacyjny ponownie nałożony jest na czasownik w trybie rozkazującym, lecz tym razem jedynie na jego drugą oraz trzecią sylabę. Po pierwszej zauważalna jest krótka pauza.
+W tym przypadku najistotniejszy segment jest opadający, co pokazuje, że nie zawsze jest rosnący jak w poprzednich przykładach i nie może być ta właściwość traktowana jako powszechna cecha.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.85]{Imperative3.png}
+\caption{Schemat wykrywania zdania rozkazującego zawierającego trzecią grupę cech}
+\end{figure}
+\FloatBarrier
+Rysunek 24 przedstawia warunki, po których spełnieniu zdanie z rysunku 23 zostało sklasyfikowane jako zdanie rozkazujące. Ta gałąź algorytmu sprawdza czy segment poprzedzający najwyżej zlokalizowany segment jest opadający. Jeżeli warunek jest spełniony, sprawdzana jest różnica między położeniem najwyższego segmentu z położeniem końca segmentu poprzedzającego. Duży przeskok w takim przypadku wskazuje na zdanie rozkazujące. Jeżeli dane warunki nie zostaną spełnione, program kontynuuje analizę zdania.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{rozkaz_4.png}
+\caption{Zdanie rozkazujące wypowiedziane przez mężczyznę}
+\end{figure}
+\FloatBarrier
+Intonacja tego zdania przypomina przebieg intonacji występujący przy pytaniach dopełnienia. Jednak w tym przypadku różnica między najwyżej położonym segmentem, a następnym segmentem nie była wystarczająco duża, aby rozpoznać je jako pytanie. Kluczowe dla rozpoznania tego zdania jako zdania rozkazującego jest nachylenie obu segmentów. Jeżeli oba są dłuższe niż 10 jednostek oraz są to segmenty opadające, zdanie zostaje rozpoznane jako zdanie rozkazujące.
+
+Warunek, po którego spełnienie te zdanie zostało sklasyfikowane jako rozkazujące, przedstawiony jest na rysunku 26.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.9]{Imperative4.png}
+\caption{Schemat wykrywania zdania rozkazującego zawierającego czwartą grupę cech}
+\end{figure}
+\FloatBarrier
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{rozkaz_5_kobieta.png}
+\caption{Zdanie rozkazujące wypowiedziane przez kobietę}
+\end{figure}
+\FloatBarrier
+Treść rozkazu przedstawionego na rysunku 27 brzmi ''Zanieś zakupy do domu''. Zdanie zostało wypowiedziane przez kobietę. Charakterystyczna jest obecność dość długiej przerwy zaraz po najbardziej znaczącym segmencie.
+
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{rozkaz_6.png}
+\caption{Zdanie rozkazujące wypowiedziane przez mężczynę}
+\end{figure}
+\FloatBarrier
+Zdanie przedstawione na rysunku 28 brzmi ''Skończ najpierw sprzątać swój pokój''. Zauważalne są te same cechy co w zdaniu poprzednim. Bazując na tych obserwacjach opracowany został ostatni warunek rozpoznania zdania rozkazującego, przedstawiony na rysunku 29. Zdanie zostaje uznane za rozkazujące, jeśli najwyżej położony segment jest wystarczająco długi, nie opada stromo, oraz przerwa między nim, a kolejnym segmentem jest większa niż długość najwyższego segmentu.
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.9]{Imperative5.png}
+\caption{Schemat wykrywania zdania rozkazującego zawierającego piątą grupę cech}
+\end{figure}
+\FloatBarrier
+
+\subsection{Zdania twierdzące}
+Podczas obserwacji intonacji zdań twierdzących zauważono stałą lub delikatnie opadającą tendencję. Nie występują w nich nagłe wzrosty lub spadki wartości F0 na początku wypowiedzi. Brak w nich również gwałtwnych wzrostów lub wysokich wartości na końcu zdania, tak charakterystycznych dla pytań rozstrzygnięcia.
+W przypadku opadającego przebiegu intonacji, spadek wartosci ma łagodny charakter. Wpływ na to ma fakt, że zdania te są zazwyczaj wypowiadane bez zabarwienia emocjonalnego, ich główną funkcją jest przekazanie informacji.W porównaniu do wcześniej analizowanych rodzajów zdań, w przypadku zdań twierdzących intonacja ma najmniejszy wpływ na postrzeganie tych zdań przez człowieka.
+
+
+
+ \FloatBarrier
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{twierdzenie_1_kobieta.png}
+\caption{Zdanie twierdzące wypowiedziane przez kobietę}
+\end{figure}
+\FloatBarrier
+Zdanie przedstawione na rysunku 30 przedstawia zdanie twierdzące, którego intonacja przedstawia stałą tendencję. Zostało wypowiedziane przez kobietę, a jego treść brzmi ''Zawsze byli bardzo wspierający''. Średnie wartości kolejnych segmentów są bardzo do siebie zbliżone. Najwyżej zlokalizowany segment jest delikatnie opadający, dodatkowo brak większej przerwy między nim, a następnym segmentem.
+
+
+ \FloatBarrier
+\begin{figure}[]
+\centering
+\includegraphics[scale=0.6]{twierdzenie_2_mezczyzna.png}
 \caption{Zdanie twierdzące wypowiedziane przez mężczyznę}
 \end{figure}
 \FloatBarrier
-Zdanie przedstawione na rysunku 15 zostało wypowiedziane przez mężczyznę, a jego tresć brzmi ''W zeszłym roku ten las wycięto''. Największe wartosci intonacji zostały zauważone dla słów ''W zeszłym'' lecz spadek wartosci dla segmentów odpowiadających kolejnym słowom jest dosć łagodny. Dopiero ostatnie słowo ma wyraźnie niższą intonację. Główną cechą zdań twierdzących pozwalających rozróżnić ten rodzaj wypowiedzi od pytań dopełnienia jest niewielka różnica między wartosciami najwyższego segmentu, a otoczającymi segmentami. W przypadku pytań dopełnienia ta różnica potrafiła wynosić nawet 100Hz i znacznie wykraczać poza typowy zakres częstotliwosci. Ten przebieg intonacji jest wręcz idealnym przykładem zdania twierdzacego, wartosci każdego segmentu są mniejszego od segmentu poprzedniego, przy tym nie wystepuja gwałtownego spadki między nimi oraz wszystkie segmenty są opadające.
- \FloatBarrier
+
+Zdanie przedstawione na rysunku 31 zostało wypowiedziane przez mężczyznę, a jego tresć brzmi ''W zeszłym roku ten las wycięto''. Największe wartosci intonacji zostały zauważone dla słów ''W zeszłym'' lecz spadek wartosci dla segmentów odpowiadających kolejnym słowom jest dosć łagodny. Dopiero ostatnie słowo ma wyraźnie niższą intonację. Główną cechą zdań twierdzących pozwalających rozróżnić ten rodzaj wypowiedzi od pytań dopełnienia jest niewielka różnica między wartosciami najwyższego segmentu, a otoczającymi segmentami. W przypadku pytań dopełnienia ta różnica potrafiła wynosić nawet 100Hz i znacznie wykraczać poza typowy zakres częstotliwosci. Ten przebieg intonacji jest wręcz idealnym przykładem zdania twierdzacego, średnie wartosci każdego segmentu są mniejszego od segmentu poprzedniego, przy tym nie wystepuja gwałtownego spadki między nimi oraz wszystkie segmenty są opadające.
+
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.7]{twierdzace_coraz.png}
+\includegraphics[scale=0.7]{twierdzenie_3_kobieta.png}
 \caption{Zdanie twierdzące wypowiedziane przez kobietę}
 \end{figure}
 \FloatBarrier
-Kolejny przykład zdania twierdzącego, przedstawiony na rysunku 16, został wypowiedziany przez kobietę, a jego tresć brzmi ''Coraz wiecej takich przypadków wychodzi na swiatło dzienne''. Między pierwszym, a drugim słowem nastąpił wzrost intonacji, osiągającej swoje apogeum w drugim słowie, następnie odnotowany został delikatny spadek wartosci, między ostatnią wartoscią tego segmentu, a pierwszą kolejnego. Po tym spadku reszta intonacji utrzymywała stałą tendencję, wartosci pozostałych segmentów oscylowały między 230-250Hz. Ponownie, nie zauważono gwałtownego spadku lub znacznego górowania najwyżej położonego segmentu nad resztą segmentów.
- \FloatBarrier
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.7]{twierdzace_narazac.png}
-\caption{Zdanie twierdzące wypowiedziane przez kobietę}
-\end{figure}
-\FloatBarrier
-Przykład przedstawiony na rysunku 17, przedstawia przebieg intonacji zdania twierdzącego, wypowiedzianego przez kobietę, którego tresć brzmi ''Więc to też naraża ich na niebezpieczeństwo''. Przebieg intonacji ma wyraźnie stałą tendencję. Najwyżej położony segment również znajduje się w poczatkowej częsci wypowiedzi, lecz nie sposób tutaj mówić o znaczącej różnicy. Stała tendencja przebiegu intonacji jest jedną z cech wyraźnie wskazujących, że dana wypowiedź jest zdaniem twierdzącym.
+Przykład przedstawiony na rysunku 32, przedstawia przebieg intonacji zdania twierdzącego, wypowiedzianego przez kobietę, którego tresć brzmi ''Więc to też naraża ich na niebezpieczeństwo''. W tym przykładzie przebieg intonacji również ma wyraźnie stałą tendencję. Nie sposób tutaj mówić o znaczącej różnicy między średnią wartością segmentu zlokalizowanego najwyżej, a otaczającymi go segmentami. Stała tendencja przebiegu intonacji jest jedną z cech wyraźnie wskazujących, że dana wypowiedź jest zdaniem twierdzącym.
 
  
 \section{Porównanie wyników otrzymanych z wykorzystaniem YIN i Praata}
+Jednym z założeń pracy było porównanie wyników uzyskanych przez proponowaną metodę rozpoznawania, dla konturów wykrytych za pomocą dwóch różnych metod ekstrakcji F0. W tym celu dla każdego z nagrań znadujących sie w bazie uczącej przygotowano plik z wartościami F0 uzyskanymi przez PRAAT-a. Wartości te następnie są wczytywane do programu będącego efektem tej pracy, dzielone na segmenty oraz analizowane.
+Tendencje przebiegów intonacji uzyskane za pomocą PRAAT-a sa takie same jak te uzyskane z użyciem algorytmu YIN. Różnice moga być obserwowane jedynie w długościach poszczególnych segmentów, na co wpływ ma zastosowany sposób dzielenia intonacji na segmenty.
+
+\subsection{Poprawność klasyfikacji}
+
+Poprawność klasyfikacji dla intonacji uzyskanej za pomocą PRAAT-a jest nieznacznie gorsza od tej uzyskanej dla segmentów opartych na algorytmie YIN. Większa ilość błędnych rozpoznań została zaobserwowana dla zdań rozkazujących. Warunki rozpoznania tych zdań są oparte w istotnym stopniu na wartościach nachylenia segmentów oraz odległościach między nimi. Wartości progowe były ustalone metodą obserwacyjną. Kontury uzyskane za pomocą PRAAT-a zachowują podobną tendencję, lecz inna metoda ekstrakcji powoduje, że w poszczególnych przypadkach parametry te istotnie się różnią.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_rozstrzygniecia_2_emocje_praat.png}
+\caption{Intonacja pytania przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\end{figure}
+\FloatBarrier
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{pytanie_dopelnienia_praat_2.png}
+\caption{Intonacja pytania przedstawionego na rysunku ... lecz uzyskana za pomocą PRAAT-a}
+\end{figure}
+\FloatBarrier
+
 \newpage
 \section{Wnioski}
 Uzyskane rezultaty można rozpatrywać dwustopniowo. Program uzyskuje zadowalającą skuteczność w rozpoznawaniu obu rodzajów pytań. Zaobserwowane zmiany w intonacji towarzyszącej pytaniom są wystarczające dla poprawnego rozpoznania w zdecydowanej większości przypadków. Potwierdza to dotychczasowe badania wykonane w tym zakresie. 

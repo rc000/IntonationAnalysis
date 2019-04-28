@@ -90,7 +90,7 @@ void SegmentsDetector::findSegments()
         double previousValue = extractionHelper.f0_value(i-1);
         seriesSegments->append(i,value);
 
-        if(std::abs(value - previousValue) > TRANSITION)
+        if(std::abs(value - previousValue) > TRANSITION || i == extractionHelper.f0_size() - 1)
         {
             currentSegment.setEnd(i-1);
             currentSegment.setCenter();
