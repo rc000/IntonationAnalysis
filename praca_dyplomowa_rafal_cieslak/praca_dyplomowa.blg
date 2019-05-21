@@ -1,0 +1,19 @@
+[0] Config.pm:302> INFO - This is Biber 2.11
+[0] Config.pm:305> INFO - Logfile is 'praca_dyplomowa.blg'
+[98] biber:313> INFO - === wto kwi 30, 2019, 05:04:48
+[187] Biber.pm:371> INFO - Reading 'praca_dyplomowa.bcf'
+[461] Biber.pm:857> INFO - Found 16 citekeys in bib section 0
+[522] Biber.pm:3976> INFO - Processing section 0
+[553] Biber.pm:4136> INFO - Looking for bibtex format file 'bibliografia.bib' for section 0
+[556] bibtex.pm:1489> INFO - LaTeX decoding ...
+[609] bibtex.pm:1305> INFO - Found BibTeX data source 'bibliografia.bib'
+[783] Utils.pm:193> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[784] Utils.pm:193> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
+[784] Utils.pm:193> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[784] Utils.pm:193> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
+[867] UCollate.pm:68> INFO - Overriding locale 'pl-PL' defaults 'variable = shifted' with 'variable = non-ignorable'
+[867] UCollate.pm:68> INFO - Overriding locale 'pl-PL' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[868] Biber.pm:3804> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'pl-PL'
+[942] bbl.pm:617> INFO - Writing 'praca_dyplomowa.bbl' with encoding 'UTF-8'
+[956] bbl.pm:720> INFO - Output to praca_dyplomowa.bbl
+[959] Biber.pm:110> INFO - WARNINGS: 4

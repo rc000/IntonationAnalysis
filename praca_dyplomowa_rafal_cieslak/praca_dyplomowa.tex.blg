@@ -1,0 +1,5 @@
+[0] Config.pm:302> INFO - This is Biber 2.11
+[2] Config.pm:305> INFO - Logfile is 'praca_dyplomowa.tex.blg'
+[82] biber:313> INFO - === pon kwi 29, 2019, 23:11:26
+[171] Utils.pm:209> ERROR - Cannot find control file 'praca_dyplomowa.tex.bcf'! - Did latex run successfully on your .tex file before you ran biber?
+[173] Biber.pm:114> INFO - ERRORS: 1

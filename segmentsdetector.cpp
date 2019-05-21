@@ -32,8 +32,6 @@ void SegmentsDetector::setSegmentLocation(int i)
         SegmentsVector.at(i).setLocation(BEGINNING);
         if (SegmentsVector.at(i).getStartIndex() > (lastIndexOfFirstPart-(lastIndexOfFirstPart-firstValueIndex)/2))
         {
-                qDebug()<<"Start Index "<<SegmentsVector.at(i).getStartIndex();
-                qDebug()<<(lastIndexOfFirstPart-(lastIndexOfFirstPart-firstValueIndex)/2);
                 SegmentsVector.at(i).setImp(true);
         }
     }
@@ -60,7 +58,6 @@ void SegmentsDetector::classification()
     result.emplace_back(classificatorNew->classification());
     analysisResults = classificator->getAnalysisResult();
     stateChanges = classificator->getStateChanges();
-    qDebug()<<"result "<<result;
     delete classificator;
 }
 void SegmentsDetector::findLongest()

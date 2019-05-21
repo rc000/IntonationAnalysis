@@ -73,13 +73,11 @@ void MainWindow::cellClicked(int nRow, int nCol)
    activeColumn = nRow;
 
   ui->textBrowser->clear();
- qDebug()<<nRow<<" "<<nCol;
    chart = new QChart();
   SegmentsDetector segmentsDetector = detectors.at(nRow);
 
   for (int i = 0;i<segmentsDetector.getAnalysisResults().size();i++)
   {
-      qDebug()<<segmentsDetector.getAnalysisResults().at(i);
       ui->textBrowser->append(segmentsDetector.getAnalysisResults().at(i));
 
      // ui->textBrowser->setText(segmentsDetector.getAnalysisResults().at(i));
@@ -93,8 +91,7 @@ void MainWindow::cellClicked(int nRow, int nCol)
 
 
 seriesRegresionLines = segmentsDetector.getSeriesRegresionLines();
-qDebug()<<"before adding seriessegments";
-seriesSegments->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+ seriesSegments->setMarkerShape(QScatterSeries::MarkerShapeCircle);
 seriesSegments->setMarkerSize(10.0);
 chart->addSeries(seriesSegments);
 
@@ -112,14 +109,7 @@ chart->addAxis(axisX, Qt::AlignBottom);
 chart->addAxis(axisY, Qt::AlignLeft);
 seriesSegments->attachAxis(axisX);
 seriesSegments->attachAxis(axisY);
-qDebug()<<"before regression lines";
-/*seriesRegresionLines.push_back(new QLineSeries());
-seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfFirstPart(), segmentsDetector.getMaxValue());
-seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfFirstPart(), 20);
-seriesRegresionLines.push_back(new QLineSeries());
-seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfCenterPart(), segmentsDetector.getMaxValue());
-seriesRegresionLines.back()->append(segmentsDetector.getLastIndexOfCenterPart(), 20);*/
-qDebug()<<"after regression lines";
+
 
 for(int i=0;i<seriesRegresionLines.size();i++)
 {

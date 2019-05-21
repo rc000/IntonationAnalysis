@@ -1,42 +1,83 @@
-\babel@toc {polish}{}
-\babel@toc {polish}{}
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {polish}
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Fa\IeC {\l }dy g\IeC {\l }osowe ~\cite {krtan}\relax }}{3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Fałdy głosowe \cite {krtan}}}{8}{figure.1.1}
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Interfejs graficzny aplikacji\relax }}{13}% 
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Zobrazowany podzia\IeC {\l } sygna\IeC {\l }u na ramki wraz zastosowaniem 30-procentowego zak\IeC {\l }adkowania.\relax }}{16}% 
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Klasa stworzona w celu ekstracji F0 oraz przechowywania tych warto\IeC {\'s}ci\relax }}{16}% 
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Klasy stworzone do wykrycia poszczeg\IeC {\'o}lnych segment\IeC {\'o}w intonacyjnych, na podstawie wszystkich warto\IeC {\'s}ci F0\relax }}{19}% 
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Przyk\IeC {\l }ad usuni\IeC {\k e}tego segmentu.\relax }}{22}% 
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Fragment przebiegu intonacji przed i po na\IeC {\l }o\IeC {\.z}eniu linii regresji\relax }}{23}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Interfejs graficzny aplikacji}}{18}{figure.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Zobrazowany podział sygnału na ramki wraz zastosowaniem 30-procentowego zakładkowania.}}{20}{figure.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Klasa stworzona w celu ekstracji F0 oraz przechowywania tych wartości}}{21}{figure.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Klasy stworzone do wykrycia poszczególnych segmentów intonacyjnych, na podstawie wszystkich wartości F0}}{23}{figure.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Przykład usuniętego segmentu.}}{26}{figure.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Fragment przebiegu intonacji przed i po nałożeniu linii regresji}}{27}{figure.2.6}
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Przedstawienie analizowanych cech przebiegu intonacji\relax }}{26}% 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{28}% 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Schemat rozpoznawania pyta\IeC {\'n} rozstrzygni\IeC {\k e}cia\relax }}{29}% 
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia z nacechowaniem emocjonalnym\relax }}{30}% 
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat rozpoznawania pyta\IeC {\'n} rozstrzygni\IeC {\k e}cia z tendencj\IeC {\k a} rosn\IeC {\k a}c\IeC {\k a}\relax }}{31}% 
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Pytanie rozstrzygni\IeC {\k e}cia zadane przez kobiet\IeC {\k e}\relax }}{32}% 
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{33}% 
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Pytanie dope\IeC {\l }nienia zadane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{33}% 
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Schemat rozpoznawania pyta\IeC {\'n} dope\IeC {\l }nienia\relax }}{34}% 
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Schemat wykrywania najwy\IeC {\.z}ej po\IeC {\l }o\IeC {\.z}onego segmentu\relax }}{35}% 
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{36}% 
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Schemat wykrywania zdania rozkazuj\IeC {\k a}cego zawieraj\IeC {\k a}cego pierwsz\IeC {\k a} grup\IeC {\k e} cech\relax }}{36}% 
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{37}% 
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Schemat wykrywania zdania rozkazuj\IeC {\k a}cego zawieraj\IeC {\k a}cego drug\IeC {\k a} grup\IeC {\k e} cech\relax }}{37}% 
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{38}% 
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Schemat wykrywania zdania rozkazuj\IeC {\k a}cego zawieraj\IeC {\k a}cego trzeci\IeC {\k a} grup\IeC {\k e} cech\relax }}{38}% 
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{39}% 
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Schemat wykrywania zdania rozkazuj\IeC {\k a}cego zawieraj\IeC {\k a}cego czwart\IeC {\k a} grup\IeC {\k e} cech\relax }}{40}% 
-\contentsline {figure}{\numberline {3.19}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{40}% 
-\contentsline {figure}{\numberline {3.20}{\ignorespaces Zdanie rozkazuj\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyn\IeC {\k e}\relax }}{41}% 
-\contentsline {figure}{\numberline {3.21}{\ignorespaces Schemat wykrywania zdania rozkazuj\IeC {\k a}cego zawieraj\IeC {\k a}cego pi\IeC {\k a}t\IeC {\k a} grup\IeC {\k e} cech\relax }}{41}% 
-\contentsline {figure}{\numberline {3.22}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{42}% 
-\contentsline {figure}{\numberline {3.23}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez m\IeC {\k e}\IeC {\.z}czyzn\IeC {\k e}\relax }}{43}% 
-\contentsline {figure}{\numberline {3.24}{\ignorespaces Zdanie twierdz\IeC {\k a}ce wypowiedziane przez kobiet\IeC {\k e}\relax }}{43}% 
-\contentsline {figure}{\numberline {3.25}{\ignorespaces Intonacja uzyskana za pomoc\IeC {\k a} PRAAT-a dla pytania, kt\IeC {\'o}rego intonacja uzyskana algorytmem YIN zosta\IeC {\l }a przedstawiona na rysunku 3.4.\relax }}{45}% 
-\contentsline {figure}{\numberline {3.26}{\ignorespaces Intonacja uzyskana za pomoc\IeC {\k a} PRAAT-a dla pytania, kt\IeC {\'o}rego intonacja uzyskana algorytmem YIN zosta\IeC {\l }a przedstawiona na rysunku 3.8.\relax }}{45}% 
-\contentsline {figure}{\numberline {3.27}{\ignorespaces Intonacja uzyskana za pomoc\IeC {\k a} PRAAT-a dla zdania rozkazuj\IeC {\k a}cego, kt\IeC {\'o}rego intonacja uzyskana algorytmem YIN zosta\IeC {\l }a przedstawiona na rysunku 3.11.\relax }}{46}% 
-\contentsline {figure}{\numberline {3.28}{\ignorespaces Intonacja uzyskana za pomoc\IeC {\k a} PRAAT-a dla zdania twierdz\IeC {\k a}cego, kt\IeC {\'o}rego intonacja uzyskana algorytmem YIN zosta\IeC {\l }a przedstawiona na rysunku 3.22.\relax }}{46}% 
-\contentsline {figure}{\numberline {3.29}{\ignorespaces Intonacja uzyskana za pomoc\IeC {\k a} PRAAT-a dla zdania rozkazuj\IeC {\k a}cego, kt\IeC {\'o}rego intonacja uzyskana algorytmem YIN zosta\IeC {\l }a przedstawiona na rysunku 3.20.\relax }}{47}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Przedstawienie analizowanych cech przebiegu intonacji}}{31}{figure.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Pytanie rozstrzygnięcia zadane przez mężczyznę}}{33}{figure.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Schemat rozpoznawania pytań rozstrzygnięcia}}{34}{figure.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Pytanie rozstrzygnięcia z nacechowaniem emocjonalnym}}{35}{figure.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Schemat rozpoznawania pytań rozstrzygnięcia z tendencją rosnącą}}{35}{figure.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Pytanie rozstrzygnięcia zadane przez kobietę}}{36}{figure.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Pytanie dopełnienia zadane przez mężczyznę}}{37}{figure.3.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Pytanie dopełnienia zadane przez mężczyznę}}{37}{figure.3.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Schemat rozpoznawania pytań dopełnienia}}{38}{figure.3.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Schemat wykrywania najwyżej położonego segmentu}}{39}{figure.3.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Zdanie rozkazujące wypowiedziane przez kobietę}}{40}{figure.3.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Schemat wykrywania zdania rozkazującego zawierającego pierwszą grupę cech}}{40}{figure.3.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Zdanie rozkazujące wypowiedziane przez mężczyznę}}{41}{figure.3.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Schemat wykrywania zdania rozkazującego zawierającego drugą grupę cech}}{41}{figure.3.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Zdanie rozkazujące wypowiedziane przez kobietę}}{42}{figure.3.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Schemat wykrywania zdania rozkazującego zawierającego trzecią grupę cech}}{42}{figure.3.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Zdanie rozkazujące wypowiedziane przez mężczyznę}}{43}{figure.3.17}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Schemat wykrywania zdania rozkazującego zawierającego czwartą grupę cech}}{43}{figure.3.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Zdanie rozkazujące wypowiedziane przez kobietę}}{44}{figure.3.19}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Zdanie rozkazujące wypowiedziane przez mężczynę}}{44}{figure.3.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Schemat wykrywania zdania rozkazującego zawierającego piątą grupę cech}}{45}{figure.3.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Zdanie twierdzące wypowiedziane przez kobietę}}{45}{figure.3.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Zdanie twierdzące wypowiedziane przez mężczyznę}}{46}{figure.3.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Zdanie twierdzące wypowiedziane przez kobietę}}{47}{figure.3.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.25}{\ignorespaces Intonacja uzyskana za pomocą PRAAT-a dla pytania, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.4.}}{48}{figure.3.25}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.26}{\ignorespaces Intonacja uzyskana za pomocą PRAAT-a dla pytania, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.8.}}{48}{figure.3.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.27}{\ignorespaces Intonacja uzyskana za pomocą PRAAT-a dla zdania rozkazującego, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.11.}}{49}{figure.3.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.28}{\ignorespaces Intonacja uzyskana za pomocą PRAAT-a dla zdania twierdzącego, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.22.}}{49}{figure.3.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3.29}{\ignorespaces Intonacja uzyskana za pomocą PRAAT-a dla zdania rozkazującego, którego intonacja uzyskana algorytmem YIN została przedstawiona na rysunku 3.20.}}{50}{figure.3.29}
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }

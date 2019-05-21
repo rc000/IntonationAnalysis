@@ -1,38 +1,77 @@
-\babel@toc {polish}{}
-\babel@toc {polish}{}
-\contentsline {section}{Wst\IeC {\k e}p}{1}% 
-\contentsline {chapter}{\numberline {1}Wprowadzenie teoretyczne}{2}% 
-\contentsline {section}{\numberline {1.1}Sygna\IeC {\l } mowy}{2}% 
-\contentsline {subsection}{\numberline {1.1.1}Powstawanie mowy}{2}% 
-\contentsline {subsection}{\numberline {1.1.2}Reprezentacja mowy}{4}% 
-\contentsline {subsection}{\numberline {1.1.3}Rozumienie mowy}{4}% 
-\contentsline {subsection}{\numberline {1.1.4}Rejestrowanie sygna\IeC {\l }u mowy}{5}% 
-\contentsline {section}{\numberline {1.2}Ton podstawowy}{5}% 
-\contentsline {subsection}{\numberline {1.2.1}Definicja tonu podstawowego}{5}% 
-\contentsline {subsection}{\numberline {1.2.2}Formanty}{6}% 
-\contentsline {subsection}{\numberline {1.2.3}Przegl\IeC {\k a}d metod estymacji}{6}% 
-\contentsline {subsection}{\numberline {1.2.4}Algorytm YIN}{7}% 
-\contentsline {section}{\numberline {1.3}Prozodia}{7}% 
-\contentsline {subsection}{\numberline {1.3.1}Intonacja}{7}% 
-\contentsline {subsection}{\numberline {1.3.2}Funkcje intonacji}{8}% 
-\contentsline {subsection}{\numberline {1.3.3}Analiza dotychczasowych badan}{9}% 
-\contentsline {chapter}{\numberline {2}Implementacja detekcji kontur\IeC {\'o}w cz\IeC {\k e}stotliwo\IeC {\'s}ci podstawowej}{12}% 
-\contentsline {section}{\numberline {2.1}J\IeC {\k e}zyk programowania oraz \IeC {\'s}rodowisko}{12}% 
-\contentsline {section}{\numberline {2.2}Opis mo\IeC {\.z}liwo\IeC {\'s}ci aplikacji}{13}% 
-\contentsline {section}{\numberline {2.3}Wczytanie nagrania}{13}% 
-\contentsline {section}{\numberline {2.4}Ekstrakcja tonu podstawowego}{15}% 
-\contentsline {subsection}{\numberline {2.4.1}Ramkowanie oraz ekstracja warto\IeC {\'s}ci F0}{15}% 
-\contentsline {section}{\numberline {2.5}Wykrywanie poszczeg\IeC {\'o}lnych segment\IeC {\'o}w}{18}% 
-\contentsline {subsection}{\numberline {2.5.1}Analiza wst\IeC {\k e}pna wykrytego fragmentu}{20}% 
-\contentsline {subsection}{\numberline {2.5.2}Wsp\IeC {\'o}\IeC {\l }czynniki regresji liniowej}{22}% 
-\contentsline {section}{\numberline {2.6}Wczytywanie warto\IeC {\'s}ci uzyskanych za pomoc\IeC {\k a} programu PRAAT}{23}% 
-\contentsline {chapter}{\numberline {3}Analiza wykrytych segment\IeC {\'o}w}{26}% 
-\contentsline {section}{\numberline {3.1}Pytania rozstrzygni\IeC {\k e}cia}{28}% 
-\contentsline {section}{\numberline {3.2}Pytania dope\IeC {\l }nienia}{32}% 
-\contentsline {section}{\numberline {3.3}Zdania rozkazuj\IeC {\k a}ce}{35}% 
-\contentsline {section}{\numberline {3.4}Zdania twierdz\IeC {\k a}ce}{42}% 
-\contentsline {section}{\numberline {3.5}Por\IeC {\'o}wnanie wynik\IeC {\'o}w otrzymanych z wykorzystaniem YIN i Praata}{44}% 
-\contentsline {subsection}{\numberline {3.5.1}Pytania rozstrzygni\IeC {\k e}cia oraz dope\IeC {\l }nienia}{44}% 
-\contentsline {subsection}{\numberline {3.5.2}Zdania rozkazuj\IeC {\k a}ce oraz zdania twierdz\IeC {\k a}ce}{45}% 
-\contentsline {subsection}{\numberline {3.5.3}B\IeC {\l }\IeC {\k e}dne rozpoznania}{46}% 
-\contentsline {chapter}{\numberline {4}Wnioski}{48}% 
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {polish}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Wprowadzenie}{6}{chapter*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Podstawy teoretyczne}{7}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Sygnał mowy}{7}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.1}Powstawanie mowy}{7}{subsection.1.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.2}Reprezentacja mowy}{9}{subsection.1.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.3}Rozumienie mowy}{9}{subsection.1.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1.4}Rejestrowanie sygnału mowy}{9}{subsection.1.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Ton podstawowy}{10}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.1}Definicja tonu podstawowego}{10}{subsection.1.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.2}Formanty}{10}{subsection.1.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.3}Przegląd metod estymacji}{11}{subsection.1.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.4}Algorytm YIN}{11}{subsection.1.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Prozodia}{11}{section.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.1}Intonacja}{12}{subsection.1.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.2}Funkcje intonacji}{12}{subsection.1.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.3}Analiza dotychczasowych badan}{13}{subsection.1.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Implementacja detekcji konturów częstotliwości podstawowej}{17}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Język programowania oraz środowisko}{17}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Opis możliwości aplikacji}{18}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Wczytanie nagrania}{18}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}Ramkowanie oraz ekstracja wartości F0}{20}{subsection.2.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Wykrywanie poszczególnych segmentów}{22}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.1}Analiza wstępna wykrytego fragmentu}{24}{subsection.2.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.2}Współczynniki regresji liniowej}{26}{subsection.2.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Wczytywanie wartości uzyskanych za pomocą programu PRAAT}{27}{section.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Analiza wykrytych segmentów}{31}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Pytania rozstrzygnięcia}{33}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Pytania dopełnienia}{36}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Zdania rozkazujące}{39}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Zdania twierdzące}{45}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Porównanie wyników otrzymanych z wykorzystaniem YIN i Praata}{47}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.1}Pytania rozstrzygnięcia oraz dopełnienia}{48}{subsection.3.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.2}Zdania rozkazujące oraz zdania twierdzące}{49}{subsection.3.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.3}Błędne rozpoznania}{50}{subsection.3.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Wnioski}{51}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Spis rysunków}{53}{chapter*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Spis kodów źródłowych}{55}{chapter*.9}

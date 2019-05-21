@@ -26,7 +26,6 @@ QString ClassificatorNew::classification()
 
         }
         double difference = firstValue - secondValue;
-        qDebug()<<i << " diff "<<difference;
 
         if(difference > 20 && (segments.at(i).getCoefA() > -0.3 || segments.at(i-1).getCoefA() > -0.3))
         {
@@ -101,7 +100,6 @@ QString ClassificatorNew::classification()
         if((segments.at(i).getCenterOfRegressionLine() < (segments.at(indexPreviousSegment).getCenterOfRegressionLine() -5.0))
                 && segments.at(indexPreviousSegment).getCenterOfRegressionLine() > segments.at(firstValidFromEnd).getCenterOfRegressionLine())
         {
-            qDebug()<<"MNIEJSZE "<<segments.at(i).getCenterOfRegressionLine()<<" " <<segments.at(indexPreviousSegment).getCenterOfRegressionLine();
             endRising = false;
             break;
         }
@@ -113,9 +111,7 @@ QString ClassificatorNew::classification()
     secondValue = 0.0;
     for(int i = 0;i<segments.size()/2;i++)
     {
-        qDebug()<<"first Value "<<firstValue<<" "<<secondValue;
-        qDebug()<<segments.at(i).getCenterOfRegressionLine()<<" "<<segments.at(i+1).getCenterOfRegressionLine();
-        qDebug()<<segments.at(i).getSegmentLength()<<" "<<segments.at(i+1).getSegmentLength();
+
 
         if (firstValue == 0.0)
         {
@@ -134,12 +130,10 @@ QString ClassificatorNew::classification()
         }
 
         double difference = firstValue - secondValue;
-        qDebug()<<"difference dopelnienie "<<difference<<" "<<firstValue<<" "<<secondValue;
 
 
         if (difference > (secondValue/3) &&  segments.at(i+1).getCoefA() < 0.1 && firstValue > 200.0 )
         {
-            qDebug()<<"pytanie dopelnienia";
             if (i+2 < segments.size())
             {
                 if (segments.at(i+1).getCenterOfRegressionLine() > (segments.at(i+2).getCenterOfRegressionLine()-10.0))
@@ -153,11 +147,9 @@ QString ClassificatorNew::classification()
         {
             secondValue = segments.at(i+1).getMin();
         difference = firstValue - secondValue;
-        qDebug()<<"difference dopelnienie2 "<<difference;
 
         if (difference > (secondValue/3) &&  segments.at(i+1).getCoefA() < 0.1  && firstValue > 200.0 )
         {
-            qDebug()<<"pytanie dopelnienia";
             if (i+2 < segments.size())
             {
                 if (segments.at(i+1).getCenterOfRegressionLine() > (segments.at(i+2).getCenterOfRegressionLine()-10.0))
@@ -207,16 +199,12 @@ QString ClassificatorNew::classification()
     {
         if (indexHighestSegment > 0 && highestSegmentFirstHalf.getCenterOfRegressionLine() > (segments.at(indexHighestSegment-1).getCenterOfRegressionLine() + 10.0))
            {
-         qDebug()<<   highestSegmentFirstHalf.getCenterOfRegressionLine();
-         qDebug() << segments.at(indexHighestSegment-1).getCenterOfRegressionLine();
-         qDebug() <<"rozkaz4";
+
             return "rozkazz4";
         }
         else if (indexHighestSegment == 0)
         {
-            qDebug()<<   highestSegmentFirstHalf.getCenterOfRegressionLine();
-            qDebug() << segments.at(indexHighestSegment+1).getCenterOfRegressionLine();
-            qDebug() <<"rozkaz4 "<<indexHighestSegment;
+
                 return "rozkazz4";
         }
 
@@ -231,7 +219,6 @@ QString ClassificatorNew::classification()
         }
     }
     double spaceBetweenHighestAndNext = segments.at(indexNextValidateAfterHighest).getStartIndex() - highestSegmentFirstHalf.getEndIndex();
-    qDebug()<<"startIndex "<<segments.at(indexNextValidateAfterHighest).getStartIndex()<<" end "<<highestSegmentFirstHalf.getEndIndex()<<" "<< spaceBetweenHighestAndNext;
     if ((spaceBetweenHighestAndNext > highestSegmentFirstHalf.getSegmentLength() && highestSegmentFirstHalf.getCoefA() > -0.5
             && highestSegmentFirstHalf.getSegmentLength() > 10))
         return "rozkazz5";
@@ -249,7 +236,6 @@ QString ClassificatorNew::classification()
         return "zdanie twierdzace";
 
     double spaceBetweenHighestAndPrevious = highestSegmentFirstHalf.getStartIndex() - segments.at(indexSegmentBeforeHighest).getEndIndex();
-    qDebug()<<"startIndex "<<highestSegmentFirstHalf.getStartIndex()<<" end "<<segments.at(indexSegmentBeforeHighest).getEndIndex();
 
     return "zdanie twierdzace";
   /*  double averageFirstHalf = 0.0;
